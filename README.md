@@ -68,7 +68,7 @@ npm run dev
 ### 4. Flutter Mobile App Setup
 
 ```bash
-cd mobile
+cd mobileapp
 flutter pub get
 flutter run
 ```
@@ -77,7 +77,7 @@ flutter run
 
 ```
 astromate/
-├── 📱 mobile/           # Flutter mobile application
+├── 📱 mobileapp/          # Flutter mobile application
 ├── 🌐 admin/            # Next.js admin panel
 ├── 📚 docs/             # Documentation
 ├── 🎨 influence/        # Admin template assets

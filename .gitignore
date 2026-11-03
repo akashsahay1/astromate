@@ -72,79 +72,79 @@ admin/.tsbuildinfo
 # === FLUTTER MOBILE APP ===
 
 # Flutter/Dart/Pub related
-mobile/build/
-mobile/.dart_tool/
-mobile/.flutter-plugins
-mobile/.flutter-plugins-dependencies
-mobile/.packages
-mobile/.pub-cache/
-mobile/.pub/
-mobile/build/
-mobile/flutter_*.png
+mobileapp/build/
+mobileapp/.dart_tool/
+mobileapp/.flutter-plugins
+mobileapp/.flutter-plugins-dependencies
+mobileapp/.packages
+mobileapp/.pub-cache/
+mobileapp/.pub/
+mobileapp/build/
+mobileapp/flutter_*.png
 
 # Android related
-mobile/android/**/gradle-wrapper.jar
-mobile/android/.gradle
-mobile/android/captures/
-mobile/android/gradlew
-mobile/android/gradlew.bat
-mobile/android/local.properties
-mobile/android/**/GeneratedPluginRegistrant.java
-mobile/android/key.properties
-mobile/android/**/*.keystore
-mobile/android/**/*.jks
+mobileapp/android/**/gradle-wrapper.jar
+mobileapp/android/.gradle
+mobileapp/android/captures/
+mobileapp/android/gradlew
+mobileapp/android/gradlew.bat
+mobileapp/android/local.properties
+mobileapp/android/**/GeneratedPluginRegistrant.java
+mobileapp/android/key.properties
+mobileapp/android/**/*.keystore
+mobileapp/android/**/*.jks
 
 # iOS related
-mobile/ios/**/*.mode1v3
-mobile/ios/**/*.mode2v3
-mobile/ios/**/*.moved-aside
-mobile/ios/**/*.pbxuser
-mobile/ios/**/*.perspectivev3
-mobile/ios/**/*sync/
-mobile/ios/**/.sconsign.dblite
-mobile/ios/**/.tags*
-mobile/ios/**/.vagrant/
-mobile/ios/**/DerivedData/
-mobile/ios/**/Icon?
-mobile/ios/**/Pods/
-mobile/ios/**/.symlinks/
-mobile/ios/**/profile
-mobile/ios/**/xcuserdata
-mobile/ios/.generated/
-mobile/ios/Flutter/App.framework
-mobile/ios/Flutter/Flutter.framework
-mobile/ios/Flutter/Flutter.podspec
-mobile/ios/Flutter/Generated.xcconfig
-mobile/ios/Flutter/app.flx
-mobile/ios/Flutter/app.zip
-mobile/ios/Flutter/flutter_assets/
-mobile/ios/Flutter/flutter_export_environment.sh
-mobile/ios/ServiceDefinitions.json
-mobile/ios/Runner/GeneratedPluginRegistrant.*
+mobileapp/ios/**/*.mode1v3
+mobileapp/ios/**/*.mode2v3
+mobileapp/ios/**/*.moved-aside
+mobileapp/ios/**/*.pbxuser
+mobileapp/ios/**/*.perspectivev3
+mobileapp/ios/**/*sync/
+mobileapp/ios/**/.sconsign.dblite
+mobileapp/ios/**/.tags*
+mobileapp/ios/**/.vagrant/
+mobileapp/ios/**/DerivedData/
+mobileapp/ios/**/Icon?
+mobileapp/ios/**/Pods/
+mobileapp/ios/**/.symlinks/
+mobileapp/ios/**/profile
+mobileapp/ios/**/xcuserdata
+mobileapp/ios/.generated/
+mobileapp/ios/Flutter/App.framework
+mobileapp/ios/Flutter/Flutter.framework
+mobileapp/ios/Flutter/Flutter.podspec
+mobileapp/ios/Flutter/Generated.xcconfig
+mobileapp/ios/Flutter/app.flx
+mobileapp/ios/Flutter/app.zip
+mobileapp/ios/Flutter/flutter_assets/
+mobileapp/ios/Flutter/flutter_export_environment.sh
+mobileapp/ios/ServiceDefinitions.json
+mobileapp/ios/Runner/GeneratedPluginRegistrant.*
 
 # macOS related
-mobile/macos/Flutter/GeneratedPluginRegistrant.swift
-mobile/macos/Flutter/Flutter-Debug.xcconfig
-mobile/macos/Flutter/Flutter-Release.xcconfig
-mobile/macos/Flutter/ephemeral
+mobileapp/macos/Flutter/GeneratedPluginRegistrant.swift
+mobileapp/macos/Flutter/Flutter-Debug.xcconfig
+mobileapp/macos/Flutter/Flutter-Release.xcconfig
+mobileapp/macos/Flutter/ephemeral
 
 # Linux related
-mobile/linux/flutter/generated_plugin_registrant.cc
-mobile/linux/flutter/generated_plugin_registrant.h
-mobile/linux/flutter/generated_plugins.cmake
+mobileapp/linux/flutter/generated_plugin_registrant.cc
+mobileapp/linux/flutter/generated_plugin_registrant.h
+mobileapp/linux/flutter/generated_plugins.cmake
 
 # Windows related
-mobile/windows/flutter/generated_plugin_registrant.cc
-mobile/windows/flutter/generated_plugin_registrant.h
-mobile/windows/flutter/generated_plugins.cmake
+mobileapp/windows/flutter/generated_plugin_registrant.cc
+mobileapp/windows/flutter/generated_plugin_registrant.h
+mobileapp/windows/flutter/generated_plugins.cmake
 
 # Web related
-mobile/web/favicon.png
+mobileapp/web/favicon.png
 
 # Exceptions to above rules
-!mobile/android/app/src/main/res/mipmap-*/
-!mobile/ios/Runner/Assets.xcassets/
-!mobile/web/icons/
+!mobileapp/android/app/src/main/res/mipmap-*/
+!mobileapp/ios/Runner/Assets.xcassets/
+!mobileapp/web/icons/
 
 # === CONFIGURATION FILES (SENSITIVE) ===
 
@@ -160,7 +160,7 @@ api-keys.json
 
 # Keep template files but ignore actual .env
 !.env.example
-!mobile/.env.example
+!mobileapp/.env.example
 
 # Database credentials
 database.env

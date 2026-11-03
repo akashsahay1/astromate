@@ -50,7 +50,7 @@ Manager:
 astromate/
 ├── docs/
 │   └── devdoc.md     # This document
-├── mobile/                        # Flutter application
+├── app/                        # Flutter application
 │   ├── lib/
 │   │   ├── common/               # Shared widgets, themes, constants
 │   │   ├── config/               # App configuration, API URLs, themes
@@ -74,7 +74,7 @@ astromate/
 #### Flutter Mobile App Structure
 ```
 
-mobile/lib/
+mobileapp/lib/
 ├── common/ # Shared components and utilities
 │ ├── widgets/ # Reusable UI components
 │ │ ├── custom_button.dart
@@ -983,8 +983,8 @@ https://api.dicebear.com/7.x/avataaars/png?seed=meera&size=150
 ```
 
 #### Files Referenced
-- `/mobile/lib/screens/home.dart:408` - Astrologer profile image display in `_buildNewAstrologerCard`
-- `/mobile/lib/services/network/dio_client.dart:25-44` - Network logging configuration
+- `/mobileapp/lib/screens/home.dart:408` - Astrologer profile image display in `_buildNewAstrologerCard`
+- `/mobileapp/lib/services/network/dio_client.dart:25-44` - Network logging configuration
 - Database: `astromateDB.users` collection - Profile image fields updated
 
 #### Impact
