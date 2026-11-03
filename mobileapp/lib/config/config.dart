@@ -8,8 +8,16 @@ class Config {
   static const String version = '1.0.0';
   static const int buildNumber = 1;
 
-  // Environment Mode - Change this to switch between local and production
-  static const String appMode = 'local'; // 'local' or 'production'
+  // Environment mode: release builds always talk to production; debug builds use the local
+  // server. Override with --dart-define=APP_MODE=production (or local).
+  static const String appMode = String.fromEnvironment(
+    'APP_MODE',
+    defaultValue: kReleaseMode ? 'production' : 'local',
+  );
+
+  // LAN IP of the dev machine running the admin/API server (for real devices in debug).
+  // Override with --dart-define=DEV_HOST=192.168.x.x
+  static const String devHost = String.fromEnvironment('DEV_HOST', defaultValue: '192.168.1.160');
 
   static bool get isDevelopment => appMode == 'local';
   static bool get isProduction => appMode == 'production';
@@ -20,7 +28,7 @@ class Config {
   static Future<String> _getLocalIP() async {
     // For development, use your Mac's actual IP address so iOS can connect
     if (isDevelopment) {
-      _cachedLocalIP = '192.168.1.160'; // Your Systems's IP for iOS to connect
+      _cachedLocalIP = devHost;
       return _cachedLocalIP!;
     }
 
