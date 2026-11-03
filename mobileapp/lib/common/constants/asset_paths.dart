@@ -5,9 +5,9 @@ class AssetPaths {
   static const String _animations = 'assets/animations/';
   
   // App Logo and Branding
-  static const String logoFull = '${_images}logo_full.png';
-  static const String logoIcon = '${_images}logo_icon.png';
-  static const String logoWhite = '${_images}logo_white.png';
+  static const String logoFull = '${_images}logo_wordmark.png';
+  static const String logoIcon = '${_images}logo_mark.png';
+  static const String logoWhite = '${_images}logo_wordmark_white.png';
   static const String splashBackground = '${_images}splash_bg.png';
   
   // Authentication Images

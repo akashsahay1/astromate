@@ -653,13 +653,13 @@ class _AstrologersListScreenState extends State<AstrologersListScreen> {
                     child: OutlinedButton(
                       onPressed: () => widget.onStartCall(astrologer),
                       style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color(0xFF1877F2)),
+                        side: const BorderSide(color: AppColors.brandIndigo),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                       ),
                       child: Text(
                         astrologer.callRate.toInt() == 0 ? "FREE" : "₹${astrologer.callRate.toInt()}/min",
-                        style: const TextStyle(color: Color(0xFF1877F2), fontSize: 11),
+                        style: const TextStyle(color: AppColors.brandIndigo, fontSize: 11),
                       ),
                     ),
                   ),

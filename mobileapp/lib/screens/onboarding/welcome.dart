@@ -252,9 +252,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
                     // Logo
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(60),
+                      borderRadius: BorderRadius.circular(30),
                       child: Image.asset(
-                        'assets/images/logo.png',
+                        'assets/images/app_icon.png',
                         width: 120,
                         height: 120,
                         fit: BoxFit.cover,
@@ -277,14 +277,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     const SizedBox(height: 16),
 
                     // App name
-                    Text(
-                      'Astromate',
-                      style: AppTextStyles.heading2.copyWith(
-                        fontFamily: 'Ergonomique',
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.primary,
-                      ),
-                    ),
+                    Image.asset('assets/images/logo_wordmark.png', height: 38, semanticLabel: 'Astromate'),
 
                     const SizedBox(height: 48),
 

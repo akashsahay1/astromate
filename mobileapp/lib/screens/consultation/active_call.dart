@@ -299,7 +299,7 @@ class _ActiveCallScreenState extends State<ActiveCallScreen> {
     final isVideoCall = widget.callData['call_type'] == 'video';
 
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1A2E),
+      backgroundColor: AppColors.callBackground,
       body: SafeArea(
         child: Stack(
           children: [
@@ -335,7 +335,7 @@ class _ActiveCallScreenState extends State<ActiveCallScreen> {
             mirror: false,
             objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
             placeholderBuilder: (context) => Container(
-              color: const Color(0xFF1A1A2E),
+              color: AppColors.callBackground,
               child: const Center(
                 child: Icon(Icons.videocam_off, size: 64, color: Colors.white54),
               ),

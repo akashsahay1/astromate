@@ -111,42 +111,42 @@ flutter:
       fonts:
         - asset: assets/fonts/ergonomique-regular.otf
 
-# App Icon Configuration dart run flutter_launcher_icons
+# App Icon Configuration: dart run flutter_launcher_icons
+# Source art: Astromate "A" mark (client logo, 2026-10-31) — yellow #FEBC0C on red #DB0007
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/logo.png"
+  image_path: "assets/images/app_icon.png"
+  remove_alpha_ios: true
+  adaptive_icon_background: "#DB0007"
+  adaptive_icon_foreground: "assets/images/app_icon_foreground.png"
+  adaptive_icon_monochrome: "assets/images/app_icon_monochrome.png"
   min_sdk_android: 21
   web:
     generate: true
-    image_path: "assets/images/logo.png"
-    background_color: "#1877F2"
-    theme_color: "#1877F2"
+    image_path: "assets/images/app_icon.png"
+    background_color: "#DB0007"
+    theme_color: "#DB0007"
   windows:
     generate: true
-    image_path: "assets/images/logo.png"
+    image_path: "assets/images/app_icon.png"
     icon_size: 48
   macos:
     generate: true
-    image_path: "assets/images/logo.png"
+    image_path: "assets/images/app_icon.png"
 
-# Native Splash Screen Configuration - dart run flutter_native_splash:create
+# Native Splash Screen Configuration: dart run flutter_native_splash:create
 flutter_native_splash:
-  # Background color
-  color: "#FFFFFF"
-  color_dark: "#FFFFFF"
-
-  # Logo image
+  color: "#DB0007"
   image: "assets/images/splash_logo.png"
-  image_dark: "assets/images/splash_logo.png"
-  branding: "assets/images/splash_branding_image.png"
+  branding: "assets/images/splash_branding.png"
 
   # Android 12+ splash configuration
   android_12:
     image: "assets/images/splash_logo.png"
-    color: "#FFFFFF"
-    icon_background_color: "#FE0000"
-    branding: "assets/images/splash_branding_image.png"
+    color: "#DB0007"
+    icon_background_color: "#DB0007"
+    branding: "assets/images/splash_branding.png"
 
   # Platform configuration
   android: true

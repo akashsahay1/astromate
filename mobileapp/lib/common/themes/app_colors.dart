@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Primary Brand Color - Red Theme (for Customers)
-  static const Color primary = Color(0xFFFE0000); // Bright Red
-  static const Color primaryLight = Color(0xFFFF4D4D); // Light Red
-  static const Color primaryDark = Color(0xFFB30000); // Dark Red
+  // Astromate brand: 60% Astromate Yellow, 30% Astromate Red, 10% white/black/Astromate Indigo
+  static const Color brandYellow = Color(0xFFFEBC0C);
+  static const Color brandRed = Color(0xFFDB0007);
+  static const Color brandIndigo = Color(0xFF312E81);
 
-  // Astrologer Primary Color - Green Theme
-  static const Color astrologerPrimary = Color(0xFF00A765); // Emerald-500
-  static const Color astrologerPrimaryLight = Color(0xFF34D399); // Emerald-400
-  static const Color astrologerPrimaryDark = Color(0xFF035E3A); // Emerald-600
+  // Primary (customer) - Astromate Red: buttons, CTAs, highlights
+  static const Color primary = brandRed;
+  static const Color primaryLight = Color(0xFFE8333A);
+  static const Color primaryDark = Color(0xFFA30005);
 
-  // Secondary Colors - Golden/Cosmic Theme
-  static const Color secondary = Color(0xFFF59E0B); // Amber-500
-  static const Color secondaryLight = Color(0xFFFBBF24); // Amber-400
-  static const Color secondaryDark = Color(0xFFD97706); // Amber-600
+  // Astrologer primary - Astromate Indigo (keeps the two roles visually distinct, both on-brand)
+  static const Color astrologerPrimary = brandIndigo;
+  static const Color astrologerPrimaryLight = Color(0xFF4F46E5);
+  static const Color astrologerPrimaryDark = Color(0xFF1E1B4B);
+
+  // Secondary - Astromate Yellow: nav bar, badges, gold accents
+  static const Color secondary = brandYellow;
+  static const Color secondaryLight = Color(0xFFFFD24D);
+  static const Color secondaryDark = Color(0xFFD99E00);
+
+  // Dark surfaces for call / incoming screens
+  static const Color callBackground = Color(0xFF1E1B4B);
 
   // Accent Colors - Mystical Green
   static const Color accent = Color(0xFF10B981); // Emerald-500
@@ -48,14 +56,14 @@ class AppColors {
   static const Color surfaceDark = Color(0xFF1E1E1E);
 
   // Gradient Colors for Mystical Theme (Customer - Red)
-  static const Color gradientStart = Color(0xFFFE0000);
-  static const Color gradientMiddle = Color(0xFFFF4D4D);
-  static const Color gradientEnd = Color(0xFFB30000);
+  static const Color gradientStart = brandRed;
+  static const Color gradientMiddle = Color(0xFFE8333A);
+  static const Color gradientEnd = Color(0xFFA30005);
 
   // Gradient Colors for Astrologer (Green)
-  static const Color astrologerGradientStart = Color(0xFF10B981);
-  static const Color astrologerGradientMiddle = Color(0xFF34D399);
-  static const Color astrologerGradientEnd = Color(0xFF059669);
+  static const Color astrologerGradientStart = brandIndigo;
+  static const Color astrologerGradientMiddle = Color(0xFF4338CA);
+  static const Color astrologerGradientEnd = Color(0xFF1E1B4B);
 
   // Text Colors
   static const Color textPrimaryLight = Color(0xFF212121);
@@ -80,13 +88,13 @@ class AppColors {
   static const Color zodiacWater = Color(0xFF3F51B5);
 
   // Chat Colors (Customer view - red bubbles for user messages)
-  static const Color chatBubbleUser = Color(0xFFFE0000);
+  static const Color chatBubbleUser = brandRed;
   static const Color chatBubbleAstrologer = Color(0xFFE0E0E0);
   static const Color chatBubbleUserText = Color(0xFFFFFFFF);
   static const Color chatBubbleAstrologerText = Color(0xFF212121);
 
   // Chat Colors for Astrologer view (green bubbles for user messages)
-  static const Color astrologerChatBubbleUser = Color(0xFF10B981);
+  static const Color astrologerChatBubbleUser = brandIndigo;
   static const Color astrologerChatBubbleAstrologer = Color(0xFFE0E0E0);
   static const Color astrologerChatBubbleUserText = Color(0xFFFFFFFF);
   static const Color astrologerChatBubbleAstrologerText = Color(0xFF212121);

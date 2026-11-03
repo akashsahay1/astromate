@@ -89,7 +89,7 @@ class _IncomingCallScreenState extends State<IncomingCallScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1A2E),
+      backgroundColor: AppColors.callBackground,
       body: SafeArea(
         child: Column(
           children: [

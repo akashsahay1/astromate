@@ -4,7 +4,7 @@ import FirebaseCore
 import FirebaseMessaging
 
 @main
-@objc class AppDelegate: FlutterAppDelegate {
+@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -30,8 +30,12 @@ import FirebaseMessaging
     // Set Firebase Messaging delegate
     Messaging.messaging().delegate = self
 
-    GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+
+  // UIScene lifecycle (required on iOS 27+): the engine is created by the scene, so plugins register here
+  func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
+    GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
   }
 
   // Handle APNS token registration

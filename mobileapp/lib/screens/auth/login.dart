@@ -231,37 +231,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 20),
 
                     // Logo
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          'assets/images/logo.png',
-                          width: 80,
-                          height: 80,
-                          errorBuilder: (context, error, stackTrace) => Icon(
-                            Icons.auto_awesome,
-                            size: 50,
-                            color: AppColors.primary,
-                          ),
-                        ),
-                      ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(28),
+                      child: Image.asset('assets/images/app_icon.png', width: 112, height: 112),
                     ),
 
                     const SizedBox(height: 16),
 
                     // App name
-                    Text(
-                      'Astromate',
-                      style: AppTextStyles.heading2.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
+                    Image.asset('assets/images/logo_wordmark.png', height: 34, semanticLabel: 'Astromate'),
 
                     const SizedBox(height: 40),
 

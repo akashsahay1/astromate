@@ -18,4 +18,5 @@
     
     <!-- Zodiac Colors -->
     <color name="zodiac_fire">#FF6B35</color>
+	<color name="ic_launcher_background">#DB0007</color>
 </resources>
