@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
-import { ObjectId } from 'mongodb';
+import { getAuthUser, unauthorized } from '@/lib/security';
 
 // GET - Get user's cart
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    const userId = auth.userId;
 
     if (!userId) {
       return NextResponse.json({
@@ -81,7 +82,10 @@ export async function GET(request: NextRequest) {
 // POST - Add item to cart
 export async function POST(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
+    body.user_id = auth.userId; // never trust a client-sent user_id
     const { user_id, product_id, quantity = 1 } = body;
 
     if (!user_id || !product_id) {
@@ -180,7 +184,10 @@ export async function POST(request: NextRequest) {
 // PUT - Update cart item quantity
 export async function PUT(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
+    body.user_id = auth.userId; // never trust a client-sent user_id
     const { user_id, product_id, quantity } = body;
 
     if (!user_id || !product_id || quantity === undefined) {
@@ -283,8 +290,10 @@ export async function PUT(request: NextRequest) {
 // DELETE - Clear entire cart or remove specific item
 export async function DELETE(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
+    const userId = auth.userId;
     const productId = searchParams.get('productId');
 
     if (!userId) {

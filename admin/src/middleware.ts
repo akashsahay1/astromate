@@ -3,8 +3,15 @@ import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'your-secret-key-change-in-production'
+  process.env.JWT_SECRET!
 );
+
+// Admin-panel-only APIs. Route handlers may also check, but nothing here may ever be reachable without an admin token.
+const adminApiPrefixes = [
+  '/api/admin/', '/api/finance/', '/api/dashboard/', '/api/reports/summary', '/api/sessions/stats',
+  '/api/payments/razorpay/refund', '/api/media/register-external', '/api/users/create', '/api/users/bulk-update',
+];
+const adminUserTypes = ['administrator', 'admin', 'manager'];
 
 // Public routes that don't require authentication
 const publicRoutes = ['/', '/login'];
@@ -36,6 +43,19 @@ export async function middleware(request: NextRequest) {
   const botPaths = ['/blogs', '/buy', '/cart', '/goods', '/information', '/mails', '/more', '/news', '/shoppings', '/shops', '/wp-admin', '/wp-login', '/admin.php', '/.env', '/phpinfo'];
   if (botPaths.some(path => pathname.startsWith(path))) {
     return new NextResponse(null, { status: 404 });
+  }
+
+  if (adminApiPrefixes.some(p => pathname.startsWith(p))) {
+    const auth = request.headers.get('authorization');
+    const apiToken = auth?.startsWith('Bearer ') ? auth.slice(7) : request.cookies.get('auth-token')?.value;
+    try {
+      if (!apiToken) throw new Error('no token');
+      const { payload } = await jwtVerify(apiToken, JWT_SECRET);
+      if (!adminUserTypes.includes(payload.user_type as string)) throw new Error('not admin');
+    } catch {
+      return NextResponse.json({ success: false, error: 'UNAUTHORIZED', message: 'Admin authentication required' }, { status: 401 });
+    }
+    return NextResponse.next();
   }
 
   // Skip middleware for static files and API routes
@@ -115,7 +135,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all paths except static assets and API routes
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    // Match all paths except static assets; admin APIs are gated above, other APIs pass through
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };

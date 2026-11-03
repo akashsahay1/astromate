@@ -312,21 +312,19 @@ export async function PUT(request: NextRequest) {
     // Allow email_address update only if email_verified flag is sent (indicating OTP verification)
     const isVerifiedEmailUpdate = updateData.email_verified === true && updateData.email_address;
 
-    // Remove sensitive fields that shouldn't be updated via this endpoint
-    const protectedFields = [
-      '_id', 'password', 'user_type', 'account_status', 'verification_status',
-      'wallet_balance', 'created_at', 'is_verified',
-      'login_count', 'failed_login_attempts', 'last_login', 'last_logout',
-      'google_access_token', 'registration_ip', 'total_earnings',
-      'approval_status', 'is_online'
-    ];
-
-    // Only protect email_address if it's not a verified email update
-    if (!isVerifiedEmailUpdate) {
-      protectedFields.push('email_address');
+    // Allowlist: anything not listed here (wallet_balance, reserved_balance, total_earnings, verification_status,
+    // commission_percentage, user_type, ...) can never be set by the user themselves.
+    const editableFields = new Set([
+      'full_name', 'phone_number', 'gender', 'date_of_birth', 'birth_time', 'birth_place',
+      'address', 'city', 'state', 'country', 'zip', 'profile_image',
+      'bio', 'skills', 'languages', 'qualifications', 'certifications', 'education', 'specializations', 'experience_years',
+      'call_rate', 'chat_rate', 'video_rate',
+      'account_holder_name', 'account_number', 'bank_name', 'ifsc_code', 'upi_id',
+      ...(isVerifiedEmailUpdate ? ['email_address', 'email_verified'] : []),
+    ]);
+    for (const field of Object.keys(updateData)) {
+      if (!editableFields.has(field)) delete updateData[field];
     }
-
-    protectedFields.forEach(field => delete updateData[field]);
 
     // Validate required fields based on user type
     const usersCollection = await DatabaseService.getCollection('users');

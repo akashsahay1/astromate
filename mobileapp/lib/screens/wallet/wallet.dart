@@ -8,7 +8,6 @@ import '../../services/api/user_api_service.dart';
 import '../../services/service_locator.dart';
 import '../../common/utils/error_handler.dart';
 import '../../services/payment/razorpay_service.dart';
-import '../../config/config.dart';
 import '../../config/payment_config.dart';
 import 'transaction_history.dart';
 
@@ -964,28 +963,6 @@ class _WalletScreenState extends State<WalletScreen> {
         throw Exception('User not found');
       }
 
-      // Check if running on simulator or physical device
-      // Use the base URL to determine device type
-      bool isSimulator = false;
-      try {
-        final baseUrl = await Config.baseUrl;
-        isSimulator = baseUrl.contains('localhost') || baseUrl.contains('127.0.0.1');
-      } catch (e) {
-        // If we can't determine, assume physical device to use real Razorpay
-        isSimulator = false;
-      }
-
-      if (isSimulator) {
-        // Close loading dialog before showing mock payment
-        if (mounted && !dialogClosed) {
-          Navigator.pop(context);
-          dialogClosed = true;
-        }
-        // For testing on simulator, show a mock payment dialog
-        _showMockPaymentDialog(amount, token);
-        return;
-      }
-
       // Initialize payment configuration with timeout
       try {
         debugPrint('🔄 Initializing payment config...');
@@ -1029,14 +1006,13 @@ class _WalletScreenState extends State<WalletScreen> {
         context: context,
         amount: amount,
         user: currentUser,
-        onSuccess: (paymentId, orderId) async {
-          // Payment successful - now add money to wallet
+        onSuccess: (response) async {
+          // Payment successful - server verifies the signature and credits the wallet
           try {
-            await _userApiService.rechargeWallet(
-              token,
-              amount: amount,
-              paymentMethod: 'razorpay',
-              paymentId: paymentId,
+            await _userApiService.verifyRazorpayPayment(
+              orderId: response.orderId ?? '',
+              paymentId: response.paymentId ?? '',
+              signature: response.signature ?? '',
             );
 
             if (mounted && !dialogClosed) {
@@ -1104,263 +1080,6 @@ class _WalletScreenState extends State<WalletScreen> {
             ),
           ),
         );
-      }
-    }
-  }
-
-  void _showMockPaymentDialog(double amount, String token) async {
-    Navigator.pop(context); // Close loading dialog
-    
-    final result = await showDialog<bool>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        backgroundColor: AppColors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        title: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.orange.withValues(alpha: 0.1),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.warning_amber_rounded,
-                color: Colors.orange,
-                size: 24,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Text(
-              'Simulator Detected',
-              style: AppTextStyles.heading6.copyWith(
-                color: AppColors.textPrimaryLight,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        content: SizedBox(
-          width: double.maxFinite,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.orange.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.orange.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.info_outline,
-                          color: Colors.orange,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'DEVELOPMENT MODE',
-                          style: AppTextStyles.bodySmall.copyWith(
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0.5,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      'You are running this app on a simulator.',
-                      style: AppTextStyles.bodyMedium.copyWith(
-                        color: AppColors.textPrimaryLight,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Razorpay payment gateway cannot be used on simulators. To test real payments:',
-                      style: AppTextStyles.bodySmall.copyWith(
-                        color: AppColors.textSecondaryLight,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '• ',
-                          style: AppTextStyles.bodySmall.copyWith(
-                            color: AppColors.textSecondaryLight,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Use a physical device (iPhone/Android)',
-                            style: AppTextStyles.bodySmall.copyWith(
-                              color: AppColors.textSecondaryLight,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '• ',
-                          style: AppTextStyles.bodySmall.copyWith(
-                            color: AppColors.textSecondaryLight,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Ensure backend is accessible from device',
-                            style: AppTextStyles.bodySmall.copyWith(
-                              color: AppColors.textSecondaryLight,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Test Amount:',
-                      style: AppTextStyles.bodyMedium.copyWith(
-                        color: AppColors.textPrimaryLight,
-                      ),
-                    ),
-                    Text(
-                      '₹${amount.toStringAsFixed(0)}',
-                      style: AppTextStyles.heading6.copyWith(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'For development testing only:',
-                style: AppTextStyles.bodySmall.copyWith(
-                  color: AppColors.textSecondaryLight,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'You can simulate a successful payment to test the wallet recharge flow. This will add test money to your wallet (not real money).',
-                style: AppTextStyles.bodySmall.copyWith(
-                  color: AppColors.textSecondaryLight,
-                ),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            style: TextButton.styleFrom(
-              foregroundColor: AppColors.textSecondaryLight,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            ),
-            child: Text(
-              'Cancel',
-              style: AppTextStyles.bodyMedium.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          ElevatedButton.icon(
-            onPressed: () => Navigator.pop(context, true),
-            icon: const Icon(Icons.science_outlined, size: 18),
-            label: Text(
-              'Simulate Payment',
-              style: AppTextStyles.bodyMedium.copyWith(
-                fontWeight: FontWeight.w600,
-                color: AppColors.white,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.orange,
-              foregroundColor: AppColors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-
-    if (result == true) {
-      // Simulate successful payment
-      try {
-        await _userApiService.rechargeWallet(
-          token,
-          amount: amount,
-          paymentMethod: 'razorpay',
-          paymentId: 'pay_mock_${DateTime.now().millisecondsSinceEpoch}',
-        );
-
-        // Small delay to ensure transaction is committed to database
-        await Future.delayed(const Duration(milliseconds: 500));
-
-        // Refresh wallet data
-        await _loadData();
-
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Row(
-                children: [
-                  const Icon(Icons.science_outlined, color: AppColors.white, size: 20),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text('₹${amount.toStringAsFixed(0)} added (Simulator Test - Not Real Money)'),
-                  ),
-                ],
-              ),
-              backgroundColor: Colors.orange,
-              behavior: SnackBarBehavior.floating,
-              duration: const Duration(seconds: 4),
-            ),
-          );
-        }
-      } catch (e) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Mock payment failed: $e'),
-              backgroundColor: AppColors.error,
-            ),
-          );
-        }
       }
     }
   }

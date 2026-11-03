@@ -4,7 +4,7 @@ import { jwtVerify } from 'jose';
 import { InputSanitizer } from '@/lib/security';
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'your-secret-key-change-in-production'
+  process.env.JWT_SECRET!
 );
 
 export async function PATCH(request: NextRequest) {

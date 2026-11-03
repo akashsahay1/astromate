@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import '../../common/themes/app_colors.dart';
 import '../../common/themes/text_styles.dart';
 import '../../models/cart.dart';
@@ -15,7 +13,6 @@ import '../../services/api/user_api_service.dart';
 import '../../services/wallet/wallet_service.dart';
 import '../../services/payment/razorpay_service.dart';
 import '../../services/email/email_service.dart';
-import '../../config/config.dart';
 import '../../config/payment_config.dart';
 import '../../models/user.dart' as app_user;
 import '../../common/utils/validation_patterns.dart';
@@ -225,13 +222,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         receipt: receipt,
         purpose: 'product_purchase',
         orderType: 'order',
+        orderId: orderId, // server charges this order's own total and links it
       );
       
       final razorpayOrderId = orderData['id'] as String;
+      final payableAmount = (orderData['amount'] as num) / 100; // server-computed, in paise
       debugPrint('✅ Razorpay order created: $razorpayOrderId');
-      
-      // Link the order with razorpay_order_id for payment verification
-      await _linkOrderWithRazorpayId(orderId, razorpayOrderId);
       
       // Store the pending order ID and number for use in callbacks
       final capturedOrderId = orderId; // For API calls
@@ -244,13 +240,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           debugPrint('🎉 Payment successful: ${response.paymentId}');
           
           // Step 3: Verify payment with backend
-          final updateResult = await _verifyPayment(
-            razorpayOrderId: response.orderId ?? '',
-            razorpayPaymentId: response.paymentId ?? '',
-            razorpaySignature: response.signature ?? '',
-            amount: totalAmount,
-            purpose: 'product_purchase',
-          );
+          final updateResult = await _verifyPayment(response);
           
           if (updateResult) {
             debugPrint('✅ Order payment status updated successfully');
@@ -313,7 +303,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
       // Create payment options with real Razorpay order ID
       final options = _razorpayService.createPaymentOptions(
-        amount: totalAmount,
+        amount: payableAmount,
         orderId: razorpayOrderId, // Use real Razorpay order ID
         userEmail: _currentUser?.email ?? '',
         userContact: _currentUser?.phone ?? '',
@@ -339,50 +329,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     }
   }
 
-  // New method to update order payment status
-  Future<bool> _verifyPayment({
-    required String razorpayOrderId,
-    required String razorpayPaymentId,
-    required String razorpaySignature,
-    required double amount,
-    required String purpose,
-  }) async {
+  Future<bool> _verifyPayment(PaymentSuccessResponse response) async {
     try {
-      debugPrint('🔍 Verifying payment: $razorpayPaymentId');
-      
-      final authService = getIt<AuthService>();
-      final token = authService.authToken;
-      
-      if (token == null) {
-        debugPrint('❌ No authentication token available');
-        return false;
-      }
-
-      final baseUrl = await Config.baseUrl;
-      final response = await http.post(
-        Uri.parse('$baseUrl/payments/razorpay/verify'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-        body: jsonEncode({
-          'razorpay_order_id': razorpayOrderId,
-          'razorpay_payment_id': razorpayPaymentId,
-          'razorpay_signature': razorpaySignature,
-          'amount': amount,
-          'purpose': purpose,
-        }),
+      await getIt<UserApiService>().verifyRazorpayPayment(
+        orderId: response.orderId ?? '',
+        paymentId: response.paymentId ?? '',
+        signature: response.signature ?? '',
       );
-
-      final data = jsonDecode(response.body);
-      
-      if (response.statusCode == 200 && data['success'] == true) {
-        debugPrint('✅ Payment verification successful');
-        return true;
-      } else {
-        debugPrint('❌ Payment verification failed: ${data['message'] ?? 'Unknown error'}');
-        return false;
-      }
+      return true;
     } catch (e) {
       debugPrint('❌ Payment verification error: $e');
       return false;
@@ -397,19 +351,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       );
     } catch (e) {
       debugPrint('❌ Failed to update order status for failure: $e');
-    }
-  }
-
-  Future<void> _linkOrderWithRazorpayId(String orderId, String razorpayOrderId) async {
-    try {
-      debugPrint('📝 Linking order $orderId with Razorpay order ID $razorpayOrderId');
-      await _ordersApiService.updateOrderStatus(
-        orderId: orderId,
-        razorpayOrderId: razorpayOrderId,
-      );
-      debugPrint('✅ Successfully linked order with Razorpay ID');
-    } catch (e) {
-      debugPrint('❌ Failed to link order with Razorpay ID: $e');
     }
   }
 
@@ -439,9 +380,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           _sendOrderConfirmationEmail(completeOrder ?? order);
         }
         // For Razorpay payments, don't send email here - send it after payment success
-        
-        // Clear cart after successful order
-        await _cartService.clearCart();
+        // Wallet orders are paid on creation; Razorpay orders clear the cart after payment succeeds
+        if (paymentMethod == PaymentMethod.wallet) {
+          await _cartService.clearCart();
+          await _walletService.refreshBalance();
+        }
         return order;
       } else {
         // Check if it's a product not found error

@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ObjectId } from 'mongodb';
 import DatabaseService from '../../../lib/database';
-import '../../../lib/security';
+import { getAuthUser, unauthorized } from '../../../lib/security';
 import { generateOrderId } from '../../../lib/custom-id';
+import { markOrderPaid } from '../../../lib/orders';
 
 // Type definitions
 interface OrderItem {
@@ -67,46 +68,18 @@ function generateOrderNumber(): string {
 // GET - Get orders (user-specific or admin view)
 export async function GET(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
-    const adminView = searchParams.get('admin') === 'true';
-    const search = searchParams.get('search') || '';
+    const userId = auth.userId; // own orders only; admin panel uses /api/admin/orders
     const status = searchParams.get('status');
     const paymentStatus = searchParams.get('payment_status');
-    const limit = parseInt(searchParams.get('limit') || '20');
+    const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 100);
     const page = parseInt(searchParams.get('page') || '1');
     const skip = (page - 1) * limit;
 
-    // For non-admin requests, userId is required
-    if (!adminView && !userId) {
-      return NextResponse.json({
-        success: false,
-        error: 'Missing user ID',
-        message: 'User ID is required'
-      }, { status: 400 });
-    }
-
     const ordersCollection = await DatabaseService.getCollection('orders');
-    const usersCollection = await DatabaseService.getCollection('users');
-
-    // Build query
-    const query: Record<string, unknown> = {};
-    
-    // If not admin view, filter by user (using custom user_id)
-    if (!adminView && userId) {
-      query.user_id = userId; // This should be custom user_id like 'user_1756540752442_2s0gyae9'
-    }
-
-    // Admin search functionality
-    if (adminView && search) {
-      const searchRegex = { $regex: search, $options: 'i' };
-      query.$or = [
-        { order_number: searchRegex },
-        { 'shipping_address.full_name': searchRegex },
-        { 'shipping_address.phone_number': searchRegex },
-        { 'items.product_name': searchRegex }
-      ];
-    }
+    const query: Record<string, unknown> = { user_id: userId };
 
     // Status filters
     if (status && status !== 'all') {
@@ -127,25 +100,7 @@ export async function GET(request: NextRequest) {
 
     const totalOrders = await ordersCollection.countDocuments(query);
 
-    // For admin view, also get user information for each order
     const formattedOrders = await Promise.all(orders.map(async order => {
-      // Get user information for admin view
-      let userInfo = null;
-      if (adminView && order.user_id) {
-        try {
-          // Look up user by custom user_id, not MongoDB ObjectId
-          const user = await usersCollection.findOne({ user_id: order.user_id });
-          if (user) {
-            userInfo = {
-              name: user.name || user.full_name || 'Unknown User',
-              email: user.email || user.email_address || null,
-              phone: user.phone || user.phone_number || null
-            };
-          }
-        } catch (error) {
-          console.error(`Failed to fetch user info for user_id ${order.user_id}:`, error);
-        }
-      }
       // Always resolve product details and images dynamically from product_id
       const itemsWithDetails = await Promise.all((order.items || []).map(async (item: OrderItem) => {
         try {
@@ -220,14 +175,6 @@ export async function GET(request: NextRequest) {
         order_date: order.created_at // Always provide order_date as created_at
       };
 
-      // Add user info for admin view
-      if (adminView && userInfo) {
-        return {
-          ...baseOrder,
-          user_info: userInfo
-        };
-      }
-
       return baseOrder;
     }));
 
@@ -256,10 +203,12 @@ export async function GET(request: NextRequest) {
 // POST - Create new order
 export async function POST(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
-    const { 
-      user_id, 
-      items, 
+    const user_id = auth.userId;
+    const {
+      items,
       shipping_address, 
       payment_method = 'cod',
       payment_details = {},
@@ -285,7 +234,6 @@ export async function POST(request: NextRequest) {
 
     const ordersCollection = await DatabaseService.getCollection('orders');
     const productsCollection = await DatabaseService.getCollection('products');
-    const cartCollection = await DatabaseService.getCollection('cart_items');
 
     // Validate items and calculate totals
     let subtotal = 0;
@@ -329,21 +277,18 @@ export async function POST(request: NextRequest) {
 
     // Calculate shipping and tax
     const shippingCost = apply_shipping && subtotal < 500 ? 50 : 0; // Free shipping above ₹500
-    const taxRate = 0.18; // 18% GST
+    const settings = await (await DatabaseService.getCollection('app_settings')).findOne({ type: 'general' });
+    const taxRate = Number(settings?.commission?.gstRate ?? 18) / 100; // same source the app shows (/app-config)
     const taxAmount = subtotal * taxRate;
     const totalAmount = subtotal + shippingCost + taxAmount;
 
-    // Determine payment status based on payment method and payment details
-    let paymentStatus = 'pending';
-    if (payment_method === 'cod') {
-      paymentStatus = 'pending';
-    } else if (payment_method === 'razorpay' && payment_details.payment_id) {
-      // If payment_id is present, payment was successful
-      paymentStatus = 'paid';
-    } else if (payment_method === 'razorpay') {
-      // Razorpay without payment_id means payment is still awaiting
-      paymentStatus = 'awaiting_payment';
+    if (!['wallet', 'razorpay'].includes(payment_method)) {
+      return NextResponse.json({ success: false, error: 'Invalid payment method', message: 'Payment method must be wallet or razorpay' }, { status: 400 });
     }
+    // Razorpay orders become paid only via /payments/razorpay/verify or the webhook
+    const paymentStatus = 'awaiting_payment';
+    const roundedTotal = Math.round(totalAmount * 100) / 100;
+    const usersCollection = await DatabaseService.getCollection('users');
 
     // Generate order
     const orderData = {
@@ -356,7 +301,7 @@ export async function POST(request: NextRequest) {
       subtotal: Math.round(subtotal * 100) / 100,
       shipping_cost: shippingCost,
       tax_amount: Math.round(taxAmount * 100) / 100,
-      total_amount: Math.round(totalAmount * 100) / 100,
+      total_amount: roundedTotal,
       items: validatedItems,
       shipping_address: {
         full_name: shipping_address.full_name,
@@ -369,11 +314,6 @@ export async function POST(request: NextRequest) {
         country: shipping_address.country || 'India'
       },
       notes: payment_details.notes || notes,
-      payment_details: payment_details,
-      // Extract razorpay_order_id if present in payment_details
-      ...(payment_details.razorpay_order_id && { razorpay_order_id: payment_details.razorpay_order_id }),
-      // Extract payment_id if present in payment_details (for successful payments)
-      ...(payment_details.payment_id && { payment_id: payment_details.payment_id }),
       tracking_number: null,
       created_at: new Date(),
       updated_at: new Date(),
@@ -381,22 +321,39 @@ export async function POST(request: NextRequest) {
       delivered_at: null
     };
 
-    const result = await ordersCollection.insertOne(orderData);
-    const orderId = result.insertedId.toString();
-
-    // Update product stock using custom product_id
-    for (const item of validatedItems) {
-      await productsCollection.updateOne(
-        { product_id: item.product_id }, // Use custom product_id, not MongoDB ObjectId
-        { 
-          $inc: { stock_quantity: -(item.quantity as number) },
-          $set: { updated_at: new Date() }
-        } as Record<string, unknown>
+    // Wallet: take the money first (atomic, can't overdraw), then the order is paid on creation
+    if (payment_method === 'wallet') {
+      const debited = await usersCollection.updateOne(
+        { user_id, wallet_balance: { $gte: roundedTotal } },
+        { $inc: { wallet_balance: -roundedTotal }, $currentDate: { updated_at: true } },
       );
+      if (debited.modifiedCount === 0) {
+        return NextResponse.json({ success: false, error: 'INSUFFICIENT_BALANCE', message: `Wallet balance is less than ₹${roundedTotal}` }, { status: 400 });
+      }
     }
 
-    // Clear user's cart
-    await cartCollection.deleteMany({ user_id: user_id });
+    let result;
+    try {
+      result = await ordersCollection.insertOne(orderData);
+    } catch (e) {
+      if (payment_method === 'wallet') {
+        await usersCollection.updateOne({ user_id }, { $inc: { wallet_balance: roundedTotal } });
+      }
+      throw e;
+    }
+    const orderId = result.insertedId.toString();
+
+    if (payment_method === 'wallet') {
+      const walletPaymentId = `wallet_${orderId}`;
+      await (await DatabaseService.getCollection('transactions')).insertOne({
+        transaction_id: `txn_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        user_id, user_type: 'customer', transaction_type: 'debit', amount: roundedTotal,
+        description: `Payment for order ${orderData.order_number}`, order_id: orderId, purpose: 'product_purchase',
+        payment_method: 'wallet', payment_id: walletPaymentId, status: 'completed', created_at: new Date(), updated_at: new Date(),
+      });
+      await markOrderPaid({ _id: result.insertedId, ...orderData }, walletPaymentId);
+      Object.assign(orderData, { payment_status: 'paid', status: 'confirmed', payment_id: walletPaymentId });
+    }
 
 
     // Return the complete order object for the frontend
@@ -423,84 +380,6 @@ export async function POST(request: NextRequest) {
       success: false,
       error: 'Internal server error',
       message: 'An error occurred while creating order'
-    }, { status: 500 });
-  }
-}
-
-// PUT - Update order status
-export async function PUT(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const { order_id, status, payment_status, tracking_number, razorpay_order_id, payment_id } = body;
-
-    if (!order_id) {
-      return NextResponse.json({
-        success: false,
-        error: 'Missing order ID',
-        message: 'Order ID is required'
-      }, { status: 400 });
-    }
-
-    const ordersCollection = await DatabaseService.getCollection('orders');
-
-    // Build update object
-    const updateData: Record<string, unknown> = {
-      updated_at: new Date()
-    };
-
-    if (status) {
-      updateData.status = status;
-      
-      // Set timestamps based on status
-      if (status === 'shipped' && !await ordersCollection.findOne({ _id: new ObjectId(order_id), shipped_at: { $exists: true, $ne: null } })) {
-        updateData.shipped_at = new Date();
-      }
-      if (status === 'delivered' && !await ordersCollection.findOne({ _id: new ObjectId(order_id), delivered_at: { $exists: true, $ne: null } })) {
-        updateData.delivered_at = new Date();
-      }
-    }
-
-    if (payment_status) {
-      updateData.payment_status = payment_status;
-    }
-
-    if (tracking_number) {
-      updateData.tracking_number = tracking_number;
-    }
-
-    if (razorpay_order_id) {
-      updateData.razorpay_order_id = razorpay_order_id;
-    }
-
-    if (payment_id) {
-      updateData.payment_id = payment_id;
-    }
-
-    // Update the order
-    const result = await ordersCollection.updateOne(
-      { _id: new ObjectId(order_id as string) },
-      { $set: updateData }
-    );
-
-    if (result.matchedCount === 0) {
-      return NextResponse.json({
-        success: false,
-        error: 'Order not found',
-        message: 'Order not found'
-      }, { status: 404 });
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: 'Order updated successfully'
-    });
-
-  } catch(error) {
-    console.error('Orders PUT error:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'Internal server error',
-      message: 'An error occurred while updating order'
     }, { status: 500 });
   }
 }

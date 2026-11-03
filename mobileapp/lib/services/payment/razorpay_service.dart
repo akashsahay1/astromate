@@ -31,6 +31,7 @@ class RazorpayService {
       initialize();
     }
 
+    _razorpay!.clear(); // drop handlers from earlier checkouts so callbacks fire once
     _razorpay!.on(Razorpay.EVENT_PAYMENT_SUCCESS, onPaymentSuccess);
     _razorpay!.on(Razorpay.EVENT_PAYMENT_ERROR, onPaymentError);
     _razorpay!.on(Razorpay.EVENT_EXTERNAL_WALLET, onExternalWallet);
@@ -68,7 +69,7 @@ class RazorpayService {
     required BuildContext context,
     required double amount,
     required User user,
-    required Function(String paymentId, String orderId) onSuccess,
+    required Function(PaymentSuccessResponse response) onSuccess,
     required Function(PaymentFailureResponse response) onError,
   }) async {
     try {
@@ -116,9 +117,10 @@ class RazorpayService {
         customerPhone: user.phone ?? '',
       );
 
-      // Set up payment callbacks
+      // Set up payment callbacks (clear first so earlier checkouts don't fire again)
+      _razorpay!.clear();
       _razorpay!.on(Razorpay.EVENT_PAYMENT_SUCCESS, (PaymentSuccessResponse response) {
-        _handlePaymentSuccess(response, orderId, onSuccess);
+        _handlePaymentSuccess(response, onSuccess);
       });
 
       _razorpay!.on(Razorpay.EVENT_PAYMENT_ERROR, (PaymentFailureResponse response) {
@@ -141,12 +143,11 @@ class RazorpayService {
   }
 
   void _handlePaymentSuccess(
-    PaymentSuccessResponse response, 
-    String orderId,
-    Function(String paymentId, String orderId) onSuccess
+    PaymentSuccessResponse response,
+    Function(PaymentSuccessResponse response) onSuccess
   ) {
     try {
-      onSuccess(response.paymentId ?? '', orderId);
+      onSuccess(response);
     } catch (e) {
       debugPrint('Error handling payment success: $e');
     }

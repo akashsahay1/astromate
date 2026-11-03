@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
+import { getAuthUser, unauthorized } from '@/lib/security';
 import { ObjectId } from 'mongodb';
 
 // GET /api/astrologers/reviews?astrologer_id={id} - Get reviews for an astrologer
@@ -77,8 +78,11 @@ export async function GET(request: NextRequest) {
 // POST /api/astrologers/reviews - Add a new review
 export async function POST(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
-    const { astrologer_id, user_id, rating, comment } = body;
+    const { astrologer_id, rating, comment } = body;
+    const user_id = auth.userId;
 
 
     // Validate required fields
@@ -120,6 +124,12 @@ export async function POST(request: NextRequest) {
         { success: false, error: 'Astrologer not found' },
         { status: 404 }
       );
+    }
+
+    // Only customers who actually consulted this astrologer may review (no fake reviews)
+    const consulted = await (await DatabaseService.getCollection('sessions')).findOne({ user_id, astrologer_id, status: 'completed' });
+    if (!consulted) {
+      return NextResponse.json({ success: false, error: 'Not eligible', message: 'You can review an astrologer after a completed consultation' }, { status: 403 });
     }
 
     // Check if user has already reviewed this astrologer using custom user_id fields
@@ -173,8 +183,11 @@ export async function POST(request: NextRequest) {
 // PUT /api/astrologers/reviews - Update an existing review
 export async function PUT(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
-    const { review_id, user_id, rating, comment } = body;
+    const { review_id, rating, comment } = body;
+    const user_id = auth.userId;
 
 
     // Validate required fields
@@ -264,7 +277,9 @@ export async function DELETE(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const review_id = searchParams.get('review_id');
-    const user_id = searchParams.get('user_id');
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    const user_id = auth.userId;
 
 
     // Validate required parameters

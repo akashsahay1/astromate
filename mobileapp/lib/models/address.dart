@@ -41,7 +41,7 @@ class Address {
       city: json['city'] ?? '',
       state: json['state'] ?? '',
       country: json['country'] ?? '',
-      pincode: json['pincode'] ?? '',
+      pincode: json['pincode'] ?? json['postal_code'] ?? '',
       landmark: json['landmark'],
       isDefault: json['is_default'] ?? false,
       addressType: json['address_type'] ?? 'home',

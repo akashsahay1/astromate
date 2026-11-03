@@ -23,13 +23,31 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const sanitizedBody = InputSanitizer.sanitizeMongoQuery(body);
     
-    const { 
-      amount, 
-      currency = 'INR', 
+    const {
+      currency = 'INR',
+      order_id: shopOrderId,
       receipt,
       purpose = 'wallet_recharge',
       order_type = 'wallet'
     } = sanitizedBody;
+
+    // Shop purchases are charged the order's own server-computed total, never a client amount
+    let amount = sanitizedBody.amount as number;
+    let shopOrder = null;
+    if (purpose === 'product_purchase') {
+      if (typeof shopOrderId !== 'string' || !ObjectId.isValid(shopOrderId)) {
+        return NextResponse.json({ success: false, error: 'ORDER_REQUIRED', message: 'order_id is required for product purchases' }, { status: 400 });
+      }
+      shopOrder = await (await DatabaseService.getCollection('orders')).findOne({
+        _id: new ObjectId(shopOrderId), user_id: user.userId as string, payment_status: { $ne: 'paid' }, status: { $ne: 'cancelled' },
+      });
+      if (!shopOrder) {
+        return NextResponse.json({ success: false, error: 'ORDER_NOT_FOUND', message: 'Order not found or already paid' }, { status: 404 });
+      }
+      amount = Number(shopOrder.total_amount);
+    } else if (purpose !== 'wallet_recharge') {
+      return NextResponse.json({ success: false, error: 'INVALID_PURPOSE', message: 'Invalid payment purpose' }, { status: 400 });
+    }
 
     // Comprehensive input validation
     if (!amount || typeof amount !== 'number' || amount <= 0) {
@@ -55,16 +73,6 @@ export async function POST(request: NextRequest) {
         success: false,
         error: 'INVALID_CURRENCY',
         message: 'Only INR currency is supported'
-      }, { status: 400 });
-    }
-
-    // Validate purpose
-    const validPurposes = ['wallet_recharge', 'consultation_payment', 'product_purchase'];
-    if (!validPurposes.includes(purpose as string)) {
-      return NextResponse.json({
-        success: false,
-        error: 'INVALID_PURPOSE',
-        message: 'Invalid payment purpose'
       }, { status: 400 });
     }
 
@@ -226,6 +234,7 @@ export async function POST(request: NextRequest) {
       updated_at: new Date().toISOString(),
       created_by_ip: ip,
       user_agent: request.headers.get('user-agent') || '',
+      ...(shopOrder && { order_id: String(shopOrder._id) }),
       metadata: {
         user_email: user.email,
         amount_paise: amountInPaise
@@ -233,6 +242,10 @@ export async function POST(request: NextRequest) {
     };
 
     await transactionsCollection.insertOne(transactionRecord);
+    if (shopOrder) {
+      await (await DatabaseService.getCollection('orders')).updateOne(
+        { _id: shopOrder._id }, { $set: { razorpay_order_id: razorpayOrder.id, updated_at: new Date() } });
+    }
 
 
     // Return sanitized response (no sensitive data)

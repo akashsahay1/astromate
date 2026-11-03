@@ -67,7 +67,6 @@ class ApiEndpoints {
 
   // User wallet endpoints (unified for customers and astrologers)
   static const String userWalletBalance = '$users/wallet/balance';
-  static const String userWalletRecharge = '$users/wallet/recharge';
   static const String userWalletTransactions = '$users/wallet/transactions';
   
   // Customer endpoints  

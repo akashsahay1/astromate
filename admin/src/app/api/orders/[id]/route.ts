@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ObjectId } from 'mongodb';
 import DatabaseService from '../../../../lib/database';
-import SecurityExports from '../../../../lib/security';
-
-// Ensure security validation runs during module initialization
-void SecurityExports;
+import { getAuthUser, unauthorized } from '../../../../lib/security';
+import { cancelOrderByCustomer } from '../../../../lib/orders';
 
 // GET - Get order details
 export async function GET(
@@ -12,6 +10,8 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const resolvedParams = await params;
     const orderId = resolvedParams.id;
 
@@ -24,7 +24,7 @@ export async function GET(
     }
 
     const ordersCollection = await DatabaseService.getCollection('orders');
-    const order = await ordersCollection.findOne({ _id: new ObjectId(orderId) });
+    const order = await ordersCollection.findOne({ _id: new ObjectId(orderId), user_id: auth.userId });
 
     if (!order) {
       return NextResponse.json({
@@ -72,183 +72,43 @@ export async function GET(
   }
 }
 
-// PUT - Update specific order
+// PUT - customer updates their own order: cancel it, or mark an unpaid checkout as failed.
+// Everything else (shipping, tracking, payment status) is admin-only via /api/admin/orders.
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const resolvedParams = await params;
-    const orderId = resolvedParams.id;
-    const body = await request.json();
-
-    if (!orderId || !ObjectId.isValid(orderId)) {
-      return NextResponse.json({
-        success: false,
-        error: 'Invalid order ID',
-        message: 'Valid order ID is required'
-      }, { status: 400 });
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    const { id } = await params;
+    if (!ObjectId.isValid(id)) {
+      return NextResponse.json({ success: false, error: 'Invalid order ID', message: 'Valid order ID is required' }, { status: 400 });
     }
-
-    const { status, payment_status, tracking_number, notes, razorpay_order_id, payment_id, reason } = body;
-
+    const { status, reason, cancellation_reason } = await request.json();
     const ordersCollection = await DatabaseService.getCollection('orders');
-
-    // Check if order exists
-    const existingOrder = await ordersCollection.findOne({ _id: new ObjectId(orderId) });
-    if (!existingOrder) {
-      return NextResponse.json({
-        success: false,
-        error: 'Order not found',
-        message: 'Order not found'
-      }, { status: 404 });
-    }
-
-    // Build update object
-    const updateData: Record<string, unknown> = {
-      updated_at: new Date()
-    };
-
-    if (status) {
-      updateData.status = status;
-      
-      // Set timestamps based on status
-      if (status === 'shipped' && !existingOrder.shipped_at) {
-        updateData.shipped_at = new Date();
-      }
-      if (status === 'delivered' && !existingOrder.delivered_at) {
-        updateData.delivered_at = new Date();
-      }
-      if (status === 'cancelled') {
-        updateData.cancelled_at = new Date();
-        if (reason) {
-          updateData.cancellation_reason = reason;
-        }
-      }
-    }
-
-    if (payment_status) {
-      updateData.payment_status = payment_status;
-    }
-
-    if (tracking_number !== undefined) {
-      updateData.tracking_number = tracking_number;
-    }
-
-    if (notes !== undefined) {
-      updateData.notes = notes;
-    }
-
-    if (razorpay_order_id) {
-      updateData.razorpay_order_id = razorpay_order_id;
-    }
-
-    if (payment_id) {
-      updateData.payment_id = payment_id;
-    }
-
-    const result = await ordersCollection.updateOne(
-      { _id: new ObjectId(orderId) },
-      { $set: updateData }
-    );
-
-    if (result.matchedCount === 0) {
-      return NextResponse.json({
-        success: false,
-        error: 'Order not found',
-        message: 'Order not found'
-      }, { status: 404 });
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: 'Order updated successfully',
-      updated_fields: Object.keys(updateData)
-    });
-
-  } catch(error) {
-    console.error('Order update PUT error:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'Internal server error',
-      message: 'An error occurred while updating order'
-    }, { status: 500 });
-  }
-}
-
-// DELETE - Cancel order
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const resolvedParams = await params;
-    const orderId = resolvedParams.id;
-
-    if (!orderId || !ObjectId.isValid(orderId)) {
-      return NextResponse.json({
-        success: false,
-        error: 'Invalid order ID',
-        message: 'Valid order ID is required'
-      }, { status: 400 });
-    }
-
-    const ordersCollection = await DatabaseService.getCollection('orders');
-    const productsCollection = await DatabaseService.getCollection('products');
-
-    // Get order details
-    const order = await ordersCollection.findOne({ _id: new ObjectId(orderId) });
-    
+    const order = await ordersCollection.findOne({ _id: new ObjectId(id), user_id: auth.userId });
     if (!order) {
-      return NextResponse.json({
-        success: false,
-        error: 'Order not found',
-        message: 'Order not found'
-      }, { status: 404 });
+      return NextResponse.json({ success: false, error: 'Order not found', message: 'Order not found' }, { status: 404 });
     }
 
-    // Check if order can be cancelled
-    if (order.status === 'delivered' || order.status === 'cancelled') {
-      return NextResponse.json({
-        success: false,
-        error: 'Cannot cancel order',
-        message: `Order cannot be cancelled as it is already ${order.status}`
-      }, { status: 400 });
+    if (status === 'cancelled') {
+      const r = await cancelOrderByCustomer(order, reason || cancellation_reason);
+      if (!r.ok) return NextResponse.json({ success: false, error: 'Cannot cancel order', message: r.message }, { status: 400 });
+      return NextResponse.json({ success: true, message: 'Order cancelled successfully', refunded_to_wallet: r.refundedToWallet });
     }
 
-    // Update order status to cancelled
-    await ordersCollection.updateOne(
-      { _id: new ObjectId(orderId) },
-      { 
-        $set: { 
-          status: 'cancelled',
-          updated_at: new Date()
-        }
-      }
-    );
-
-    // Restore product stock
-    for (const item of order.items) {
-      await productsCollection.updateOne(
-        { product_id: item.product_id }, // Use custom product_id, not MongoDB ObjectId
-        { 
-          $inc: { stock_quantity: item.quantity },
-          $set: { updated_at: new Date() }
-        } as Record<string, unknown>
+    if (status === 'payment_failed') {
+      await ordersCollection.updateOne(
+        { _id: order._id, payment_status: { $ne: 'paid' } },
+        { $set: { status: 'payment_failed', payment_status: 'failed', updated_at: new Date() } },
       );
+      return NextResponse.json({ success: true, message: 'Order updated successfully' });
     }
 
-    return NextResponse.json({
-      success: true,
-      message: 'Order cancelled successfully'
-    });
-
-  } catch(error) {
-    console.error('Order cancel DELETE error:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'Internal server error',
-      message: 'An error occurred while cancelling order'
-    }, { status: 500 });
+    return NextResponse.json({ success: false, error: 'Forbidden', message: 'Only cancellation is allowed' }, { status: 403 });
+  } catch (error) {
+    console.error('Order update PUT error:', error);
+    return NextResponse.json({ success: false, error: 'Internal server error', message: 'An error occurred while updating order' }, { status: 500 });
   }
 }

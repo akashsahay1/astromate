@@ -4,7 +4,7 @@ import { formatPhoneNumber, isValidPhoneNumber } from '@/lib/otp';
 import { InputSanitizer } from '@/lib/security';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET!;
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'your-refresh-secret-key-change-in-production';
 
 export async function POST(request: NextRequest) {

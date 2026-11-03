@@ -12,7 +12,7 @@ function getBaseUrl(request: NextRequest): string {
 }
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'your-secret-key-change-in-production'
+  process.env.JWT_SECRET!
 );
 
 export const GET = withSecurity(async (request: NextRequest) => {

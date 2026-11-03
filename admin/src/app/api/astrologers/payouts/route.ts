@@ -223,25 +223,22 @@ export async function POST(request: NextRequest) {
       }
     };
 
-    await transactionsCollection.insertOne(transaction);
-
-    // Reserve the amount
-    await usersCollection.updateOne(
-      { user_id: astrologerId },
-      [
-        {
-          $set: {
-            reserved_balance: {
-              $add: [
-                { $ifNull: ['$reserved_balance', 0] },
-                withdrawalAmount
-              ]
-            },
-            updated_at: now
-          }
-        }
-      ]
+    // Reserve atomically: only succeeds if (wallet - already reserved) still covers it, so two quick
+    // taps can never reserve more than the astrologer has.
+    // ponytail: a double tap can still create two pending requests (each covered); add a partial unique index if that matters
+    const reserved = await usersCollection.updateOne(
+      { user_id: astrologerId, $expr: { $gte: [{ $subtract: [{ $ifNull: ['$wallet_balance', 0] }, { $ifNull: ['$reserved_balance', 0] }] }, withdrawalAmount] } },
+      { $inc: { reserved_balance: withdrawalAmount }, $set: { updated_at: now } },
     );
+    if (reserved.modifiedCount === 0) {
+      return NextResponse.json({ success: false, error: 'INSUFFICIENT_BALANCE', message: 'Insufficient balance' }, { status: 400 });
+    }
+    try {
+      await transactionsCollection.insertOne(transaction);
+    } catch (e) {
+      await usersCollection.updateOne({ user_id: astrologerId }, { $inc: { reserved_balance: -withdrawalAmount } });
+      throw e;
+    }
 
     return NextResponse.json({
       success: true,

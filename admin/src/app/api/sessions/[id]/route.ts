@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb';
 import { jwtVerify } from 'jose';
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'your-secret-key-change-in-production'
+  process.env.JWT_SECRET!
 );
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {

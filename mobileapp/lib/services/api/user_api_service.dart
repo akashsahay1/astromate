@@ -546,10 +546,11 @@ class UserApiService {
   }
 
   // Create Razorpay order
-  Future<Map<String, dynamic>> createRazorpayOrder(String token, {required double amount, String? currency, String? receipt, String? purpose, String? orderType}) async {
+  Future<Map<String, dynamic>> createRazorpayOrder(String token, {required double amount, String? currency, String? receipt, String? purpose, String? orderType, String? orderId}) async {
     try {
       final requestData = {
         'amount': amount,
+        if (orderId != null) 'order_id': orderId,
         'currency': currency ?? 'INR',
         if (receipt != null) 'receipt': receipt,
         'purpose': purpose ?? 'wallet_recharge',
@@ -588,30 +589,15 @@ class UserApiService {
     }
   }
 
-  // Wallet recharge
-  Future<Map<String, dynamic>> rechargeWallet(String token, {required double amount, required String paymentMethod, String? paymentId}) async {
-    try {
-      final requestData = {
-        'amount': amount,
-        'payment_method': paymentMethod,
-        if (paymentId != null) 'payment_id': paymentId,
-      };
-
-      final response = await _dio.post(
-        ApiEndpoints.userWalletRecharge,
-        data: requestData,
-        options: Options(headers: {'Authorization': 'Bearer $token'})
-      );
-
-      if (response.statusCode == 200) {
-        return response.data['data'];
-      } else {
-        throw Exception('Failed to recharge wallet: ${response.data['message']}');
-      }
-    } on DioException {
-      // Let DioException bubble up for proper error handling
-      rethrow;
-    }
+  /// Verify a Razorpay checkout on the server. The server checks the signature, then credits the wallet
+  /// or marks the shop order paid (it knows which from the order it created) — exactly once.
+  Future<Map<String, dynamic>> verifyRazorpayPayment({required String orderId, required String paymentId, required String signature}) async {
+    final response = await _dio.post('/payments/razorpay/verify', data: {
+      'razorpay_order_id': orderId,
+      'razorpay_payment_id': paymentId,
+      'razorpay_signature': signature,
+    });
+    return Map<String, dynamic>.from(response.data['data'] ?? {});
   }
 
   // Get available astrologers

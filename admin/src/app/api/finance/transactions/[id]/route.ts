@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb';
 import { jwtVerify } from 'jose';
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'your-secret-key-change-in-production'
+  process.env.JWT_SECRET!
 );
 
 // PATCH - Update transaction status (admin only, for dispute resolution)

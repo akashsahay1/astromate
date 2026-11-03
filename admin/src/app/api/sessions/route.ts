@@ -5,7 +5,7 @@ import { jwtVerify } from 'jose';
 import { chargeSessionTo } from '@/lib/session-billing';
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'your-secret-key-change-in-production'
+  process.env.JWT_SECRET!
 );
 
 export async function GET(request: NextRequest) {

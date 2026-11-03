@@ -566,3 +566,17 @@ const SecurityExports = {
 
 export default SecurityExports;
 
+
+/** App-route auth: the caller's identity from their JWT, or null. Never trust a user_id from the body/query. */
+export async function getAuthUser(request: NextRequest): Promise<{ userId: string; userType: string } | null> {
+  try {
+    const p = await SecurityMiddleware.authenticateRequest(request);
+    const userId = (p.userId ?? p.user_id) as string | undefined;
+    return userId ? { userId, userType: String(p.user_type) } : null;
+  } catch {
+    return null;
+  }
+}
+
+export const unauthorized = () =>
+  Response.json({ success: false, error: 'UNAUTHORIZED', message: 'Authentication required' }, { status: 401 });

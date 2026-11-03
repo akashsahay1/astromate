@@ -143,39 +143,6 @@ class WalletService extends ChangeNotifier {
     }
   }
 
-  /// Add amount to wallet (for recharge)
-  Future<bool> addAmount(double amount, String transactionId) async {
-    try {
-      final token = await _localStorage.getAuthToken();
-      if (token == null) return false;
-
-      final result = await _userApiService.rechargeWallet(
-        token,
-        amount: amount,
-        paymentMethod: 'razorpay',
-        paymentId: transactionId,
-      );
-
-      // Use server's confirmed balance instead of adding locally
-      // This prevents desync if server has different balance
-      if (result['success'] == true && result['new_balance'] != null) {
-        _currentBalance = (result['new_balance'] as num).toDouble();
-      } else {
-        // Fallback: refresh from server to get accurate balance
-        await refreshBalance();
-      }
-
-      notifyListeners();
-      debugPrint('💰 Wallet recharged. New balance: ₹$_currentBalance');
-      return true;
-    } catch (e) {
-      debugPrint('❌ Failed to add wallet amount: $e');
-      // Refresh balance to ensure we have accurate server value
-      await refreshBalance();
-      return false;
-    }
-  }
-
   /// Get wallet transaction history
   Future<List<Map<String, dynamic>>> getTransactionHistory() async {
     try {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
 import { Media } from '@/models';
+import { getAuthUser } from '@/lib/security';
 
 // Helper function to get base URL for images
 function getBaseUrl(request: NextRequest): string {
@@ -21,7 +22,9 @@ export async function GET(
     // Find user by user_id field (custom format like user_xxx)
     const user = await usersCollection.findOne({ user_id: id });
 
-    if (!user) {
+    // Astrologer profiles are public; anyone else's profile is visible only to themselves
+    const isSelf = (await getAuthUser(request))?.userId === id;
+    if (!user || (!isSelf && user.user_type !== 'astrologer')) {
       return NextResponse.json(
         { success: false, error: 'User not found' },
         { status: 404 }
@@ -54,6 +57,10 @@ export async function GET(
       created_at: user.created_at,
       updated_at: user.updated_at
     };
+
+    if (!isSelf) {
+      for (const k of ['email_address', 'phone_number', 'date_of_birth', 'birth_time', 'birth_place', 'address', 'zip']) delete userResponse[k];
+    }
 
     // Add astrologer-specific fields if user is an astrologer
     if (user.user_type === 'astrologer') {

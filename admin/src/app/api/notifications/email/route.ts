@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
+import { getAuthUser, unauthorized } from '@/lib/security';
 
 import * as sgMail from '@sendgrid/mail';
 
@@ -176,8 +177,13 @@ interface EmailNotificationBody {
 export async function POST(request: NextRequest) {
   let body: EmailNotificationBody | undefined;
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     body = await request.json() as EmailNotificationBody;
-    const { type, recipient_email, recipient_name, data } = body;
+    const { type, recipient_name, data } = body;
+    // Only ever email the signed-in user themselves — this must never become an open mail relay
+    const me = await (await DatabaseService.getCollection('users')).findOne({ user_id: auth.userId }, { projection: { email_address: 1 } });
+    const recipient_email = me?.email_address as string | undefined;
 
     if (!type || !recipient_email) {
       return NextResponse.json({
@@ -256,66 +262,6 @@ export async function POST(request: NextRequest) {
       success: false,
       error: 'Failed to send email',
       message: error instanceof Error ? error.message : 'An error occurred while sending email'
-    }, { status: 500 });
-  }
-}
-
-// GET - Get email logs
-export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const type = searchParams.get('type');
-    const status = searchParams.get('status');
-    const limit = parseInt(searchParams.get('limit') || '50');
-    const page = parseInt(searchParams.get('page') || '1');
-    const skip = (page - 1) * limit;
-
-    const emailLogsCollection = await DatabaseService.getCollection('email_logs');
-
-    // Build query
-    const query: Record<string, unknown> = {};
-    if (type) query.type = type;
-    if (status) query.status = status;
-
-    // Get email logs with pagination
-    const emailLogs = await emailLogsCollection
-      .find(query)
-      .sort({ sent_at: -1 })
-      .skip(skip)
-      .limit(limit)
-      .toArray();
-
-    const totalLogs = await emailLogsCollection.countDocuments(query);
-
-    // Format logs for response
-    const formattedLogs = emailLogs.map(log => ({
-      _id: log._id.toString(),
-      type: log.type,
-      recipient_email: log.recipient_email,
-      recipient_name: log.recipient_name,
-      subject: log.subject,
-      status: log.status,
-      message_id: log.message_id,
-      error: log.error,
-      sent_at: log.sent_at
-    }));
-    return NextResponse.json({
-      success: true,
-      email_logs: formattedLogs,
-      pagination: {
-        total: totalLogs,
-        page,
-        limit,
-        totalPages: Math.ceil(totalLogs / limit)
-      }
-    });
-
-  } catch(error) {
-    console.error('Email logs GET error:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'Internal server error',
-      message: 'An error occurred while fetching email logs'
     }, { status: 500 });
   }
 }

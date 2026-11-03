@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
+import { getAuthUser, unauthorized } from '@/lib/security';
 import { ObjectId } from 'mongodb';
 
 // GET - Get user's addresses
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    const userId = auth.userId;
 
     if (!userId) {
       return NextResponse.json({
@@ -58,7 +60,10 @@ export async function GET(request: NextRequest) {
 // POST - Create new address
 export async function POST(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
+    body.user_id = auth.userId; // never trust a client-sent user_id
     const {
       user_id,
       label,
@@ -156,7 +161,10 @@ export async function POST(request: NextRequest) {
 // PUT - Update address
 export async function PUT(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
+    body.user_id = auth.userId; // never trust a client-sent user_id
     const {
       address_id,
       user_id,
@@ -276,9 +284,11 @@ export async function PUT(request: NextRequest) {
 // DELETE - Delete address
 export async function DELETE(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const { searchParams } = new URL(request.url);
     const addressId = searchParams.get('addressId');
-    const userId = searchParams.get('userId');
+    const userId = auth.userId;
 
     if (!addressId || !userId) {
       return NextResponse.json({
