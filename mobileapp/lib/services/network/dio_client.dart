@@ -8,8 +8,6 @@ typedef AuthFailureCallback = Future<void> Function(String reason);
 
 class DioClient {
   static late Dio _dio;
-  static bool _isRefreshing = false;
-  static final List<Function> _pendingRequests = [];
 
   /// Callback to be invoked when authentication fails (user deleted, token invalid, etc.)
   static AuthFailureCallback? onAuthFailure;
@@ -55,121 +53,86 @@ class DioClient {
       );
     }
 
-    // Add error handling interceptor with automatic token refresh
+    // Every request carries the CURRENT token, overriding any stale token a caller captured earlier.
+    // This is what makes a refreshed token reach every service without each one re-reading storage.
     _dio.interceptors.add(
       InterceptorsWrapper(
+        onRequest: (options, handler) {
+          if (_token != null) options.headers['Authorization'] = 'Bearer $_token';
+          handler.next(options);
+        },
         onError: (DioException error, ErrorInterceptorHandler handler) async {
-          debugPrint('DIO Error: ${error.message}');
-          debugPrint('DIO Error Response: ${error.response?.data}');
+          final opts = error.requestOptions;
+          final hadToken = opts.headers['Authorization'] != null;
 
-          // Check if this is a USER_NOT_FOUND error (user deleted from database)
-          if (_isUserNotFoundError(error)) {
+          if (hadToken && _isUserNotFoundError(error)) {
             debugPrint('🚨 User not found in database - triggering auth failure');
             await _handleAuthFailure('User account not found');
-            handler.next(error);
-            return;
+            return handler.next(error);
           }
 
-          // Handle 401 Unauthorized - try to refresh token
-          if (error.response?.statusCode == 401) {
-            debugPrint('🔄 Got 401 error - attempting token refresh');
+          final isAuthCall = opts.path.contains('/auth/');
+          if (error.response?.statusCode != 401 || !hadToken || isAuthCall || opts.extra['retried'] == true) {
+            return handler.next(error);
+          }
 
-            // If already refreshing, queue the request
-            if (_isRefreshing) {
-              debugPrint('⏳ Token refresh already in progress, queuing request');
-              return;
-            }
-
-            _isRefreshing = true;
-
-            try {
-              // Get refresh token from storage
-              final prefs = await SharedPreferences.getInstance();
-              final refreshToken = prefs.getString('refresh_token');
-
-              if (refreshToken == null) {
-                debugPrint('❌ No refresh token available - user needs to login');
-                await _handleAuthFailure('Session expired');
-                handler.next(error);
-                return;
-              }
-
-              // Attempt to refresh the token
-              final response = await Dio().post(
-                '${Config.baseUrlSync}/auth/refresh',
-                data: {'refresh_token': refreshToken},
-              );
-
-              if (response.statusCode == 200) {
-                final data = response.data['data'];
-                final newToken = data['access_token'] as String;
-                final newRefreshToken = data['refresh_token'] as String;
-                debugPrint('✅ Token refreshed successfully');
-
-                // Update the tokens in storage and Dio client
-                await prefs.setString('auth_token', newToken);
-                await prefs.setString('refresh_token', newRefreshToken);
-                setAuthToken(newToken);
-
-                // Retry the original request with new token
-                final requestOptions = error.requestOptions;
-                requestOptions.headers['Authorization'] = 'Bearer $newToken';
-
-                final retryResponse = await _dio.request(
-                  requestOptions.path,
-                  options: Options(
-                    method: requestOptions.method,
-                    headers: requestOptions.headers,
-                  ),
-                  data: requestOptions.data,
-                  queryParameters: requestOptions.queryParameters,
-                );
-
-                handler.resolve(retryResponse);
-              } else {
-                debugPrint('❌ Token refresh failed with status: ${response.statusCode}');
-                await _handleAuthFailure('Session expired');
-                handler.next(error);
-              }
-            } catch (refreshError) {
-              debugPrint('❌ Token refresh failed: $refreshError');
-              await _handleAuthFailure('Session expired');
-              handler.next(error);
-            } finally {
-              _isRefreshing = false;
-              // Process any pending requests
-              for (final request in _pendingRequests) {
-                request();
-              }
-              _pendingRequests.clear();
-            }
-          } else {
-            handler.next(error);
+          // All concurrent 401s wait on the same refresh, then retry once with the new token.
+          final newToken = await refreshTokens();
+          if (newToken == null) {
+            await _handleAuthFailure('Session expired');
+            return handler.next(error);
+          }
+          try {
+            opts.headers['Authorization'] = 'Bearer $newToken';
+            opts.extra['retried'] = true;
+            if (opts.data is FormData) opts.data = (opts.data as FormData).clone(); // a sent FormData can't be re-sent
+            handler.resolve(await _dio.fetch(opts));
+          } on DioException catch (e) {
+            handler.next(e);
           }
         },
       ),
     );
   }
 
-  /// Check if the error indicates the user was not found (deleted from database)
-  /// or account is inactive (banned/deleted status)
-  static bool _isUserNotFoundError(DioException error) {
-    final statusCode = error.response?.statusCode;
-    // Check for 401 or 404 with user-related error codes
-    if (statusCode == 401 || statusCode == 404) {
-      final data = error.response?.data;
-      if (data is Map) {
-        final errorCode = data['error']?.toString() ?? '';
-        if (errorCode == 'USER_NOT_FOUND' ||
-            errorCode == 'ACCOUNT_NOT_FOUND' ||
-            errorCode == 'ACCOUNT_INACTIVE' ||
-            data['message']?.toString().contains('not found') == true ||
-            data['message']?.toString().contains('deleted') == true) {
-          return true;
-        }
-      }
+  static String? _token;
+  static Future<String?>? _refreshing;
+
+  /// Called with the new access token after a refresh, so AuthService/secure storage stay in sync.
+  static Future<void> Function(String token)? onTokenRefreshed;
+
+  /// Single-flight token refresh. Returns the new access token, or null if the session is over.
+  static Future<String?> refreshTokens() => _refreshing ??= _doRefresh().whenComplete(() => _refreshing = null);
+
+  static Future<String?> _doRefresh() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final refreshToken = prefs.getString('refresh_token');
+      if (refreshToken == null) return null;
+      // bare Dio (no interceptors) so a failing refresh can't recurse; same base URL + transport as the app
+      final response = await (Dio(BaseOptions(baseUrl: _dio.options.baseUrl))..httpClientAdapter = _dio.httpClientAdapter)
+          .post('/auth/refresh', data: {'refresh_token': refreshToken});
+      final data = response.data['data'];
+      final newToken = data['access_token'] as String;
+      await prefs.setString('auth_token', newToken);
+      await prefs.setString('refresh_token', data['refresh_token'] as String);
+      setAuthToken(newToken);
+      await onTokenRefreshed?.call(newToken);
+      debugPrint('✅ Token refreshed successfully');
+      return newToken;
+    } catch (e) {
+      debugPrint('❌ Token refresh failed: $e');
+      return null;
     }
-    return false;
+  }
+
+  /// The account itself is gone or disabled (exact server error codes only — a 404 "Order not found"
+  /// must never log the user out).
+  static bool _isUserNotFoundError(DioException error) {
+    final status = error.response?.statusCode;
+    final data = error.response?.data;
+    if ((status != 401 && status != 404) || data is! Map) return false;
+    return const {'USER_NOT_FOUND', 'ACCOUNT_NOT_FOUND', 'ACCOUNT_INACTIVE'}.contains(data['error']?.toString());
   }
 
   /// Handle authentication failure - clear data and notify callback
@@ -202,11 +165,13 @@ class DioClient {
 
   // Method to update authorization header
   static void setAuthToken(String token) {
+    _token = token;
     _dio.options.headers['Authorization'] = 'Bearer $token';
   }
 
   // Method to clear authorization header
   static void clearAuthToken() {
+    _token = null;
     _dio.options.headers.remove('Authorization');
   }
 }

@@ -369,24 +369,6 @@ class UserApiService {
     }
   }
 
-  // Refresh JWT token
-  Future<String> refreshToken(String refreshToken) async {
-    try {
-      final response = await _dio.post(ApiEndpoints.refreshToken, data: {'refresh_token': refreshToken});
-
-      if (response.statusCode == 200) {
-        // Backend returns { success: true, data: { access_token, refresh_token, ... } }
-        final data = response.data['data'] ?? response.data;
-        return data['access_token'] ?? data['token'] ?? '';
-      } else {
-        throw Exception('Token refresh failed: ${response.data['message']}');
-      }
-    } on DioException {
-      // Let DioException bubble up for proper error handling
-      rethrow;
-    }
-  }
-
   // Logout user
   Future<void> logoutUser(String token) async {
     try {

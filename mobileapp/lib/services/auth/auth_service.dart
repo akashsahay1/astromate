@@ -151,6 +151,10 @@ class AuthService {
   Future<void> initialize() async {
     // Set up auth failure callback to handle forced logout
     DioClient.onAuthFailure = _handleForcedLogout;
+    DioClient.onTokenRefreshed = (token) async {
+      _authToken = token;
+      await _localStorage.saveAuthToken(token); // socket + wallet read the token from secure storage
+    };
 
     final prefs = await SharedPreferences.getInstance();
     final savedToken = prefs.getString('auth_token');
@@ -708,26 +712,9 @@ class AuthService {
   }
 
   Future<void> refreshAuthToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    final refreshToken = prefs.getString('refresh_token');
-
-    if (refreshToken == null) {
-      debugPrint('🔄 No refresh token available - user needs to login again');
+    if (await DioClient.refreshTokens() == null) {
       await _clearAuthData();
-      throw Exception('No refresh token available');
-    }
-
-    try {
-      final newToken = await _userApiService.refreshToken(refreshToken);
-      _authToken = newToken;
-      // Update the global auth token in Dio client
-      DioClient.setAuthToken(newToken);
-      await prefs.setString('auth_token', newToken);
-      debugPrint('✅ Token refreshed successfully');
-    } catch (e) {
-      debugPrint('🚨 Token refresh failed: $e');
-      await _clearAuthData();
-      throw Exception('Token refresh failed: ${e.toString()}');
+      throw Exception('Session expired. Please log in again.');
     }
   }
 
