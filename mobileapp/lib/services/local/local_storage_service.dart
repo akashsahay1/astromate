@@ -68,6 +68,13 @@ class LocalStorageService {
     return _prefs.getString(_userDataKey);
   }
 
+  // Failed billing retry queue (kept apart from user_data so it can't overwrite the profile)
+  Future<void> saveBillingQueue(String queueJson) async {
+    await _prefs.setString('billing_retry_queue', queueJson);
+  }
+
+  String? getBillingQueue() => _prefs.getString('billing_retry_queue');
+
   // Get parsed user object
   Map<String, dynamic>? getUserMap() {
     final userDataString = getUserData();

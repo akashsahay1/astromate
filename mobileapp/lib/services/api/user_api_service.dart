@@ -1240,9 +1240,8 @@ class UserApiService {
       } else {
         throw Exception('Failed to update session billing: ${response.data['message']}');
       }
-    } on DioException catch (e) {
-      final errorMessage = _handleDioException(e);
-      throw Exception(errorMessage);
+    } on DioException {
+      rethrow; // BillingService needs the status code to tell refusals from network failures
     }
   }
 

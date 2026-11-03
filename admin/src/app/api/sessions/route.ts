@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
 import { ObjectId } from 'mongodb';
 import { jwtVerify } from 'jose';
-import NotificationService from '@/lib/notifications';
+import { chargeSessionTo } from '@/lib/session-billing';
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || 'your-secret-key-change-in-production'
@@ -292,7 +292,6 @@ export async function PATCH(request: NextRequest) {
 
     // Connect to MongoDB
     const sessionsCollection = await DatabaseService.getCollection('sessions');
-    const usersCollection = await DatabaseService.getCollection('users');
 
     // Get the session to find the user_id (customer who should be charged)
     // Try to find by _id first (mobile app sends _id), then by session_id
@@ -331,11 +330,8 @@ export async function PATCH(request: NextRequest) {
     const requestUserId = (payload.userId || payload.user_id) as string;
     console.log(`💰 [BILLING] Found session: ${session._id}, user_id: ${session.user_id}, request userId: ${requestUserId}`);
 
-    // Only allow the customer to update their own session billing
-    // or allow astrologers to update sessions where they are the provider
-    const isCustomer = userType === 'customer';
-    if (isCustomer && session.user_id !== requestUserId) {
-      console.log(`❌ [BILLING] Access denied: session.user_id=${session.user_id} !== requestUserId=${requestUserId}`);
+    // Billing runs on the customer's device only. Astrologers never bill sessions.
+    if (userType !== 'customer' || session.user_id !== requestUserId) {
       return NextResponse.json({
         success: false,
         error: 'Forbidden',
@@ -343,203 +339,25 @@ export async function PATCH(request: NextRequest) {
       }, { status: 403 });
     }
 
-    // Get current session billing info to calculate amount to deduct
-    const currentAmount = session.total_amount || 0;
-    const amountToDeduct = totalAmount - currentAmount;
-
-    // Only deduct if there's a positive amount to charge
-    if (amountToDeduct > 0) {
-      // Get user's current wallet balance - using custom user_id field
-      const user = await usersCollection.findOne(
-        { user_id: session.user_id },
-        { projection: { wallet_balance: 1, full_name: 1 } }
-      );
-
-      if (!user) {
-        return NextResponse.json({ 
-          success: false,
-          error: 'User not found' 
-        }, { status: 404 });
-      }
-
-      const currentBalance = user.wallet_balance || 0;
-
-      // Check if user has sufficient balance
-      if (currentBalance < amountToDeduct) {
-        return NextResponse.json({ 
-          success: false,
-          error: 'Insufficient balance',
-          message: `Insufficient wallet balance. Required: ₹${amountToDeduct}, Current: ₹${currentBalance}` 
-        }, { status: 400 });
-      }
-
-      // Deduct amount from user's wallet - using custom user_id field
-      const newBalance = currentBalance - amountToDeduct;
-      await usersCollection.updateOne(
-        { user_id: session.user_id },
-        { 
-          $set: { wallet_balance: newBalance },
-          $currentDate: { updated_at: true }
-        }
-      );
-
-      // Get astrologer with commission rates
-      const astrologer = await usersCollection.findOne(
-        { user_id: session.astrologer_id },
-        { projection: { wallet_balance: 1, full_name: 1, commission_percentage: 1 } }
-      );
-
-      // Get default commission rate from app settings
-      const settingsCollection = await DatabaseService.getCollection('app_settings');
-      const settings = await settingsCollection.findOne({ type: 'general' });
-      const defaultPlatformRate = (settings as Record<string, unknown>)?.commission
-        ? ((settings as Record<string, unknown>).commission as Record<string, unknown>).defaultRate as number
-        : 20;
-
-      // Determine platform commission rate based on session type
-      let platformCommissionRate: number;
-      if (sessionType === 'call' || sessionType === 'audio_call') {
-        platformCommissionRate = astrologer?.commission_percentage?.call ?? defaultPlatformRate;
-      } else if (sessionType === 'chat') {
-        platformCommissionRate = astrologer?.commission_percentage?.chat ?? defaultPlatformRate;
-      } else {
-        platformCommissionRate = astrologer?.commission_percentage?.video ?? defaultPlatformRate;
-      }
-
-      // Calculate shares based on commission rate
-      const astrologerSharePercent = (100 - platformCommissionRate) / 100;
-      const astrologerShare = amountToDeduct * astrologerSharePercent;
-
-      if (astrologer) {
-        const astrologerCurrentBalance = astrologer.wallet_balance || 0;
-        const astrologerNewBalance = astrologerCurrentBalance + astrologerShare;
-        
-        await usersCollection.updateOne(
-          { user_id: session.astrologer_id },
-          { 
-            $set: { wallet_balance: astrologerNewBalance },
-            $currentDate: { updated_at: true }
-          }
-        );
-
-        // Update or create wallet transaction records
-        const walletTransactionsCollection = await DatabaseService.getCollection('transactions');
-        
-        // Customer debit transaction - update existing or create new
-        await walletTransactionsCollection.updateOne(
-          {
-            user_id: session.user_id,
-            transaction_type: 'debit',
-            session_id: sessionId,
-            service_type: sessionType
-          },
-          {
-            $set: {
-              amount: totalAmount,
-              description: `Payment for ${sessionType} session (${durationMinutes} minutes)`,
-              status: 'completed',
-              updated_at: new Date()
-            },
-            $setOnInsert: {
-              created_at: new Date()
-            }
-          },
-          { upsert: true }
-        );
-
-        // Astrologer credit transaction - update existing or create new
-        const astrologerTotalShare = totalAmount * astrologerSharePercent;
-        await walletTransactionsCollection.updateOne(
-          {
-            recipient_user_id: session.astrologer_id,
-            transaction_type: 'credit',
-            session_id: sessionId,
-            service_type: sessionType
-          },
-          {
-            $set: {
-              amount: astrologerTotalShare,
-              description: `Earnings from ${sessionType} session (${durationMinutes} minutes)`,
-              status: 'completed',
-              updated_at: new Date()
-            },
-            $setOnInsert: {
-              created_at: new Date()
-            }
-          },
-          { upsert: true }
-        );
-
-        // Platform commission transaction - update existing or create new
-        const platformCommissionPercent = platformCommissionRate / 100;
-        const totalPlatformCommission = totalAmount * platformCommissionPercent;
-        await walletTransactionsCollection.updateOne(
-          {
-            transaction_type: 'commission',
-            session_id: sessionId,
-            service_type: sessionType
-          },
-          {
-            $set: {
-              amount: totalPlatformCommission,
-              description: `Platform commission for ${sessionType} session (${durationMinutes} minutes)`,
-              status: 'completed',
-              updated_at: new Date()
-            },
-            $setOnInsert: {
-              created_at: new Date()
-            }
-          },
-          { upsert: true }
-        );
-
-        // Send notifications to both customer and astrologer about the payment
-        try {
-          // Notify customer about debit
-          await NotificationService.sendSessionPaymentDebitNotification(
-            session.user_id as string,
-            sessionType,
-            totalAmount,
-            durationMinutes
-          );
-
-          // Notify astrologer about credit
-          await NotificationService.sendSessionPaymentCreditNotification(
-            session.astrologer_id as string,
-            sessionType,
-            astrologerTotalShare,
-            durationMinutes
-          );
-        } catch (notificationError) {
-          console.error('Failed to send payment notifications:', notificationError);
-          // Don't fail the request if notifications fail
-        }
-
-      }
+    const charge = await chargeSessionTo(session, Number(totalAmount), Number(durationMinutes));
+    if (!charge.ok) {
+      return NextResponse.json({
+        success: false,
+        error: charge.reason === 'insufficient_balance' ? 'Insufficient balance' : charge.reason,
+        error_code: charge.reason.toUpperCase(),
+        message: charge.reason === 'insufficient_balance'
+          ? `Insufficient wallet balance. Required: ₹${charge.required}, Current: ₹${charge.balance}`
+          : 'Billing update rejected',
+      }, { status: charge.reason === 'concurrent_update' ? 409 : 400 });
     }
 
-    // Update session billing information using _id for consistency
-    const updateQuery = {
-      $set: {
-        duration_minutes: durationMinutes,
-        total_amount: totalAmount,
-        status: 'completed',
-        billing_updated_at: new Date()
-      }
-    };
-
-    await sessionsCollection.updateOne(
-      { _id: session._id },
-      updateQuery
-    );
-    console.log(`✅ [BILLING] Session updated: ${session._id}`);
     return NextResponse.json({
       success: true,
       message: 'Session billing updated successfully',
       sessionId,
       durationMinutes,
       totalAmount,
-      amountDeducted: amountToDeduct > 0 ? amountToDeduct : 0
+      amountDeducted: charge.amountDeducted
     });
 
   } catch(error) {

@@ -1,3 +1,4 @@
+import 'services/billing/billing_service.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -210,6 +211,9 @@ void main() async {
   // Initialize local storage
   final localStorage = getIt<LocalStorageService>();
   await localStorage.init();
+
+  // Resume any session billing that failed on a network drop last run
+  await BillingService.instance.loadFailedBillingQueue();
 
   // Note: Cart service initialization moved to after user login (in AuthService)
   // This prevents fetching GST rate before user is authenticated

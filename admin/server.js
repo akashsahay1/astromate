@@ -1056,18 +1056,12 @@ app.prepare().then(() => {
         const durationMinutes = Math.ceil(durationMs / 60000);
         const totalAmount = durationMinutes * (session.rate_per_minute || 0);
 
-        // Update session in database
+        // Only mark the session ended. Billing totals belong to the customer's billing
+        // calls (PATCH /api/sessions, /api/sessions/[id]/end) — writing total_amount here
+        // made the customer's final end call charge the difference a second time.
         await db.collection('sessions').updateOne(
-          { _id: new ObjectId(chatSessionId) },
-          {
-            $set: {
-              status: 'completed',
-              end_time: endTime,
-              duration_minutes: durationMinutes,
-              total_amount: totalAmount,
-              updated_at: endTime
-            }
-          }
+          { _id: new ObjectId(chatSessionId), status: { $ne: 'completed' } },
+          { $set: { status: 'completed', end_time: endTime, updated_at: endTime } }
         );
 
         await client.close();

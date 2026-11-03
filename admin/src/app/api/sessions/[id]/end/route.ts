@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
 import { ObjectId } from 'mongodb';
 import { jwtVerify } from 'jose';
-import NotificationService from '@/lib/notifications';
+import { chargeSessionTo } from '@/lib/session-billing';
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || 'your-secret-key-change-in-production'
@@ -89,212 +89,25 @@ export async function PATCH(
       }, { status: 404 });
     }
 
-    // Determine session type
-    const sessionType = session.session_type || 'video_call';
-
-    // Get current session billing info to calculate amount to deduct
-    const currentAmount = session.total_amount || 0;
-    const amountToDeduct = totalAmount - currentAmount;
-
-    console.log(`📞 [SESSION END] Session: ${sessionId}, Duration: ${durationMinutes}min, Total: ₹${totalAmount}, ToDeduct: ₹${amountToDeduct}`);
-
-    // Only deduct if there's a positive amount to charge
-    if (amountToDeduct > 0) {
-      // Get user's current wallet balance
-      const user = await usersCollection.findOne(
-        { user_id: session.user_id },
-        { projection: { wallet_balance: 1, full_name: 1 } }
-      );
-
-      if (!user) {
-        return NextResponse.json({
-          success: false,
-          error: 'User not found'
-        }, { status: 404 });
-      }
-
-      const currentBalance = user.wallet_balance || 0;
-
-      // Check if user has sufficient balance
-      if (currentBalance < amountToDeduct) {
-        console.warn(`⚠️ Insufficient balance for user ${session.user_id}: Required ₹${amountToDeduct}, Available ₹${currentBalance}`);
-        // Continue anyway to mark session as ended - don't fail the session end
-      } else {
-        // Deduct amount from user's wallet
-        const newBalance = currentBalance - amountToDeduct;
-        await usersCollection.updateOne(
-          { user_id: session.user_id },
-          {
-            $set: { wallet_balance: newBalance },
-            $currentDate: { updated_at: true }
-          }
-        );
-        console.log(`💰 Deducted ₹${amountToDeduct} from customer ${session.user_id}. New balance: ₹${newBalance}`);
-      }
-
-      // Get astrologer with commission rates
-      const astrologer = await usersCollection.findOne(
-        { user_id: session.astrologer_id },
-        { projection: { wallet_balance: 1, full_name: 1, commission_percentage: 1 } }
-      );
-
-      // Get default commission rate from app settings
-      const settingsCollection = await DatabaseService.getCollection('app_settings');
-      const settings = await settingsCollection.findOne({ type: 'general' });
-      const defaultPlatformRate = (settings as Record<string, unknown>)?.commission
-        ? ((settings as Record<string, unknown>).commission as Record<string, unknown>).defaultRate as number
-        : 20; // Fallback to 20% if settings not found
-
-      // Determine platform commission rate based on session type
-      let platformCommissionRate: number;
-      if (sessionType === 'call' || sessionType === 'audio_call') {
-        platformCommissionRate = astrologer?.commission_percentage?.call ?? defaultPlatformRate;
-      } else if (sessionType === 'chat') {
-        platformCommissionRate = astrologer?.commission_percentage?.chat ?? defaultPlatformRate;
-      } else {
-        // video_call or video
-        platformCommissionRate = astrologer?.commission_percentage?.video ?? defaultPlatformRate;
-      }
-
-      // Calculate astrologer share (100% - platform commission)
-      const astrologerSharePercent = (100 - platformCommissionRate) / 100;
-      const astrologerShare = amountToDeduct * astrologerSharePercent;
-
-      console.log(`📊 [BILLING] Platform rate: ${platformCommissionRate}%, Astrologer share: ${(astrologerSharePercent * 100).toFixed(0)}%`);
-
-      if (astrologer) {
-        const astrologerCurrentBalance = astrologer.wallet_balance || 0;
-        const astrologerNewBalance = astrologerCurrentBalance + astrologerShare;
-
-        await usersCollection.updateOne(
-          { user_id: session.astrologer_id },
-          {
-            $set: { wallet_balance: astrologerNewBalance },
-            $currentDate: { updated_at: true }
-          }
-        );
-        console.log(`💰 Credited ₹${astrologerShare} to astrologer ${session.astrologer_id}. New balance: ₹${astrologerNewBalance}`);
-
-        // Create/Update transaction records
-        const transactionsCollection = await DatabaseService.getCollection('transactions');
-        const timestamp = Date.now();
-
-        // Customer debit transaction
-        await transactionsCollection.updateOne(
-          {
-            user_id: session.user_id,
-            transaction_type: 'debit',
-            session_id: sessionId,
-            service_type: sessionType
-          },
-          {
-            $set: {
-              amount: totalAmount,
-              description: `Payment for ${sessionType} session (${durationMinutes} minutes)`,
-              status: 'completed',
-              updated_at: new Date()
-            },
-            $setOnInsert: {
-              reference_id: `PAY${timestamp}`,
-              transaction_id: `txn_${timestamp}_${Math.random().toString(36).substr(2, 6)}`,
-              user_type: 'customer',
-              payment_method: 'wallet',
-              created_at: new Date()
-            }
-          },
-          { upsert: true }
-        );
-
-        // Astrologer credit transaction (using same rate calculated above)
-        const astrologerTotalShare = totalAmount * astrologerSharePercent;
-        await transactionsCollection.updateOne(
-          {
-            user_id: session.astrologer_id,
-            recipient_user_id: session.astrologer_id,
-            transaction_type: 'credit',
-            session_id: sessionId,
-            service_type: sessionType
-          },
-          {
-            $set: {
-              amount: astrologerTotalShare,
-              description: `Earnings from ${sessionType} session (${durationMinutes} minutes)`,
-              status: 'completed',
-              updated_at: new Date()
-            },
-            $setOnInsert: {
-              reference_id: `ERN${timestamp}`,
-              transaction_id: `txn_${timestamp}_${Math.random().toString(36).substr(2, 6)}`,
-              user_type: 'astrologer',
-              payment_method: 'wallet',
-              created_at: new Date()
-            }
-          },
-          { upsert: true }
-        );
-
-        // Platform commission transaction
-        const platformCommissionPercent = platformCommissionRate / 100;
-        const totalPlatformCommission = totalAmount * platformCommissionPercent;
-        await transactionsCollection.updateOne(
-          {
-            transaction_type: 'commission',
-            session_id: sessionId,
-            service_type: sessionType
-          },
-          {
-            $set: {
-              amount: totalPlatformCommission,
-              description: `Platform commission for ${sessionType} session (${durationMinutes} minutes)`,
-              status: 'completed',
-              updated_at: new Date()
-            },
-            $setOnInsert: {
-              reference_id: `COM${timestamp}`,
-              transaction_id: `txn_${timestamp}_${Math.random().toString(36).substr(2, 6)}`,
-              user_type: 'platform',
-              payment_method: 'internal',
-              created_at: new Date()
-            }
-          },
-          { upsert: true }
-        );
-
-        console.log(`📝 Transaction records created for session ${sessionId}`);
-
-        // Send notifications
-        try {
-          await NotificationService.sendSessionPaymentDebitNotification(
-            session.user_id as string,
-            sessionType,
-            totalAmount,
-            durationMinutes
-          );
-
-          await NotificationService.sendSessionPaymentCreditNotification(
-            session.astrologer_id as string,
-            sessionType,
-            astrologerTotalShare,
-            durationMinutes
-          );
-        } catch (notificationError) {
-          console.error('Failed to send payment notifications:', notificationError);
-        }
-      }
+    const requestUserId = (payload.userId || payload.user_id) as string;
+    const isOwnerCustomer = payload.user_type === 'customer' && session.user_id === requestUserId;
+    const isOwnerAstrologer = payload.user_type === 'astrologer' && session.astrologer_id === requestUserId;
+    if (!isOwnerCustomer && !isOwnerAstrologer) {
+      return NextResponse.json({ success: false, error: 'Forbidden' }, { status: 403 });
     }
 
-    // Update session to completed
+    // Only the customer's final total can add charges; ending never charges twice and never
+    // credits the astrologer for money that was not debited (see chargeSessionTo).
+    let amountDeducted = 0;
+    if (isOwnerCustomer && session.status !== 'completed') {
+      const charge = await chargeSessionTo(session, Number(totalAmount), Number(durationMinutes));
+      if (charge.ok) amountDeducted = charge.amountDeducted;
+      else console.warn(`⚠️ [SESSION END] final charge skipped for ${sessionId}: ${charge.reason}`);
+    }
+
     await sessionsCollection.updateOne(
       { _id: session._id },
-      {
-        $set: {
-          duration_minutes: durationMinutes,
-          total_amount: totalAmount,
-          status: 'completed',
-          ended_at: new Date(),
-          billing_updated_at: new Date()
-        }
-      }
+      { $set: { status: 'completed', ended_at: new Date() } }
     );
 
     console.log(`✅ [SESSION END] Session ${sessionId} marked as completed`);
@@ -305,7 +118,7 @@ export async function PATCH(
       sessionId,
       durationMinutes,
       totalAmount,
-      amountDeducted: amountToDeduct > 0 ? amountToDeduct : 0
+      amountDeducted
     });
 
   } catch(error) {

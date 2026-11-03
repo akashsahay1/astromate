@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import '../../models/call.dart';
 import '../../models/astrologer.dart';
@@ -157,6 +158,10 @@ class BillingService extends ChangeNotifier {
     String? astrologerId,
     String? userId,
   }) async {
+    // Billing runs on the customer's device only; the astrologer's phone must never charge
+    // (it would check the astrologer's own wallet and hang up, or double-charge the customer).
+    if (_localStorage.getUserType() == 'astrologer') return true;
+
     // Stop any existing billing session
     await stopBilling();
 
@@ -216,8 +221,10 @@ class BillingService extends ChangeNotifier {
     _isLowBalance = false;
     _currentBilledMinute = 0;
 
-    // UPFRONT BILLING: Charge 15 minutes immediately when session starts
-    const upfrontMinutes = 15;
+    // UPFRONT BILLING: charge up to 15 minutes immediately, limited to what the wallet covers
+    // (a ₹50 wallet at ₹10/min starts with 5 minutes instead of being rejected by the server).
+    final affordableMinutes = (_walletService.currentBalance / ratePerMinute).floor();
+    final upfrontMinutes = affordableMinutes.clamp(1, 15);
     final upfrontAmount = ratePerMinute * upfrontMinutes;
     debugPrint('💰 Charging $upfrontMinutes minutes upfront: ₹$upfrontAmount');
     final upfrontBilled = await _processUpfrontBilling(upfrontMinutes);
@@ -281,9 +288,10 @@ class BillingService extends ChangeNotifier {
 
     try {
       final amountForThisMinute = _currentRate!;
+      final amountToCharge = (minuteNumber - _currentBilledMinute) * _currentRate!;
 
-      // Check if wallet has sufficient balance for this minute
-      if (_walletService.currentBalance < amountForThisMinute) {
+      // Check if wallet has sufficient balance for the minutes being charged
+      if (_walletService.currentBalance < amountToCharge) {
         debugPrint('❌ Insufficient balance for minute $minuteNumber, ending session');
         await _handleInsufficientBalance();
         return false;
@@ -301,6 +309,24 @@ class BillingService extends ChangeNotifier {
         // Refresh local wallet balance after server deduction
         await _walletService.refreshBalance();
         debugPrint('💰 Billed minute $minuteNumber: ₹$amountForThisMinute (Total: ₹$_totalBilled)');
+        return true;
+      } on DioException catch (e) {
+        // Server answered (insufficient balance, forbidden, ...) → the charge was refused, end
+        // the session. Only network failures (no response) are worth retrying.
+        if (e.response != null) {
+          debugPrint('❌ Billing refused by server for minute $minuteNumber: ${e.response?.data}');
+          await _handleInsufficientBalance();
+          return false;
+        }
+        debugPrint('❌ Network failure billing minute $minuteNumber: $e');
+        _queueFailedBilling(
+          sessionId: _activeSessionId!,
+          sessionType: _activeSessionType!,
+          durationMinutes: minuteNumber,
+          totalAmount: newTotalBilled,
+        );
+        _totalBilled = newTotalBilled;
+        _currentBilledMinute = minuteNumber;
         return true;
       } catch (e) {
         debugPrint('❌ Failed to process billing update for minute $minuteNumber: $e');
@@ -353,7 +379,7 @@ class BillingService extends ChangeNotifier {
     try {
       final queueJson = _failedBillingQueue.map((r) => r.toJson()).toList();
       // Use saveUserData with a special key format for billing queue
-      await _localStorage.saveUserData('__billing_queue__${jsonEncode(queueJson)}');
+      await _localStorage.saveBillingQueue(jsonEncode(queueJson));
     } catch (e) {
       debugPrint('❌ Failed to persist billing queue: $e');
     }
@@ -362,10 +388,9 @@ class BillingService extends ChangeNotifier {
   /// Load failed billing queue from local storage
   Future<void> loadFailedBillingQueue() async {
     try {
-      final userData = _localStorage.getUserData();
-      if (userData != null && userData.startsWith('__billing_queue__')) {
-        final queueString = userData.substring('__billing_queue__'.length);
-        if (queueString.isNotEmpty) {
+      final queueString = _localStorage.getBillingQueue();
+      {
+        if (queueString != null && queueString.isNotEmpty) {
           try {
             final List<dynamic> queueList = jsonDecode(queueString);
             _failedBillingQueue.clear();
