@@ -89,8 +89,6 @@ Future<void> _showCallKitIncoming(Map<String, dynamic> data) async {
       avatar: null,
       handle: callerId,
       type: callType == 'video' ? 1 : 0, // 0 = audio, 1 = video
-      textAccept: 'Accept',
-      textDecline: 'Decline',
       missedCallNotification: const NotificationParams(
         showNotification: true,
         isShowCallback: false,
@@ -101,6 +99,8 @@ Future<void> _showCallKitIncoming(Map<String, dynamic> data) async {
       extra: extra,
       headers: <String, dynamic>{},
       android: const AndroidParams(
+        textAccept: 'Accept',
+        textDecline: 'Decline',
         isCustomNotification: false,
         isShowLogo: true,
         ringtonePath: 'system_ringtone_default',

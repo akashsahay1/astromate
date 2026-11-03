@@ -156,16 +156,11 @@ export async function POST(request: NextRequest) {
 
     let otpRecord = null;
     if (authType === 'phone') {
-      // First try to find customer or astrologer
+      // App logins are customer/astrologer only (send-otp blocks admin/manager too)
       otpRecord = await usersCollection.findOne({
         ...otpRecordQuery,
         user_type: { $in: ['customer', 'astrologer'] }
       });
-
-      // If not found, try any user with this phone
-      if (!otpRecord) {
-        otpRecord = await usersCollection.findOne(otpRecordQuery);
-      }
     } else {
       otpRecord = await usersCollection.findOne(otpRecordQuery);
     }
@@ -176,26 +171,20 @@ export async function POST(request: NextRequest) {
       const digitsOnly = formattedIdentifier.replace(/\D/g, '');
       const phoneVariations = [formattedIdentifier];
 
-      if (digitsOnly.length === 10) {
-        phoneVariations.push(`+91${digitsOnly}`, `91${digitsOnly}`, digitsOnly);
-      } else if (digitsOnly.startsWith('91') && digitsOnly.length === 12) {
-        phoneVariations.push(`+${digitsOnly}`, digitsOnly, digitsOnly.substring(2));
-      }
+      // send-otp stores country_code + 10-digit phone_number separately
+      const local10 = digitsOnly.slice(-10);
+      const cc = digitsOnly.length > 10 ? `+${digitsOnly.slice(0, -10)}` : '+91';
+      phoneVariations.push(`+${digitsOnly}`, digitsOnly, local10, `${cc}${local10}`);
 
       console.log(`   - Trying variations: ${phoneVariations.join(', ')}`);
 
-      // Prioritize customer/astrologer accounts
       otpRecord = await usersCollection.findOne({
-        phone_number: { $in: phoneVariations },
+        $or: [
+          { country_code: cc, phone_number: local10 },
+          { phone_number: { $in: phoneVariations } },
+        ],
         user_type: { $in: ['customer', 'astrologer'] }
       });
-
-      // If still not found, try any user type
-      if (!otpRecord) {
-        otpRecord = await usersCollection.findOne({
-          phone_number: { $in: phoneVariations }
-        });
-      }
 
       console.log(`   - Result: ${otpRecord ? 'FOUND' : 'NOT FOUND'}`);
     }
@@ -276,14 +265,12 @@ export async function POST(request: NextRequest) {
         // For phone auth, prioritize customer/astrologer
         let realUser = null;
         if (authType === 'phone') {
+          // Only customer/astrologer accounts may sign into the app — never fall back to
+          // admin/manager records that share the phone number.
           realUser = await usersCollection.findOne({
             ...realUserQuery,
             user_type: { $in: ['customer', 'astrologer'] }
           });
-
-          if (!realUser) {
-            realUser = await usersCollection.findOne(realUserQuery);
-          }
         } else {
           realUser = await usersCollection.findOne(realUserQuery);
         }

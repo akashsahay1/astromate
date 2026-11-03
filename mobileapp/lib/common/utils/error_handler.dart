@@ -122,6 +122,7 @@ class ErrorHandler {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
+      case DioExceptionType.transformTimeout:
         return AppError(
           userMessage: 'Connection timed out. Please check your internet and try again.',
           technicalDetails: error.toString(),

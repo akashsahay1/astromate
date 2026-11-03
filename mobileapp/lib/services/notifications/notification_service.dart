@@ -61,57 +61,16 @@ class NotificationService {
       FlutterCallkitIncoming.onEvent.listen((CallEvent? event) {
         if (event == null) return;
 
-        debugPrint('📞 CallKit event: ${event.event}');
+        debugPrint('📞 CallKit event: ${event.eventName}');
 
-        switch (event.event) {
-          case Event.actionCallIncoming:
-            // Call is ringing
-            debugPrint('📞 Incoming call received');
-            break;
-          case Event.actionCallAccept:
-            // User accepted the call
-            debugPrint('📞 Call accepted via CallKit');
-            _handleCallKitAccept(event.body);
-            break;
-          case Event.actionCallDecline:
-            // User declined the call
-            debugPrint('📞 Call declined via CallKit');
-            _handleCallKitDecline(event.body);
-            break;
-          case Event.actionCallEnded:
-            // Call ended
-            debugPrint('📞 Call ended via CallKit');
+        switch (event) {
+          case CallEventActionCallAccept(:final callKitParams):
+            _handleCallKitAccept(callKitParams.toJson());
+          case CallEventActionCallDecline(:final callKitParams):
+            _handleCallKitDecline(callKitParams.toJson());
+          case CallEventActionCallEnded():
+          case CallEventActionCallTimeout():
             _currentCallKitUuid = null;
-            break;
-          case Event.actionCallTimeout:
-            // Call timed out (missed call)
-            debugPrint('📞 Call timeout (missed)');
-            _currentCallKitUuid = null;
-            break;
-          case Event.actionCallStart:
-            debugPrint('📞 Call started');
-            break;
-          case Event.actionCallCallback:
-            debugPrint('📞 Call callback');
-            break;
-          case Event.actionCallToggleHold:
-            debugPrint('📞 Call toggle hold');
-            break;
-          case Event.actionCallToggleMute:
-            debugPrint('📞 Call toggle mute');
-            break;
-          case Event.actionCallToggleDmtf:
-            debugPrint('📞 Call toggle DTMF');
-            break;
-          case Event.actionCallToggleGroup:
-            debugPrint('📞 Call toggle group');
-            break;
-          case Event.actionCallToggleAudioSession:
-            debugPrint('📞 Call toggle audio session');
-            break;
-          case Event.actionDidUpdateDevicePushTokenVoip:
-            debugPrint('📞 VoIP token updated');
-            break;
           default:
             break;
         }
@@ -212,7 +171,7 @@ class NotificationService {
     );
 
     await _localNotifications.initialize(
-      initSettings,
+      settings: initSettings,
       onDidReceiveNotificationResponse: (NotificationResponse response) async {
         if (response.payload != null && response.payload!.isNotEmpty) {
           final data = jsonDecode(response.payload!);
@@ -408,7 +367,7 @@ class NotificationService {
     bool isBackground,
   ) async {
     // Cancel any ongoing call notifications
-    await _localNotifications.cancel(1);
+    await _localNotifications.cancel(id: 1);
     
     if (isBackground) {
       await showGeneralNotification(
@@ -457,7 +416,8 @@ class NotificationService {
     Map<String, dynamic>? extraData,
   }) async {
     // Generate unique ID for this call
-    _currentCallKitUuid = _uuid.v4();
+    final callKitId = _uuid.v4();
+    _currentCallKitUuid = callKitId;
 
     // Prepare extra data to pass through CallKit
     final Map<String, dynamic> extra = {
@@ -471,14 +431,12 @@ class NotificationService {
 
     // Configure CallKit parameters
     final params = CallKitParams(
-      id: _currentCallKitUuid,
+      id: callKitId,
       nameCaller: callerName,
       appName: 'Astromate',
       avatar: null, // Can set avatar URL here
       handle: callerId,
       type: callType.toLowerCase() == 'video' ? 1 : 0, // 0 = audio, 1 = video
-      textAccept: 'Accept',
-      textDecline: 'Decline',
       missedCallNotification: const NotificationParams(
         showNotification: true,
         isShowCallback: false,
@@ -489,6 +447,8 @@ class NotificationService {
       extra: extra,
       headers: <String, dynamic>{},
       android: const AndroidParams(
+        textAccept: 'Accept',
+        textDecline: 'Decline',
         isCustomNotification: false,
         isShowLogo: true,
         ringtonePath: 'system_ringtone_default',
@@ -598,10 +558,10 @@ class NotificationService {
     });
 
     await _localNotifications.show(
-      1, // Unique ID for call notifications
-      '$callType Call',
-      'Incoming ${callType.toLowerCase()} call from $callerName',
-      notificationDetails,
+      id: 1, // Unique ID for call notifications
+      title: '$callType Call',
+      body: 'Incoming ${callType.toLowerCase()} call from $callerName',
+      notificationDetails: notificationDetails,
       payload: payload,
     );
   }
@@ -656,10 +616,10 @@ class NotificationService {
     });
 
     await _localNotifications.show(
-      4, // Unique ID for incoming chat notifications
-      'New Chat Request',
-      '$userName wants to chat with you',
-      notificationDetails,
+      id: 4, // Unique ID for incoming chat notifications
+      title: 'New Chat Request',
+      body: '$userName wants to chat with you',
+      notificationDetails: notificationDetails,
       payload: payload,
     );
 
@@ -711,10 +671,10 @@ class NotificationService {
     });
 
     await _localNotifications.show(
-      2, // Unique ID for message notifications
-      'New Message',
-      '$senderName: $message',
-      notificationDetails,
+      id: 2, // Unique ID for message notifications
+      title: 'New Message',
+      body: '$senderName: $message',
+      notificationDetails: notificationDetails,
       payload: payload,
     );
   }
@@ -743,17 +703,17 @@ class NotificationService {
     final payloadString = payload != null ? jsonEncode(payload) : null;
 
     await _localNotifications.show(
-      3, // Unique ID for general notifications
-      title,
-      body,
-      notificationDetails,
+      id: 3, // Unique ID for general notifications
+      title: title,
+      body: body,
+      notificationDetails: notificationDetails,
       payload: payloadString,
     );
   }
 
   /// Cancel a specific notification
   Future<void> cancelNotification(int id) async {
-    await _localNotifications.cancel(id);
+    await _localNotifications.cancel(id: id);
   }
 
   /// Cancel all notifications

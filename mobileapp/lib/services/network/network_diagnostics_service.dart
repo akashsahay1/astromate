@@ -252,8 +252,10 @@ class NetworkDiagnosticsService extends ChangeNotifier {
 
   Future<ConnectionType> _getConnectionType() async {
     try {
-      final connectivityResult = await _connectivity.checkConnectivity();
-      
+      // connectivity_plus 6+ returns a list; first entry is the primary connection
+      final results = await _connectivity.checkConnectivity();
+      final connectivityResult = results.isEmpty ? ConnectivityResult.none : results.first;
+
       switch (connectivityResult) {
         case ConnectivityResult.wifi:
           return ConnectionType.wifi;

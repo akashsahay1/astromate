@@ -80,12 +80,25 @@ export async function POST(request: NextRequest) {
     const sanitizedBody = InputSanitizer.sanitizeMongoQuery(body);
 
     // New format: country_code + phone_number separately
-    const countryCode = sanitizedBody.country_code as string | undefined;
-    const phoneNumber = sanitizedBody.phone_number as string | undefined;
+    let countryCode = sanitizedBody.country_code as string | undefined;
+    let phoneNumber = sanitizedBody.phone_number as string | undefined;
 
     // Legacy format support
     const identifier = sanitizedBody.identifier as string | undefined;
     const authType = sanitizedBody.auth_type as string | undefined;
+
+    // App login/signup/resend send phone as identifier "+919876543210" + auth_type "phone".
+    // Split it into country code + last 10 digits so it takes the phone path below.
+    if (!countryCode && !phoneNumber && authType === 'phone' && identifier) {
+      const digits = identifier.replace(/\D/g, '');
+      if (digits.length > 10) {
+        countryCode = `+${digits.slice(0, -10)}`;
+        phoneNumber = digits.slice(-10);
+      } else {
+        countryCode = '+91';
+        phoneNumber = digits;
+      }
+    }
 
     const usersCollection = await DatabaseService.getCollection('users');
     let otpSent = false;
