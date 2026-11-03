@@ -3,7 +3,9 @@ import { ObjectId } from 'mongodb';
 import DatabaseService from '../../../../lib/database';
 import { 
   SecurityMiddleware, 
-  InputSanitizer
+  InputSanitizer,
+  getAuthUser,
+  unauthorized
 } from '../../../../lib/security';
 
 // POST - Send new message
@@ -233,8 +235,12 @@ export async function POST(request: NextRequest) {
 // PUT - Mark messages as read
 export async function PUT(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
-    const { message_ids, user_id, user_type } = body;
+    const { message_ids } = body;
+    const user_id = auth.userId;
+    const user_type = auth.userType;
 
     if (!message_ids || !Array.isArray(message_ids) || !user_id || !user_type) {
       return NextResponse.json({
@@ -327,8 +333,10 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const sessionId = searchParams.get('sessionId');
-    const userId = searchParams.get('userId');
-    const userType = searchParams.get('userType');
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    const userId = auth.userId; // never the query string — anyone could read any chat
+    const userType = auth.userType;
     const limit = parseInt(searchParams.get('limit') || '50');
     const page = parseInt(searchParams.get('page') || '1');
     const skip = (page - 1) * limit;
@@ -407,23 +415,28 @@ export async function GET(request: NextRequest) {
     }
 
     // Get messages for session
+    // Socket-sent messages are stored with chat_session_id, REST-sent ones with session_id — read both
+    const sessionFilter = { $or: [{ session_id: sessionId }, { chat_session_id: sessionId }] };
     const messages = await chatMessagesCollection
-      .find({ session_id: sessionId })
+      .find(sessionFilter)
       .sort({ timestamp: -1 })
       .skip(skip)
       .limit(limit)
       .toArray();
 
-    const totalMessages = await chatMessagesCollection.countDocuments({ session_id: sessionId });
+    const totalMessages = await chatMessagesCollection.countDocuments(sessionFilter);
 
     // Format messages for response
     const formattedMessages = messages.reverse().map(msg => ({ // Reverse to show oldest first
       _id: msg._id.toString(),
-      session_id: msg.session_id,
+      id: msg.id || msg._id.toString(), // socket message id, so live + history dedupe
+      session_id: msg.session_id || msg.chat_session_id,
+      chat_session_id: msg.chat_session_id || msg.session_id,
+      type: msg.type || msg.message_type,
       sender_id: msg.sender_id,
       sender_name: msg.sender_name,
       sender_type: msg.sender_type,
-      message_type: msg.message_type,
+      message_type: msg.message_type || msg.type,
       content: msg.content,
       image_url: msg.image_url,
       read_by_user: msg.read_by_user,

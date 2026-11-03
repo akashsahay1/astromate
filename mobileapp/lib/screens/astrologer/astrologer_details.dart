@@ -1387,26 +1387,26 @@ Connect now on Astromate! 🌟
       // Set up listeners for chat acceptance/rejection
       final completer = Completer<bool>();
 
-      acceptedSub = socketService.chatAcceptedStream.listen((data) {
+      bool mine(Map<String, dynamic> d) => d['sessionId']?.toString() == chatSession.id;
+      acceptedSub = socketService.chatAcceptedStream.where(mine).listen((data) {
         debugPrint('💬 Chat accepted event received: $data');
         if (!completer.isCompleted) {
           completer.complete(true);
         }
       });
 
-      rejectedSub = socketService.chatRejectedStream.listen((data) {
+      rejectedSub = socketService.chatRejectedStream.where(mine).listen((data) {
         debugPrint('💬 Chat rejected event received: $data');
         if (!completer.isCompleted) {
           completer.complete(false);
         }
       });
 
-      // Set timeout - if astrologer doesn't respond in 30 seconds, proceed anyway
-      // (The session is already created, astrologer can still accept later)
-      timeoutTimer = Timer(const Duration(seconds: 30), () {
+      // No answer in 60s = not accepted. (Entering the chat before acceptance meant messages were refused
+      // and the customer sat in a dead chat.)
+      timeoutTimer = Timer(const Duration(seconds: 60), () {
         if (!completer.isCompleted) {
-          debugPrint('💬 Chat request timeout - proceeding to chat screen');
-          completer.complete(true); // Proceed anyway
+          completer.complete(false);
         }
       });
 

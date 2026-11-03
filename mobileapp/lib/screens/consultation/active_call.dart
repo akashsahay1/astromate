@@ -80,35 +80,31 @@ class _ActiveCallScreenState extends State<ActiveCallScreen> {
     });
   }
 
+  String? get _sessionId => (widget.callData['session_id'] ?? widget.callData['sessionId'])?.toString();
+  bool _isThisCall(dynamic data) =>
+      data is Map && (data['session_id'] ?? data['sessionId'])?.toString() == _sessionId;
+
+  // Kept as fields so dispose() removes exactly these (they used to pile up with every call)
+  late final void Function(dynamic) _onCallEndedEvent = (data) {
+    if (!_isThisCall(data)) return;
+    final endedBy = data['ended_by'] ?? data['endedBy'];
+    _handleCallEnded(endedBy == _authService.currentUser?.id ? 'Call ended by you' : 'Call ended by other party');
+  };
+  late final void Function(dynamic) _onCallErrorEvent = (data) {
+    final sid = data is Map ? (data['session_id'] ?? data['sessionId']) : null;
+    if (sid != null && sid.toString() != _sessionId) return; // another session's error
+    _handleCallEnded('Call failed: ${data is Map ? data['error'] : data}');
+  };
+  late final void Function(dynamic) _onCallAnsweredEvent = (data) {
+    if (!_isThisCall(data)) return;
+    if (_callTimer == null) _startCallTimer();
+    if (!_billingService.isSessionActive) _startBilling();
+  };
+
   void _setupCallListeners() {
-    _socketService.on('call_ended', (data) {
-      debugPrint('📡 Received call_ended event: $data');
-      if (data['sessionId'] == widget.callData['sessionId']) {
-        final endedBy = data['endedBy'];
-        final currentUserId = widget.callData['callerId'];
-        final isEndedByCurrentUser = endedBy == currentUserId;
-        final reason = isEndedByCurrentUser
-            ? 'Call ended by you'
-            : 'Call ended by other party';
-        _handleCallEnded(reason);
-      }
-    });
-
-    _socketService.on('call_error', (data) {
-      _handleCallEnded('Call failed: ${data['error']}');
-    });
-
-    _socketService.on('call_answered', (data) {
-      debugPrint('🎯 Received call_answered event: $data');
-      if (data['sessionId'] == widget.callData['sessionId']) {
-        if (_callTimer == null) {
-          _startCallTimer();
-        }
-        if (!_billingService.isSessionActive) {
-          _startBilling();
-        }
-      }
-    });
+    _socketService.on('call_ended', _onCallEndedEvent);
+    _socketService.on('call_error', _onCallErrorEvent);
+    _socketService.on('call_answered', _onCallAnsweredEvent);
 
     _webrtcService.addListener(_onWebRTCStateChanged);
   }
@@ -279,6 +275,9 @@ class _ActiveCallScreenState extends State<ActiveCallScreen> {
 
   @override
   void dispose() {
+    _socketService.off('call_ended', _onCallEndedEvent);
+    _socketService.off('call_error', _onCallErrorEvent);
+    _socketService.off('call_answered', _onCallAnsweredEvent);
     _callService.clearCallScreenActive();
     _callTimer?.cancel();
     _webrtcService.removeListener(_onWebRTCStateChanged);

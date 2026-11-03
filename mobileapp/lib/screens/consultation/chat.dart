@@ -46,6 +46,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   bool _otherUserTyping = false;
   List<ChatMessage> _messages = [];
   StreamSubscription<Map<String, dynamic>>? _chatEndedSubscription;
+  StreamSubscription<Map<String, dynamic>>? _typingSubscription;
 
   // Astrologer timer state
   bool _isAstrologer = false;
@@ -111,7 +112,13 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    _typingSubscription?.cancel();
     _chatEndedSubscription?.cancel();
+    // Leaving the screen any way other than "End chat" (back gesture, app nav) must not keep billing
+    if (!_isAstrologer && _billingService.isSessionActive) {
+      _billingService.stopBilling();
+      _chatService.endChatSession(widget.chatSession.id).catchError((_) {});
+    }
     _astrologerTimer?.cancel();
     _typingAnimationController.dispose();
     _messageController.dispose();
@@ -156,11 +163,11 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     _chatService.addListener(_onChatServiceUpdate);
 
     // Listen to typing indicators
-    _socketService.typingStream.listen((data) {
+    _typingSubscription = _socketService.typingStream.listen((data) {
       if (data['chatSessionId'] == widget.chatSession.id && mounted) {
         // Check if the typing user is different from current user
         final typingUserId = data['userId']?.toString();
-        final currentUserId = widget.chatSession.user.id;
+        final currentUserId = _isAstrologer ? widget.chatSession.astrologer.id : widget.chatSession.user.id;
         if (typingUserId != currentUserId) {
           setState(() {
             _otherUserTyping = data['isTyping'] ?? false;
@@ -1233,6 +1240,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       // Prepare call data with the NEW call session ID
       final callData = {
         'session_id': callSession.id, // Use the NEW call session ID
+        'receiver_id': widget.chatSession.astrologer.id, // WebRTC target — the call never connected without it
+        'receiver_name': widget.chatSession.astrologer.fullName,
         'astrologer_id': widget.chatSession.astrologer.id,
         'astrologer_name': widget.chatSession.astrologer.fullName,
         'astrologer_image': widget.chatSession.astrologer.profileImage,

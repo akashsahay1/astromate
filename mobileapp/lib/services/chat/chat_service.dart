@@ -49,7 +49,13 @@ class ChatService extends ChangeNotifier {
   }
 
   /// Setup socket event listeners
+  bool _listening = false;
   void _setupSocketListeners() {
+    // initialize() runs more than once (e.g. every chat navigation from home); stacking these
+    // subscriptions is what showed each message 2, 3, 4... times
+    if (_listening) return;
+    _listening = true;
+
     // Listen for new messages
     _socketService.messageStream.listen((message) {
       _handleNewMessage(message);
@@ -120,6 +126,8 @@ class ChatService extends ChangeNotifier {
       _messagesBySession[sessionId] = [];
     }
     
+    // same message can arrive via socket while the history fetch is in flight
+    if (_messagesBySession[sessionId]!.any((m) => m.id == message.id)) return;
     _messagesBySession[sessionId]!.add(message);
     
     // Update last message in session
@@ -402,7 +410,11 @@ class ChatService extends ChangeNotifier {
       );
       
       if (result['success']) {
-        _messagesBySession[sessionId] = result['messages'];
+        // keep any live socket messages that arrived while history was loading
+        final history = List<ChatMessage>.from(result['messages']);
+        final ids = history.map((m) => m.id).toSet();
+        final live = (_messagesBySession[sessionId] ?? []).where((m) => !ids.contains(m.id));
+        _messagesBySession[sessionId] = [...history, ...live];
         debugPrint('✅ Loaded ${result['messages'].length} messages for session $sessionId');
       } else {
         debugPrint('❌ Failed to load messages: ${result['error']}');

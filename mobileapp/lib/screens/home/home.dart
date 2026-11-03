@@ -30,6 +30,7 @@ import '../consultation/chat.dart';
 import '../../services/cart/cart_service.dart';
 import '../../services/chat/chat_service.dart';
 import '../../services/socket/socket_service.dart';
+import '../../services/webrtc/webrtc_service.dart' show WebRTCService, CallState;
 import '../../services/wallet/wallet_service.dart';
 import '../../services/notifications/notification_service.dart';
 import '../../services/call/call_service.dart';
@@ -146,6 +147,8 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
     _chatRejectedSubscription?.cancel();
 
     _cartService.removeListener(_onCartChanged);
+    _socketService.off('chat_initiated');
+    _socketService.off('chat_error');
     _socketService.disconnect();
     _carouselController.dispose();
     super.dispose();
@@ -540,6 +543,9 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
     });
 
     // Listen for chat initiated confirmation (for customers) - keep as raw listener since no stream exists
+    // (home owns these two events; clear first so re-running setup never stacks duplicates)
+    _socketService.off('chat_initiated');
+    _socketService.off('chat_error');
     _socketService.on('chat_initiated', (data) {
       debugPrint('💬 Chat initiated: $data');
       if (data is Map && mounted) {
@@ -636,6 +642,11 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
   // Show incoming call screen
   void _showIncomingCallDialog(Map<String, dynamic> callData) {
     if (!mounted) return;
+    final sid = callData['session_id']?.toString();
+    // Socket event and push notification both arrive for the same call — show one screen.
+    // Also never ring over a call that's already in progress.
+    if (_isIncomingCallScreenShowing || sid == null || sid == _activeIncomingSessionId) return;
+    if (!const {CallState.idle, CallState.ended, CallState.rejected, CallState.failed}.contains(getIt<WebRTCService>().callState)) return;
 
     // Set flags to prevent CallKit from rejecting
     _isIncomingCallScreenShowing = true;
@@ -3465,27 +3476,7 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
   }
 
   /// Handle incoming call notifications
-  void _handleIncomingCallNotification(Map<String, dynamic> data) {
-    if (!mounted) return;
-
-    // Set flags to prevent CallKit from rejecting
-    _isIncomingCallScreenShowing = true;
-    _activeIncomingSessionId = data['session_id']?.toString();
-    debugPrint('📞 Showing IncomingCallScreen (notification) for session: $_activeIncomingSessionId');
-
-    // Navigate to incoming call screen
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => IncomingCallScreen(callData: data),
-        fullscreenDialog: true,
-      ),
-    ).then((_) {
-      // Clear flags when IncomingCallScreen is closed
-      debugPrint('📞 IncomingCallScreen closed, clearing session: $_activeIncomingSessionId');
-      _isIncomingCallScreenShowing = false;
-      _activeIncomingSessionId = null;
-    });
-  }
+  void _handleIncomingCallNotification(Map<String, dynamic> data) => _showIncomingCallDialog(data);
 
   /// Handle incoming message notifications
   void _handleIncomingMessageNotification(Map<String, dynamic> data) {

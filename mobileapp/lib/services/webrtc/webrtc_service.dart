@@ -186,6 +186,13 @@ class WebRTCService extends ChangeNotifier {
         final callType = callTypeStr == 'video' ? CallType.video : CallType.voice;
         final sessionId = data['session_id'];
 
+        // Already in a call → ignore a second one instead of overwriting the live call's state
+        final busy = !const {CallState.idle, CallState.ended, CallState.rejected, CallState.failed}.contains(_callState);
+        if (busy && sessionId != _currentSessionId) {
+          debugPrint('📞 Ignoring incoming call $sessionId — already in call $_currentSessionId');
+          return;
+        }
+
         debugPrint('📞 Parsed incoming call:');
         debugPrint('   - caller_id: $callerId');
         debugPrint('   - caller_name: "$callerName"');

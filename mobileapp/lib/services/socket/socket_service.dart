@@ -176,16 +176,16 @@ class SocketService extends ChangeNotifier {
       final userType = _currentUser!.role.value == 'astrologer' ? 'astrologer' : 'customer';
       debugPrint('🔌 Socket connecting as: $userType (role: ${_currentUser!.role.value})');
 
-      // Initialize socket with authentication
+      // Fresh socket every time: the io() cache would otherwise hand back the old Manager and we'd stack
+      // a second set of handlers on it (duplicate messages, duplicate incoming-call screens).
+      _socket?.dispose();
       _socket = socket_io.io(socketUrl,
         socket_io.OptionBuilder()
           .setTransports(['websocket', 'polling'])
+          .enableForceNew()
           .enableAutoConnect()
-          .setAuth({
-            'token': authToken,
-            'userId': _currentUser!.id,
-            'userType': userType,
-          })
+          // read the token on every (re)connect so a refreshed token is used, not the one from first connect
+          .setAuthFn((cb) async => cb({'token': await _localStorage.getAuthToken() ?? authToken}))
           .build()
       );
       
@@ -211,6 +211,11 @@ class SocketService extends ChangeNotifier {
       _isConnecting = false;
       _connectionStreamController.add(true);
       _startHeartbeat();
+
+      // After a network drop the server forgets our rooms — rejoin the open chat
+      if (_currentChatSessionId != null) {
+        _socket!.emit('join_chat_session', {'sessionId': _currentChatSessionId});
+      }
 
       // CRITICAL: Emit authenticate event so backend joins user to their room
       // Without this, user won't receive incoming_call or other targeted events
@@ -421,6 +426,13 @@ class SocketService extends ChangeNotifier {
       }
     });
     
+    // Re-attach listeners other services registered via on(), so they survive logout/login and new sockets
+    _externalListeners.forEach((event, callbacks) {
+      for (final cb in callbacks) {
+        _socket!.on(event, cb);
+      }
+    });
+
     // WebRTC Signaling events
     _socket!.on('webrtc_offer', (data) {
       debugPrint('📨 WebRTC offer received: $data');
@@ -760,13 +772,22 @@ class SocketService extends ChangeNotifier {
     }
   }
 
-  /// Listen to socket event (for use by other services)
+  final Map<String, List<Function(dynamic)>> _externalListeners = {};
+
+  /// Listen to socket event (for use by other services). Survives reconnects and new sockets.
   void on(String event, Function(dynamic) callback) {
+    _externalListeners.putIfAbsent(event, () => []).add(callback);
     _socket?.on(event, callback);
   }
 
-  /// Remove socket event listener (for use by other services)
-  void off(String event) {
-    _socket?.off(event);
+  /// Remove a listener registered via on() (all of them for [event] if no callback given).
+  void off(String event, [Function(dynamic)? callback]) {
+    if (callback == null) {
+      _externalListeners.remove(event);
+      _socket?.off(event);
+    } else {
+      _externalListeners[event]?.remove(callback);
+      _socket?.off(event, callback);
+    }
   }
 }

@@ -215,12 +215,12 @@ class ChatMessage {
         : DateTime.now();
 
     return ChatMessage(
-      id: json['id']?.toString() ?? '',
-      chatSessionId: json['chat_session_id']?.toString() ?? '',
+      id: (json['id'] ?? json['_id'])?.toString() ?? '',
+      chatSessionId: (json['chat_session_id'] ?? json['session_id'])?.toString() ?? '',
       senderId: json['sender_id']?.toString() ?? '',
       senderName: json['sender_name']?.toString() ?? '',
       senderType: json['sender_type']?.toString() ?? 'customer',
-      type: _parseMessageType(json['type']),
+      type: _parseMessageType(json['type'] ?? json['message_type']),
       content: json['content']?.toString() ?? '',
       imageUrl: json['image_url']?.toString(),
       isRead: json['is_read'] == true || json['is_read'] == 1,

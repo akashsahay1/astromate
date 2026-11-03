@@ -514,8 +514,12 @@ app.prepare().then(() => {
           // Strip 'user_' prefix to avoid double prefix in room name
           const astrologerRoomId = astrologerId?.startsWith('user_') ? astrologerId.substring(5) : astrologerId;
 
-          // If session is still ringing, re-notify the astrologer (they may have missed it)
-          if (existingSession.status === 'ringing') {
+          // Not yet accepted: notify the astrologer. 'pending' is what POST /api/chat creates (profile screen
+          // flow) — that request used to be silently dropped because only 'ringing' sessions re-notified.
+          if (existingSession.status === 'ringing' || existingSession.status === 'pending') {
+            if (existingSession.status === 'pending') {
+              await db.collection('sessions').updateOne({ _id: existingSession._id, status: 'pending' }, { $set: { status: 'ringing', updated_at: new Date() } });
+            }
             // Re-send incoming_chat via socket
             const incomingChatData = {
               sessionId: existingSession._id.toString(),

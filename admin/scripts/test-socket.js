@@ -66,8 +66,19 @@ const waitFor = (s, ev, ms = 1500) => new Promise((r) => { const t = setTimeout(
     sx.emit('send_message', { sessionId: chat, content: 'spoof', senderId: C });
     ok("attacker can't post into others' chat", (await waitFor(sx, 'chat_error'))?.error?.includes('not found'));
     await new Promise((r) => setTimeout(r, 200));
+    const hist = await (await fetch(`${URL}/api/chat/messages?sessionId=${chat}`, { headers: { Authorization: `Bearer ${tok(A, 'astrologer')}` } })).json();
+    ok('history includes the socket message with the same id', hist.messages?.some((x) => x.id === m.id && x.content === 'hello'), hist);
+    const spy = await fetch(`${URL}/api/chat/messages?sessionId=${chat}&userId=${C}&userType=customer`, { headers: { Authorization: `Bearer ${tok(X, 'customer')}` } });
+    ok("attacker can't read others' chat history via query params", spy.status === 403, spy.status);
     const s1 = await sessions.findOne({ _id: new ObjectId(chat) });
     ok('customer message bumps astrologer unread (not customer)', s1.astrologer_unread_count === 1 && !s1.user_unread_count, s1);
+
+    // profile-screen flow: REST creates a 'pending' chat, then initiate_chat must ring the astrologer
+    await sessions.insertOne({ session_type: 'chat', user_id: C, astrologer_id: A2, status: 'pending', rate_per_minute: 10, created_at: new Date() });
+    const sa2 = await connect(tok(A2, 'astrologer')); socks.push(sa2);
+    const incChat = waitFor(sa2, 'incoming_chat');
+    sc.emit('initiate_chat', { astrologerId: A2 });
+    ok('pending chat (profile flow) notifies the astrologer', (await incChat)?.userId === C);
 
     // calls: attacker can't ring, answer, end or relay into someone else's call
     const leakCall = waitFor(sx, 'incoming_call', 1200);

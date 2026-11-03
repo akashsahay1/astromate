@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../common/themes/app_colors.dart';
@@ -28,6 +30,18 @@ class _IncomingCallScreenState extends State<IncomingCallScreen> {
 
   bool _isAnswering = false;
   bool _isRejecting = false;
+  StreamSubscription? _endedSub;
+  Timer? _missedTimer;
+
+  bool _isMine(Map<String, dynamic> d) => (d['session_id'] ?? d['sessionId'])?.toString() == _sessionId;
+
+  /// Caller hung up / call timed out: stop ringing and close (it used to ring forever)
+  void _closeBecauseGone() {
+    if (!mounted || _isAnswering) return;
+    _ringtoneService.stopRingtone();
+    NotificationService().endCallKit();
+    Navigator.of(context).pop();
+  }
 
   // Helper getters to support both snake_case and camelCase
   String get _callType =>
@@ -54,10 +68,20 @@ class _IncomingCallScreenState extends State<IncomingCallScreen> {
 
     // Start ringtone
     _ringtoneService.startRingtone();
+
+    _endedSub = _socketService.callEndedStream.where(_isMine).listen((_) => _closeBecauseGone());
+    // Same 45s window the push notification uses; after that it's a missed call
+    _missedTimer = Timer(const Duration(seconds: 45), () {
+      if (_isAnswering || _isRejecting) return;
+      _socketService.rejectCallSession(_sessionId, reason: 'missed').catchError((_) {});
+      _closeBecauseGone();
+    });
   }
 
   @override
   void dispose() {
+    _endedSub?.cancel();
+    _missedTimer?.cancel();
     _ringtoneService.stopRingtone();
     super.dispose();
   }
