@@ -5,13 +5,21 @@ const { createServer } = require('http');
 const next = require('next');
 const { Server } = require('socket.io');
 const { MongoClient, ObjectId } = require('mongodb');
+const jwt = require('jsonwebtoken');
 const admin = require('firebase-admin');
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = '0.0.0.0'; // Accept connections from all network interfaces
 const port = process.env.PORT || 4001;
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017';
-const DB_NAME = 'astromateDB';
+const DB_NAME = process.env.DB_NAME || 'astromateDB';
+
+// One shared pool for all socket handlers (was a new MongoClient per event)
+let dbPromise;
+const getDb = () => (dbPromise ??= new MongoClient(MONGODB_URL).connect().then(c => c.db(DB_NAME)));
+const roomOf = (id) => `user_${id?.startsWith('user_') ? id.substring(5) : id}`;
+const isParticipant = (session, userId) => !!session && !!userId && (session.user_id === userId || session.astrologer_id === userId);
+const findSession = async (db, id, extra = {}) => (ObjectId.isValid(id) ? db.collection('sessions').findOne({ _id: new ObjectId(id), ...extra }) : null);
 
 // Initialize Firebase Admin SDK from environment variables
 try {
@@ -70,73 +78,63 @@ app.prepare().then(() => {
     }
   });
 
+  // Every socket must present a valid access token; identity comes ONLY from it, never from event payloads.
+  io.use((socket, next) => {
+    try {
+      const token = socket.handshake.auth?.token || socket.handshake.query?.token;
+      const p = jwt.verify(token, process.env.JWT_SECRET, { algorithms: ['HS256'], issuer: 'astromate-api', audience: 'astromate-app' });
+      if (!p.userId || !['customer', 'astrologer'].includes(p.user_type)) throw new Error('not an app user');
+      socket.data.user = { userId: p.userId, userType: p.user_type };
+      next();
+    } catch {
+      next(new Error('authentication_error: invalid or expired token'));
+    }
+  });
+
   // Socket.IO connection handling
   io.on('connection', (socket) => {
-    console.log('🔌 Client connected:', socket.id);
+    const me = socket.data.user;
+    console.log('🔌 Client connected:', socket.id, me.userId);
+    connectedUsers.set(socket.id, { socketId: socket.id, userId: me.userId, userType: me.userType, isOnline: true });
+    socket.join(roomOf(me.userId));
+    if (me.userType === 'astrologer') socket.join('astrologers');
 
-    // Handle user authentication (Flutter app uses this)
-    socket.on('authenticate', async (data) => {
-      try {
-        const { userId, userType } = data;
-        console.log(`🔐 [SOCKET] authenticate event: userId=${userId}, userType=${userType}`);
-
-        // Store user connection
-        connectedUsers.set(socket.id, {
-          socketId: socket.id,
-          userId: userId,
-          userType: userType,
-          isOnline: true
-        });
-
-        // Strip 'user_' prefix to avoid double prefix in room name
-        const roomId = userId?.startsWith('user_') ? userId.substring(5) : userId;
-
-        // Join user to their personal room
-        socket.join(`user_${roomId}`);
-        console.log(`🔌 [SOCKET] User ${userId} (${userType}) joined room: user_${roomId}`);
-
-        // Join astrologers to astrologer room
-        if (userType === 'astrologer') {
-          socket.join('astrologers');
-          console.log(`🔌 [SOCKET] Astrologer ${userId} also joined room: astrologers`);
-        }
-
-        socket.emit('authenticated', { success: true, userId, userType });
-        console.log(`✅ [SOCKET] User ${userId} authenticated successfully`);
-
-      } catch (error) {
-        console.error('❌ Authentication error:', error);
-        socket.emit('authentication_error', { error: 'Authentication failed' });
-      }
-    });
+    // Kept for app compatibility: rooms are already joined from the verified token at connect.
+    socket.on('authenticate', () => socket.emit('authenticated', { success: true, userId: me.userId, userType: me.userType }));
 
     // Handle call initiation
     socket.on('initiate_call', async (data) => {
       try {
         // Support both snake_case and camelCase field names
         const sessionId = data.session_id || data.sessionId;
-        const callerId = data.caller_id || data.callerId;
+        const callerId = me.userId;
         const callerName = data.caller_name || data.callerName;
-        const callerType = data.caller_type || data.callerType;
+        const callerType = me.userType;
         const callType = data.call_type || data.callType;
         const astrologerId = data.astrologer_id || data.astrologerId;
 
         console.log('📞 [CALL] initiate_call received:', JSON.stringify(data, null, 2));
 
-        const client = new MongoClient(MONGODB_URL);
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get call session from unified sessions collection
-        const session = await db.collection('sessions').findOne({
-          _id: new ObjectId(sessionId),
-          session_type: { $in: ['voice_call', 'video_call'] }
-        });
+        const session = await findSession(db, sessionId, { session_type: { $in: ['voice_call', 'video_call'] }, status: { $in: ['pending', 'initiated', 'ringing'] } });
 
-        if (!session) {
+        if (!isParticipant(session, me.userId)) {
           console.log('❌ [CALL] Session not found:', sessionId);
           socket.emit('call_error', { session_id: sessionId, error: 'Call session not found' });
-          await client.close();
+          return;
+        }
+
+        // Receiver already on a call → busy, instead of a second call hijacking the first
+        const receiverIdForBusy = callerType === 'customer' ? session.astrologer_id : session.user_id;
+        const busy = await db.collection('sessions').findOne({
+          _id: { $ne: session._id }, session_type: { $in: ['voice_call', 'video_call'] }, status: 'connected',
+          $or: [{ user_id: receiverIdForBusy }, { astrologer_id: receiverIdForBusy }],
+        });
+        if (busy) {
+          await db.collection('sessions').updateOne({ _id: session._id }, { $set: { status: 'rejected', end_reason: 'busy', end_time: new Date(), updated_at: new Date() } });
+          socket.emit('call_rejected', { session_id: sessionId, reason: 'busy' });
           return;
         }
 
@@ -166,7 +164,6 @@ app.prepare().then(() => {
           user_id: session.astrologer_id,
           user_type: 'astrologer'
         });
-        await client.close();
 
         console.log(`📞 [CALL] Receiver FCM token: ${receiver?.fcm_token ? 'EXISTS (' + receiver.fcm_token.substring(0, 20) + '...)' : 'NOT SET'}`);
 
@@ -293,16 +290,16 @@ app.prepare().then(() => {
         const sessionId = data.session_id || data.sessionId;
         console.log('✅ [CALL] answer_call received:', JSON.stringify(data, null, 2));
 
-        const client = new MongoClient(MONGODB_URL);
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // IDEMPOTENCY: Atomically update only if session is still in 'ringing' or 'initiated' state
         // This prevents duplicate processing when answer_call is sent multiple times
         const startTime = new Date();
+        if (!ObjectId.isValid(sessionId)) return;
         const result = await db.collection('sessions').findOneAndUpdate(
           {
             _id: new ObjectId(sessionId),
+            $or: [{ user_id: me.userId }, { astrologer_id: me.userId }],
             session_type: { $in: ['voice_call', 'video_call'] },
             status: { $in: ['ringing', 'initiated'] }  // Only update if not already connected
           },
@@ -323,17 +320,14 @@ app.prepare().then(() => {
 
           if (existingSession && existingSession.status === 'connected') {
             console.log('⚠️ [CALL] answer_call ignored - session already connected (duplicate):', sessionId);
-            await client.close();
             return; // Silently ignore duplicate
           }
 
           console.log('❌ [CALL] Session not found for answer:', sessionId);
           socket.emit('call_error', { session_id: sessionId, error: 'Call session not found' });
-          await client.close();
           return;
         }
 
-        await client.close();
 
         // Find the caller (initiator) to notify them
         const callerId = session.user_id;
@@ -365,17 +359,12 @@ app.prepare().then(() => {
         const reason = data.reason;
         console.log('❌ [CALL] reject_call received:', JSON.stringify(data, null, 2));
 
-        const client = new MongoClient(MONGODB_URL);
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get call session
-        const session = await db.collection('sessions').findOne({
-          _id: new ObjectId(sessionId),
-          session_type: { $in: ['voice_call', 'video_call'] }
-        });
+        const session = await findSession(db, sessionId, { session_type: { $in: ['voice_call', 'video_call'] }, status: { $in: ['pending', 'initiated', 'ringing'] } });
 
-        if (session) {
+        if (isParticipant(session, me.userId)) {
           // Update call status to rejected
           await db.collection('sessions').updateOne(
             { _id: new ObjectId(sessionId) },
@@ -395,7 +384,6 @@ app.prepare().then(() => {
           console.log(`❌ [CALL] call_rejected emitted to user_${callerRoomId}`);
         }
 
-        await client.close();
 
       } catch (error) {
         console.error('❌ [CALL] reject_call error:', error);
@@ -407,20 +395,15 @@ app.prepare().then(() => {
       try {
         // Support both snake_case and camelCase
         const sessionId = data.session_id || data.sessionId;
-        const endedBy = data.ended_by || data.endedBy;
+        const endedBy = me.userId;
         console.log('📴 [CALL] end_call received:', JSON.stringify(data, null, 2));
 
-        const client = new MongoClient(MONGODB_URL);
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get call session
-        const session = await db.collection('sessions').findOne({
-          _id: new ObjectId(sessionId),
-          session_type: { $in: ['voice_call', 'video_call'] }
-        });
+        const session = await findSession(db, sessionId, { session_type: { $in: ['voice_call', 'video_call'] } });
 
-        if (session) {
+        if (isParticipant(session, me.userId)) {
           // Update call status to completed
           await db.collection('sessions').updateOne(
             { _id: new ObjectId(sessionId) },
@@ -444,93 +427,26 @@ app.prepare().then(() => {
           console.log(`📴 [CALL] call_ended emitted to both parties`);
         }
 
-        await client.close();
 
       } catch (error) {
         console.error('❌ [CALL] end_call error:', error);
       }
     });
 
-    // Handle WebRTC offer
-    socket.on('webrtc_offer', (data) => {
-      const { sessionId, targetUserId, offer } = data;
-
-      // Strip 'user_' prefix to avoid double prefix (user_user_...)
-      const targetRoomId = targetUserId?.startsWith('user_')
-        ? targetUserId.substring(5)
-        : targetUserId;
-      console.log(`📤 [WEBRTC] Forwarding offer to user_${targetRoomId}`);
-
-      // Get the sender's user ID from connectedUsers
-      const senderInfo = connectedUsers.get(socket.id);
-      const fromUserId = senderInfo?.userId;
-
-      io.to(`user_${targetRoomId}`).emit('webrtc_offer', {
-        sessionId,
-        offer,
-        fromUserId
-      });
-    });
-
-    // Handle WebRTC answer
-    socket.on('webrtc_answer', (data) => {
-      const { sessionId, targetUserId, answer } = data;
-
-      // Strip 'user_' prefix to avoid double prefix (user_user_...)
-      const targetRoomId = targetUserId?.startsWith('user_')
-        ? targetUserId.substring(5)
-        : targetUserId;
-      console.log(`📤 [WEBRTC] Forwarding answer to user_${targetRoomId}`);
-
-      // Get the sender's user ID from connectedUsers
-      const senderInfo = connectedUsers.get(socket.id);
-      const fromUserId = senderInfo?.userId;
-
-      io.to(`user_${targetRoomId}`).emit('webrtc_answer', {
-        sessionId,
-        answer,
-        fromUserId
-      });
-    });
-
-    // Handle WebRTC ICE candidate
-    socket.on('webrtc_ice_candidate', (data) => {
-      const { sessionId, targetUserId, candidate } = data;
-
-      // Strip 'user_' prefix to avoid double prefix (user_user_...)
-      const targetRoomId = targetUserId?.startsWith('user_')
-        ? targetUserId.substring(5)
-        : targetUserId;
-      console.log(`🧊 [WEBRTC] Forwarding ICE candidate to user_${targetRoomId}`);
-
-      io.to(`user_${targetRoomId}`).emit('webrtc_ice_candidate', {
-        sessionId,
-        candidate
-      });
-    });
-
-    // Handle user joining (legacy - for customers and astrologers)
-    socket.on('join_user', (data) => {
-      const { userId, userType } = data;
-      console.log(`👤 ${userType} ${userId} joined`);
-
-      // Strip 'user_' prefix to avoid double prefix in room name
-      const roomId = userId?.startsWith('user_') ? userId.substring(5) : userId;
-
-      // Join user to their personal room
-      socket.join(`user_${roomId}`);
-
-      // Join astrologers to astrologer room for broadcasts
-      if (userType === 'astrologer') {
-        socket.join('astrologers');
-
-        // Broadcast that astrologer is online
-        socket.broadcast.emit('astrologer_online', {
-          astrologerId: userId,
-          status: 'online'
-        });
+    // WebRTC signalling relay — only between the two participants of a live call session
+    const relay = (event, payloadKey) => socket.on(event, async (data) => {
+      try {
+        const { sessionId, targetUserId } = data || {};
+        const session = await findSession(await getDb(), sessionId, { session_type: { $in: ['voice_call', 'video_call'] } });
+        if (!isParticipant(session, me.userId) || !isParticipant(session, targetUserId) || targetUserId === me.userId) return;
+        io.to(roomOf(targetUserId)).emit(event, { sessionId, [payloadKey]: data[payloadKey], fromUserId: me.userId });
+      } catch (error) {
+        console.error(`❌ [WEBRTC] ${event} relay error:`, error);
       }
     });
+    relay('webrtc_offer', 'offer');
+    relay('webrtc_answer', 'answer');
+    relay('webrtc_ice_candidate', 'candidate');
 
     // Handle chat initiation (customer requesting chat with astrologer)
     socket.on('initiate_chat', async (data) => {
@@ -549,16 +465,13 @@ app.prepare().then(() => {
           return;
         }
 
-        const client = new MongoClient(MONGODB_URL);
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get user details
         const user = await db.collection('users').findOne({ user_id: userId });
         if (!user) {
           console.log(`❌ [CHAT] User not found: ${userId}`);
           socket.emit('chat_error', { error: 'User not found' });
-          await client.close();
           return;
         }
 
@@ -571,13 +484,11 @@ app.prepare().then(() => {
         if (!astrologer) {
           console.log(`❌ [CHAT] Astrologer not found: ${astrologerId}`);
           socket.emit('chat_error', { error: 'Astrologer not found' });
-          await client.close();
           return;
         }
 
         if (!astrologer.is_online) {
           socket.emit('chat_error', { error: 'Astrologer is currently offline' });
-          await client.close();
           return;
         }
 
@@ -683,7 +594,6 @@ app.prepare().then(() => {
             console.log(`💬 [CHAT] Notified astrologer to resume chat (room: user_${astrologerRoomId})`);
           }
 
-          await client.close();
           return;
         }
 
@@ -712,7 +622,6 @@ app.prepare().then(() => {
         await db.collection('sessions').insertOne(chatSession);
         console.log(`💬 [CHAT] Session created: ${sessionId}`);
 
-        await client.close();
 
         // Prepare incoming chat data for astrologer
         const incomingChatData = {
@@ -819,9 +728,7 @@ app.prepare().then(() => {
           return;
         }
 
-        const client = new MongoClient(MONGODB_URL);
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get session - accept both 'ringing' and 'pending' status
         const session = await db.collection('sessions').findOne({
@@ -838,7 +745,6 @@ app.prepare().then(() => {
             console.log(`❌ [CHAT] Session exists but has status: ${anySession.status}, type: ${anySession.session_type}`);
           }
           socket.emit('chat_error', { error: 'Chat session not found or already processed' });
-          await client.close();
           return;
         }
 
@@ -848,7 +754,6 @@ app.prepare().then(() => {
         if (session.astrologer_id !== astrologerId) {
           console.log(`❌ [CHAT] Unauthorized: session.astrologer_id=${session.astrologer_id}, astrologerId=${astrologerId}`);
           socket.emit('chat_error', { error: 'Unauthorized to accept this chat' });
-          await client.close();
           return;
         }
 
@@ -866,7 +771,6 @@ app.prepare().then(() => {
 
         // Get astrologer name for notification
         const astrologer = await db.collection('users').findOne({ user_id: astrologerId });
-        await client.close();
 
         console.log(`✅ [CHAT] Chat accepted: ${sessionId} by ${astrologer?.full_name}`);
 
@@ -904,9 +808,7 @@ app.prepare().then(() => {
           return;
         }
 
-        const client = new MongoClient(MONGODB_URL);
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get session - accept both 'ringing' and 'pending' status
         const session = await db.collection('sessions').findOne({
@@ -918,14 +820,12 @@ app.prepare().then(() => {
         if (!session) {
           console.log(`❌ [CHAT] Session not found or already processed: ${sessionId}`);
           socket.emit('chat_error', { error: 'Chat session not found or already processed' });
-          await client.close();
           return;
         }
 
         // Verify astrologer is the one receiving this chat
         if (session.astrologer_id !== astrologerId) {
           socket.emit('chat_error', { error: 'Unauthorized to reject this chat' });
-          await client.close();
           return;
         }
 
@@ -943,7 +843,6 @@ app.prepare().then(() => {
 
         // Get astrologer name for notification
         const astrologer = await db.collection('users').findOne({ user_id: astrologerId });
-        await client.close();
 
         console.log(`❌ [CHAT] Chat rejected: ${sessionId} by ${astrologer?.full_name}, reason: ${reason}`);
 
@@ -981,6 +880,12 @@ app.prepare().then(() => {
         }
 
         console.log(`🏠 [CHAT] User ${userInfo?.userId} joining chat session: ${sessionId}`);
+
+        const session = await findSession(await getDb(), sessionId, { session_type: 'chat' });
+        if (!isParticipant(session, me.userId)) {
+          socket.emit('chat_error', { error: 'Chat session not found' });
+          return;
+        }
 
         // Join the socket room for this chat session
         socket.join(`chat_${sessionId}`);
@@ -1022,7 +927,6 @@ app.prepare().then(() => {
 
     // Handle ending a chat session
     socket.on('end_chat_session', async (data) => {
-      const client = new MongoClient(MONGODB_URL);
       try {
         const { chatSessionId } = data;
         const userInfo = connectedUsers.get(socket.id);
@@ -1034,18 +938,13 @@ app.prepare().then(() => {
 
         console.log(`🔚 [CHAT] Ending chat session: ${chatSessionId} by ${userInfo?.userId}`);
 
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get session from database
-        const session = await db.collection('sessions').findOne({
-          _id: new ObjectId(chatSessionId),
-          session_type: 'chat'
-        });
+        const session = await findSession(db, chatSessionId, { session_type: 'chat' });
 
-        if (!session) {
+        if (!isParticipant(session, me.userId)) {
           socket.emit('chat_error', { error: 'Chat session not found' });
-          await client.close();
           return;
         }
 
@@ -1064,7 +963,6 @@ app.prepare().then(() => {
           { $set: { status: 'completed', end_time: endTime, updated_at: endTime } }
         );
 
-        await client.close();
 
         // Notify both users that chat has ended
         const chatEndedData = {
@@ -1091,13 +989,11 @@ app.prepare().then(() => {
       } catch (error) {
         console.error('❌ [CHAT] end_chat_session error:', error);
         socket.emit('chat_error', { error: 'Failed to end chat session' });
-        try { await client.close(); } catch (e) {}
       }
     });
 
     // Handle chat messages (supports both old and new format)
     socket.on('send_message', async (data) => {
-      const client = new MongoClient(MONGODB_URL);
       try {
         const userInfo = connectedUsers.get(socket.id);
 
@@ -1106,7 +1002,7 @@ app.prepare().then(() => {
         const content = data.content || data.message || '';
         const messageType = data.messageType || data.type || 'text';
         const imageUrl = data.imageUrl || data.image_url || null;
-        const senderId = userInfo?.userId || data.senderId;
+        const senderId = me.userId;
 
         // For text messages, content is required. For image messages, imageUrl is required.
         if (!sessionId) {
@@ -1127,17 +1023,13 @@ app.prepare().then(() => {
         const logContent = messageType === 'image' ? `[Image: ${imageUrl}]` : content.substring(0, 50);
         console.log(`💬 [CHAT] Message in session ${sessionId} from ${senderId}: ${logContent}...`);
 
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get session to find the other participant
-        const session = await db.collection('sessions').findOne({
-          _id: new ObjectId(sessionId)
-        });
+        const session = await findSession(db, sessionId, { session_type: 'chat', status: 'active' });
 
-        if (!session) {
-          socket.emit('chat_error', { error: 'Chat session not found' });
-          await client.close();
+        if (!isParticipant(session, senderId)) {
+          socket.emit('chat_error', { error: 'Chat session not found or not active' });
           return;
         }
 
@@ -1180,12 +1072,11 @@ app.prepare().then(() => {
               updated_at: timestamp
             },
             $inc: {
-              [senderType === 'customer' ? 'astrologer_unread_count' : 'user_unread_count']: 1
+              [senderType === 'user' ? 'astrologer_unread_count' : 'user_unread_count']: 1
             }
           }
         );
 
-        await client.close();
 
         // Emit 'new_message' to chat room (excluding sender to prevent duplicate)
         // Using socket.to() instead of io.to() excludes the sender
@@ -1205,61 +1096,25 @@ app.prepare().then(() => {
       } catch (error) {
         console.error('❌ [CHAT] send_message error:', error);
         socket.emit('chat_error', { error: 'Failed to send message' });
-        try { await client.close(); } catch (e) {}
       }
-    });
-
-    // Handle consultation status updates
-    socket.on('consultation_status', (data) => {
-      const { consultationId, status, participants } = data;
-
-      console.log(`📞 Consultation ${consultationId} status: ${status}`);
-
-      // Notify all participants
-      participants.forEach(userId => {
-        // Strip 'user_' prefix to avoid double prefix in room name
-        const userRoomId = userId?.startsWith('user_') ? userId.substring(5) : userId;
-        io.to(`user_${userRoomId}`).emit('consultation_update', {
-          consultationId,
-          status,
-          timestamp: new Date().toISOString()
-        });
-      });
-    });
-
-    // Handle astrologer online/offline status
-    socket.on('astrologer_status', (data) => {
-      const { astrologerId, status } = data;
-      
-      console.log(`🟢 Astrologer ${astrologerId} is now ${status}`);
-      
-      // Broadcast status to all customers
-      socket.broadcast.emit('astrologer_status_update', {
-        astrologerId,
-        status,
-        timestamp: new Date().toISOString()
-      });
     });
 
     // Handle typing indicators (supports both old and new format)
     socket.on('typing_start', async (data) => {
-      const client = new MongoClient(MONGODB_URL);
       try {
         const userInfo = connectedUsers.get(socket.id);
         const sessionId = data.sessionId || data.consultationId;
-        const senderId = userInfo?.userId || data.senderId;
+        const senderId = me.userId;
 
         if (!sessionId) return;
 
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get session to find the other participant
         const session = await db.collection('sessions').findOne({
           _id: new ObjectId(sessionId)
         });
 
-        await client.close();
 
         if (session) {
           const receiverId = senderId === session.user_id ? session.astrologer_id : session.user_id;
@@ -1280,28 +1135,24 @@ app.prepare().then(() => {
         }
       } catch (error) {
         console.error('❌ [CHAT] typing_start error:', error);
-        try { await client.close(); } catch (e) {}
       }
     });
 
     socket.on('typing_stop', async (data) => {
-      const client = new MongoClient(MONGODB_URL);
       try {
         const userInfo = connectedUsers.get(socket.id);
         const sessionId = data.sessionId || data.consultationId;
-        const senderId = userInfo?.userId || data.senderId;
+        const senderId = me.userId;
 
         if (!sessionId) return;
 
-        await client.connect();
-        const db = client.db(DB_NAME);
+        const db = await getDb();
 
         // Get session to find the other participant
         const session = await db.collection('sessions').findOne({
           _id: new ObjectId(sessionId)
         });
 
-        await client.close();
 
         if (session) {
           const receiverId = senderId === session.user_id ? session.astrologer_id : session.user_id;
@@ -1322,20 +1173,7 @@ app.prepare().then(() => {
         }
       } catch (error) {
         console.error('❌ [CHAT] typing_stop error:', error);
-        try { await client.close(); } catch (e) {}
       }
-    });
-
-    // Handle notifications
-    socket.on('send_notification', (data) => {
-      const { userId, notification } = data;
-
-      // Strip 'user_' prefix to avoid double prefix in room name
-      const userRoomId = userId?.startsWith('user_') ? userId.substring(5) : userId;
-      io.to(`user_${userRoomId}`).emit('notification', {
-        ...notification,
-        timestamp: new Date().toISOString()
-      });
     });
 
     // Handle disconnection
