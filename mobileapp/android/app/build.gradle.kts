@@ -3,8 +3,14 @@ plugins {
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
-    // Google Services plugin for Firebase
-    id("com.google.gms.google-services")
+    // Google Services plugin for Firebase — applied below only once google-services.json exists
+    id("com.google.gms.google-services") apply false
+}
+
+// ponytail: lets the app build without Firebase until the new Astromate project's
+// google-services.json is added (flutterfire configure); then push notifications work again
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
 }
 
 android {

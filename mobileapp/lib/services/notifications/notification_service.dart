@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
@@ -17,7 +18,8 @@ class NotificationService {
   factory NotificationService() => _instance;
   NotificationService._internal();
 
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  // getter, not a field: FirebaseMessaging.instance throws when Firebase isn't configured
+  FirebaseMessaging get _firebaseMessaging => FirebaseMessaging.instance;
   final FlutterLocalNotificationsPlugin _localNotifications = FlutterLocalNotificationsPlugin();
   final Uuid _uuid = const Uuid();
 
@@ -47,8 +49,13 @@ class NotificationService {
     _onIncomingChatNotification = onIncomingChatNotification;
 
     await _initializeLocalNotifications();
-    await _initializeFirebaseMessaging();
     await _initializeCallKit();
+    // Push needs Firebase; skip it (local notifications + CallKit still work) until it's configured
+    if (Firebase.apps.isEmpty) {
+      debugPrint('⚠️ Firebase not configured — push notifications disabled');
+      return;
+    }
+    await _initializeFirebaseMessaging();
     await _requestPermissions();
     await _getFCMToken();
     _setupMessageHandlers();
