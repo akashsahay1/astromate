@@ -6,7 +6,7 @@ import { Media } from '@/models';
 function getBaseUrl(request: NextRequest): string {
   // For production, use the configured image server URL
   if (process.env.NODE_ENV === 'production') {
-    return process.env.IMAGE_BASE_URL || 'https://admin.trueastrotalk.com';
+    return process.env.IMAGE_BASE_URL || 'https://api.astromate.online';
   }
 
   // For development, use the request host

@@ -4,8 +4,8 @@ import "./globals.css";
 import "../styles/sweetalert-custom.css";
 
 export const metadata: Metadata = {
-  title: "True Astrotalk Admin",
-  description: "Admin panel for True Astrotalk platform",
+  title: "Astromate Admin",
+  description: "Admin panel for Astromate platform",
 };
 
 export default function RootLayout({

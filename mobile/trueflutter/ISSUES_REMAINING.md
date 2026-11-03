@@ -1,4 +1,4 @@
-# TrueAstroTalk - Remaining Issues
+# Astromate - Remaining Issues
 
 **Last Updated:** 2024-11-29
 

@@ -35,7 +35,7 @@ export default function GeneralSettingsPage() {
       environment: 'test'
     },
     app: {
-      name: 'True Astrotalk',
+      name: 'Astromate',
       version: '1.0.0',
       minSupportedVersion: '1.0.0'
     },

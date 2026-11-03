@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mobile/models/user.dart' as app_user;
+import 'package:astromate/models/user.dart' as app_user;
 import 'dart:io';
 import '../../common/themes/app_colors.dart';
 import '../../common/themes/text_styles.dart';

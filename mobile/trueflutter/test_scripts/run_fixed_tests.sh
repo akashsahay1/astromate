@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Run Fixed E2E Tests for TrueAstroTalk Mobile App
+# Run Fixed E2E Tests for Astromate Mobile App
 # All critical issues have been resolved
 
-echo "🎉 TrueAstroTalk E2E Tests - All Issues Fixed!"
+echo "🎉 Astromate E2E Tests - All Issues Fixed!"
 echo "=============================================="
 echo ""
 echo "✅ FIXES IMPLEMENTED:"

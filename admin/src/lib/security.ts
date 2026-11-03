@@ -89,8 +89,8 @@ export class JWTSecurity {
     return jwt.sign(payload, JWT_SECRET!, {
       expiresIn: '90d', // 90 days - users stay logged in
       algorithm: 'HS256',
-      issuer: 'trueastrotalk-api',
-      audience: 'trueastrotalk-app'
+      issuer: 'astromate-api',
+      audience: 'astromate-app'
     });
   }
 
@@ -101,8 +101,8 @@ export class JWTSecurity {
     return jwt.sign(payload, JWT_REFRESH_SECRET!, {
       expiresIn: '180d', // 180 days - 6 months
       algorithm: 'HS256',
-      issuer: 'trueastrotalk-api',
-      audience: 'trueastrotalk-app'
+      issuer: 'astromate-api',
+      audience: 'astromate-app'
     });
   }
 
@@ -113,8 +113,8 @@ export class JWTSecurity {
     try {
       const payload = jwt.verify(token, JWT_SECRET!, {
         algorithms: ['HS256'],
-        issuer: 'trueastrotalk-api',
-        audience: 'trueastrotalk-app'
+        issuer: 'astromate-api',
+        audience: 'astromate-app'
       });
       
       // JWT verify can return string or JwtPayload, we only want objects
@@ -135,8 +135,8 @@ export class JWTSecurity {
     try {
       const payload = jwt.verify(token, JWT_REFRESH_SECRET!, {
         algorithms: ['HS256'],
-        issuer: 'trueastrotalk-api',
-        audience: 'trueastrotalk-app'
+        issuer: 'astromate-api',
+        audience: 'astromate-app'
       });
       
       // JWT verify can return string or JwtPayload, we only want objects

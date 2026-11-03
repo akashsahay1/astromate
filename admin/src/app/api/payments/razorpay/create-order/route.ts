@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Basic ${Buffer.from(`${RAZORPAY_KEY_ID}:${RAZORPAY_KEY_SECRET}`).toString('base64')}`,
-          'User-Agent': 'TrueAstroTalk-API/1.0'
+          'User-Agent': 'Astromate-API/1.0'
         },
         body: JSON.stringify(orderData),
         signal: controller.signal

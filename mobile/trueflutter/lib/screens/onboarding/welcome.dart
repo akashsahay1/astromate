@@ -278,7 +278,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
                     // App name
                     Text(
-                      'true Astrotalk',
+                      'Astromate',
                       style: AppTextStyles.heading2.copyWith(
                         fontFamily: 'Ergonomique',
                         fontWeight: FontWeight.bold,

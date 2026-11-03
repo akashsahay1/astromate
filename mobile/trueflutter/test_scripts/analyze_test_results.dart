@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 
 void main() {
-  print('🔍 TrueAstroTalk E2E Test Results Analysis');
+  print('🔍 Astromate E2E Test Results Analysis');
   print('==========================================');
   
   final analyzer = TestResultAnalyzer();

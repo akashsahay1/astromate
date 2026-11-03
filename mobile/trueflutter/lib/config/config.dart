@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 
 class Config {
   // App Information
-  static const String appName = 'True Astrotalk';
-  static const String packageName = 'com.trueastrotalk.user';
+  static const String appName = 'Astromate';
+  static const String packageName = 'online.astromate';
   static const String version = '1.0.0';
   static const int buildNumber = 1;
 
@@ -31,7 +31,7 @@ class Config {
   // API Configuration - Simplified
   static Future<String> get baseUrl async {
     if (isProduction) {
-      return 'https://admin.trueastrotalk.com/api';
+      return 'https://api.astromate.online/api';
     }
 
     // Development mode - connect to admin panel API
@@ -41,7 +41,7 @@ class Config {
 
   static Future<String> get socketUrl async {
     if (isProduction) {
-      return 'https://admin.trueastrotalk.com';
+      return 'https://api.astromate.online';
     }
 
     // Development mode - connect to Socket.IO server on port 4001
@@ -52,7 +52,7 @@ class Config {
   // Synchronous versions for immediate use (uses cached IP or localhost)
   static String get baseUrlSync {
     if (isProduction) {
-      return 'https://admin.trueastrotalk.com/api';
+      return 'https://api.astromate.online/api';
     }
 
     final ip =
@@ -62,7 +62,7 @@ class Config {
 
   static String get socketUrlSync {
     if (isProduction) {
-      return 'https://admin.trueastrotalk.com';
+      return 'https://api.astromate.online';
     }
 
     final ip =
@@ -131,17 +131,17 @@ class Config {
   static const bool enableKundliGeneration = true;
 
   // App URLs
-  static const String websiteUrl = 'https://www.trueastrotalk.com';
-  static const String supportEmail = 'support@trueastrotalk.com';
+  static const String websiteUrl = 'https://astromate.online';
+  static const String supportEmail = 'support@astromate.online';
   static const String privacyPolicyUrl = '$websiteUrl/privacy-policy';
   static const String termsOfServiceUrl = '$websiteUrl/terms-of-service';
   static const String helpUrl = '$websiteUrl/help';
 
   // Social media URLs
-  static const String facebookUrl = 'https://www.facebook.com/trueastrotalk';
-  static const String twitterUrl = 'https://www.twitter.com/trueastrotalk';
-  static const String instagramUrl = 'https://www.instagram.com/trueastrotalk';
-  static const String youtubeUrl = 'https://www.youtube.com/trueastrotalk';
+  static const String facebookUrl = 'https://www.facebook.com/astromate';
+  static const String twitterUrl = 'https://www.twitter.com/astromate';
+  static const String instagramUrl = 'https://www.instagram.com/astromate';
+  static const String youtubeUrl = 'https://www.youtube.com/astromate';
 
   // App store URLs
   static const String playStoreUrl =

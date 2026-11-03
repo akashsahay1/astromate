@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -57,7 +57,7 @@ void main() {
         (index) => TestAstrologer(
           // Basic Information
           name: 'Test Astrologer ${index + 1}',
-          email: 'testastrologer${index + 1}.$timestamp@trueastrotalk.com',
+          email: 'testastrologer${index + 1}.$timestamp@astromate.online',
           phone: '900000${2000 + index}',
           password: 'TestPass123!',
           

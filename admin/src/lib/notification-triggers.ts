@@ -107,7 +107,7 @@ export class NotificationTriggers {
           },
           {
             type: NotificationType.ASTROLOGER_APPROVED,
-            title: 'Welcome to TrueAstroTalk! 🎉',
+            title: 'Welcome to Astromate! 🎉',
             body: 'Congratulations! Your astrologer application has been approved. You can now start offering consultations.',
             data: { 
               astrologerId,

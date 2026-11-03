@@ -1,4 +1,4 @@
-# TrueAstroTalk Mobile App - Manual Testing Checklist
+# Astromate Mobile App - Manual Testing Checklist
 
 ## Pre-Testing Setup
 - [ ] Backend server running at http://localhost:4000

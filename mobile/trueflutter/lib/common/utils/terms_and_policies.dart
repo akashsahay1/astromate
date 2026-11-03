@@ -27,7 +27,7 @@ class TermsAndPolicies {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildParagraph(
-                    'Welcome to true Astrotalk, your personal Astro consultation platform. This Agreement sets out the legally binding terms for your use of the Site, usage and membership. This Agreement may be modified by Us from time to time. The access, membership and rights of admissions are reserved.',
+                    'Welcome to Astromate, your personal Astro consultation platform. This Agreement sets out the legally binding terms for your use of the Site, usage and membership. This Agreement may be modified by Us from time to time. The access, membership and rights of admissions are reserved.',
                   ),
                   _buildParagraph(
                     'This Terms of Use is published in accordance with the Rule 3 (1) of the Information Technology (Intermediaries Guidelines and Digital Media Ethics Code) Rules, 2021.',
@@ -38,7 +38,7 @@ class TermsAndPolicies {
                     'The Site/App ("We/Site/Us") offers astrological content, reports, data, and consultations through video chat, Call and email (hereinafter referred to as "Content") via the Site and Mobile applications, and other electronic mediums. We provide both "Free Services" and "Paid Services" (collectively referred to as "Services"). To access the Site/App and avail the Services, you are required to register as a member on the Site/App.',
                   ),
                   _buildParagraph('By registering on the Site/App you agree to:'),
-                  _buildBulletPoint('Provide current, complete, and accurate information as prompted by the Site/App. Creating a user profile with true Astrotalk involves providing specific information, including your phone number/email for OTP (One-Time Password) verification, which is required to ensure the security and validity of the registration process. Additionally, you may provide your first name, last name, date and time of birth (DOB), birth place etc. Please note that providing your date of birth is optional during the registration process, but may be needed while communicating with Astrologers to compile and calculate horoscope information.'),
+                  _buildBulletPoint('Provide current, complete, and accurate information as prompted by the Site/App. Creating a user profile with Astromate involves providing specific information, including your phone number/email for OTP (One-Time Password) verification, which is required to ensure the security and validity of the registration process. Additionally, you may provide your first name, last name, date and time of birth (DOB), birth place etc. Please note that providing your date of birth is optional during the registration process, but may be needed while communicating with Astrologers to compile and calculate horoscope information.'),
                   _buildBulletPoint('Maintain and update the provided information as required, ensuring that it remains current and accurate.'),
 
                   _buildSectionTitle('USER CONSENT'),
@@ -49,7 +49,7 @@ class TermsAndPolicies {
                     'Additionally, by using this Site/App, you give your consent to receive communications from us via SMS/WhatsApp/Email/Call. Your continued use of the Site/App, including any updates or modifications to the Terms of Usage, signifies your acceptance and agreement to be legally bound by these terms till your account is deleted from Site/App. If you have any objection in collecting/processing your personal data, we advise you not to register with our Site.',
                   ),
                   _buildParagraph(
-                    'If you want to withdraw this consent or if you have any objection in continuous collection or storage of your personal details, you must discontinue using our Service and delete your account by sending an email from your registered email ID to help@trueAstrotalk.com as we shall not be able to provide you any Service without having your personally identifiable information listed above.',
+                    'If you want to withdraw this consent or if you have any objection in continuous collection or storage of your personal details, you must discontinue using our Service and delete your account by sending an email from your registered email ID to help@astromate.online as we shall not be able to provide you any Service without having your personally identifiable information listed above.',
                   ),
 
                   _buildSectionTitle('Registration and Eligibility'),
@@ -165,7 +165,7 @@ class TermsAndPolicies {
 
                   _buildSectionTitle('Contact Us'),
                   _buildParagraph(
-                    'For questions or concerns, please email us at help@trueastrotalk.com or contact us at the address - Near DAV Nageswar Public School, Chandaghasi, Ranchi-834010.',
+                    'For questions or concerns, please email us at help@astromate.online or contact us at the address - Near DAV Nageswar Public School, Chandaghasi, Ranchi-834010.',
                   ),
                 ],
               ),
@@ -215,12 +215,12 @@ class TermsAndPolicies {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildParagraph(
-                    'true Astrotalk ("we", "our", "true Astrotalk"), operated by Naamre Services(OPC) Pvt. Ltd., is committed to safeguarding the privacy of its users, including both astrologers and clients, whether registered or not. This Privacy Policy outlines how we collect, use, store, and disclose your information in compliance with applicable data protection laws.',
+                    'Astromate ("we", "our", "Astromate"), operated by Naamre Services(OPC) Pvt. Ltd., is committed to safeguarding the privacy of its users, including both astrologers and clients, whether registered or not. This Privacy Policy outlines how we collect, use, store, and disclose your information in compliance with applicable data protection laws.',
                   ),
 
                   _buildSectionTitle('User Consent'),
                   _buildParagraph(
-                    'By accessing or using the true Astrotalk platform, you consent to this Privacy Policy. Continued use of the platform indicates your unconditional consent to our practices regarding your personal data. By using this website, you also consent to receive communications from us via WhatsApp and other communication channels.',
+                    'By accessing or using the Astromate platform, you consent to this Privacy Policy. Continued use of the platform indicates your unconditional consent to our practices regarding your personal data. By using this website, you also consent to receive communications from us via WhatsApp and other communication channels.',
                   ),
 
                   _buildSectionTitle('Information We Collect'),
@@ -239,7 +239,7 @@ class TermsAndPolicies {
 
                   _buildSectionTitle('Data Sharing and Disclosure'),
                   _buildParagraph(
-                    'true Astrotalk does not sell or rent your personal data to third parties. However, we may share your data under the following circumstances:',
+                    'Astromate does not sell or rent your personal data to third parties. However, we may share your data under the following circumstances:',
                   ),
                   _buildBulletPoint('Service Providers: With trusted third-party vendors who assist with business operations, such as payment processors and hosting services.'),
                   _buildBulletPoint('Legal Obligations: When required by law or to protect our rights, privacy, safety, or property.'),
@@ -257,12 +257,12 @@ class TermsAndPolicies {
 
                   _buildSectionTitle('Your Rights'),
                   _buildParagraph(
-                    'Depending on your jurisdiction, you may have rights regarding your personal data, including the right to access, update, or delete your information. You can exercise these rights by contacting us at help@trueastrotalk.com.',
+                    'Depending on your jurisdiction, you may have rights regarding your personal data, including the right to access, update, or delete your information. You can exercise these rights by contacting us at help@astromate.online.',
                   ),
 
                   _buildSectionTitle('Camera, Voice and Microphone Access'),
                   _buildParagraph(
-                    'true Astrotalk requires microphone, camera access solely to enable audio, video interactions for voice and video inputs. This access is used only during active sessions and is not stored or shared.',
+                    'Astromate requires microphone, camera access solely to enable audio, video interactions for voice and video inputs. This access is used only during active sessions and is not stored or shared.',
                   ),
 
                   _buildSectionTitle('Cookies and Tracking Technologies'),
@@ -272,7 +272,7 @@ class TermsAndPolicies {
 
                   _buildSectionTitle('Children\'s Privacy'),
                   _buildParagraph(
-                    'true Astrotalk services are intended for users aged 18 and above. We do not knowingly collect personal information from minors. If we learn that we have collected data from a child under 18, we will take steps to delete such information promptly.',
+                    'Astromate services are intended for users aged 18 and above. We do not knowingly collect personal information from minors. If we learn that we have collected data from a child under 18, we will take steps to delete such information promptly.',
                   ),
 
                   _buildSectionTitle('Changes to This Privacy Policy'),
@@ -282,7 +282,7 @@ class TermsAndPolicies {
 
                   _buildSectionTitle('Contact Us'),
                   _buildParagraph(
-                    'For questions or concerns about this policy, please email us at help@trueastrotalk.com or contact us at the address - Near DAV Nageswar Public School, Chandaghasi, Ranchi-834010.',
+                    'For questions or concerns about this policy, please email us at help@astromate.online or contact us at the address - Near DAV Nageswar Public School, Chandaghasi, Ranchi-834010.',
                   ),
                 ],
               ),
@@ -340,7 +340,7 @@ class TermsAndPolicies {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  _buildBulletPoint('By using True Astrotalk, you agree to these terms and conditions.'),
+                  _buildBulletPoint('By using Astromate, you agree to these terms and conditions.'),
                   _buildBulletPoint('Users must provide accurate and complete information during registration.'),
                   _buildBulletPoint('You are responsible for maintaining the confidentiality of your account.'),
                   _buildBulletPoint('Prohibited activities include: fraudulent transactions, harassment, or misuse of services.'),

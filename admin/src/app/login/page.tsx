@@ -88,11 +88,11 @@ export default function LoginPage() {
               <Image
                 className="logo-img mb-2"
                 src="/logo.png"
-                alt="True Astrotalk Logo"
+                alt="Astromate Logo"
                 width={80}
                 height={80}
               />
-              <h3 className="text-danger mb-0">True Astrotalk</h3>
+              <h3 className="text-danger mb-0">Astromate</h3>
               <small className="text-muted">Admin Panel</small>
             </a>
             <span className="splash-description mt-3">Please enter your admin credentials.</span>

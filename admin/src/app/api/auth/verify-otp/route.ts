@@ -529,7 +529,7 @@ export async function POST(request: NextRequest) {
     const userType = newUser.user_type || 'customer';
     const newTokenPayload = {
       userId: newUser.user_id || newUser._id.toString(),
-      email: newUser.email_address || `${newUser.phone_number}@temp.trueastrotalk.com`,
+      email: newUser.email_address || `${newUser.phone_number}@temp.astromate.online`,
       full_name: newUser.full_name || '',
       user_type: userType,
       account_status: newUser.account_status || 'active',

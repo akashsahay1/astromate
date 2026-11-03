@@ -1,5 +1,5 @@
 import 'package:flutter_driver/driver_extension.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 
 void main() {
   // Enable integration testing

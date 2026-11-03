@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:convert';
 
-/// Simple End-to-End Testing Script for TrueAstroTalk Mobile App
+/// Simple End-to-End Testing Script for Astromate Mobile App
 /// 
 /// This script creates test data for:
 /// 1. 10 Astrologers with complete profiles
@@ -496,10 +496,10 @@ class SimpleE2ETest {
   Future<void> _createTestExecutionScript() async {
     var script = '''#!/bin/bash
 
-# TrueAstroTalk Mobile App E2E Test Execution Script
+# Astromate Mobile App E2E Test Execution Script
 # Generated: ${DateTime.now().toIso8601String()}
 
-echo "🚀 Starting TrueAstroTalk E2E Testing"
+echo "🚀 Starting Astromate E2E Testing"
 echo "======================================"
 
 # Test Configuration
@@ -693,7 +693,7 @@ fi
   /// Create manual testing checklist
   Future<void> _createManualTestingChecklist() async {
     var checklist = '''
-# TrueAstroTalk Mobile App - Manual Testing Checklist
+# Astromate Mobile App - Manual Testing Checklist
 
 ## Pre-Testing Setup
 - [ ] Backend server running at http://localhost:4000

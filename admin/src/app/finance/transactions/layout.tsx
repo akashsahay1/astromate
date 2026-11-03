@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Transactions | True Astrotalk',
-  description: 'Manage transactions for True Astrotalk platform',
+  title: 'Transactions | Astromate',
+  description: 'Manage transactions for Astromate platform',
 };
 
 export default function TransactionsLayout({

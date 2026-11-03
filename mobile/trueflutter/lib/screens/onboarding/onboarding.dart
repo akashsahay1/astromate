@@ -19,7 +19,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   // Title texts for each slide
   final List<String> _titles = [
-    'Welcome to True Astrotalk',
+    'Welcome to Astromate',
     'Convenient Chat Message',
     'Easy & Secure Payments',
   ];

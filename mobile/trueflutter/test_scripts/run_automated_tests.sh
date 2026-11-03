@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# TrueAstroTalk Mobile - Automated Test Runner
-echo "🚀 TrueAstroTalk Mobile - Automated E2E Testing"
+# Astromate Mobile - Automated Test Runner
+echo "🚀 Astromate Mobile - Automated E2E Testing"
 echo "============================================="
 
 # Configuration

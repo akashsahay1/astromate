@@ -133,7 +133,7 @@ class PaymentConfig {
     return {
       'key': _razorpayKeyId,
       'amount': (amount * 100).toInt(), // Amount in paise
-      'name': 'True Astrotalk',
+      'name': 'Astromate',
       'order_id': orderId,
       'description': description ?? 'Payment',
       'timeout': 300, // 5 minutes

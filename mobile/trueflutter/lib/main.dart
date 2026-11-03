@@ -85,7 +85,7 @@ Future<void> _showCallKitIncoming(Map<String, dynamic> data) async {
     final params = CallKitParams(
       id: uuid,
       nameCaller: callerName,
-      appName: 'True Astrotalk',
+      appName: 'Astromate',
       avatar: null,
       handle: callerId,
       type: callType == 'video' ? 1 : 0, // 0 = audio, 1 = video
@@ -247,17 +247,17 @@ void main() async {
   // Initialize deep linking service
   DeepLinkService().initialize();
 
-  runApp(const TrueAstrotalkApp());
+  runApp(const AstromateApp());
 }
 
-class TrueAstrotalkApp extends StatefulWidget {
-  const TrueAstrotalkApp({super.key});
+class AstromateApp extends StatefulWidget {
+  const AstromateApp({super.key});
 
   @override
-  State<TrueAstrotalkApp> createState() => _TrueAstrotalkAppState();
+  State<AstromateApp> createState() => _AstromateAppState();
 }
 
-class _TrueAstrotalkAppState extends State<TrueAstrotalkApp> {
+class _AstromateAppState extends State<AstromateApp> {
   late final ThemeService _themeService;
 
   @override

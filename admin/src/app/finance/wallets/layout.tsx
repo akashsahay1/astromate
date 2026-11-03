@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Wallets | True Astrotalk',
-  description: 'Manage wallets for True Astrotalk platform',
+  title: 'Wallets | Astromate',
+  description: 'Manage wallets for Astromate platform',
 };
 
 export default function WalletsLayout({

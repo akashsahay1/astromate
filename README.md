@@ -1,4 +1,4 @@
-# True Astrotalk 🔮
+# Astromate 🔮
 
 **Complete Astrology Consultation Platform**  
 *Flutter Mobile App + Next.js Admin Panel*
@@ -10,7 +10,7 @@
 
 ## 📱 Overview
 
-True Astrotalk is a comprehensive astrology consultation platform that connects customers with verified astrologers for personalized consultations. Built with modern technologies and following industry best practices.
+Astromate is a comprehensive astrology consultation platform that connects customers with verified astrologers for personalized consultations. Built with modern technologies and following industry best practices.
 
 ### 🌟 Key Features
 
@@ -37,8 +37,8 @@ True Astrotalk is a comprehensive astrology consultation platform that connects 
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/akashsahay1/trueastrotalk.git
-cd trueastrotalk
+git clone https://github.com/akashsahay1/astromate.git
+cd astromate
 ```
 
 ### 2. Database Setup
@@ -59,7 +59,7 @@ npm install
 cp .env.example .env.local
 
 # Configure environment variables in .env.local
-MONGODB_URI=mongodb://localhost:27017/trueastrotalkDB
+MONGODB_URI=mongodb://localhost:27017/astromateDB
 
 # Start development server
 npm run dev
@@ -76,7 +76,7 @@ flutter run
 ## 📁 Project Structure
 
 ```
-trueastrotalk/
+astromate/
 ├── 📱 mobile/           # Flutter mobile application
 ├── 🌐 admin/            # Next.js admin panel
 ├── 📚 docs/             # Documentation

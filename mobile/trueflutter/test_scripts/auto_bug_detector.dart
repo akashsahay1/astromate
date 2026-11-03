@@ -1,17 +1,17 @@
-// Auto Bug Detector and Fixer for TrueAstroTalk
+// Auto Bug Detector and Fixer for Astromate
 // Systematically detects common issues and attempts fixes
 
 import 'dart:io';
 import 'dart:convert';
 
 class AutoBugDetector {
-  static const String projectRoot = '/Users/akash/Desktop/trueastrotalk/mobile/trueflutter';
+  static const String projectRoot = '/Users/akash/Desktop/astromate/mobile/trueflutter';
   static List<String> detectedIssues = [];
   static List<String> fixedIssues = [];
   static List<String> unfixableIssues = [];
 
   static Future<void> main() async {
-    print('🔍 TrueAstroTalk Auto Bug Detection & Fix System');
+    print('🔍 Astromate Auto Bug Detection & Fix System');
     print('================================================');
     
     await detectAndFixIssues();
@@ -75,7 +75,7 @@ class AutoBugDetector {
 
   static Future<void> createDefaultEnvFile() async {
     final envContent = '''
-# TrueAstroTalk Environment Configuration
+# Astromate Environment Configuration
 ENVIRONMENT=development
 BASE_URL=http://192.168.0.124:4000/api
 SOCKET_URL=http://192.168.0.124:4000
@@ -403,7 +403,7 @@ SOCKET_URL=http://192.168.0.124:4000
 
   static Future<void> generateRecommendationsFile() async {
     final recommendations = StringBuffer();
-    recommendations.writeln('# TrueAstroTalk Bug Fix Recommendations\n');
+    recommendations.writeln('# Astromate Bug Fix Recommendations\n');
     recommendations.writeln('Generated on: ${DateTime.now()}\n');
     
     recommendations.writeln('## Issues Detected\n');

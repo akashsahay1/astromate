@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Add User | True Astrotalk',
-  description: 'Add new user to True Astrotalk platform',
+  title: 'Add User | Astromate',
+  description: 'Add new user to Astromate platform',
 };
 
 export default function AddUserLayout({

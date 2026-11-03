@@ -256,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // App name
                     Text(
-                      'TrueAstroTalk',
+                      'Astromate',
                       style: AppTextStyles.heading2.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppColors.textPrimary,

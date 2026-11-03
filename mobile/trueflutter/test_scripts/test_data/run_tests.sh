@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# TrueAstroTalk Mobile App E2E Test Execution Script
+# Astromate Mobile App E2E Test Execution Script
 # Generated: 2025-08-25T13:08:00.644097
 
-echo "🚀 Starting TrueAstroTalk E2E Testing"
+echo "🚀 Starting Astromate E2E Testing"
 echo "======================================"
 
 # Test Configuration

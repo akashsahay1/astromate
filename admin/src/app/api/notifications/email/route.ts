@@ -5,7 +5,7 @@ import * as sgMail from '@sendgrid/mail';
 
 // SendGrid configuration
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@trueastrotalk.com';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@astromate.online';
 
 // Initialize SendGrid
 if (SENDGRID_API_KEY) {
@@ -16,7 +16,7 @@ if (SENDGRID_API_KEY) {
 
 // Email templates
 const getEmailTemplate = (type: string, data: Record<string, unknown>) => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://trueastrotalk.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://astromate.online';
   
   switch (type) {
     case 'order_confirmation':
@@ -88,8 +88,8 @@ const getEmailTemplate = (type: string, data: Record<string, unknown>) => {
                 </p>
               </div>
               <div class="footer">
-                <p>Need help? Contact us at <a href="mailto:support@trueastrotalk.com">support@trueastrotalk.com</a></p>
-                <p>&copy; 2024 True AstroTalk. All rights reserved.</p>
+                <p>Need help? Contact us at <a href="mailto:support@astromate.online">support@astromate.online</a></p>
+                <p>&copy; 2024 Astromate. All rights reserved.</p>
               </div>
             </div>
           </body>
@@ -137,8 +137,8 @@ const getEmailTemplate = (type: string, data: Record<string, unknown>) => {
                 </p>
               </div>
               <div class="footer">
-                <p>Need help? Contact us at <a href="mailto:support@trueastrotalk.com">support@trueastrotalk.com</a></p>
-                <p>&copy; 2024 True AstroTalk. All rights reserved.</p>
+                <p>Need help? Contact us at <a href="mailto:support@astromate.online">support@astromate.online</a></p>
+                <p>&copy; 2024 Astromate. All rights reserved.</p>
               </div>
             </div>
           </body>
@@ -148,11 +148,11 @@ const getEmailTemplate = (type: string, data: Record<string, unknown>) => {
 
     default:
       return {
-        subject: 'Notification from True AstroTalk',
+        subject: 'Notification from Astromate',
         html: `
           <p>Hello,</p>
-          <p>This is a notification from True AstroTalk.</p>
-          <p>Best regards,<br>True AstroTalk Team</p>
+          <p>This is a notification from Astromate.</p>
+          <p>Best regards,<br>Astromate Team</p>
         `
       };
   }
@@ -200,7 +200,7 @@ export async function POST(request: NextRequest) {
 
     // Send email via SendGrid
     const mailOptions = {
-      from: `"True AstroTalk" <${FROM_EMAIL}>`,
+      from: `"Astromate" <${FROM_EMAIL}>`,
       to: recipient_email,
       subject: emailContent.subject,
       html: emailContent.html

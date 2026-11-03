@@ -26,12 +26,12 @@ class AppInfoService {
   
   /// Get app name
   static String get appName {
-    return _packageInfo?.appName ?? 'TrueAstroTalk';
+    return _packageInfo?.appName ?? 'Astromate';
   }
   
   /// Get package name
   static String get packageName {
-    return _packageInfo?.packageName ?? 'com.trueastrotalk.app';
+    return _packageInfo?.packageName ?? 'online.astromate';
   }
   
   /// Get full version string (version + build)

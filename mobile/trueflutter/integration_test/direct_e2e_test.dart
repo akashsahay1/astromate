@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   
-  group('TrueAstroTalk Direct E2E Tests', () {
+  group('Astromate Direct E2E Tests', () {
     testWidgets('Direct Onboarding and Registration Test', (WidgetTester tester) async {
       print('🚀 Starting Direct E2E Test');
       
@@ -119,7 +119,7 @@ Future<bool> isStillOnOnboarding(WidgetTester tester) async {
   
   // Check for onboarding indicators
   final onboardingTexts = [
-    'Welcome to True Astrotalk',
+    'Welcome to Astromate',
     'Discover your cosmic journey',
     'Skip',
     'Get Started',

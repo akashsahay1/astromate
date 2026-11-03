@@ -54,7 +54,7 @@ async function sendOTPEmail(email: string, otp: string): Promise<boolean> {
   try {
     return await emailService.sendEmail({
       to: email,
-      subject: 'Your OTP Code - TrueAstroTalk',
+      subject: 'Your OTP Code - Astromate',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #6B46C1;">Verification Code</h2>

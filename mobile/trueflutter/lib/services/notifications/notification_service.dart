@@ -440,7 +440,7 @@ class NotificationService {
   ) async {
     if (isBackground && notification != null) {
       await showGeneralNotification(
-        title: notification.title ?? 'TrueAstroTalk',
+        title: notification.title ?? 'Astromate',
         body: notification.body ?? 'You have a new notification',
         payload: data,
       );
@@ -473,7 +473,7 @@ class NotificationService {
     final params = CallKitParams(
       id: _currentCallKitUuid,
       nameCaller: callerName,
-      appName: 'True Astrotalk',
+      appName: 'Astromate',
       avatar: null, // Can set avatar URL here
       handle: callerId,
       type: callType.toLowerCase() == 'video' ? 1 : 0, // 0 = audio, 1 = video

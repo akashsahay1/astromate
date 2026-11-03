@@ -58,7 +58,7 @@ class _HelpScreenState extends State<HelpScreen> {
     ContactOption(
       icon: Icons.email_outlined,
       title: 'Email Support',
-      subtitle: 'info@trueastrotalk.com',
+      subtitle: 'info@astromate.online',
       description: 'Get help via email (24-48 hours response)',
     ),
     ContactOption(

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Comprehensive E2E Testing Script for TrueAstroTalk Mobile App
+# Comprehensive E2E Testing Script for Astromate Mobile App
 # This script runs automated end-to-end tests without manual intervention
 
-echo "🚀 Starting Comprehensive E2E Testing for TrueAstroTalk Mobile App"
+echo "🚀 Starting Comprehensive E2E Testing for Astromate Mobile App"
 echo "=============================================================="
 
 # Check if device is connected

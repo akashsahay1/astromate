@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Astrologers | True Astrotalk',
-  description: 'Manage astrologers for True Astrotalk platform',
+  title: 'Astrologers | Astromate',
+  description: 'Manage astrologers for Astromate platform',
 };
 
 export default function AstrologersLayout({

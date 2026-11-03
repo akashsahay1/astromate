@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Video Sessions | True Astrotalk',
-  description: 'Manage video sessions for True Astrotalk platform',
+  title: 'Video Sessions | Astromate',
+  description: 'Manage video sessions for Astromate platform',
 };
 
 export default function VideoSessionsLayout({

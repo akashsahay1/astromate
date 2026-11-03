@@ -1,7 +1,7 @@
-# TrueAstroTalk Test Suite
+# Astromate Test Suite
 
 ## Overview
-This comprehensive test suite covers the core functionality of the TrueAstroTalk Flutter application with **81+ unit tests** covering critical business logic, validation, and utility functions.
+This comprehensive test suite covers the core functionality of the Astromate Flutter application with **81+ unit tests** covering critical business logic, validation, and utility functions.
 
 ## Test Categories
 

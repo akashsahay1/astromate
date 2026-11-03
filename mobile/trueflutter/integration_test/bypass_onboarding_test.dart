@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   
-  group('TrueAstroTalk Bypass Onboarding Tests', () {
+  group('Astromate Bypass Onboarding Tests', () {
     testWidgets('Bypass Onboarding and Test Registration', (WidgetTester tester) async {
       print('🚀 Starting Bypass Onboarding Test');
       
@@ -49,7 +49,7 @@ Future<void> describeCurrentScreen(WidgetTester tester) async {
     'Login',
     'Register',
     'Welcome',
-    'True Astrotalk',
+    'Astromate',
     'Continue with Google',
     'Sign up with Email',
     'Already have an account',
@@ -159,7 +159,7 @@ Future<void> testRegistrationForm(WidgetTester tester) async {
   final testData = [
     'Test Customer ${DateTime.now().millisecondsSinceEpoch}',
     '9876543210', 
-    'testcustomer.${DateTime.now().millisecondsSinceEpoch}@trueastrotalk.com',
+    'testcustomer.${DateTime.now().millisecondsSinceEpoch}@astromate.online',
     'TestPass123!'
   ];
   

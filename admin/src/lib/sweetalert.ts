@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 
 /**
- * SweetAlert2 utility functions for TrueAstroTalk Admin Panel
+ * SweetAlert2 utility functions for Astromate Admin Panel
  * Provides consistent styling and behavior across the application
  */
 

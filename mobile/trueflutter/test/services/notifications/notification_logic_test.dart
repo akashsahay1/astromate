@@ -468,7 +468,7 @@ NotificationContent formatNotificationContent(Map<String, dynamic> data) {
       
     default:
       return NotificationContent(
-        title: 'TrueAstroTalk',
+        title: 'Astromate',
         body: data['message']?.toString() ?? 'You have a new notification',
       );
   }

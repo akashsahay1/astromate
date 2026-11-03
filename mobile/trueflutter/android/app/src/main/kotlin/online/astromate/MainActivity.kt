@@ -1,4 +1,4 @@
-package com.trueastrotalk.user
+package online.astromate
 
 import android.os.Bundle
 import android.view.View

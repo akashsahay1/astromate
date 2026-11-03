@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   
-  group('TrueAstroTalk Comprehensive E2E Tests', () {
+  group('Astromate Comprehensive E2E Tests', () {
     late List<TestUser> astrologers;
     late List<TestUser> customers;
     late TestReporter reporter;
@@ -173,7 +173,7 @@ List<TestUser> generateTestAstrologers(int count) {
   return List.generate(count, (index) {
     final uniqueId = DateTime.now().millisecondsSinceEpoch + index;
     return TestUser(
-      email: 'astrologer$index.test$uniqueId@trueastrotalk.com',
+      email: 'astrologer$index.test$uniqueId@astromate.online',
       password: 'TestPass123!',
       name: 'Test Astrologer ${index + 1}',
       phone: '+91${9000000000 + index}',
@@ -193,7 +193,7 @@ List<TestUser> generateTestCustomers(int count) {
   return List.generate(count, (index) {
     final uniqueId = DateTime.now().millisecondsSinceEpoch + index + 1000;
     return TestUser(
-      email: 'customer$index.test$uniqueId@trueastrotalk.com',
+      email: 'customer$index.test$uniqueId@astromate.online',
       password: 'TestPass123!',
       name: 'Test Customer ${index + 1}',
       phone: '+91${8000000000 + index}',

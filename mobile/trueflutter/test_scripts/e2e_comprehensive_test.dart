@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart' as img;
 
-/// Comprehensive End-to-End Testing Script for TrueAstroTalk Mobile App
+/// Comprehensive End-to-End Testing Script for Astromate Mobile App
 /// 
 /// This script tests:
 /// 1. Astrologer Complete Workflow (10 users)
@@ -13,8 +13,8 @@ import 'package:image/image.dart' as img;
 /// 3. Profile image functionality (app upload + Gmail profile)
 /// 4. All major features and edge cases
 class E2EComprehensiveTest {
-  static const String baseUrl = 'https://trueastrotalk.com/api';
-  static const String adminBaseUrl = 'https://trueastrotalk.com/api/admin';
+  static const String baseUrl = 'https://astromate.online/api';
+  static const String adminBaseUrl = 'https://astromate.online/api/admin';
   
   // Test configuration
   static const int astrologerCount = 10;
@@ -1165,7 +1165,7 @@ class E2EComprehensiveTest {
     _log('\n📊 Generating Comprehensive Test Report');
     
     final report = StringBuffer();
-    report.writeln('# TrueAstroTalk Mobile App - E2E Test Report');
+    report.writeln('# Astromate Mobile App - E2E Test Report');
     report.writeln('Generated: ${DateTime.now().toIso8601String()}\n');
     
     // Summary

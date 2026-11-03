@@ -1301,12 +1301,12 @@ class _AstrologerDetailsScreenState extends State<AstrologerDetailsScreen> {
 📞 Call: ₹${_astrologer!.callRate.toInt()}/min
 🎥 Video: ₹${_astrologer!.videoRate.toInt()}/min
 
-Connect now on True AstroTalk! 🌟
+Connect now on Astromate! 🌟
       ''';
       
       await Share.share(
         shareText,
-        subject: '${_astrologer!.fullName} - Expert Astrologer on True AstroTalk',
+        subject: '${_astrologer!.fullName} - Expert Astrologer on Astromate',
       );
     } catch (e) {
       if (mounted) {

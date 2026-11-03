@@ -170,7 +170,7 @@ class EmailService {
         'total_amount': order.totalAmount,
         'expected_delivery': order.formattedDeliveryDate,
         'tracking_number': order.trackingNumber,
-        'support_email': 'support@trueastrotalk.com',
+        'support_email': 'support@astromate.online',
         'support_phone': '+91-XXX-XXX-XXXX',
       },
     };
@@ -201,7 +201,7 @@ class EmailService {
           'address': order.shippingAddress.fullAddress,
         },
         'items_count': order.totalItems,
-        'support_email': 'support@trueastrotalk.com',
+        'support_email': 'support@astromate.online',
         'support_phone': '+91-XXX-XXX-XXXX',
       },
     };
@@ -232,7 +232,7 @@ class EmailService {
           'quantity': item.quantity,
           'total': item.formattedTotalPrice,
         }).toList(),
-        'support_email': 'support@trueastrotalk.com',
+        'support_email': 'support@astromate.online',
         'support_phone': '+91-XXX-XXX-XXXX',
       },
     };
@@ -258,7 +258,7 @@ class EmailService {
           'address': order.shippingAddress.shortAddress,
         },
         'feedback_request': true,
-        'support_email': 'support@trueastrotalk.com',
+        'support_email': 'support@astromate.online',
         'support_phone': '+91-XXX-XXX-XXXX',
       },
     };
@@ -296,7 +296,7 @@ class EmailService {
     
     <p>Expected Delivery: ${order.formattedDeliveryDate}</p>
     
-    <p>Best regards,<br>True AstroTalk Team</p>
+    <p>Best regards,<br>Astromate Team</p>
 </body>
 </html>
     ''';

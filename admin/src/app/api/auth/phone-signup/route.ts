@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     const now = new Date();
 
     // Generate placeholder email for phone users to satisfy unique index
-    const placeholderEmail = `${formattedPhone.replace(/\+/g, '')}@phone.trueastrotalk.com`;
+    const placeholderEmail = `${formattedPhone.replace(/\+/g, '')}@phone.astromate.online`;
 
     // Prepare user data
     const userData: Record<string, unknown> = {

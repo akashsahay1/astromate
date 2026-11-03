@@ -56,8 +56,8 @@ export default function Header() {
     <div className="dashboard-header">
       <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <a className="navbar-brand" href="/dashboard">
-          <Image src="/logo.png" alt="True Astrotalk" width={40} height={40} />
-          <span className="ml-3"><strong>True Astrotalk</strong></span>
+          <Image src="/logo.png" alt="Astromate" width={40} height={40} />
+          <span className="ml-3"><strong>Astromate</strong></span>
         </a>
         <div className="ml-auto" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto navbar-right-top flex-row">

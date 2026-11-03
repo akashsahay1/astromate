@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -18,7 +18,7 @@ void main() {
       // Generate 5 test customers
       testCustomers = List.generate(5, (index) => TestUser(
         name: 'Test Customer ${index + 1}',
-        email: 'testcustomer${index + 1}.$timestamp@trueastrotalk.com',
+        email: 'testcustomer${index + 1}.$timestamp@astromate.online',
         phone: '900000${1000 + index}',
         password: 'TestPass123!',
       ));

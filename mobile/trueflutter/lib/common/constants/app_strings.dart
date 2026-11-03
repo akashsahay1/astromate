@@ -1,10 +1,10 @@
 class AppStrings {
   // App Info
-  static const String appName = 'True Astrotalk';
+  static const String appName = 'Astromate';
   static const String appTagline = 'Connect with Verified Astrologers';
   
   // Authentication
-  static const String welcome = 'Welcome to True Astrotalk';
+  static const String welcome = 'Welcome to Astromate';
   static const String selectRole = 'Select Your Role';
   static const String iam = 'I am a';
   static const String customer = 'Customer';

@@ -2,12 +2,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   
-  group('TrueAstroTalk Working E2E Tests', () {
+  group('Astromate Working E2E Tests', () {
     late List<TestUser> testUsers;
     
     setUpAll(() {
@@ -82,7 +82,7 @@ List<TestUser> generateTestUsers() {
     
     return TestUser(
       name: 'Test ${isAstrologer ? 'Astrologer' : 'Customer'} ${index + 1}',
-      email: 'test$userType$index.$timestamp@trueastrotalk.com',
+      email: 'test$userType$index.$timestamp@astromate.online',
       phone: '${9000000000 + index + timestamp % 1000}',
       password: 'TestPass123!',
       isAstrologer: isAstrologer,

@@ -11,7 +11,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const hostname = '0.0.0.0'; // Accept connections from all network interfaces
 const port = process.env.PORT || 4001;
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017';
-const DB_NAME = 'trueastrotalkDB';
+const DB_NAME = 'astromateDB';
 
 // Initialize Firebase Admin SDK from environment variables
 try {
@@ -228,7 +228,7 @@ app.prepare().then(() => {
                 astrologer: astrologerData ? JSON.stringify(astrologerData) : '',
                 // Required fields for flutter_callkit_incoming
                 nameCaller: String(displayName),
-                appName: 'True Astrotalk',
+                appName: 'Astromate',
                 handle: String(callerId || ''),
                 avatar: '',
                 duration: '45000',

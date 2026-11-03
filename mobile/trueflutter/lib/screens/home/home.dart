@@ -821,7 +821,7 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
         ),
       ),
       title: Text(
-        'True Astrotalk',
+        'Astromate',
         style: AppTextStyles.heading4.copyWith(color: AppColors.white),
       ),
       centerTitle: false,

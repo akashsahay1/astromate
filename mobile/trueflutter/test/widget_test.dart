@@ -7,15 +7,15 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:mobile/main.dart';
+import 'package:astromate/main.dart';
 
 void main() {
   testWidgets('App starts with splash screen', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const TrueAstrotalkApp());
+    await tester.pumpWidget(const AstromateApp());
 
     // Verify that splash screen is shown
-    expect(find.text('True Astrotalk'), findsOneWidget);
+    expect(find.text('Astromate'), findsOneWidget);
     expect(find.text('Connect with Verified Astrologers'), findsOneWidget);
   });
 }

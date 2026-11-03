@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Chat Sessions | True Astrotalk',
-  description: 'Manage chat sessions for True Astrotalk platform',
+  title: 'Chat Sessions | Astromate',
+  description: 'Manage chat sessions for Astromate platform',
 };
 
 export default function ChatSessionsLayout({

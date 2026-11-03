@@ -42,9 +42,9 @@ export default function ChatSessionDetailPage() {
 
   useEffect(() => {
     if (session) {
-      document.title = `Chat Session ${session.session_id} | True Astrotalk`;
+      document.title = `Chat Session ${session.session_id} | Astromate`;
     } else {
-      document.title = 'Chat Session Details | True Astrotalk';
+      document.title = 'Chat Session Details | Astromate';
     }
   }, [session]);
 

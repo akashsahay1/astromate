@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# TrueAstroTalk Mobile App - Comprehensive E2E Test Execution Script
+# Astromate Mobile App - Comprehensive E2E Test Execution Script
 # Generated: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-echo "🚀 TrueAstroTalk Mobile App - Comprehensive E2E Testing"
+echo "🚀 Astromate Mobile App - Comprehensive E2E Testing"
 echo "======================================================="
 echo ""
 

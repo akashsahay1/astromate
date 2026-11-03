@@ -5,7 +5,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>True Astrotalk</string>
+		<string>Astromate</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -39,7 +39,7 @@
 				<string>app-scheme</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>com.trueastrotalk.user</string>
+					<string>online.astromate</string>
 				</array>
 			</dict>
 		</array>

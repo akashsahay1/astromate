@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Reports | True Astrotalk',
-  description: 'Admin reports for True Astrotalk platform',
+  title: 'Reports | Astromate',
+  description: 'Admin reports for Astromate platform',
 };
 
 export default function ReportsLayout({

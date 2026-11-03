@@ -42,7 +42,7 @@ async function resolveMediaUrl(request: NextRequest, mediaId: string | ObjectId 
 
     if (mediaFile && mediaFile.file_path) {
       // Get the actual host from the request headers
-      const host = request.headers.get('host') || 'www.trueastrotalk.com';
+      const host = request.headers.get('host') || 'api.astromate.online';
       const protocol = request.headers.get('x-forwarded-proto') || (host.includes('localhost') ? 'http' : 'https');
       const baseUrl = `${protocol}://${host}`;
       

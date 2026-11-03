@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Administrators | True Astrotalk',
-  description: 'Manage admins for True Astrotalk platform',
+  title: 'Administrators | Astromate',
+  description: 'Manage admins for Astromate platform',
 };
 
 export default function AdminsLayout({

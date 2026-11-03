@@ -1,8 +1,8 @@
-# True Astrotalk - Complete Development Context & Requirements
+# Astromate - Complete Development Context & Requirements
 
 ## Project Overview
 
-**Application Name:** True Astrotalk (Astrotalk Clone)  
+**Application Name:** Astromate (Astrotalk Clone)  
 **Architecture:** Flutter Mobile App + Next.js Admin Panel (with integrated API routes)  
 **Domain:** Astrology Consultation Platform with Commission-based Business Model  
 **Primary Color:** #1877F2 (Facebook Blue)  
@@ -47,7 +47,7 @@ Manager:
 ### Project Structure
 
 ```
-trueastrotalk/
+astromate/
 ├── docs/
 │   └── devdoc.md     # This document
 ├── mobile/                        # Flutter application
@@ -964,7 +964,7 @@ This comprehensive development context provides all specifications needed to bui
 #### Database Updates
 
 **Astrologer Profile Image Migration**
-- **Database**: `trueastrotalkDB` collection `users`
+- **Database**: `astromateDB` collection `users`
 - **Records Updated**: 72 astrologer profiles
 - **Fields Modified**: `profile_image` and `profile_picture`
 - **New Image Source**: DiceBear avatars (reliable, consistent, unique per astrologer)
@@ -985,7 +985,7 @@ https://api.dicebear.com/7.x/avataaars/png?seed=meera&size=150
 #### Files Referenced
 - `/mobile/lib/screens/home.dart:408` - Astrologer profile image display in `_buildNewAstrologerCard`
 - `/mobile/lib/services/network/dio_client.dart:25-44` - Network logging configuration
-- Database: `trueastrotalkDB.users` collection - Profile image fields updated
+- Database: `astromateDB.users` collection - Profile image fields updated
 
 #### Impact
 - ✅ Eliminated NetworkImageLoadException errors in Flutter app

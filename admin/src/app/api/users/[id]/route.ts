@@ -45,7 +45,7 @@ async function logVerificationAudit(
 
 // Helper function to get base URL for images
 function getBaseUrl(request: NextRequest): string {
-  const host = request.headers.get('host') || 'www.trueastrotalk.com';
+  const host = request.headers.get('host') || 'api.astromate.online';
   const protocol = request.headers.get('x-forwarded-proto') || (host.includes('localhost') ? 'http' : 'https');
   return `${protocol}://${host}`;
 }

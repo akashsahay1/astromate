@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile/models/user.dart';
-import 'package:mobile/models/enums.dart';
+import 'package:astromate/models/user.dart';
+import 'package:astromate/models/enums.dart';
 
 void main() {
   group('User Model', () {

@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Dashboard | True Astrotalk',
-  description: 'Admin dashboard for True Astrotalk platform',
+  title: 'Dashboard | Astromate',
+  description: 'Admin dashboard for Astromate platform',
 };
 
 export default function DashboardLayout({

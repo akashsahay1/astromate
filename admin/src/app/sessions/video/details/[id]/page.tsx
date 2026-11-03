@@ -40,9 +40,9 @@ export default function VideoSessionDetailPage() {
 
   useEffect(() => {
     if (session) {
-      document.title = `Video Session ${session.session_id} | True Astrotalk`;
+      document.title = `Video Session ${session.session_id} | Astromate`;
     } else {
-      document.title = 'Video Session Details | True Astrotalk';
+      document.title = 'Video Session Details | Astromate';
     }
   }, [session]);
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group('TrueAstroTalk E2E Tests', () {
+  group('Astromate E2E Tests', () {
     testWidgets('App launches successfully', (WidgetTester tester) async {
       print('🚀 Testing app launch...');
       

@@ -1,4 +1,4 @@
-# TrueAstrotalk Backend API - Security & Code Quality Analysis
+# Astromate Backend API - Security & Code Quality Analysis
 
 ## 🚨 **Critical Security Vulnerabilities**
 

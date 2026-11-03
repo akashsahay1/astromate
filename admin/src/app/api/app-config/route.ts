@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
           // Note: keySecret is NOT included for security
         },
         app: {
-          name: config.app?.name || 'True Astrotalk',
+          name: config.app?.name || 'Astromate',
           version: config.app?.version || '1.0.0',
           minSupportedVersion: config.app?.minSupportedVersion || '1.0.0'
         },

@@ -60,7 +60,7 @@ async function handleGET(request: NextRequest) {
             environment: 'test'
           },
           app: {
-            name: 'True Astrotalk',
+            name: 'Astromate',
             version: '1.0.0',
             minSupportedVersion: '1.0.0'
           },
@@ -173,7 +173,7 @@ async function handlePOST(request: AuthenticatedNextRequest) {
           environment: body.razorpay.environment || 'test'
         },
         app: {
-          name: body.app?.name || 'True Astrotalk',
+          name: body.app?.name || 'Astromate',
           version: body.app?.version || '1.0.0',
           minSupportedVersion: body.app?.minSupportedVersion || '1.0.0'
         },

@@ -29,8 +29,8 @@ class EmailService {
   private getEmailHeader(): string {
     return `
       <div style="display: inline-block; width: 100%; text-align: center; padding: 25px 30px; background: #ffffff; border-bottom: 1px solid #eaeaea;">
-        <img src="${this.logoUrl}" alt="True Astrotalk" style="height: 60px; width: auto; margin-right: 10px; display: inline-block; vertical-align: middle;" />
-        <h1 style="color: #fe0000; margin: 0; font-size: 22px; font-weight: bold; display: inline-block; vertical-align: middle;">True Astrotalk</h1>
+        <img src="${this.logoUrl}" alt="Astromate" style="height: 60px; width: auto; margin-right: 10px; display: inline-block; vertical-align: middle;" />
+        <h1 style="color: #fe0000; margin: 0; font-size: 22px; font-weight: bold; display: inline-block; vertical-align: middle;">Astromate</h1>
       </div>
     `;
   }
@@ -40,7 +40,7 @@ class EmailService {
     return `
       <div style="display: inline-block; width: 100%; text-align: center; padding: 40px 30px; background: #ffffff; border-top: 1px solid #eaeaea;">
         <p style="color: #000000; font-size: 12px; margin: 0;">
-          © ${new Date().getFullYear()} True Astrotalk. All rights reserved.
+          © ${new Date().getFullYear()} Astromate. All rights reserved.
         </p>
       </div>
     `;
@@ -56,8 +56,8 @@ class EmailService {
       const msg = {
         to: emailData.to,
         from: {
-          email: envConfig.SEND_FROM || 'noreply@trueastrotalk.com',
-          name: 'True Astrotalk'
+          email: envConfig.SEND_FROM || 'noreply@astromate.online',
+          name: 'Astromate'
         },
         subject: emailData.subject,
         html: emailData.html,
@@ -128,7 +128,7 @@ class EmailService {
       text: `
         New User Registration - ${user.name}
 
-        A new user has registered on True Astrotalk:
+        A new user has registered on Astromate:
 
         Name: ${user.name}
         Email: ${user.email}
@@ -146,14 +146,14 @@ class EmailService {
   // Template: Welcome email for new users
   getWelcomeEmailTemplate(user: { name: string; email: string; user_type: string; createdAt?: string | Date }): EmailTemplate {
     return {
-      subject: `Welcome to True Astrotalk, ${user.name}!`,
+      subject: `Welcome to Astromate, ${user.name}!`,
       html: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Welcome to True Astrotalk</title>
+          <title>Welcome to Astromate</title>
         </head>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #000000; margin: 0; padding: 0; background: #f4f4f4; text-align: center;">
           <div style="display: inline-block; max-width: 600px; margin: 60px auto 60px auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: left;">
@@ -162,7 +162,7 @@ class EmailService {
             <div style="padding: 30px;">
               <div style="text-align: center; margin-bottom: 25px;">
                 <h2 style="color: #000000; margin: 0;">Hello ${user.name},</h2>
-                <p style="color: #000000; margin: 10px 0 0 0;">Thank you for joining True Astrotalk! We're excited to have you as part of our spiritual community.</p>
+                <p style="color: #000000; margin: 10px 0 0 0;">Thank you for joining Astromate! We're excited to have you as part of our spiritual community.</p>
               </div>
 
               ${user.user_type === 'astrologer' ? `
@@ -208,16 +208,16 @@ class EmailService {
         </html>
       `,
       text: `
-        Welcome to True Astrotalk, ${user.name}!
+        Welcome to Astromate, ${user.name}!
 
-        Thank you for joining True Astrotalk! We're excited to have you as part of our spiritual community.
+        Thank you for joining Astromate! We're excited to have you as part of our spiritual community.
 
         ${user.user_type === 'astrologer' ? 'Your astrologer application is currently being reviewed by our admin team. You will receive an email notification once your account is verified and approved.' : ''}
 
         Visit our platform: ${envConfig.NEXTAUTH_URL}
 
         Need help? Contact our support team anytime.
-        Thank you for choosing True Astrotalk!
+        Thank you for choosing Astromate!
       `
     };
   }
@@ -227,7 +227,7 @@ class EmailService {
     const isVerified = status === 'verified';
 
     return {
-      subject: `Application ${isVerified ? 'Approved' : 'Update'} - True Astrotalk`,
+      subject: `Application ${isVerified ? 'Approved' : 'Update'} - Astromate`,
       html: `
         <!DOCTYPE html>
         <html lang="en">
@@ -245,7 +245,7 @@ class EmailService {
                 <h2 style="margin: 0 0 10px 0; color: #000000;">${isVerified ? 'Application Approved' : 'Application Requires Attention'}</h2>
                 <p style="margin: 0; color: #000000;">Hello ${astrologer.name},</p>
                 <p style="margin: 10px 0 0 0; color: #000000;">${isVerified ?
-          'We are pleased to inform you that your astrologer application has been approved! Welcome to the True Astrotalk family.' :
+          'We are pleased to inform you that your astrologer application has been approved! Welcome to the Astromate family.' :
           'After careful review, we regret to inform you that your astrologer application requires additional review or has been declined.'
         }</p>
               </div>
@@ -281,7 +281,7 @@ class EmailService {
 
               <div style="text-align: center; margin: 25px 0; padding: 20px; background: #f8f8f8; border-radius: 8px;">
                 ${isVerified ?
-          `<p style="margin: 0; font-size: 16px; color: #000000; font-weight: bold;">Please login to the True Astrotalk mobile app to get started!</p>` :
+          `<p style="margin: 0; font-size: 16px; color: #000000; font-weight: bold;">Please login to the Astromate mobile app to get started!</p>` :
           `<p style="margin: 0; font-size: 16px; color: #000000;">If you have any questions, please contact our support team.</p>`
         }
               </div>
@@ -293,33 +293,33 @@ class EmailService {
         </html>
       `,
       text: `
-        Application ${isVerified ? 'Approved' : 'Update'} - True Astrotalk
+        Application ${isVerified ? 'Approved' : 'Update'} - Astromate
 
         Hello ${astrologer.name},
 
         ${isVerified ?
-          'We are pleased to inform you that your astrologer application has been approved! Welcome to the True Astrotalk family.' :
+          'We are pleased to inform you that your astrologer application has been approved! Welcome to the Astromate family.' :
           'After careful review, we regret to inform you that your astrologer application requires additional review or has been declined.'
         }
 
         ${!isVerified && reason ? `Feedback: ${reason}` : ''}
 
         ${isVerified ?
-          'You can now login to the True Astrotalk mobile app and start accepting consultations.' :
+          'You can now login to the Astromate mobile app and start accepting consultations.' :
           'If you have questions about this decision, please contact our support team.'
         }
 
         Platform: ${envConfig.NEXTAUTH_URL}
 
         Thank you,
-        True Astrotalk Team
+        Astromate Team
       `
     };
   }
 
   // Send admin notification for new user signup
   async sendAdminSignupNotification(user: { name: string; email: string; phone?: string; user_type: string; createdAt?: string | Date }): Promise<boolean> {
-    const adminEmail = envConfig.SMTP.user || 'admin@trueastrotalk.com';
+    const adminEmail = envConfig.SMTP.user || 'admin@astromate.online';
     const template = this.getAdminSignupNotificationTemplate(user);
 
     return await this.sendEmail({
@@ -460,7 +460,7 @@ class EmailService {
     const resetUrl = `${envConfig.NEXTAUTH_URL}/reset-password?token=${resetToken}`;
 
     return {
-      subject: 'Reset Your Password - True Astrotalk',
+      subject: 'Reset Your Password - Astromate',
       html: `
         <!DOCTYPE html>
         <html lang="en">
@@ -476,7 +476,7 @@ class EmailService {
             <div style="padding: 30px;">
               <div style="text-align: center; margin-bottom: 25px;">
                 <h2 style="color: #000000; margin: 0;">Hello ${user.name},</h2>
-                <p style="color: #000000; margin: 10px 0;">We received a request to reset your password for your True Astrotalk account.</p>
+                <p style="color: #000000; margin: 10px 0;">We received a request to reset your password for your Astromate account.</p>
                 <p style="color: #000000; margin: 10px 0;">Click the button below to reset your password:</p>
                 <a href="${resetUrl}" style="display: inline-block; padding: 15px 30px; background: #FE0000; color: white; text-decoration: none; border-radius: 6px; margin: 15px 0; font-weight: bold;">Reset Password</a>
               </div>
@@ -507,11 +507,11 @@ class EmailService {
         </html>
       `,
       text: `
-        Reset Your Password - True Astrotalk
+        Reset Your Password - Astromate
 
         Hello ${user.name},
 
-        We received a request to reset your password for your True Astrotalk account.
+        We received a request to reset your password for your Astromate account.
 
         Reset your password by clicking this link: ${resetUrl}
 
@@ -526,7 +526,7 @@ class EmailService {
         ${resetUrl}
 
         Thank you,
-        True Astrotalk Team
+        Astromate Team
       `
     };
   }
@@ -613,7 +613,7 @@ class EmailService {
                 </div>
 
                 <div style="text-align: center; color: #000000; font-size: 14px;">
-                  <p style="margin: 0;">Thank you for shopping with True Astrotalk!</p>
+                  <p style="margin: 0;">Thank you for shopping with Astromate!</p>
                   <p style="margin: 5px 0 0 0;">If you have any questions, please contact our support team.</p>
                 </div>
               </div>
@@ -641,7 +641,7 @@ class EmailService {
         Items Ordered:
         ${orderData.items.map(item => `- ${item.product_name} (x${item.quantity}) - Rs. ${(item.price * item.quantity).toLocaleString()}`).join('\n')}
 
-        Thank you for shopping with True Astrotalk!
+        Thank you for shopping with Astromate!
 
         This is an automated email. Please do not reply.
       `
@@ -746,7 +746,7 @@ class EmailService {
     itemsCount: number;
     trackingNumber?: string;
   }): Promise<boolean> {
-    const adminEmail = envConfig.SMTP.user || 'admin@trueastrotalk.com';
+    const adminEmail = envConfig.SMTP.user || 'admin@astromate.online';
     const template = this.getAdminOrderNotificationTemplate(orderData);
 
     return await this.sendEmail({
@@ -759,7 +759,7 @@ class EmailService {
 
   // Send bulk status update notification to admin
   async sendBulkOrderUpdateNotification(updatedCount: number, newStatus: string): Promise<boolean> {
-    const adminEmail = envConfig.SMTP.user || 'admin@trueastrotalk.com';
+    const adminEmail = envConfig.SMTP.user || 'admin@astromate.online';
 
     return await this.sendEmail({
       to: adminEmail,

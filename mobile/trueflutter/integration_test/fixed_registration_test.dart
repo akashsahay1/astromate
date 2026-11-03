@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mobile/main.dart' as app;
+import 'package:astromate/main.dart' as app;
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -91,7 +91,7 @@ Future<void> fillStage2WithFixes(WidgetTester tester, int timestamp) async {
     await tester.ensureVisible(textFields.at(0));
     await tester.tap(textFields.at(0), warnIfMissed: false);
     await tester.pumpAndSettle();
-    await tester.enterText(textFields.at(0), 'testuser.$timestamp@trueastrotalk.com');
+    await tester.enterText(textFields.at(0), 'testuser.$timestamp@astromate.online');
     
     // Fill password
     await tester.ensureVisible(textFields.at(1));

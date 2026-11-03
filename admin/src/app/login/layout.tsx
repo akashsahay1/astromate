@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Login | True Astrotalk',
-  description: 'Admin login for True Astrotalk platform',
+  title: 'Login | Astromate',
+  description: 'Admin login for Astromate platform',
 };
 
 export default function LoginLayout({

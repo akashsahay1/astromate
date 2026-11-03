@@ -11,7 +11,7 @@
 
 ```bash
 git clone <repository-url>
-cd trueastrotalk
+cd astromate
 ```
 
 ### Step 2: Environment Configuration
@@ -51,8 +51,8 @@ Create `admin/.env.local` (never commit this file):
 
 ```env
 # Database
-MONGODB_URI=mongodb://localhost:27017/trueastrotalkDB
-# Or MongoDB Atlas: mongodb+srv://username:password@cluster.mongodb.net/trueastrotalkDB
+MONGODB_URI=mongodb://localhost:27017/astromateDB
+# Or MongoDB Atlas: mongodb+srv://username:password@cluster.mongodb.net/astromateDB
 
 # NextAuth
 NEXTAUTH_SECRET=your-nextauth-secret-key
@@ -74,13 +74,13 @@ TWILIO_AUTH_TOKEN=your_twilio_token
 
 #### Android: `mobile/android/app/google-services.json`
 1. Go to Firebase Console → Project Settings
-2. Add Android app with package name: `com.trueastrotalk.user`
+2. Add Android app with package name: `online.astromate`
 3. Download google-services.json
 4. Place in `mobile/android/app/` directory
 
 #### iOS: `mobile/ios/Runner/GoogleService-Info.plist`  
 1. Go to Firebase Console → Project Settings
-2. Add iOS app with bundle ID: `com.trueastrotalk.user`
+2. Add iOS app with bundle ID: `online.astromate`
 3. Download GoogleService-Info.plist
 4. Place in `mobile/ios/Runner/` directory
 

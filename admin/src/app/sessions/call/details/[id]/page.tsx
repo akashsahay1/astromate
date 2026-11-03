@@ -41,9 +41,9 @@ export default function CallSessionDetailPage() {
 
   useEffect(() => {
     if (session) {
-      document.title = `Call Session ${session.session_id} | True Astrotalk`;
+      document.title = `Call Session ${session.session_id} | Astromate`;
     } else {
-      document.title = 'Call Session Details | True Astrotalk';
+      document.title = 'Call Session Details | Astromate';
     }
   }, [session]);
 

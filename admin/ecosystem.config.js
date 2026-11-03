@@ -1,9 +1,9 @@
 module.exports = {
   apps: [
     {
-      name: 'trueastrotalk-backend',
+      name: 'astromate-backend',
       script: 'server.js',
-      cwd: '/Volumes/Projects/Projects/Trueastrotalk/trueastrotalk/admin',
+      cwd: '/Volumes/Projects/Projects/Astromate/astromate/admin',
       instances: 1,
       autorestart: true,
       watch: false,
