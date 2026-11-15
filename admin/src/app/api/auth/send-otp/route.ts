@@ -292,7 +292,7 @@ export async function POST(request: NextRequest) {
       }
 
       const emailQuery = buildEmailQuery(email);
-      let user = await usersCollection.findOne(emailQuery);
+      const user = await usersCollection.findOne(emailQuery);
 
       if (user) {
         // Block admin/manager users

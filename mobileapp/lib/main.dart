@@ -311,9 +311,6 @@ class _AstromateAppState extends State<AstromateApp> {
         '/home': (context) => const HomeScreen(),
         '/customer/home': (context) => const HomeScreen(),
         '/astrologer/dashboard': (context) => const HomeScreen(),
-        '/astrologer/pending': (context) => const Scaffold(
-          body: Center(child: Text('Astrologer Account Pending Approval')),
-        ),
 
         // Other screens
         '/orders': (context) => const OrdersListScreen(),

@@ -478,7 +478,9 @@ app.prepare().then(() => {
         // Get astrologer details
         const astrologer = await db.collection('users').findOne({
           user_id: astrologerId,
-          user_type: 'astrologer'
+          user_type: 'astrologer',
+          account_status: 'active',
+          verification_status: 'verified'
         });
 
         if (!astrologer) {

@@ -127,7 +127,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             if (user.isActive && user.isEmailVerified) {
               Navigator.pushReplacementNamed(context, '/astrologer/dashboard');
             } else {
-              Navigator.pushReplacementNamed(context, '/astrologer/pending');
+              Navigator.pushReplacementNamed(context, '/astrologer/dashboard');
             }
           } else {
             Navigator.pushReplacementNamed(

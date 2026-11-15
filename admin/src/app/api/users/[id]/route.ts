@@ -408,7 +408,8 @@ export async function PUT(
       state: body.state || '',
       country: body.country || 'India',
       zip: body.zip || '',
-      account_status: body.account_status || 'active',
+      // approving an astrologer activates a still-pending account (one click instead of two dropdowns)
+      account_status: body.verification_status === 'verified' && (body.account_status || 'pending_verification') === 'pending_verification' ? 'active' : (body.account_status || 'active'),
       is_online: body.is_online !== undefined ? body.is_online : existingUser.is_online,
       verification_status: body.verification_status || existingUser.verification_status || 'pending',
       verification_status_message: body.verification_status_message !== undefined ? body.verification_status_message : (existingUser.verification_status_message || ''),

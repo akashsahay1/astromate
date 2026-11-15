@@ -30,8 +30,8 @@ const waitFor = (s, ev, ms = 1500) => new Promise((r) => { const t = setTimeout(
   await db.collection('users').insertMany([
     { user_id: C, user_type: 'customer', full_name: 'Sock Cust', account_status: 'active' },
     { user_id: X, user_type: 'customer', full_name: 'Attacker', account_status: 'active' },
-    { user_id: A, user_type: 'astrologer', full_name: 'Sock Astro', account_status: 'active', is_online: true, call_rate: 10 },
-    { user_id: A2, user_type: 'astrologer', full_name: 'Sock Astro 2', account_status: 'active', is_online: true, call_rate: 10 },
+    { user_id: A, user_type: 'astrologer', full_name: 'Sock Astro', account_status: 'active', verification_status: 'verified', is_online: true, call_rate: 10 },
+    { user_id: A2, user_type: 'astrologer', full_name: 'Sock Astro 2', account_status: 'active', verification_status: 'verified', is_online: true, call_rate: 10 },
   ]);
   const chat = (await sessions.insertOne({ session_type: 'chat', user_id: C, astrologer_id: A, status: 'active', rate_per_minute: 10, created_at: new Date() })).insertedId.toString();
   const call = (await sessions.insertOne({ session_type: 'voice_call', user_id: C, astrologer_id: A, status: 'initiated', rate_per_minute: 10, created_at: new Date() })).insertedId.toString();

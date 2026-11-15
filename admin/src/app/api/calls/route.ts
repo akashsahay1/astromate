@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ObjectId } from 'mongodb';
 import DatabaseService from '@/lib/database';
 import { Media } from '@/models';
+import { getAuthUser, unauthorized } from '@/lib/security';
 
 // Helper function to get base URL for images
 function getBaseUrl(request: NextRequest): string {
@@ -13,10 +14,12 @@ function getBaseUrl(request: NextRequest): string {
 // GET - Get user's call sessions
 export async function GET(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
-    // Use 'customer' as default - 'user' or 'astrologer' also accepted for backward compatibility
-    const userType = searchParams.get('userType') || 'customer';
+    // identity comes from the token, never from query params
+    const userId = auth.userId;
+    const userType = auth.userType === 'astrologer' ? 'astrologer' : 'customer';
     const status = searchParams.get('status');
     const limit = parseInt(searchParams.get('limit') || '20');
     const page = parseInt(searchParams.get('page') || '1');
@@ -184,8 +187,11 @@ export async function GET(request: NextRequest) {
 // POST - Create new call session
 export async function POST(request: NextRequest) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
     const body = await request.json();
-    const { user_id, astrologer_id, call_type = 'voice' } = body; // call_type: 'voice' or 'video'
+    const { astrologer_id, call_type = 'voice' } = body; // call_type: 'voice' or 'video'
+    const user_id = auth.userId;
 
     if (!user_id || !astrologer_id) {
       return NextResponse.json({
@@ -211,7 +217,9 @@ export async function POST(request: NextRequest) {
     const astrologer = await usersCollection.findOne({
       user_id: astrologer_id,
       user_type: 'astrologer',
-      is_online: true
+      is_online: true,
+      account_status: 'active',
+      verification_status: 'verified'
     });
 
     if (!astrologer) {

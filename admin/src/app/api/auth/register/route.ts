@@ -178,6 +178,15 @@ export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 export const maxDuration = 60; // 60 seconds timeout for file uploads
 
+
+// send-otp stores { country_code: '+91', phone_number: '<10 digits>' }; the app sends '+91XXXXXXXXXX'. Match every form.
+function phoneMatch(phone: string) {
+  const digits = phone.replace(/\D/g, '');
+  const local10 = digits.slice(-10);
+  const cc = digits.length > 10 ? `+${digits.slice(0, -10)}` : '+91';
+  return { $or: [{ country_code: cc, phone_number: local10 }, { phone_number: { $in: [phone, `+${digits}`, digits, local10] } }] };
+}
+
 export async function POST(request: NextRequest) {
   try {
     console.log('📝 [REGISTER] Request received');
@@ -361,7 +370,7 @@ export async function POST(request: NextRequest) {
       const cleanPhone = InputSanitizer.sanitizePhoneNumber(phone_number as string);
 
       const otpRecord = await usersCollection.findOne({
-        phone_number: cleanPhone,
+        ...phoneMatch(cleanPhone),
         phone_verified: true
       });
 
@@ -480,8 +489,8 @@ export async function POST(request: NextRequest) {
     if (phone_number) {
       const cleanPhone = InputSanitizer.sanitizePhoneNumber(phone_number as string);
       const existingPhone = await usersCollection.findOne({
-        phone_number: cleanPhone,
-        full_name: { $exists: true, $ne: '' } // Only check fully registered users
+        ...phoneMatch(cleanPhone),
+        full_name: { $exists: true, $nin: ['', null] } // Only check fully registered users
       });
 
       if (existingPhone) {
@@ -506,25 +515,27 @@ export async function POST(request: NextRequest) {
     // For email/google registration, we create new record
     let isUpdatingExisting = false;
     let existingUserId: ObjectId | null = null;
+    let existingCustomId: string | null = null;
     let existingCreatedAt = now;
 
     if (auth_type === 'phone' && phone_number) {
       const cleanPhone = InputSanitizer.sanitizePhoneNumber(phone_number as string);
       const existingRecord = await usersCollection.findOne({
-        phone_number: cleanPhone,
+        ...phoneMatch(cleanPhone),
         phone_verified: true
       });
 
       if (existingRecord) {
         isUpdatingExisting = true;
         existingUserId = existingRecord._id;
+        existingCustomId = existingRecord.user_id || null;
         existingCreatedAt = existingRecord.created_at || now;
       }
     }
 
     const userData: Record<string, unknown> = {
       _id: isUpdatingExisting && existingUserId ? existingUserId : new ObjectId(),
-      user_id: isUpdatingExisting && existingUserId ? existingUserId.toString() : generateUserId(),
+      user_id: isUpdatingExisting && existingUserId ? (existingCustomId || existingUserId.toString()) : generateUserId(),
       full_name: (full_name as string).trim(),
       email_address: cleanEmail || '',
       phone_number: phone_number ? InputSanitizer.sanitizePhoneNumber(phone_number as string) : '',

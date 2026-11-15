@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
+import { getAuthUser, unauthorized } from '@/lib/security';
 import { ObjectId } from 'mongodb';
 import { NotificationService } from '@/lib/notifications';
 import { Media } from '@/models';
@@ -20,9 +21,11 @@ export async function GET(
     const resolvedParams = await params;
     const sessionId = resolvedParams.id;
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
-    // Use 'customer' as default instead of 'user'
-    const userType = searchParams.get('userType') || 'customer';
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    // identity from the token only; query params are ignored
+    const userId = auth.userId;
+    const userType = auth.userType === 'astrologer' ? 'astrologer' : 'customer';
 
     if (!sessionId || !ObjectId.isValid(sessionId)) {
       return NextResponse.json({
@@ -152,7 +155,11 @@ export async function PUT(
     const resolvedParams = await params;
     const sessionId = resolvedParams.id;
     const body = await request.json();
-    const { action, user_id, user_type, connection_id, rating } = body; 
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    const { action, connection_id, rating } = body;
+    const user_id = auth.userId;
+    const user_type = auth.userType === 'astrologer' ? 'astrologer' : 'customer';
     // action: 'answer', 'reject', 'end', 'rate', 'ring'
 
     if (!sessionId || !ObjectId.isValid(sessionId)) {

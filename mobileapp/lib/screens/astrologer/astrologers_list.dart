@@ -151,6 +151,7 @@ class _AstrologersListScreenState extends State<AstrologersListScreen> {
         limit: _limit,
         offset: refresh ? 0 : _currentOffset,
         onlineOnly: false,
+        featuredOnly: false, // full list = every approved astrologer
       );
 
       final newAstrologers = (astrologersData['astrologers'] as List<dynamic>)

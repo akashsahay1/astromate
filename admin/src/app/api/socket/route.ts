@@ -10,7 +10,7 @@ export async function GET() {
       user_type: 'astrologer',
       is_online: true,
       account_status: 'active',
-      approval_status: 'approved'
+      verification_status: 'verified'
     });
 
     return NextResponse.json({

@@ -671,6 +671,9 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
     debugPrint('📱 Loading astrologer dashboard...');
 
     try {
+      // pick up admin approval / rejection without a re-login
+      final fresh = await _authService.refreshCurrentUser();
+      if (fresh != null && mounted) setState(() => _currentUser = fresh);
       final result = await _userApiService.getAstrologerDashboard();
 
       if (result['success'] == true) {
@@ -2583,6 +2586,38 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
   }
 
   /// Build rejection banner for astrologers whose profile was rejected
+  Widget _buildPendingApprovalBanner() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.secondary.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.secondary.withValues(alpha: 0.5)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.hourglass_top_rounded, color: AppColors.astrologerPrimary, size: 28),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Awaiting approval',
+                    style: AppTextStyles.bodyLarge.copyWith(fontWeight: FontWeight.bold)),
+                const SizedBox(height: 4),
+                Text(
+                  'Our team is reviewing your profile. You can go online and take consultations once approved. Pull down to refresh.',
+                  style: AppTextStyles.bodySmall,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildRejectionBanner() {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
@@ -2833,6 +2868,12 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
                     // Profile Completion Banner (for new astrologers)
                     if (_currentUser != null && !_currentUser!.isProfileComplete)
                       _buildProfileCompletionBanner(),
+
+                    // Awaiting approval: profile submitted, admin hasn't verified yet
+                    if (_currentUser != null &&
+                        _currentUser!.isProfileComplete &&
+                        _currentUser!.verificationStatus == VerificationStatus.pending)
+                      _buildPendingApprovalBanner(),
 
                     // Rejection Banner (for rejected astrologers)
                     if (_currentUser != null &&
@@ -3403,6 +3444,16 @@ class _CustomerHomeScreenState extends State<HomeScreen> {
   Future<void> _toggleOnlineStatus() async {
     final token = _authService.authToken;
     if (token == null) return;
+    if (_currentUser?.verificationStatus != VerificationStatus.verified && !(_currentUser?.isOnline ?? false)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(_currentUser?.isProfileComplete == true
+              ? 'You can go online once your profile is approved'
+              : 'Complete your profile and get approved to go online'),
+        ),
+      );
+      return;
+    }
 
     setState(() {
       _isOnlineToggleLoading = true;

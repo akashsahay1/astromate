@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
+import { getAuthUser, unauthorized } from '@/lib/security';
 import { ObjectId } from 'mongodb';
 import { NotificationService } from '@/lib/notifications';
 import { Media } from '@/models';
@@ -20,9 +21,11 @@ export async function GET(
     const resolvedParams = await params;
     const sessionId = resolvedParams.id;
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
-    // Use 'customer' as default instead of 'user'
-    const userType = searchParams.get('userType') || 'customer';
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    // identity from the token only; query params are ignored
+    const userId = auth.userId;
+    const userType = auth.userType === 'astrologer' ? 'astrologer' : 'customer';
     const messagesLimit = parseInt(searchParams.get('messagesLimit') || '50');
     const messagesPage = parseInt(searchParams.get('messagesPage') || '1');
     const messagesSkip = (messagesPage - 1) * messagesLimit;
@@ -218,7 +221,11 @@ export async function PUT(
     const resolvedParams = await params;
     const sessionId = resolvedParams.id;
     const body = await request.json();
-    const { action, user_id, user_type } = body; // action: 'accept', 'reject', 'end'
+    const auth = await getAuthUser(request);
+    if (!auth) return unauthorized();
+    const { action } = body; // action: 'accept', 'reject', 'end'
+    const user_id = auth.userId;
+    const user_type = auth.userType === 'astrologer' ? 'astrologer' : 'customer';
 
     if (!sessionId || !ObjectId.isValid(sessionId)) {
       return NextResponse.json({
@@ -253,7 +260,7 @@ export async function PUT(
 
     // Verify user has permission to perform this action
     // Handle case where user_id might be MongoDB _id instead of custom user_id
-    const isCustomer = user_type === 'user' || user_type === 'customer';
+    const isCustomer = user_type === 'customer';
 
     if (isCustomer) {
       let hasAccess = session.user_id === user_id;

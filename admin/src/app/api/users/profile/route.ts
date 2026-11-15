@@ -645,7 +645,7 @@ export async function PUT(request: NextRequest) {
         // Fetch all admin users' emails
         try {
           const adminUsers = await usersCollection.find(
-            { user_type: 'admin', account_status: 'active' },
+            { user_type: { $in: ['administrator', 'admin'] }, account_status: 'active' },
             { projection: { email_address: 1 } }
           ).toArray();
 

@@ -4,6 +4,7 @@ import Joi from 'joi';
 import { NextRequest } from 'next/server';
 import crypto from 'crypto';
 import DatabaseService from './database';
+import { ObjectId } from 'mongodb';
 // import { jwtVerify } from 'jose';
 
 // Security configuration
@@ -457,8 +458,8 @@ export class SecurityMiddleware {
     const user = await usersCollection.findOne({
       $or: [
         { user_id: userId },
-        { _id: typeof userId === 'string' && userId.length === 24 ? new (require('mongodb').ObjectId)(userId) : null }
-      ].filter(Boolean)
+        ...(typeof userId === 'string' && ObjectId.isValid(userId) ? [{ _id: new ObjectId(userId) }] : [])
+      ]
     });
 
     if (!user) {

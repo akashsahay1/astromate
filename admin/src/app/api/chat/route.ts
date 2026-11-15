@@ -240,7 +240,7 @@ export async function POST(request: NextRequest) {
       user_id: astrologer_id as string,
       user_type: 'astrologer',
       account_status: 'active',
-      approval_status: 'approved'
+      verification_status: 'verified'
     });
 
     if (!astrologer) {

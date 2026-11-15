@@ -12,6 +12,14 @@ const adminApiPrefixes = [
   '/api/payments/razorpay/refund', '/api/media/register-external', '/api/users/create', '/api/users/bulk-update',
 ];
 const adminUserTypes = ['administrator', 'admin', 'manager'];
+// Admin-only by path + method: user edit/delete by ObjectId, maintenance, monitoring reads, astrologer-option edits.
+// The app may still POST error/performance reports and read astrologer options.
+const isAdminOnly = (pathname: string, method: string) =>
+  /^\/api\/users\/[0-9a-f]{24}(\/audit)?\/?$/i.test(pathname) ||
+  pathname.startsWith('/api/database/') ||
+  (/^\/api\/reports\/(errors|performance)\/?$/.test(pathname) && method !== 'POST') ||
+  pathname.startsWith('/api/reports/realtime-stats') ||
+  (pathname.startsWith('/api/astrologer-options') && method !== 'GET');
 
 // Public routes that don't require authentication
 const publicRoutes = ['/', '/login'];
@@ -45,7 +53,7 @@ export async function middleware(request: NextRequest) {
     return new NextResponse(null, { status: 404 });
   }
 
-  if (adminApiPrefixes.some(p => pathname.startsWith(p))) {
+  if (adminApiPrefixes.some(p => pathname.startsWith(p)) || isAdminOnly(pathname, method)) {
     const auth = request.headers.get('authorization');
     const apiToken = auth?.startsWith('Bearer ') ? auth.slice(7) : request.cookies.get('auth-token')?.value;
     try {

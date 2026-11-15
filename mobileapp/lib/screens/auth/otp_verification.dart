@@ -441,9 +441,9 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             if (user.verificationStatus == VerificationStatus.verified) {
               Navigator.pushReplacementNamed(context, '/astrologer/dashboard');
             } else if (user.verificationStatus == VerificationStatus.pending) {
-              Navigator.pushReplacementNamed(context, '/astrologer/pending');
+              Navigator.pushReplacementNamed(context, '/astrologer/dashboard');
             } else if (user.isProfileComplete) {
-              Navigator.pushReplacementNamed(context, '/astrologer/pending');
+              Navigator.pushReplacementNamed(context, '/astrologer/dashboard');
             } else {
               Navigator.pushReplacementNamed(
                 context,

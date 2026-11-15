@@ -198,6 +198,11 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
+    const me = (payload.userId || payload.user_id) as string;
+    if (userId !== me && astrologerId !== me) {
+      return NextResponse.json({ success: false, error: 'Forbidden', message: 'You can only create your own sessions' }, { status: 403 });
+    }
+
     // Connect to MongoDB
     const sessionsCollection = await DatabaseService.getCollection('sessions');
 
