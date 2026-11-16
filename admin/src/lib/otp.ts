@@ -159,8 +159,8 @@ export async function sendOTPSMS(_phone: string, _otp: string): Promise<boolean>
     return true;
   }
 
-  // TODO: Implement actual SMS sending with Twilio/MSG91/etc
-  console.warn('⚠️ SMS provider not configured. OTP will only be logged.');
-
-  return true;
+  // ponytail: no SMS provider yet (MSG91/2Factor need DLT templates). Fail honestly so the app shows
+  // "Failed to send OTP" instead of waiting for an SMS that never comes.
+  console.warn('⚠️ SMS provider not configured — OTP not sent');
+  return false;
 }
