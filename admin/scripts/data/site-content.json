@@ -1,0 +1,4491 @@
+{
+ "pooja_services": [
+  {
+   "id": "f9c28c96-f99d-4ad3-9700-d1e78cf3a730",
+   "name": "श्री गणेश पूजा",
+   "name_en": "Shri Ganesh Pooja",
+   "category": "देवी पूजा",
+   "category_en": "Devi Pooja",
+   "category_color": "#ef4444",
+   "price": 2100,
+   "duration": "2-3 घंटे",
+   "duration_en": "2-3 hours",
+   "image_url": "https://images.unsplash.com/photo-1567591370534-b53f1d9f5c6e?w=600&q=70",
+   "description": "भगवान गणेश को समर्पित, जिन्हें बाधाओं को दूर करने वाले देवता के रूप में जाना जाता है।",
+   "description_en": "Dedicated to Lord Ganesha, revered as the remover of obstacles.",
+   "rating": 4.8,
+   "bookings_count": 320,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "ganesh"
+  },
+  {
+   "id": "c3351c80-75fa-4fa6-8caf-0f2f7f29d3c3",
+   "name": "हनुमान जी की पूजा",
+   "name_en": "Hanuman Ji Pooja",
+   "category": "देवी पूजा",
+   "category_en": "Devi Pooja",
+   "category_color": "#ef4444",
+   "price": 1100,
+   "duration": "1-2 घंटे",
+   "duration_en": "1-2 hours",
+   "image_url": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=70",
+   "description": "शक्ति और भक्ति के प्रतीक भगवान हनुमान को समर्पित पूजा।",
+   "description_en": "A pooja dedicated to Lord Hanuman, the symbol of strength and devotion.",
+   "rating": 4.9,
+   "bookings_count": 280,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "hanuman"
+  },
+  {
+   "id": "0d8f30a6-f47e-4d51-9a9b-dd2ea44bd90a",
+   "name": "श्री सत्यनारायण पूजा",
+   "name_en": "Shri Satyanarayan Pooja",
+   "category": "सात्विक पूजा",
+   "category_en": "Sattvic Pooja",
+   "category_color": "#312e81",
+   "price": 2100,
+   "duration": "3-4 घंटे",
+   "duration_en": "3-4 hours",
+   "image_url": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=70",
+   "description": "भगवान विष्णु की कृपा के लिए समर्पित पावन पूजा।",
+   "description_en": "A sacred pooja dedicated to seeking the blessings of Lord Vishnu.",
+   "rating": 4.7,
+   "bookings_count": 410,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "satyanarayan"
+  },
+  {
+   "id": "fdd89a4a-4902-4db4-89de-7b21a98d124e",
+   "name": "नवग्रह पूजा",
+   "name_en": "Navagraha Pooja",
+   "category": "ग्रह पूजा",
+   "category_en": "Planetary Pooja",
+   "category_color": "#F2B50B",
+   "price": 11000,
+   "duration": "4-5 घंटे",
+   "duration_en": "4-5 hours",
+   "image_url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?w=600&q=70",
+   "description": "नौ ग्रहों की पूजा।",
+   "description_en": "Worship of the nine planets.",
+   "rating": 4.9,
+   "bookings_count": 156,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "navgrah"
+  },
+  {
+   "id": "f64490c6-f122-4a16-8365-f32984eb4dc6",
+   "name": "मंगल दोष पूजा",
+   "name_en": "Mangal Dosha Pooja",
+   "category": "निवारण पूजा",
+   "category_en": "Remedial Pooja",
+   "category_color": "#312e81",
+   "price": 11000,
+   "duration": "3-4 घंटे",
+   "duration_en": "3-4 hours",
+   "image_url": "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=70",
+   "description": "मंगल के प्रतिकूल प्रभाव को कम करने के लिए पूजा।",
+   "description_en": "A pooja to reduce the adverse effects of Mars (Mangal).",
+   "rating": 4.6,
+   "bookings_count": 98,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "mangal"
+  },
+  {
+   "id": "0d8aa91e-94c4-487f-a5fc-0a7fb0bd98be",
+   "name": "शनि दोष पूजा",
+   "name_en": "Shani Dosha Pooja",
+   "category": "निवारण पूजा",
+   "category_en": "Remedial Pooja",
+   "category_color": "#312e81",
+   "price": 7500,
+   "duration": "3-4 घंटे",
+   "duration_en": "3-4 hours",
+   "image_url": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=70",
+   "description": "शनि के नकारात्मक प्रभावों को कम करने और शांति पाने के लिए।",
+   "description_en": "To reduce the negative effects of Saturn (Shani) and find peace.",
+   "rating": 4.5,
+   "bookings_count": 134,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "shani"
+  },
+  {
+   "id": "406477f5-efad-4de5-b408-c84f698ea53e",
+   "name": "प्रेम प्राप्ति सिद्ध पूजा",
+   "name_en": "Prem Prapti Siddh Pooja",
+   "category": "मंगल कार्य",
+   "category_en": "Auspicious Rituals",
+   "category_color": "#312e81",
+   "price": 6000,
+   "duration": "2-3 घंटे",
+   "duration_en": "2-3 hours",
+   "image_url": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=70",
+   "description": "भगवान की कृपा से प्रेम संबंधों को मजबूत करने के लिए।",
+   "description_en": "To strengthen love relationships with divine blessings.",
+   "rating": 4.4,
+   "bookings_count": 67,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "prem"
+  },
+  {
+   "id": "124d82c2-6074-486f-bf0d-fe7baa7c8690",
+   "name": "संपूर्ण कष्ट निवारण महा पूजा",
+   "name_en": "Sampurna Kasht Nivaran Maha Pooja",
+   "category": "निवारण पूजा",
+   "category_en": "Remedial Pooja",
+   "category_color": "#312e81",
+   "price": 5000,
+   "duration": "4-5 घंटे",
+   "duration_en": "4-5 hours",
+   "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70",
+   "description": "जीवन की समस्याओं से मुक्ति और सर्वांगीण उन्नति के लिए।",
+   "description_en": "For freedom from life's problems and all-round progress.",
+   "rating": 4.7,
+   "bookings_count": 89,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "kasht"
+  },
+  {
+   "id": "0d4b9728-4f00-4d25-b5cb-2f5db3ac3219",
+   "name": "काल सर्प दोष पूजा",
+   "name_en": "Kaal Sarp Dosha Pooja",
+   "category": "ग्रह पूजा",
+   "category_en": "Planetary Pooja",
+   "category_color": "#F2B50B",
+   "price": 11000,
+   "duration": "4-5 घंटे",
+   "duration_en": "4-5 hours",
+   "image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=70",
+   "description": "कुंडली में काल सर्प दोष को शांत करने की पावन पूजा।",
+   "description_en": "A sacred pooja to pacify Kaal Sarp Dosha in the Kundli.",
+   "rating": 4.8,
+   "bookings_count": 112,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "kaalsarp"
+  },
+  {
+   "id": "798b9ed3-4cfc-4f76-8c58-d99e3f845c3b",
+   "name": "गृह प्रवेश पूजा",
+   "name_en": "Griha Pravesh Pooja",
+   "category": "मंगल कार्य",
+   "category_en": "Auspicious Rituals",
+   "category_color": "#312e81",
+   "price": 5100,
+   "duration": "2-3 घंटे",
+   "duration_en": "2-3 hours",
+   "image_url": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=70",
+   "description": "नए घर में सुख-समृद्धि के लिए।",
+   "description_en": "For happiness and prosperity in a new home.",
+   "rating": 4.9,
+   "bookings_count": 245,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "grahpravesh"
+  },
+  {
+   "id": "a13b1d3f-20a9-4156-8aa9-83945e7e20bc",
+   "name": "लक्ष्मी पूजा",
+   "name_en": "Lakshmi Pooja",
+   "category": "सात्विक पूजा",
+   "category_en": "Sattvic Pooja",
+   "category_color": "#312e81",
+   "price": 6100,
+   "duration": "2-3 घंटे",
+   "duration_en": "2-3 hours",
+   "image_url": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=70",
+   "description": "माता लक्ष्मी की कृपा से धन, वैभव और सुख-समृद्धि की प्राप्ति के लिए।",
+   "description_en": "To receive wealth, abundance, happiness and prosperity through the blessings of Goddess Lakshmi.",
+   "rating": 4.8,
+   "bookings_count": 389,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "lakshmi"
+  },
+  {
+   "id": "7b807bfe-1828-441f-9e7b-37833fa7d739",
+   "name": "रुद्राभिषेक",
+   "name_en": "Rudrabhishek",
+   "category": "सात्विक पूजा",
+   "category_en": "Sattvic Pooja",
+   "category_color": "#312e81",
+   "price": 5100,
+   "duration": "3-4 घंटे",
+   "duration_en": "3-4 hours",
+   "image_url": "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=70",
+   "description": "भगवान शिव को जल, दूध, दही, घी और शहद से अभिषेक।",
+   "description_en": "Abhishek of Lord Shiva with water, milk, curd, ghee and honey.",
+   "rating": 4.9,
+   "bookings_count": 198,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:08.611652+00:00",
+   "updated_at": "2026-04-03T16:58:08.611652+00:00",
+   "original_price": 0,
+   "slug": "rudra"
+  }
+ ],
+ "mantra_services": [
+  {
+   "id": "bb7387ac-70e6-4756-8b7c-6ca53c3c522b",
+   "name": "सूर्य वेद मंत्र जाप",
+   "name_en": "Surya Vedic Mantra Jaap",
+   "deity": "सूर्य",
+   "deity_en": "Surya",
+   "deity_color": "#F2B50B",
+   "subtitle": "रवि - सूर्य",
+   "subtitle_en": "Ravi - Sun",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?w=600&q=70",
+   "description": "अच्छे स्वास्थ्य, मानसिक शांति, समृद्धि और जीवन में सकारात्मक ऊर्जा के लिए।",
+   "description_en": "For good health, peace of mind, prosperity and positive energy in life.",
+   "rating": 4.8,
+   "bookings_count": 145,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "surya"
+  },
+  {
+   "id": "6016bd3c-489b-4710-b272-b080127b50d1",
+   "name": "चंद्रमा वेद मंत्र जाप",
+   "name_en": "Chandra (Moon) Vedic Mantra Jaap",
+   "deity": "चंद्र",
+   "deity_en": "Chandra",
+   "deity_color": "#312e81",
+   "subtitle": "सोम - चंद्र",
+   "subtitle_en": "Soma - Moon",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=70",
+   "description": "मानसिक शांति, भावनात्मक स्थिरता और चंद्र दोष से मुक्ति के लिए।",
+   "description_en": "For peace of mind, emotional stability and relief from Chandra Dosha.",
+   "rating": 4.9,
+   "bookings_count": 98,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "chandra"
+  },
+  {
+   "id": "0a8aa8e2-242a-4e08-9927-11234b367af0",
+   "name": "मंगल वेद मंत्र जाप",
+   "name_en": "Mangal (Mars) Vedic Mantra Jaap",
+   "deity": "मंगल",
+   "deity_en": "Mangal",
+   "deity_color": "#ef4444",
+   "subtitle": "भौम - मंगल",
+   "subtitle_en": "Bhauma - Mars",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=70",
+   "description": "साहस, उर्जा और निर्णय शक्ति बढ़ाने के लिए। मंगल दोष से मुक्ति।",
+   "description_en": "To boost courage, energy and decision-making power. Relief from Mangal Dosha.",
+   "rating": 4.7,
+   "bookings_count": 112,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "mangal"
+  },
+  {
+   "id": "e104378c-33a7-4b47-836f-1e6651790a6f",
+   "name": "बुध वेद मंत्र जाप",
+   "name_en": "Budh (Mercury) Vedic Mantra Jaap",
+   "deity": "बुध",
+   "deity_en": "Budh",
+   "deity_color": "#312e81",
+   "subtitle": "बुध - Mercury",
+   "subtitle_en": "Budh - Mercury",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=70",
+   "description": "बुद्धि, व्यापार और बाज़ार में सफलता के लिए।",
+   "description_en": "For intelligence and success in business and the marketplace.",
+   "rating": 4.6,
+   "bookings_count": 87,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "budh"
+  },
+  {
+   "id": "8322e889-fc62-49b1-83c5-e50f8f4fdf35",
+   "name": "गुरु/बृहस्पति वेद मंत्र जाप",
+   "name_en": "Guru/Brihaspati (Jupiter) Vedic Mantra Jaap",
+   "deity": "गुरु",
+   "deity_en": "Guru",
+   "deity_color": "#312e81",
+   "subtitle": "बृहस्पति - Jupiter",
+   "subtitle_en": "Brihaspati - Jupiter",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70",
+   "description": "ज्ञान, गुण, करियर विकास और आध्यात्मिक प्रगति के लिए।",
+   "description_en": "For knowledge, virtue, career growth and spiritual progress.",
+   "rating": 4.9,
+   "bookings_count": 203,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "brihaspati"
+  },
+  {
+   "id": "91cab779-f539-46bc-8b3f-46b36e35fd4f",
+   "name": "शुक्र वेद मंत्र जाप",
+   "name_en": "Shukra (Venus) Vedic Mantra Jaap",
+   "deity": "शुक्र",
+   "deity_en": "Shukra",
+   "deity_color": "#F2B50B",
+   "subtitle": "शुक्र - Venus",
+   "subtitle_en": "Shukra - Venus",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=70",
+   "description": "प्रेम, सौंदर्य और रिश्तों में सुधार के लिए।",
+   "description_en": "For love, beauty and better relationships.",
+   "rating": 4.5,
+   "bookings_count": 76,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "shukra"
+  },
+  {
+   "id": "21b78d8c-508d-4dcf-aa1a-631785e331f0",
+   "name": "शनि वेद मंत्र जाप",
+   "name_en": "Shani (Saturn) Vedic Mantra Jaap",
+   "deity": "शनि",
+   "deity_en": "Shani",
+   "deity_color": "#374151",
+   "subtitle": "शनि - Saturn",
+   "subtitle_en": "Shani - Saturn",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?w=600&q=70",
+   "description": "शनि महादशा, साढ़ेसाती में राहत; बाधाओं और उदासी से मुक्ति।",
+   "description_en": "Relief during Shani Mahadasha and Sade Sati; freedom from obstacles and gloom.",
+   "rating": 4.8,
+   "bookings_count": 189,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "shani"
+  },
+  {
+   "id": "f4cc2e25-6bdb-45b2-8df7-c39837963792",
+   "name": "राहु वेद मंत्र जाप",
+   "name_en": "Rahu Vedic Mantra Jaap",
+   "deity": "राहु",
+   "deity_en": "Rahu",
+   "deity_color": "#312e81",
+   "subtitle": "राहु - North Node",
+   "subtitle_en": "Rahu - North Node",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=70",
+   "description": "राहु के नकारात्मक प्रभाव को कम करने के लिए।",
+   "description_en": "To reduce the negative effects of Rahu.",
+   "rating": 4.6,
+   "bookings_count": 134,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "rahu"
+  },
+  {
+   "id": "d14578fe-0f80-4e3c-994a-36987c5d7e0b",
+   "name": "केतु वेद मंत्र जाप",
+   "name_en": "Ketu Vedic Mantra Jaap",
+   "deity": "केतु",
+   "deity_en": "Ketu",
+   "deity_color": "#312e81",
+   "subtitle": "केतु - South Node",
+   "subtitle_en": "Ketu - South Node",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=70",
+   "description": "केतु को प्रसन्न करने के लिए। आध्यात्मिक विकास और मोक्ष प्राप्ति।",
+   "description_en": "To appease Ketu. For spiritual growth and attaining moksha.",
+   "rating": 4.7,
+   "bookings_count": 67,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "ketu"
+  },
+  {
+   "id": "8bda76ca-662b-4147-b337-8810ffa94762",
+   "name": "महा लक्ष्मी वेद मंत्र जाप",
+   "name_en": "Maha Lakshmi Vedic Mantra Jaap",
+   "deity": "दुर्गा",
+   "deity_en": "Durga",
+   "deity_color": "#B91C1C",
+   "subtitle": "लक्ष्मी जाप",
+   "subtitle_en": "Lakshmi Jaap",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=70",
+   "description": "आर्थिक समृद्धि, धन बाधाओं को दूर करें। माँ लक्ष्मी की कृपा।",
+   "description_en": "Financial prosperity and removal of money obstacles. Blessings of Maa Lakshmi.",
+   "rating": 4.9,
+   "bookings_count": 312,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "lakshmi"
+  },
+  {
+   "id": "87307fc2-57bd-4a01-bc20-18d41d8d0f80",
+   "name": "महामृत्युंजय वेद मंत्र जाप",
+   "name_en": "Mahamrityunjaya Vedic Mantra Jaap",
+   "deity": "शिव",
+   "deity_en": "Shiva",
+   "deity_color": "#312e81",
+   "subtitle": "शिव महामंत्र",
+   "subtitle_en": "Shiva Mahamantra",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=70",
+   "description": "स्वास्थ्य, भयानक बीमारी से सुरक्षा। मारकेश दशा में प्रभावी।",
+   "description_en": "For health and protection from serious illness. Effective during Marakesh Dasha.",
+   "rating": 4.9,
+   "bookings_count": 278,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "mahamrityunjaya"
+  },
+  {
+   "id": "49bba119-d947-4135-b9ea-c230120aa9fa",
+   "name": "कल्याणकारी वेद मंत्र जाप",
+   "name_en": "Kalyankari (Well-being) Vedic Mantra Jaap",
+   "deity": "विष्णु",
+   "deity_en": "Vishnu",
+   "deity_color": "#312e81",
+   "subtitle": "विष्णु जाप",
+   "subtitle_en": "Vishnu Jaap",
+   "price": 56000,
+   "chants": "11,000",
+   "image_url": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=70",
+   "description": "स्वस्थ रहें, खुशहाल रहें; मन पर बुरे विचारों का निवारण।",
+   "description_en": "Stay healthy, stay happy; frees the mind from negative thoughts.",
+   "rating": 4.8,
+   "bookings_count": 156,
+   "status": "active",
+   "platform_fee": 0,
+   "created_at": "2026-04-03T16:58:20.675871+00:00",
+   "updated_at": "2026-04-03T16:58:20.675871+00:00",
+   "original_price": 0,
+   "slug": "baglamukhi"
+  }
+ ],
+ "products": [
+  {
+   "id": "68070987-ed8a-4630-973b-6a9ff88cffd6",
+   "name": "पन्ना बैसलेट",
+   "name_en": "Emerald (Panna) Bracelet",
+   "category": "Bracelet",
+   "category_color": "#F2B50B",
+   "price": 888,
+   "original_price": 1099,
+   "image_url": "https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=600&q=70",
+   "description": "घर और समृद्धि के लिए Lab Certified पन्ना और मोती से बना ब्रेसलेट।",
+   "description_en": "A bracelet made with lab-certified emerald and pearl, for home and prosperity.",
+   "badge": "LAB CERTIFIED",
+   "rating": 4.9,
+   "sold_count": 312,
+   "status": "active",
+   "stock": 45,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "402760b7-7c85-49f9-a516-de7699fb5e2f",
+   "name": "Raw Pyrite यंत्र",
+   "name_en": "Raw Pyrite Yantra",
+   "category": "Yantra",
+   "category_color": "#312e81",
+   "price": 999,
+   "original_price": 1499,
+   "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70",
+   "description": "सफलता और तरक्की के लिए Raw Pyrite से बना विशेष यंत्र।",
+   "description_en": "A special yantra made from raw pyrite for success and growth.",
+   "badge": "VASTU",
+   "rating": 4.6,
+   "sold_count": 245,
+   "status": "active",
+   "stock": 18,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "41b6a047-ba3f-45ca-b5cd-4e5a5fa72df4",
+   "name": "Selenite Plate",
+   "category": "Plate",
+   "category_color": "#312e81",
+   "price": 799,
+   "original_price": 2999,
+   "image_url": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=70",
+   "description": "Raw Pyrite और Selenite से बना विशेष पूजा पात्र।",
+   "description_en": "A special pooja vessel made from raw pyrite and selenite.",
+   "badge": "FREE GIFT",
+   "rating": 4.8,
+   "sold_count": 178,
+   "status": "active",
+   "stock": 32,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "12a7f7a6-a262-4734-8fc1-10df38cba0b3",
+   "name": "Raw Pyrite बैसलेट",
+   "name_en": "Raw Pyrite Bracelet",
+   "category": "Bracelet",
+   "category_color": "#F2B50B",
+   "price": 599,
+   "original_price": 899,
+   "image_url": "https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=600&q=70",
+   "description": "शुरू Raw Pyrite से नए बेहतरीन ब्रेसलेट।",
+   "description_en": "Brand-new, finely crafted bracelets made from pure raw pyrite.",
+   "badge": "",
+   "rating": 4.7,
+   "sold_count": 467,
+   "status": "active",
+   "stock": 5,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "877455e8-bcff-4393-8c67-83d3af2ee7a4",
+   "name": "नवग्रह बैसलेट",
+   "name_en": "Navagraha Bracelet",
+   "category": "Bracelet",
+   "category_color": "#F2B50B",
+   "price": 588,
+   "original_price": 1999,
+   "image_url": "https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=600&q=70",
+   "description": "नवग्रहों की शांति के लिए 9 रत्नों से बना विशेष बैसलेट।",
+   "description_en": "A special bracelet made with 9 gemstones to pacify the nine planets (Navagraha).",
+   "badge": "NAVGRAHNA",
+   "rating": 4.9,
+   "sold_count": 892,
+   "status": "active",
+   "stock": 67,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "3e505248-8972-4b03-b696-c17241798f6f",
+   "name": "Selenite धन रेमेडी",
+   "name_en": "Selenite Wealth Remedy",
+   "category": "Remedy Kit",
+   "category_color": "#ef4444",
+   "price": 988,
+   "original_price": 1099,
+   "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70",
+   "description": "Selenite Stone से धन आकर्षण के लिए।",
+   "description_en": "Made with selenite stone to attract wealth.",
+   "badge": "100% CASHBACK",
+   "rating": 4.6,
+   "sold_count": 134,
+   "status": "active",
+   "stock": 23,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "460dfe7e-cc47-43c3-9770-133289e92448",
+   "name": "Raw Pyrite रेमेडी",
+   "name_en": "Raw Pyrite Remedy",
+   "category": "Remedy Kit",
+   "category_color": "#ef4444",
+   "price": 599,
+   "original_price": 719,
+   "image_url": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=70",
+   "description": "धन सुख-समृद्धि के लिए Raw Pyrite रेमेडी।",
+   "description_en": "A raw pyrite remedy for wealth, happiness and prosperity.",
+   "badge": "",
+   "rating": 4.7,
+   "sold_count": 289,
+   "status": "active",
+   "stock": 40,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "94e985d9-f813-4eaa-be32-f3c6fc3ae82a",
+   "name": "Money Magnet रेमेडी",
+   "name_en": "Money Magnet Remedy",
+   "category": "Remedy Kit",
+   "category_color": "#ef4444",
+   "price": 599,
+   "original_price": 669,
+   "image_url": "https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=600&q=70",
+   "description": "धन और समृद्धि को आकर्षित करने वाला रेमेडी।",
+   "description_en": "A remedy that attracts wealth and prosperity.",
+   "badge": "BESTSELLER",
+   "rating": 4.8,
+   "sold_count": 1203,
+   "status": "active",
+   "stock": 100,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "13421f32-303a-4478-ab0b-caf799e4dfcc",
+   "name": "माँ लक्ष्मी पेंडेंट",
+   "name_en": "Maa Lakshmi Pendant",
+   "category": "Pendant",
+   "category_color": "#312e81",
+   "price": 588,
+   "original_price": 1999,
+   "image_url": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=70",
+   "description": "माँ लक्ष्मी की कृपा के लिए पेंडेंट।",
+   "description_en": "A pendant for the blessings of Maa Lakshmi.",
+   "badge": "100% CASHBACK",
+   "rating": 4.9,
+   "sold_count": 567,
+   "status": "active",
+   "stock": 50,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  },
+  {
+   "id": "919b6db5-c096-49fb-8b54-6684ac74905b",
+   "name": "नवग्रह रेमेडी",
+   "name_en": "Navagraha Remedy",
+   "category": "Remedy Kit",
+   "category_color": "#ef4444",
+   "price": 1188,
+   "original_price": 1999,
+   "image_url": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=70",
+   "description": "नवग्रहों की शांति के लिए रेमेडी।",
+   "description_en": "A remedy to pacify the nine planets (Navagraha).",
+   "badge": "NAVGRAHNA",
+   "rating": 4.8,
+   "sold_count": 345,
+   "status": "active",
+   "stock": 30,
+   "created_at": "2026-04-03T16:58:37.367878+00:00",
+   "updated_at": "2026-04-03T16:58:37.367878+00:00"
+  }
+ ],
+ "blog_posts": [
+  {
+   "id": "45f54e1c-a7df-4dd2-94e7-d7b9dd093a0d",
+   "title": "कुंडली में मंगल दोष",
+   "title_en": "Mangal Dosha in the Kundli",
+   "tag": "कुंडली",
+   "tag_en": "Kundli",
+   "tag_color": "#be123c",
+   "summary": "मांगलिक दोष क्या है और इसके निवारण",
+   "summary_en": "What Manglik Dosha is and its remedies",
+   "body": "जब मंगल ग्रह कुंडली के पहले, चौथे, सातवें, आठवें या बारहवें भाव में स्थित होता है, तो इसे मंगल दोष या मांगलिक दोष कहा जाता है।\n\nयह मुख्य रूप से विवाह में देरी या बाधा से जुड़ा माना जाता है। हनुमान जी की पूजा, मंगल के मंत्र का जाप और उपयुक्त कुंडली मिलान से इसका प्रभाव कम होता है।\n\nघबराएं नहीं—अधिकांश मंगल दोष सरल उपायों से शांत हो जाते हैं।",
+   "body_en": "When Mars (Mangal) is placed in the first, fourth, seventh, eighth or twelfth house of the Kundli, it is called Mangal Dosha or Manglik Dosha.\n\nIt is mainly associated with delays or obstacles in marriage. Worshipping Hanuman Ji, chanting the Mangal mantra and proper Kundli matching reduce its effects.\n\nDon't panic—most cases of Mangal Dosha can be pacified with simple remedies.",
+   "image_url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=70",
+   "read_time": "6",
+   "author": "पंडित अमन पांडे",
+   "author_en": "Pandit Aman Pandey",
+   "status": "published",
+   "views": 1120,
+   "created_at": "2026-07-03T16:59:30.257806+00:00",
+   "updated_at": "2026-07-03T16:59:30.257806+00:00"
+  },
+  {
+   "id": "fc7ff7ae-e5e1-4fc4-9c72-2c35b35e165c",
+   "title": "अंक ज्योतिष से जानें अपना भाग्यांक",
+   "title_en": "Discover Your Destiny Number Through Numerology",
+   "tag": "अंक ज्योतिष",
+   "tag_en": "Numerology",
+   "tag_color": "#7c3aed",
+   "summary": "जन्म तिथि से भाग्यांक निकालने की विधि",
+   "summary_en": "How to calculate your destiny number from your date of birth",
+   "body": "भाग्यांक आपकी संपूर्ण जन्म तिथि (दिन, माह, वर्ष) के अंकों को जोड़कर निकाला जाता है। यह आपके जीवन के उद्देश्य और भाग्य को दर्शाता है।\n\nउदाहरण के लिए, 22-01-2000 का भाग्यांक होगा 2+2+0+1+2+0+0+0 = 7। प्रत्येक भाग्यांक का अपना स्वामी ग्रह और गुण होता है।\n\nअपने भाग्यांक को जानकर आप करियर, रिश्ते और निर्णयों में बेहतर मार्गदर्शन पा सकते हैं।",
+   "body_en": "Your destiny number (Bhagyank) is calculated by adding up all the digits of your full date of birth (day, month, year). It reflects your life's purpose and destiny.\n\nFor example, the destiny number for 22-01-2000 is 2+2+0+1+2+0+0+0 = 7. Each destiny number has its own ruling planet and qualities.\n\nKnowing your destiny number can give you better guidance on career, relationships and decisions.",
+   "image_url": "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=600&q=70",
+   "read_time": "5",
+   "author": "पंडित राजेश त्रिपाठी",
+   "author_en": "Pandit Rajesh Tripathi",
+   "status": "published",
+   "views": 1050,
+   "created_at": "2026-07-03T16:59:30.257806+00:00",
+   "updated_at": "2026-07-03T16:59:30.257806+00:00"
+  },
+  {
+   "id": "45b5d8ca-ab5a-43a9-bce5-ebd6b93a3a23",
+   "title": "रत्न धारण करने के नियम",
+   "title_en": "Rules for Wearing Gemstones",
+   "tag": "ज्योतिष",
+   "tag_en": "Astrology",
+   "tag_color": "#0369a1",
+   "summary": "सही रत्न कैसे चुनें और कब पहनें",
+   "summary_en": "How to choose the right gemstone and when to wear it",
+   "body": "रत्न ग्रहों की ऊर्जा को बढ़ाते हैं, इसलिए इन्हें बिना किसी योग्य ज्योतिषी की सलाह के धारण नहीं करना चाहिए।\n\nप्रत्येक ग्रह का अपना रत्न होता है—सूर्य के लिए माणिक्य, चंद्र के लिए मोती, गुरु के लिए पुखराज इत्यादि। रत्न को सही धातु, सही उंगली और शुभ मुहूर्त में ही धारण करें।\n\nरत्न धारण करने से पहले उसे गंगाजल और दूध से शुद्ध करना आवश्यक है।",
+   "body_en": "Gemstones amplify the energy of the planets, so they should never be worn without the advice of a qualified astrologer.\n\nEvery planet has its own gemstone—ruby (Manikya) for the Sun, pearl (Moti) for the Moon, yellow sapphire (Pukhraj) for Jupiter, and so on. Wear a gemstone only in the right metal, on the right finger and at an auspicious muhurat.\n\nBefore wearing a gemstone, it is essential to purify it with Gangajal and milk.",
+   "image_url": "https://images.unsplash.com/photo-1611955167811-4711904bb9f8?w=600&q=70",
+   "read_time": "5",
+   "author": "पंडित मनोहर शर्मा",
+   "author_en": "Pandit Manohar Sharma",
+   "status": "published",
+   "views": 980,
+   "created_at": "2026-07-03T16:59:30.257806+00:00",
+   "updated_at": "2026-07-03T16:59:30.257806+00:00"
+  },
+  {
+   "id": "28c76c20-b315-4e3e-bcd9-be9beffbb62e",
+   "title": "पितृ दोष और उसके उपाय",
+   "title_en": "Pitra Dosha and Its Remedies",
+   "tag": "कुंडली",
+   "tag_en": "Kundli",
+   "tag_color": "#be123c",
+   "summary": "पितृ दोष के लक्षण और शांति के उपाय",
+   "summary_en": "Signs of Pitra Dosha and remedies to pacify it",
+   "body": "पितृ दोष तब बनता है जब पूर्वजों की आत्मा असंतुष्ट रहती है या पितरों का उचित श्राद्ध नहीं होता। यह कुंडली में सूर्य और राहु के योग से भी दर्शाया जाता है।\n\nपितृ दोष के कारण संतान, करियर और पारिवारिक सुख में बाधा आ सकती है। पितृ पक्ष में श्राद्ध, तर्पण और ब्राह्मण भोजन इसके प्रमुख उपाय हैं।\n\nपूर्वजों का सम्मान और नियमित तर्पण से पितृ प्रसन्न होते हैं।",
+   "body_en": "Pitra Dosha arises when the souls of ancestors remain unsatisfied or when the proper Shraddh for the ancestors has not been performed. It is also indicated in the Kundli by a conjunction of the Sun and Rahu.\n\nPitra Dosha can create obstacles related to children, career and family happiness. Performing Shraddh, Tarpan and feeding Brahmins during Pitru Paksha are its main remedies.\n\nHonouring your ancestors and performing regular Tarpan keeps them pleased.",
+   "image_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=70",
+   "read_time": "6",
+   "author": "आचार्य ब्रह्मेंद्र",
+   "author_en": "Acharya Brahmendra",
+   "status": "published",
+   "views": 720,
+   "created_at": "2026-07-03T16:59:30.257806+00:00",
+   "updated_at": "2026-07-03T16:59:30.257806+00:00"
+  },
+  {
+   "id": "607b58fc-dd1a-4a06-9b3b-98f1a0a4a27a",
+   "title": "शनि साढ़ेसाती: लक्षण और उपाय",
+   "title_en": "Shani Sade Sati: Signs and Remedies",
+   "tag": "ग्रह",
+   "tag_en": "Planets",
+   "tag_color": "#312e81",
+   "summary": "शनि की साढ़ेसाती के प्रभाव और सरल उपाय",
+   "summary_en": "Effects of Shani's Sade Sati and simple remedies",
+   "body": "शनि की साढ़ेसाती जीवन का वह दौर है जब शनि ग्रह चंद्र राशि से 12वें, पहले और दूसरे भाव में गोचर करते हैं। यह लगभग साढ़े सात वर्ष तक रहती है।\n\nइस दौरान धैर्य, मेहनत और ईमानदारी सबसे बड़े सहायक होते हैं। हनुमान जी की उपासना, शनिवार को तेल का दान और गरीबों की सेवा से शनि शांत होते हैं।\n\nयाद रखें, साढ़ेसाती केवल कष्ट नहीं देती, बल्कि यह आपको परिपक्व और मजबूत भी बनाती है।",
+   "body_en": "Shani's Sade Sati is the phase of life when Saturn transits the 12th, 1st and 2nd houses from your Moon sign. It lasts for about seven and a half years.\n\nDuring this time, patience, hard work and honesty are your greatest allies. Worshipping Hanuman Ji, donating oil on Saturdays and serving the poor help pacify Shani.\n\nRemember, Sade Sati doesn't only bring hardship—it also makes you more mature and stronger.",
+   "image_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=70",
+   "read_time": "6",
+   "author": "पंडित अभिनव मिश्रा",
+   "author_en": "Pandit Abhinav Mishra",
+   "status": "published",
+   "views": 890,
+   "created_at": "2026-07-03T16:59:30.257806+00:00",
+   "updated_at": "2026-07-03T16:59:30.257806+00:00"
+  },
+  {
+   "id": "1559dd5b-3b07-4e2f-ad73-57807b8805a5",
+   "title": "राहु-केतु की चाल और उनके उपाय",
+   "title_en": "The Movement of Rahu-Ketu and Their Remedies",
+   "tag": "ग्रह",
+   "tag_en": "Planets",
+   "tag_color": "#312e81",
+   "summary": "राहु और केतु के प्रभाव को कैसे संतुलित करें",
+   "summary_en": "How to balance the effects of Rahu and Ketu",
+   "body": "राहु और केतु दो छाया ग्रह हैं जो जीवन पर गहरा प्रभाव डालते हैं। इनके उपाय से जीवन में संतुलन आता है।",
+   "body_en": "Rahu and Ketu are two shadow planets that have a deep influence on life. Their remedies bring balance to life.",
+   "image_url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?w=600&q=70",
+   "read_time": "5",
+   "author": "पंडित अभिनव मिश्रा",
+   "author_en": "Pandit Abhinav Mishra",
+   "status": "published",
+   "views": 1240,
+   "created_at": "2026-04-03T16:58:44.023532+00:00",
+   "updated_at": "2026-04-03T16:58:44.023532+00:00"
+  },
+  {
+   "id": "49c6d90b-777b-4e31-978b-ae2db2b23a34",
+   "title": "वास्तु के अनुसार मुख्य द्वार",
+   "title_en": "The Main Entrance According to Vastu",
+   "tag": "वास्तु",
+   "tag_en": "Vastu",
+   "tag_color": "#7c3aed",
+   "summary": "घर के मुख्य द्वार की सही दिशा और सजावट",
+   "summary_en": "The right direction and decor for your home's main entrance",
+   "body": "मुख्य द्वार को घर का मुख माना जाता है क्योंकि यहीं से ऊर्जा प्रवेश करती है। वास्तु के अनुसार उत्तर, पूर्व और उत्तर-पूर्व दिशा का द्वार सबसे शुभ होता है।\n\nद्वार पर स्वस्तिक, ओम या शुभ-लाभ लगाना सकारात्मक ऊर्जा लाता है। द्वार के सामने कूड़ेदान या टूटी वस्तुएं नहीं रखनी चाहिए।\n\nसाफ-सुथरा और अच्छी तरह प्रकाशित मुख्य द्वार समृद्धि को आमंत्रित करता है।",
+   "body_en": "The main entrance is considered the face of the home, because this is where energy enters. According to Vastu, an entrance facing north, east or north-east is the most auspicious.\n\nPlacing a Swastik, Om or Shubh-Labh on the door brings positive energy. Dustbins or broken items should not be kept in front of the door.\n\nA clean and well-lit main entrance invites prosperity.",
+   "image_url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=70",
+   "read_time": "5",
+   "author": "आचार्य विनोद कुमार",
+   "author_en": "Acharya Vinod Kumar",
+   "status": "published",
+   "views": 760,
+   "created_at": "2026-07-03T16:59:30.257806+00:00",
+   "updated_at": "2026-07-03T16:59:30.257806+00:00"
+  },
+  {
+   "id": "a99deddb-c10e-4e3d-81d5-3e08f1e3f9f3",
+   "title": "बच्चों के लिए वास्तु टिप्स",
+   "title_en": "Vastu Tips for Children",
+   "tag": "वास्तु",
+   "tag_en": "Vastu",
+   "tag_color": "#312e81",
+   "summary": "बच्चों के कमरे का वास्तु के अनुसार चयन करें",
+   "summary_en": "Choose your children's room according to Vastu",
+   "body": "वास्तु शास्त्र में बच्चों की पढ़ाई की दिशा महत्वपूर्ण है। उत्तर या पूर्व दिशा में पढ़ाई करने से एकाग्रता बढ़ती है।",
+   "body_en": "In Vastu Shastra, the direction children study in is important. Studying facing north or east improves concentration.",
+   "image_url": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=70",
+   "read_time": "4",
+   "author": "देवानी शर्मा",
+   "author_en": "Devani Sharma",
+   "status": "published",
+   "views": 890,
+   "created_at": "2026-04-03T16:58:44.023532+00:00",
+   "updated_at": "2026-04-03T16:58:44.023532+00:00"
+  },
+  {
+   "id": "9a98cc72-8a93-44b5-9bd0-5ed1c86e0f64",
+   "title": "गुरु ग्रह की महादशा का प्रभाव",
+   "title_en": "The Effects of Jupiter's (Guru) Mahadasha",
+   "tag": "ग्रह",
+   "tag_en": "Planets",
+   "tag_color": "#312e81",
+   "summary": "बृहस्पति की महादशा में जीवन के अवसर",
+   "summary_en": "Life opportunities during Jupiter's Mahadasha",
+   "body": "बृहस्पति यानी गुरु ग्रह ज्ञान, धन और भाग्य का कारक है। इसकी महादशा 16 वर्ष तक चलती है और शुभ स्थिति में यह जीवन में उन्नति लाती है।\n\nइस दौरान शिक्षा, विवाह, संतान और आध्यात्मिक विकास के योग बनते हैं। पीला रंग धारण करना, गुरुवार का व्रत और केले के पेड़ की पूजा गुरु को बलवान बनाती है।\n\nगुरु की कृपा से व्यक्ति समाज में सम्मान प्राप्त करता है।",
+   "body_en": "Brihaspati, or Guru (Jupiter), is the significator of knowledge, wealth and fortune. Its Mahadasha lasts for 16 years, and when well placed it brings progress in life.\n\nDuring this period, opportunities arise for education, marriage, children and spiritual growth. Wearing yellow, fasting on Thursdays and worshipping the banana tree strengthen Jupiter.\n\nWith Guru's blessings, a person earns respect in society.",
+   "image_url": "https://images.unsplash.com/photo-1435224668334-0f82ec57b605?w=600&q=70",
+   "read_time": "7",
+   "author": "आचार्य ब्रह्मेंद्र",
+   "author_en": "Acharya Brahmendra",
+   "status": "published",
+   "views": 640,
+   "created_at": "2026-07-03T16:59:30.257806+00:00",
+   "updated_at": "2026-07-03T16:59:30.257806+00:00"
+  },
+  {
+   "id": "a9344e3b-cdfc-4766-9f5b-ebf33f6ac173",
+   "title": "हनुमान चालीसा का महत्व",
+   "title_en": "The Significance of the Hanuman Chalisa",
+   "tag": "मंत्र",
+   "tag_en": "Mantra",
+   "tag_color": "#F2B50B",
+   "summary": "हनुमान चालीसा के आध्यात्मिक लाभ",
+   "summary_en": "Spiritual benefits of the Hanuman Chalisa",
+   "body": "हनुमान चालीसा के नित्य पाठ से शांति मिलती है और जीवन की बाधाएं दूर होती हैं।",
+   "body_en": "Reciting the Hanuman Chalisa daily brings peace and removes obstacles from life.",
+   "image_url": "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=70",
+   "read_time": "3",
+   "author": "पंडित रवीश दुबे",
+   "author_en": "Pandit Ravish Dubey",
+   "status": "published",
+   "views": 0,
+   "created_at": "2026-04-03T16:58:44.023532+00:00",
+   "updated_at": "2026-04-03T16:58:44.023532+00:00"
+  }
+ ],
+ "homepage_steps": [
+  {
+   "id": "31f8d30f-51c9-47b2-a4db-cb46c7bce7ed",
+   "title": "अपनी जानकारी साझा करें",
+   "title_en": "Share Your Details",
+   "description": "जन्म तिथि, समय और स्थान — बस ये तीन बातें बताएं। केवल 30 सेकंड में तैयार, कोई लंबी साइनअप प्रक्रिया नहीं।",
+   "description_en": "Date, time and place of birth — just these three things. Ready in only 30 seconds, no long sign-up process.",
+   "sort_order": 1,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "8551d21f-69fd-4f59-81d8-393d00de6a9a",
+   "title": "अपना ज्योतिषी चुनें",
+   "title_en": "Choose Your Astrologer",
+   "description": "विशेषज्ञता, भाषा, मूल्य और अनुभव के अनुसार छाँटें। असली समीक्षाएं पढ़ें और देखें इस समय कौन ऑनलाइन है।",
+   "description_en": "Filter by expertise, language, price and experience. Read genuine reviews and see who is online right now.",
+   "sort_order": 2,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "1d0958e9-4f43-4722-b4dc-fb480ab917e9",
+   "title": "चैट या कॉल शुरू करें",
+   "title_en": "Start a Chat or Call",
+   "description": "न कोई बुकिंग, न कोई इंतज़ार। बस 'कनेक्ट' दबाएं और तुरंत बातचीत शुरू करें — रुकें या ज्योतिषी बदलें, आपकी मर्ज़ी।",
+   "description_en": "No booking, no waiting. Just tap 'Connect' and start talking instantly — pause or switch astrologers whenever you like.",
+   "sort_order": 3,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "0d4b3a6a-1a64-4f8e-a147-ca1d0b086f06",
+   "title": "स्पष्ट मार्गदर्शन पाएं",
+   "title_en": "Get Clear Guidance",
+   "description": "करियर, रिश्ते या जीवन की उलझनें — हर सवाल का संतुलित और भरोसेमंद उत्तर पाएं, सिर्फ़ अनुमान नहीं।",
+   "description_en": "Career, relationships or life's dilemmas — get balanced, trustworthy answers to every question, not just guesswork.",
+   "sort_order": 4,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "6dd49538-cc54-4c6e-a397-1c33121d00a0",
+   "title": "खुशहाल जीवन जिएं",
+   "title_en": "Live a Happier Life",
+   "description": "सही मार्गदर्शन के साथ अपने करियर, रिश्तों और जीवन को आत्मविश्वास से संवारें — हर पल को पूरी खुशी और सुकून के साथ जिएं और जीवन का भरपूर आनंद लें।",
+   "description_en": "With the right guidance, shape your career, relationships and life with confidence — live every moment with complete joy and peace, and enjoy life to the fullest.",
+   "sort_order": 5,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  }
+ ],
+ "testimonials": [
+  {
+   "id": "5be02d0a-f1f0-42c2-9d2b-c63c4f0ba956",
+   "name": "रोहित मेहरा",
+   "name_en": "Rohit Mehra",
+   "location": "मस्कट, ओमान",
+   "location_en": "Muscat, Oman",
+   "text": "यह ऐप न सिर्फ़ रोज़ाना राशिफल देता है, बल्कि मेरी निजी और पेशेवर उलझनों को सुलझाने में भी मदद करता है। बेहद उपयोगी अनुभव रहा।",
+   "text_en": "This app doesn't just give daily horoscopes — it also helps me untangle my personal and professional dilemmas. A truly useful experience.",
+   "sort_order": 1,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "f6fc4269-173e-47c8-b696-1c9d0127b02b",
+   "name": "स्नेहा कपूर",
+   "name_en": "Sneha Kapoor",
+   "location": "न्यू जर्सी, यूएसए",
+   "location_en": "New Jersey, USA",
+   "text": "कुछ महीने पहले मैंने इसे आज़माया और पहले ही जवाब से प्रभावित हो गई। जिस तरह से बात समझाई गई वो वाकई सराहनीय थी।",
+   "text_en": "I tried it a few months ago and was impressed from the very first answer. The way things were explained was truly commendable.",
+   "sort_order": 2,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "249b89f2-a9c3-49d7-8368-f8b2725e28e6",
+   "name": "अमित देशपांडे",
+   "name_en": "Amit Deshpande",
+   "location": "सिडनी, ऑस्ट्रेलिया",
+   "location_en": "Sydney, Australia",
+   "text": "ऑनलाइन पूजा हो, रत्न परामर्श या हस्तरेखा — हर सेवा में संतुष्टि मिली। विशेषज्ञ सच में जानकार और भरोसेमंद हैं।",
+   "text_en": "Whether it was an online pooja, a gemstone consultation or palmistry — every service left me satisfied. The experts are genuinely knowledgeable and trustworthy.",
+   "sort_order": 3,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "853a6dc5-bb13-4493-9697-a7609e312dd2",
+   "name": "प्रिया अग्रवाल",
+   "name_en": "Priya Agarwal",
+   "location": "मुंबई, भारत",
+   "location_en": "Mumbai, India",
+   "text": "मैंने कई ऐप आज़माए लेकिन यही सबसे अच्छा लगा। हर सवाल का सटीक और शांत मार्गदर्शन मिला, बिना किसी जल्दबाज़ी के।",
+   "text_en": "I've tried many apps, but this one is the best. I got precise, calm guidance on every question, without any rush.",
+   "sort_order": 4,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "924d3c4c-ae53-49c5-bae5-18c8aa447349",
+   "name": "विकास शर्मा",
+   "name_en": "Vikas Sharma",
+   "location": "दुबई, यूएई",
+   "location_en": "Dubai, UAE",
+   "text": "एक मुश्किल दौर में मुझे सही दिशा की ज़रूरत थी। यहाँ की लाइव बातचीत ने मुझे आत्मविश्वास और स्पष्टता दोनों दी।",
+   "text_en": "I needed the right direction during a difficult phase. The live conversations here gave me both confidence and clarity.",
+   "sort_order": 5,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  },
+  {
+   "id": "021edc0f-4d00-44ab-a317-9d04c30cf7e2",
+   "name": "नेहा सिंह",
+   "name_en": "Neha Singh",
+   "location": "लंदन, यूके",
+   "location_en": "London, UK",
+   "text": "तुरंत कनेक्ट, असली विशेषज्ञ और ईमानदार सलाह। कोई दिखावा नहीं, सिर्फ़ काम की बात। मैं इसे ज़रूर सुझाऊँगी।",
+   "text_en": "Instant connection, real experts and honest advice. No showing off, just what matters. I would definitely recommend it.",
+   "sort_order": 6,
+   "status": "active",
+   "created_at": "2026-06-09T04:04:05.890062+00:00",
+   "updated_at": "2026-06-09T04:04:05.890062+00:00"
+  }
+ ],
+ "site_content": [
+  {
+   "key": "howitworks_eyebrow",
+   "value": "हम कैसे काम करते हैं",
+   "value_en": "How We Work",
+   "created_at": "2026-06-10T03:42:10.344941+00:00",
+   "updated_at": "2026-06-10T03:42:10.344941+00:00"
+  },
+  {
+   "key": "testimonials_eyebrow",
+   "value": "लोग क्या कहते हैं",
+   "value_en": "What People Say",
+   "created_at": "2026-06-10T03:42:10.344941+00:00",
+   "updated_at": "2026-06-10T03:42:10.344941+00:00"
+  },
+  {
+   "key": "testimonials_heading",
+   "value": "असली सच",
+   "value_en": "The Real Truth",
+   "created_at": "2026-06-10T03:42:10.344941+00:00",
+   "updated_at": "2026-08-07T04:10:53.638654+00:00"
+  },
+  {
+   "key": "howitworks_heading",
+   "value": "असली सच — सिर्फ़ {count} चरण",
+   "value_en": "The Real Truth — Just {count} Steps",
+   "created_at": "2026-06-10T03:42:10.344941+00:00",
+   "updated_at": "2026-08-07T04:10:53.638654+00:00"
+  }
+ ],
+ "mano_beliefs": [
+  {
+   "id": "6aa12593-ac98-4c42-9feb-309a96b59d2c",
+   "title": "बीमारी नहीं छोड़ रही पीछा?",
+   "title_en": "Illness that just won't go away?",
+   "points": [
+    {
+     "text": "बेडरूम में दर्पण (आईना) ऐसा न हो, जिसमें सोते समय शरीर का प्रतिबिंब (Reflection) दिखाई दे।",
+     "heading": "शीशा और बिस्तर:"
+    },
+    {
+     "text": "इस कोने में भारी सामान या डस्टबिन न रखें, रसोई और शौचालय गलत दिशा में होने पर उनके निवारण के लिए वास्तु विशेषज्ञों की मदद ली जा सकती है।",
+     "heading": "उत्तर-पूर्व (North-East) कोना:"
+    },
+    {
+     "text": "हिंदू और वास्तु विश्वासों में, Gomti Chakra को घर में सकारात्मक ऊर्जा लाने, नकारात्मक ऊर्जा से रक्षा करने और समृद्धि व सुख-शांति बढ़ाने वाला माना जाता है।",
+     "heading": "गोमती चक्र:"
+    }
+   ],
+   "points_en": [
+    {
+     "text": "Make sure no mirror in the bedroom shows your body's reflection while you sleep.",
+     "heading": "Mirror and bed:"
+    },
+    {
+     "text": "Don't keep heavy items or a dustbin in this corner. If the kitchen or toilet is in the wrong direction, you can consult Vastu experts for remedies.",
+     "heading": "North-East corner:"
+    },
+    {
+     "text": "In Hindu and Vastu beliefs, the Gomti Chakra is believed to bring positive energy into the home, protect against negative energy, and increase prosperity, happiness and peace.",
+     "heading": "Gomti Chakra:"
+    }
+   ],
+   "sort_order": 1,
+   "is_active": true,
+   "created_at": "2026-08-01T04:59:48.99486+00:00",
+   "updated_at": "2026-08-01T04:59:48.99486+00:00"
+  },
+  {
+   "id": "700f0878-7dc9-4fcb-a212-e086926a983b",
+   "title": "धन नहीं टिक रहा घर में?",
+   "title_en": "Money not staying in your home?",
+   "points": [
+    {
+     "text": "धन रखने की तिजोरी या अलमारी दक्षिण दीवार से सटाकर रखें जिससे उसका मुख उत्तर दिशा की ओर खुले।",
+     "heading": "तिजोरी की दिशा:"
+    },
+    {
+     "text": "प्रवेश द्वार साफ, रोशन और अवरोध-रहित रखें, टूटी चप्पलें और कूड़ा दरवाजे के पास न रखें।",
+     "heading": "मुख्य द्वार:"
+    },
+    {
+     "text": "पूजा स्थान में स्थापित श्री यंत्र को धन-समृद्धि और लक्ष्मी कृपा का प्रतीक माना जाता है।",
+     "heading": "श्री यंत्र:"
+    }
+   ],
+   "points_en": [
+    {
+     "text": "Place the safe or cupboard where you keep money against the south wall so that it opens towards the north.",
+     "heading": "Direction of the safe:"
+    },
+    {
+     "text": "Keep the entrance clean, well-lit and free of obstructions; don't leave broken slippers or rubbish near the door.",
+     "heading": "Main entrance:"
+    },
+    {
+     "text": "A Shri Yantra installed in the pooja room is considered a symbol of wealth, prosperity and Lakshmi's blessings.",
+     "heading": "Shri Yantra:"
+    }
+   ],
+   "sort_order": 2,
+   "is_active": true,
+   "created_at": "2026-08-01T04:59:48.99486+00:00",
+   "updated_at": "2026-08-01T04:59:48.99486+00:00"
+  },
+  {
+   "id": "5d72a538-3f18-41e6-b66c-d6b3b0cdf9e9",
+   "title": "रिश्तों में बढ़ रहा तनाव?",
+   "title_en": "Growing tension in relationships?",
+   "points": [
+    {
+     "text": "पति-पत्नी का शयनकक्ष घर के दक्षिण-पश्चिम कोने में शुभ माना जाता है, जिससे संबंध स्थिर रहते हैं।",
+     "heading": "दक्षिण-पश्चिम कोना:"
+    },
+    {
+     "text": "शयनकक्ष में हल्के गुलाबी और क्रीम रंग प्रेम व सामंजस्य बढ़ाने वाले माने जाते हैं।",
+     "heading": "बेडरूम रंग:"
+    },
+    {
+     "text": "दक्षिण-पश्चिम दीवार पर साथ की सुखद तस्वीर लगाना संबंधों में मधुरता का प्रतीक माना जाता है।",
+     "heading": "युगल तस्वीर:"
+    }
+   ],
+   "points_en": [
+    {
+     "text": "A couple's bedroom in the south-west corner of the home is considered auspicious and keeps the relationship stable.",
+     "heading": "South-West corner:"
+    },
+    {
+     "text": "Light pink and cream colours in the bedroom are believed to increase love and harmony.",
+     "heading": "Bedroom colours:"
+    },
+    {
+     "text": "Hanging a happy photo of the two of you on the south-west wall is considered a symbol of sweetness in the relationship.",
+     "heading": "Couple photo:"
+    }
+   ],
+   "sort_order": 3,
+   "is_active": true,
+   "created_at": "2026-08-01T04:59:48.99486+00:00",
+   "updated_at": "2026-08-01T04:59:48.99486+00:00"
+  },
+  {
+   "id": "56833645-f517-4b7d-8fc7-5529c84af251",
+   "title": "पढ़ाई में मन नहीं लगता?",
+   "title_en": "Can't focus on your studies?",
+   "points": [
+    {
+     "text": "अध्ययन करते समय मुख पूर्व या उत्तर दिशा की ओर रखने से एकाग्रता बढ़ती है, ऐसा माना जाता है।",
+     "heading": "पढ़ने की दिशा:"
+    },
+    {
+     "text": "पढ़ने की मेज पर बेवजह सामान और किताबों का ढेर न रखें, इससे मन बिखरता है।",
+     "heading": "स्वच्छ मेज:"
+    },
+    {
+     "text": "पढ़ाई शुरू करने से पहले माँ सरस्वती का स्मरण मन को शांत और स्थिर बनाने वाला माना जाता है।",
+     "heading": "सरस्वती वंदना:"
+    }
+   ],
+   "points_en": [
+    {
+     "text": "Facing east or north while studying is believed to improve concentration.",
+     "heading": "Study direction:"
+    },
+    {
+     "text": "Don't keep unnecessary clutter or piles of books on the study table; it scatters the mind.",
+     "heading": "Clean desk:"
+    },
+    {
+     "text": "Remembering Maa Saraswati before starting to study is believed to calm and steady the mind.",
+     "heading": "Saraswati Vandana:"
+    }
+   ],
+   "sort_order": 4,
+   "is_active": true,
+   "created_at": "2026-08-01T04:59:48.99486+00:00",
+   "updated_at": "2026-08-01T04:59:48.99486+00:00"
+  },
+  {
+   "id": "49ca2256-051f-4351-9e71-97312c32bb55",
+   "title": "नींद पूरी नहीं हो रही?",
+   "title_en": "Not getting enough sleep?",
+   "points": [
+    {
+     "text": "सोते समय सिर दक्षिण या पूर्व दिशा की ओर रखना अच्छी नींद के लिए शुभ माना जाता है।",
+     "heading": "सोने की दिशा:"
+    },
+    {
+     "text": "बेडरूम में टीवी, मोबाइल और अन्य उपकरण कम रखें, इससे नकारात्मक ऊर्जा घटती है।",
+     "heading": "इलेक्ट्रॉनिक्स:"
+    },
+    {
+     "text": "कमरे के कोने में कपूर या समुद्री नमक रखना नकारात्मक ऊर्जा हटाने वाला माना जाता है।",
+     "heading": "कपूर व नमक:"
+    }
+   ],
+   "points_en": [
+    {
+     "text": "Sleeping with your head towards the south or east is considered auspicious for good sleep.",
+     "heading": "Sleeping direction:"
+    },
+    {
+     "text": "Keep the TV, mobile and other devices in the bedroom to a minimum; this reduces negative energy.",
+     "heading": "Electronics:"
+    },
+    {
+     "text": "Keeping camphor or sea salt in a corner of the room is believed to remove negative energy.",
+     "heading": "Camphor and salt:"
+    }
+   ],
+   "sort_order": 5,
+   "is_active": true,
+   "created_at": "2026-08-01T04:59:48.99486+00:00",
+   "updated_at": "2026-08-01T04:59:48.99486+00:00"
+  }
+ ],
+ "astrology_articles": [
+  {
+   "id": "abc128e7-12ec-41c0-8493-1c7d435ea5e3",
+   "slug": "astromate",
+   "title": "Astromate About",
+   "short": "Astromate is a leading platform for authentic astrology consultations and predictions.",
+   "hero_sub": "India's most trusted platform for authentic astrology consultations and spiritual guidance.",
+   "intro": "Astromate is a premier digital platform connecting seekers with India's most experienced and verified astrologers. We combine centuries-old Vedic wisdom with modern technology to deliver precise, personalised guidance on love, career, health, and life's big decisions. Our mission is to make authentic astrology accessible to everyone, anytime, anywhere.",
+   "section_a": "Our Core Offerings",
+   "grid_cards": [
+    {
+     "bg": "#f3e8ff",
+     "desc": "Every expert on Astromate is rigorously screened for knowledge, accuracy, and ethical practice.",
+     "color": "#5b21b6",
+     "title": "Verified Astrologers"
+    },
+    {
+     "bg": "#ede9fe",
+     "desc": "Vedic, Tarot, Numerology, Palmistry, KP, Nadi, and more — all under one roof.",
+     "color": "#6d28d9",
+     "title": "Multiple Modalities"
+    },
+    {
+     "bg": "#f5f3ff",
+     "desc": "Connect via chat or call at any hour — life's questions don't follow office hours.",
+     "color": "#7c3aed",
+     "title": "24 × 7 Availability"
+    },
+    {
+     "bg": "#faf5ff",
+     "desc": "All consultations are fully confidential and protected end-to-end.",
+     "color": "#9333ea",
+     "title": "Privacy Guaranteed"
+    }
+   ],
+   "section_b": "Why Choose Astromate",
+   "spreads": [
+    {
+     "desc": "Our astrologers maintain high satisfaction ratings backed by thousands of verified reviews.",
+     "title": "Accurate Predictions"
+    },
+    {
+     "desc": "New users get their first 5-minute session free to experience the platform with zero risk.",
+     "title": "First Consultation Free"
+    },
+    {
+     "desc": "Consult in Hindi, English, Tamil, Telugu, Bengali, and 10+ other languages.",
+     "title": "Multilingual Support"
+    }
+   ],
+   "section_c": "What You Can Discover on Astromate",
+   "reveals": [
+    "Deep insights into your birth chart and life purpose",
+    "Compatibility analysis for relationships and marriage",
+    "Career and financial trajectory guidance",
+    "Auspicious dates and muhurat for important events",
+    "Remedies and gemstone recommendations",
+    "Past-life karma and spiritual growth path"
+   ],
+   "cta_title": "Begin Your Journey with Astromate",
+   "cta_sub": "Talk to a verified astrologer right now — your answers are just a click away.",
+   "cta_btn": "🔮 Talk to Astrologer",
+   "sort_order": 0,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "91207126-7efe-4b71-a9e5-b30714fb8fd8",
+   "slug": "kundali",
+   "title": "Kundali About",
+   "short": "Kundali is the birth chart that reveals the cosmic blueprint of your life journey.",
+   "hero_sub": "Kundali is the birth chart that reveals the cosmic blueprint of your entire life journey.",
+   "intro": "A Kundali, or Janam Kundali, is a precise astronomical snapshot of the sky at the exact moment of your birth. It maps the positions of the Sun, Moon, and planets across 12 houses, encoding the energies that shape your personality, relationships, health, and destiny. Vedic astrologers use this sacred chart as a complete life manual.",
+   "section_a": "Key Components of a Kundali",
+   "grid_cards": [
+    {
+     "bg": "#fef9c3",
+     "desc": "Each house governs a distinct life area — from self and wealth to marriage and spirituality.",
+     "color": "#854d0e",
+     "title": "12 Houses (Bhavas)"
+    },
+    {
+     "bg": "#fef3c7",
+     "desc": "Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu & Ketu each influence different facets of life.",
+     "color": "#92400e",
+     "title": "9 Planets (Grahas)"
+    },
+    {
+     "bg": "#fde68a",
+     "desc": "The rashi in each house colours the nature of that life domain.",
+     "color": "#78350f",
+     "title": "12 Zodiac Signs (Rashis)"
+    },
+    {
+     "bg": "#fcd34d",
+     "desc": "Lunar mansions that add micro-level nuance to planetary placements.",
+     "color": "#713f12",
+     "title": "27 Nakshatras"
+    }
+   ],
+   "section_b": "Types of Kundali Analysis",
+   "spreads": [
+    {
+     "desc": "The primary birth chart that forms the foundation of all Vedic readings.",
+     "title": "Janam Kundali"
+    },
+    {
+     "desc": "Reveals the deeper soul purpose and marriage prospects.",
+     "title": "Navamsa Chart (D-9)"
+    },
+    {
+     "desc": "Compatibility matching for marriage using 36-point Guna system.",
+     "title": "Kundali Milan"
+    }
+   ],
+   "section_c": "What Kundali Reveals",
+   "reveals": [
+    "Your inherent strengths, talents, and weaknesses",
+    "Karmic lessons carried from past lives",
+    "Timing of major life events via Dasha periods",
+    "Health predispositions and remedial measures",
+    "Best career fields aligned with your planetary energies",
+    "Ideal life partner qualities and marriage timing"
+   ],
+   "cta_title": "Get Your Free Kundali Analysis",
+   "cta_sub": "Generate your detailed birth chart and discover what the stars have written for you.",
+   "cta_btn": "📜 Get Kundali Now",
+   "sort_order": 1,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "5f6996de-720b-45bc-88f2-ea29587574c2",
+   "slug": "palmistry",
+   "title": "Palmistry About",
+   "short": "The ancient art of reading palms to understand personality and predict future events.",
+   "hero_sub": "Decode your destiny through the unique map etched on your own hands.",
+   "intro": "Palmistry, or Hasta Rekha Shastra, is among the oldest forms of divination, practised across India, China, Egypt, and Greece for millennia. A skilled palmist reads the lines, mounts, shapes, and texture of your hand to reveal your character, health tendencies, emotional patterns, and life trajectory with striking accuracy.",
+   "section_a": "Major Lines of the Palm",
+   "grid_cards": [
+    {
+     "bg": "#d1fae5",
+     "desc": "Indicates vitality, major life changes, and the overall quality of your life journey.",
+     "color": "#065f46",
+     "title": "Life Line"
+    },
+    {
+     "bg": "#a7f3d0",
+     "desc": "Reveals emotional nature, relationship patterns, and matters of the heart.",
+     "color": "#064e3b",
+     "title": "Heart Line"
+    },
+    {
+     "bg": "#6ee7b7",
+     "desc": "Reflects intellect, decision-making style, and mental strengths.",
+     "color": "#065f46",
+     "title": "Head Line"
+    },
+    {
+     "bg": "#34d399",
+     "desc": "Shows career path, life purpose, and the influence of destiny versus free will.",
+     "color": "#022c22",
+     "title": "Fate Line"
+    }
+   ],
+   "section_b": "Key Areas of Reading",
+   "spreads": [
+    {
+     "desc": "Seven mounts (Venus, Jupiter, Saturn, Sun, Mercury, Moon, Mars) reveal dominant personality traits.",
+     "title": "Mounts Analysis"
+    },
+    {
+     "desc": "Shape, length, and flexibility of fingers indicate willpower, creativity, and logic.",
+     "title": "Finger & Thumb Reading"
+    },
+    {
+     "desc": "Earth, Air, Fire, and Water hand types each carry distinct personality signatures.",
+     "title": "Hand Shape & Texture"
+    }
+   ],
+   "section_c": "What Palmistry Reveals",
+   "reveals": [
+    "Core personality traits and hidden talents",
+    "Health indicators and potential vulnerabilities",
+    "Relationship compatibility and marriage timeline",
+    "Career aptitude and financial potential",
+    "Travel lines and significant life relocations",
+    "Spiritual development and intuitive abilities"
+   ],
+   "cta_title": "Unlock Your Palm's Secrets",
+   "cta_sub": "Consult an expert palmist and discover what your hands are telling you.",
+   "cta_btn": "✋ Talk to Palmist",
+   "sort_order": 2,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "8e86bbac-936e-4117-972b-d593cf9e2ba2",
+   "slug": "lifecoach",
+   "title": "Life Coach About",
+   "short": "Spiritual life coaching combined with astrological guidance for personal growth.",
+   "hero_sub": "Astrology-backed life coaching to help you live with clarity, purpose, and direction.",
+   "intro": "Astromate's Life Coaching service blends the precision of Vedic astrology with evidence-based coaching techniques. Your birth chart is used as a personalised roadmap to identify limiting beliefs, discover strengths, and create an actionable growth plan — making the coaching journey far more targeted and effective than generic approaches.",
+   "section_a": "Coaching Focus Areas",
+   "grid_cards": [
+    {
+     "bg": "#dbeafe",
+     "desc": "Align your professional choices with your planetary strengths for lasting satisfaction.",
+     "color": "#1e3a8a",
+     "title": "Career & Purpose"
+    },
+    {
+     "bg": "#bfdbfe",
+     "desc": "Improve communication, heal patterns, and attract healthy connections.",
+     "color": "#1e40af",
+     "title": "Relationships"
+    },
+    {
+     "bg": "#93c5fd",
+     "desc": "Overcome self-doubt rooted in your karmic patterns and Saturn placements.",
+     "color": "#1d4ed8",
+     "title": "Confidence & Mindset"
+    },
+    {
+     "bg": "#60a5fa",
+     "desc": "Identify favourable periods and mindset blocks around money.",
+     "color": "#1e3a8a",
+     "title": "Wealth & Abundance"
+    }
+   ],
+   "section_b": "How Sessions Work",
+   "spreads": [
+    {
+     "desc": "We start with your Kundali to identify current planetary transits shaping your life.",
+     "title": "Chart-Based Assessment"
+    },
+    {
+     "desc": "Co-create a realistic 90-day action plan aligned with auspicious Dasha periods.",
+     "title": "Goal Setting & Planning"
+    },
+    {
+     "desc": "Regular follow-up sessions to track progress and adjust the plan.",
+     "title": "Ongoing Accountability"
+    }
+   ],
+   "section_c": "Outcomes You Can Expect",
+   "reveals": [
+    "Crystal clarity on life purpose and direction",
+    "Practical strategies to achieve your goals faster",
+    "Improved self-awareness and emotional intelligence",
+    "Stronger decision-making using planetary timing",
+    "Reduced anxiety through understanding your cosmic cycles",
+    "A renewed sense of motivation and inner peace"
+   ],
+   "cta_title": "Start Your Coaching Journey",
+   "cta_sub": "Book a session with an astro life coach and take the first step toward the life you deserve.",
+   "cta_btn": "🌟 Book a Session",
+   "sort_order": 3,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "342d9bec-1108-4e84-b1b5-708200864b44",
+   "slug": "nadi",
+   "title": "Nadi About",
+   "short": "Ancient palm-leaf manuscripts that contain detailed predictions about your life.",
+   "hero_sub": "Discover what ancient sages recorded about your life thousands of years ago.",
+   "intro": "Nadi Astrology is an extraordinary system of divination based on palm-leaf manuscripts written by revered ancient sages — Agastya, Bhrigu, Vashishtha, and others — thousands of years ago. These leaves are said to contain pre-recorded life histories of specific individuals, accessible through a thumb-print matching process, and reveal astonishingly precise life details.",
+   "section_a": "The Nadi System",
+   "grid_cards": [
+    {
+     "bg": "#ffedd5",
+     "desc": "Stored in Tamil Nadu, these rare manuscripts are classified by thumb-print patterns.",
+     "color": "#7c2d12",
+     "title": "Palm Leaf Libraries"
+    },
+    {
+     "bg": "#fed7aa",
+     "desc": "One of the most revered collections, covering all life dimensions with remedies.",
+     "color": "#9a3412",
+     "title": "Agastya Nadi"
+    },
+    {
+     "bg": "#fdba74",
+     "desc": "A vast astrological treatise predicting future events based on birth chart analysis.",
+     "color": "#7c2d12",
+     "title": "Bhrigu Samhita"
+    },
+    {
+     "bg": "#fb923c",
+     "desc": "Focuses on planetary positions and their precise effects on individual destinies.",
+     "color": "#431407",
+     "title": "Dhruva Nadi"
+    }
+   ],
+   "section_b": "What the Nadi Reveals",
+   "spreads": [
+    {
+     "desc": "Detailed accounts of karmic debts and blessings carried from previous incarnations.",
+     "title": "Past Life Karma"
+    },
+    {
+     "desc": "Key events, transitions, and turning points mapped to specific ages.",
+     "title": "Current Life Timeline"
+    },
+    {
+     "desc": "Temple visits, mantras, and rituals prescribed to neutralise negative karma.",
+     "title": "Remedies (Pariharas)"
+    }
+   ],
+   "section_c": "Areas Covered in Nadi Reading",
+   "reveals": [
+    "Exact family background and personal history",
+    "Career, business, and financial milestones",
+    "Marriage timing and partner description",
+    "Health conditions and their remedies",
+    "Spiritual path and past-life connections",
+    "Future events and important life timings"
+   ],
+   "cta_title": "Explore Your Nadi Leaf",
+   "cta_sub": "Connect with an expert Nadi reader and discover what the ancient sages wrote for you.",
+   "cta_btn": "📜 Find My Nadi",
+   "sort_order": 4,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "05f94337-1c0a-4018-989c-dec6afb2b42c",
+   "slug": "vedic",
+   "title": "Vedic About",
+   "short": "The ancient science of Vedic astrology based on sacred Hindu scriptures.",
+   "hero_sub": "One of humanity's oldest sciences — a complete system for understanding life's cosmic design.",
+   "intro": "Vedic Astrology, known as Jyotisha (the science of light), is an ancient Indian system developed over 5,000 years ago and codified in sacred texts like the Vedas and Brihat Parashara Hora Shastra. Unlike Western astrology, it uses the sidereal zodiac, incorporates the Moon's position as central, and employs a sophisticated Dasha timing system to forecast events with remarkable precision.",
+   "section_a": "Pillars of Vedic Astrology",
+   "grid_cards": [
+    {
+     "bg": "#fee2e2",
+     "desc": "Based on actual star positions, typically 23° behind the tropical (Western) zodiac.",
+     "color": "#7f1d1d",
+     "title": "Sidereal Zodiac"
+    },
+    {
+     "bg": "#fecaca",
+     "desc": "A planetary period system that times events across the entire lifespan with precision.",
+     "color": "#991b1b",
+     "title": "Dasha System"
+    },
+    {
+     "bg": "#fca5a5",
+     "desc": "27 lunar mansions that provide nuanced character and timing insights.",
+     "color": "#7f1d1d",
+     "title": "Nakshatras"
+    },
+    {
+     "bg": "#f87171",
+     "desc": "16 specialised charts (Vargas) each revealing a specific life domain in detail.",
+     "color": "#450a0a",
+     "title": "Divisional Charts"
+    }
+   ],
+   "section_b": "Branches of Vedic Astrology",
+   "spreads": [
+    {
+     "desc": "The most widely practised classical system, based on Sage Parashara's foundational texts.",
+     "title": "Parashari"
+    },
+    {
+     "desc": "An advanced system using special Karakas (significators) for highly specific predictions.",
+     "title": "Jaimini"
+    },
+    {
+     "desc": "Krishnamurti Paddhati — a modern, precise method based on sub-lord theory.",
+     "title": "KP Astrology"
+    }
+   ],
+   "section_c": "What Vedic Astrology Offers",
+   "reveals": [
+    "A complete life roadmap from birth to old age",
+    "Precise timing of career, marriage, and children",
+    "Annual and monthly predictions via Varshaphal",
+    "Muhurat selection for auspicious beginnings",
+    "Gem therapy and mantra remedies",
+    "Compatibility analysis for relationships and business"
+   ],
+   "cta_title": "Consult a Vedic Astrology Expert",
+   "cta_sub": "Get a personalised Vedic reading and understand the cosmic forces shaping your life.",
+   "cta_btn": "🌌 Consult Now",
+   "sort_order": 5,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "1961e4d7-e01e-4fa0-9c29-5b3f06057a22",
+   "slug": "tarot",
+   "title": "Tarot About",
+   "short": "Mystical tarot card readings that provide guidance and insights into your future.",
+   "hero_sub": "Mystical tarot card readings that provide guidance and insights into your future.",
+   "intro": "Tarot reading is a form of divination using a deck of 78 cards to gain insight into the past, present, and future. Each card has symbolic meanings that help understand life situations, relationships, career prospects, and spiritual growth. Our tarot readings combine traditional interpretations with intuitive insights for accurate guidance.",
+   "section_a": "Tarot Card Categories",
+   "grid_cards": [
+    {
+     "bg": "#ede9fe",
+     "desc": "Represents major life themes, spiritual lessons, and karmic influences.",
+     "color": "#4c1d95",
+     "title": "Major Arcana (22 Cards)"
+    },
+    {
+     "bg": "#d8f3dc",
+     "desc": "Covers daily life situations, emotions, and practical matters.",
+     "color": "#1b4332",
+     "title": "Minor Arcana (56 Cards)"
+    },
+    {
+     "bg": "#e9d8fd",
+     "desc": "Represents personality types and people in your life.",
+     "color": "#44337a",
+     "title": "Court Cards (16 Cards)"
+    },
+    {
+     "bg": "#fefce8",
+     "desc": "Cups (emotions), Wands (action), Swords (thoughts), Pentacles (material).",
+     "color": "#854d0e",
+     "title": "Four Suits"
+    }
+   ],
+   "section_b": "Popular Tarot Spreads",
+   "spreads": [
+    {
+     "desc": "Comprehensive 10-card spread for detailed life analysis.",
+     "title": "Celtic Cross Spread"
+    },
+    {
+     "desc": "Specialised spread for love and relationship guidance.",
+     "title": "Relationship Spread"
+    },
+    {
+     "desc": "Professional guidance and career decision-making.",
+     "title": "Career Spread"
+    }
+   ],
+   "section_c": "What Tarot Reading Reveals",
+   "reveals": [
+    "Hidden influences affecting your current situation",
+    "Guidance for important life decisions and choices",
+    "Insights into relationships and emotional patterns",
+    "Career opportunities and professional growth",
+    "Spiritual guidance and personal development",
+    "Timing of future events and opportunities"
+   ],
+   "cta_title": "Unlock Your Future with Tarot",
+   "cta_sub": "Get personalized tarot card readings for clarity and guidance.",
+   "cta_btn": "🃏 Get Tarot Reading",
+   "sort_order": 6,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "418a359b-8737-434b-8ec1-bc8d6c3c0554",
+   "slug": "lalkitab",
+   "title": "Lal Kitab About",
+   "short": "The revolutionary system of astrology with simple and effective remedies.",
+   "hero_sub": "India's most practical astrological system — simple remedies, powerful results.",
+   "intro": "Lal Kitab is a unique astrological system that originated in undivided Punjab in the 19th century. Written in Urdu verse, it offers a fresh perspective on Vedic astrology with an unconventional house-planet system and remarkably simple, affordable remedies (upayas) that anyone can perform at home without pandits or expensive rituals.",
+   "section_a": "What Makes Lal Kitab Unique",
+   "grid_cards": [
+    {
+     "bg": "#ffe4e6",
+     "desc": "Lal Kitab treats planets by their house position, not sign — a distinctly different approach.",
+     "color": "#9f1239",
+     "title": "Unconventional Houses"
+    },
+    {
+     "bg": "#fecdd3",
+     "desc": "Upayas involve everyday items like copper coins, mustard oil, or feeding animals.",
+     "color": "#be123c",
+     "title": "Practical Remedies"
+    },
+    {
+     "bg": "#fda4af",
+     "desc": "Identifies karmic debts owed to family and prescribes targeted remedies.",
+     "color": "#9f1239",
+     "title": "Debt Theory"
+    },
+    {
+     "bg": "#fb7185",
+     "desc": "Yearly predictions (Varshaphal) that are strikingly precise for financial and personal matters.",
+     "color": "#4c0519",
+     "title": "Annual Horoscope"
+    }
+   ],
+   "section_b": "Key Lal Kitab Concepts",
+   "spreads": [
+    {
+     "desc": "When a planet sits in its own natural house, its results are intensified positively.",
+     "title": "Pukka Ghar (Permanent House)"
+    },
+    {
+     "desc": "Planets in certain positions lose power — upayas are needed to awaken them.",
+     "title": "Sleeping & Blind Planets"
+    },
+    {
+     "desc": "Ancestral karmic debts that manifest as recurring problems in a family line.",
+     "title": "Family Karma (Pitru Rin)"
+    }
+   ],
+   "section_c": "What Lal Kitab Can Help With",
+   "reveals": [
+    "Persistent financial problems and their root causes",
+    "Delayed marriage or relationship difficulties",
+    "Career stagnation and professional setbacks",
+    "Health issues linked to planetary afflictions",
+    "Family conflicts and ancestral karma",
+    "Simple daily remedies that bring fast relief"
+   ],
+   "cta_title": "Get Your Lal Kitab Reading",
+   "cta_sub": "Discover affordable, powerful remedies rooted in the revolutionary Lal Kitab system.",
+   "cta_btn": "📕 Get Lal Kitab Reading",
+   "sort_order": 7,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "a5a1d708-6c3d-4882-9469-a5f1ef295f10",
+   "slug": "vastu",
+   "title": "Vastu About",
+   "short": "The traditional science of architecture that harmonises living spaces with natural forces.",
+   "hero_sub": "Align your living and working spaces with cosmic energies for health, wealth, and harmony.",
+   "intro": "Vastu Shastra is an ancient Indian science of architecture and spatial arrangement dating back to the Vedic period. Rooted in the principle that a building's design, orientation, and energy flow directly influence the health, prosperity, and well-being of its occupants, Vastu harmonises the five elements — Earth, Water, Fire, Air, and Space — within any structure.",
+   "section_a": "Core Vastu Principles",
+   "grid_cards": [
+    {
+     "bg": "#cffafe",
+     "desc": "Each of the 8 directions governs specific life areas; correct room placement amplifies them.",
+     "color": "#0e7490",
+     "title": "Directions (Ashtadisha)"
+    },
+    {
+     "bg": "#a5f3fc",
+     "desc": "Balancing Earth, Water, Fire, Air, and Space within the structure ensures harmony.",
+     "color": "#155e75",
+     "title": "Five Elements (Pancha Bhuta)"
+    },
+    {
+     "bg": "#67e8f9",
+     "desc": "The central zone of any structure must remain open and energetically clear.",
+     "color": "#0e7490",
+     "title": "Brahmasthana"
+    },
+    {
+     "bg": "#22d3ee",
+     "desc": "The Vastu Purusha Mandala is a grid that maps cosmic energies across a plot or building.",
+     "color": "#083344",
+     "title": "Energy Grids"
+    }
+   ],
+   "section_b": "Applications of Vastu",
+   "spreads": [
+    {
+     "desc": "Room placement, entrance direction, and kitchen/bedroom orientation for family well-being.",
+     "title": "Home Vastu"
+    },
+    {
+     "desc": "Workspace layout, seating direction, and cash counter placement to boost prosperity.",
+     "title": "Office & Business Vastu"
+    },
+    {
+     "desc": "Site selection, soil quality, and plot shape analysis before any construction begins.",
+     "title": "Plot & Construction Vastu"
+    }
+   ],
+   "section_c": "Benefits of Vastu Compliance",
+   "reveals": [
+    "Improved health and vitality for all occupants",
+    "Enhanced financial flow and business growth",
+    "Greater harmony and peace in family relationships",
+    "Better sleep quality and mental clarity",
+    "Positive energy and reduced conflicts at home",
+    "Accelerated career growth for working professionals"
+   ],
+   "cta_title": "Get a Vastu Consultation",
+   "cta_sub": "Have an expert analyse your home or office and guide you toward positive energy flow.",
+   "cta_btn": "🏠 Book Vastu Consult",
+   "sort_order": 8,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "a6aa834e-77ac-4ea9-8143-7e550450196b",
+   "slug": "psychic",
+   "title": "Psychic About",
+   "short": "Intuitive psychic readings that tap into spiritual energies and cosmic consciousness.",
+   "hero_sub": "Beyond logic, beyond charts — pure intuitive connection to your soul's truth.",
+   "intro": "Psychic readings access information beyond the physical senses through clairvoyance (clear seeing), clairaudience (clear hearing), clairsentience (clear feeling), and claircognizance (clear knowing). Our gifted psychics receive impressions, visions, and energy signatures from a person's aura and spirit to deliver profound insights that logical analysis alone cannot uncover.",
+   "section_a": "Types of Psychic Abilities",
+   "grid_cards": [
+    {
+     "bg": "#f3e8ff",
+     "desc": "The ability to see visions, symbols, and images relating to a person's past, present, or future.",
+     "color": "#581c87",
+     "title": "Clairvoyance"
+    },
+    {
+     "bg": "#e9d5ff",
+     "desc": "Receiving messages, names, or words from spiritual dimensions beyond physical hearing.",
+     "color": "#6b21a8",
+     "title": "Clairaudience"
+    },
+    {
+     "bg": "#d8b4fe",
+     "desc": "Feeling and sensing the emotions, physical sensations, and energy fields of another person.",
+     "color": "#7e22ce",
+     "title": "Clairsentience"
+    },
+    {
+     "bg": "#c084fc",
+     "desc": "The ability to communicate with departed loved ones and relay their messages.",
+     "color": "#3b0764",
+     "title": "Mediumship"
+    }
+   ],
+   "section_b": "Types of Psychic Readings",
+   "spreads": [
+    {
+     "desc": "Interpreting the colours and layers of your energy field to reveal your current state.",
+     "title": "Aura Reading"
+    },
+    {
+     "desc": "Connecting with your higher guides to receive direction for your life path.",
+     "title": "Spirit Guide Reading"
+    },
+    {
+     "desc": "Perceiving people, places, or situations at a distance through psychic perception.",
+     "title": "Remote Viewing"
+    }
+   ],
+   "section_c": "What a Psychic Reading Offers",
+   "reveals": [
+    "Validation of your intuitions and gut feelings",
+    "Insights into unresolved emotional blocks",
+    "Messages from loved ones who have passed",
+    "Clarity on confusing relationships or life situations",
+    "Awareness of your energy and auric field health",
+    "Guidance on your spiritual path and soul mission"
+   ],
+   "cta_title": "Connect with a Psychic Now",
+   "cta_sub": "Receive intuitive guidance that goes beyond what charts and logic can reveal.",
+   "cta_btn": "🔮 Talk to a Psychic",
+   "sort_order": 9,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "cfcb5321-b91f-44a9-9493-18a94b979f89",
+   "slug": "numerology",
+   "title": "Numerology About",
+   "short": "The mystical relationship between numbers, letters, and life events — personality traits.",
+   "hero_sub": "Every number in your life carries a vibration — discover what yours reveal.",
+   "intro": "Numerology is the ancient metaphysical science of numbers, with roots in Pythagorean, Chaldean, and Vedic traditions. It holds that numbers carry specific vibrational frequencies that influence human character, life events, and destiny. By analysing your birth date and full name, a numerologist can decode your life's blueprint with surprising accuracy.",
+   "section_a": "Core Numbers in Numerology",
+   "grid_cards": [
+    {
+     "bg": "#ccfbf1",
+     "desc": "The most important number — derived from your birth date, it reveals your core life purpose.",
+     "color": "#134e4a",
+     "title": "Life Path Number"
+    },
+    {
+     "bg": "#99f6e4",
+     "desc": "Calculated from your full name at birth, it shows your ultimate life goal.",
+     "color": "#115e59",
+     "title": "Destiny Number"
+    },
+    {
+     "bg": "#5eead4",
+     "desc": "Reveals your deepest inner desires, motivations, and what your soul truly yearns for.",
+     "color": "#0f4c43",
+     "title": "Soul Urge Number"
+    },
+    {
+     "bg": "#2dd4bf",
+     "desc": "A yearly cycle number that predicts the overall theme and energy of any given year.",
+     "color": "#042f2e",
+     "title": "Personal Year Number"
+    }
+   ],
+   "section_b": "Numerology Systems",
+   "spreads": [
+    {
+     "desc": "The most widely used Western system, assigning 1–9 values to letters A–Z.",
+     "title": "Pythagorean Numerology"
+    },
+    {
+     "desc": "An ancient Babylonian system that assigns values based on sound vibrations.",
+     "title": "Chaldean Numerology"
+    },
+    {
+     "desc": "Linked to the 9 planets of Vedic astrology for a deeply integrated approach.",
+     "title": "Vedic Numerology"
+    }
+   ],
+   "section_c": "What Numerology Reveals",
+   "reveals": [
+    "Your natural talents, strengths, and blind spots",
+    "The type of partner best suited to your vibration",
+    "Best years for career changes and new ventures",
+    "Lucky numbers, colours, and auspicious dates",
+    "Recurring life patterns and how to break them",
+    "Your karmic lessons and spiritual mission in this life"
+   ],
+   "cta_title": "Discover Your Numbers",
+   "cta_sub": "Get a personalised numerology report and see what the numbers say about your life.",
+   "cta_btn": "🔢 Get Numerology Report",
+   "sort_order": 10,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  },
+  {
+   "id": "5e0e5509-1100-46b6-b635-32b3c795e5d6",
+   "slug": "kp",
+   "title": "KP About",
+   "short": "Krishnamurti Paddhati — a precise and scientific method of astrological predictions.",
+   "hero_sub": "The most scientifically precise branch of Vedic astrology — hyper-accurate predictions.",
+   "intro": "Krishnamurti Paddhati (KP) Astrology was developed by the late Prof. K.S. Krishnamurti in the 20th century. It refines classical Vedic astrology by introducing the Sub-Lord theory — subdividing the 27 Nakshatras into 249 sub-divisions — allowing astrologers to pinpoint the timing and outcome of events with a degree of accuracy unprecedented in traditional systems.",
+   "section_a": "Key KP Concepts",
+   "grid_cards": [
+    {
+     "bg": "#dbeafe",
+     "desc": "Each Nakshatra is divided into 9 sub-parts based on the Vimshottari Dasha sequence, enabling pinpoint precision.",
+     "color": "#1e3a8a",
+     "title": "Sub-Lord Theory"
+    },
+    {
+     "bg": "#bfdbfe",
+     "desc": "The sub-lord of each house cusp determines whether that house's matters will fructify.",
+     "color": "#1e40af",
+     "title": "Cuspal Sub-Lords"
+    },
+    {
+     "bg": "#93c5fd",
+     "desc": "Planets ruling the moment of query guide the astrologer to the most relevant areas of the chart.",
+     "color": "#1d4ed8",
+     "title": "Ruling Planets"
+    },
+    {
+     "bg": "#60a5fa",
+     "desc": "Planets that signify a house through occupation, lordship, and aspect determine event outcomes.",
+     "color": "#1e3a8a",
+     "title": "Significators"
+    }
+   ],
+   "section_b": "What KP Is Best For",
+   "spreads": [
+    {
+     "desc": "Pinpoint timing of marriage, job change, childbirth, travel, or financial gain to the month or week.",
+     "title": "Event Timing"
+    },
+    {
+     "desc": "KP can definitively answer specific yes/no questions using cuspal sub-lord analysis.",
+     "title": "Yes/No Questions"
+    },
+    {
+     "desc": "KP is uniquely effective for legal matters, election outcomes, and locating missing items or people.",
+     "title": "Missing Persons & Litigation"
+    }
+   ],
+   "section_c": "Advantages of KP Astrology",
+   "reveals": [
+    "Event timing precision far beyond traditional Vedic methods",
+    "Clear yes/no answers to specific life questions",
+    "Scientific, rule-based system with minimal ambiguity",
+    "Accurate predictions for marriage, career, and health",
+    "Compatibility assessments with measurable indicators",
+    "Highly reliable for property, finance, and investment decisions"
+   ],
+   "cta_title": "Get a KP Astrology Reading",
+   "cta_sub": "Experience the most precise form of Vedic astrology — get your KP chart analysed today.",
+   "cta_btn": "🔭 Get KP Reading",
+   "sort_order": 11,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:02.982279+00:00",
+   "updated_at": "2026-06-12T04:15:02.982279+00:00"
+  }
+ ],
+ "horoscopes": [
+  {
+   "id": "aed76bae-5403-4ef0-b06c-e3059ae13ce2",
+   "name": "मेष",
+   "name_en": "Aries",
+   "date_range": "21 मार्च - 19 अप्रैल",
+   "date_range_en": "21 March - 19 April",
+   "symbol": "♈",
+   "element": "अग्नि",
+   "element_en": "Fire",
+   "planet": "मंगल",
+   "planet_en": "Mars",
+   "tags": [
+    "मंगल",
+    "अग्नि"
+   ],
+   "tags_en": [
+    "Mars",
+    "Fire"
+   ],
+   "summary": "मेष राशि के जातक साहसी, ऊर्जावान और नेतृत्व करने वाले होते हैं।",
+   "summary_en": "Aries natives are courageous, energetic and natural leaders.",
+   "about": "मेष राशि, राशि चक्र की पहली राशि है जिसका प्रतीक मेढ़ा है। यह मंगल ग्रह द्वारा शासित अग्नि राशि है। मेष जातक अपनी गतिशील ऊर्जा, नेतृत्व गुणों और अग्रणी भावना के लिए जाने जाते हैं। ये स्वाभाविक नेता होते हैं जो जोखिम उठाने और नए क्षेत्रों में कदम रखने से नहीं डरते।\n\nइस राशि के तहत जन्म लेने वाले लोग अपने उत्साह, साहस और दृढ़ संकल्प द्वारा पहचाने जाते हैं। वे हर काम में पहले रहने की प्रबल इच्छा रखते हैं।",
+   "about_en": "Aries is the first sign of the zodiac, symbolised by the ram. It is a fire sign ruled by Mars. Aries natives are known for their dynamic energy, leadership qualities and pioneering spirit. They are natural leaders who are not afraid to take risks and step into new territory.\n\nPeople born under this sign are recognised by their enthusiasm, courage and determination. They have a strong desire to be first in everything they do.",
+   "positive": [
+    "साहसी और निडर",
+    "प्राकृतिक नेतृत्व क्षमता",
+    "उत्साही और ऊर्जावान",
+    "स्वतंत्र और आत्मनिर्भर",
+    "ईमानदार और सीधे",
+    "महत्वाकांक्षी और प्रतिस्पर्धी",
+    "त्वरित निर्णय लेने वाले"
+   ],
+   "positive_en": [
+    "Courageous and fearless",
+    "Natural leadership ability",
+    "Enthusiastic and energetic",
+    "Independent and self-reliant",
+    "Honest and straightforward",
+    "Ambitious and competitive",
+    "Quick decision-makers"
+   ],
+   "negative": [
+    "कभी-कभी आवेगी",
+    "धैर्य की कमी",
+    "कभी-कभी आक्रामक",
+    "स्वकेंद्रित हो सकते हैं",
+    "अल्पकालिक स्वभाव",
+    "दूसरों की न सुनना",
+    "अत्यधिक प्रतिस्पर्धी"
+   ],
+   "negative_en": [
+    "Impulsive at times",
+    "Lack of patience",
+    "Aggressive at times",
+    "Can be self-centred",
+    "Short-tempered",
+    "Don't listen to others",
+    "Overly competitive"
+   ],
+   "love": "प्रेम में मेष जातक भावुक, सीधे और कुछ हद तक अधिकारजताने वाले होते हैं। वे जल्दी प्रेम में पड़ते हैं और पहल करने से नहीं हिचकिचाते। उन्हें एक ऐसे साथी की जरूरत होती है जो उनकी ऊर्जा और स्वतंत्रता का सम्मान करे।",
+   "love_en": "In love, Aries natives are passionate, direct and somewhat possessive. They fall in love quickly and don't hesitate to take the initiative. They need a partner who respects their energy and independence.",
+   "compatible": "सिंह, धनु, मिथुन और कुंभ राशि वाले मेष के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Leo, Sagittarius, Gemini and Aquarius are the most compatible signs for Aries.",
+   "career": "मेष जातक ऐसे करियर में उत्कृष्ट होते हैं जहाँ नेतृत्व, नवाचार और चुनौती हो। वे तेज़ गति वाले वातावरण में फलते-फूलते हैं।",
+   "career_en": "Aries natives excel in careers that involve leadership, innovation and challenge. They thrive in fast-paced environments.",
+   "career_paths": "उद्यमिता, बिक्री, सैन्य सेवा, खेल, राजनीति, आपातकालीन सेवाएं और नेतृत्व भूमिकाएं।",
+   "career_paths_en": "Entrepreneurship, sales, military service, sports, politics, emergency services and leadership roles.",
+   "health": "मेष जातकों को अपने सिर पर विशेष ध्यान देना चाहिए क्योंकि यह उनका शासक अंग है। उन्हें अपनी प्रचुर ऊर्जा को नियमित व्यायाम से नियंत्रित करना चाहिए। तनाव प्रबंधन और धैर्य विकास उनके समग्र स्वास्थ्य के लिए महत्वपूर्ण हैं।",
+   "health_en": "Aries natives should pay special attention to the head, as it is their ruling body part. They should channel their abundant energy through regular exercise. Managing stress and developing patience are important for their overall health.",
+   "sort_order": 0,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "dd463974-715e-49b2-9434-b8ae9496ebdf",
+   "name": "वृषभ",
+   "name_en": "Taurus",
+   "date_range": "20 अप्रैल - 20 मई",
+   "date_range_en": "20 April - 20 May",
+   "symbol": "♉",
+   "element": "पृथ्वी",
+   "element_en": "Earth",
+   "planet": "शुक्र",
+   "planet_en": "Venus",
+   "tags": [
+    "शुक्र",
+    "पृथ्वी"
+   ],
+   "tags_en": [
+    "Venus",
+    "Earth"
+   ],
+   "summary": "वृषभ राशि के जातक धैर्यवान, व्यावहारिक और विश्वसनीय हो...",
+   "summary_en": "Taurus natives are patient, practical and reliab...",
+   "about": "वृषभ राशि, शुक्र ग्रह द्वारा शासित पृथ्वी तत्व की राशि है। इसका प्रतीक बैल है। वृषभ जातक अपनी स्थिरता, व्यावहारिकता और विश्वसनीयता के लिए जाने जाते हैं। ये जीवन की सुख-सुविधाओं का आनंद लेते हैं और सौंदर्य की गहरी समझ रखते हैं।\n\nइस राशि के लोग दृढ़निश्चयी और मेहनती होते हैं। एक बार लक्ष्य तय करने के बाद वे उसे पाकर ही रहते हैं।",
+   "about_en": "Taurus is an earth sign ruled by Venus. Its symbol is the bull. Taurus natives are known for their stability, practicality and reliability. They enjoy life's comforts and have a deep appreciation of beauty.\n\nPeople of this sign are determined and hardworking. Once they set a goal, they don't rest until they achieve it.",
+   "positive": [
+    "धैर्यशील और स्थिर",
+    "विश्वसनीय और वफादार",
+    "व्यावहारिक और यथार्थवादी",
+    "दृढ़निश्चयी",
+    "सौंदर्यबोध से परिपूर्ण",
+    "मेहनती और परिश्रमी",
+    "उदार स्वभाव"
+   ],
+   "positive_en": [
+    "Patient and steady",
+    "Reliable and loyal",
+    "Practical and realistic",
+    "Determined",
+    "Strong aesthetic sense",
+    "Hardworking and diligent",
+    "Generous nature"
+   ],
+   "negative": [
+    "जिद्दी हो सकते हैं",
+    "परिवर्तन को नापसंद करते हैं",
+    "भौतिकवादी हो सकते हैं",
+    "ईर्ष्यालु प्रवृत्ति",
+    "आलसी होने की प्रवृत्ति",
+    "जल्दी से माफ नहीं करते",
+    "अत्यधिक संरक्षणात्मक"
+   ],
+   "negative_en": [
+    "Can be stubborn",
+    "Dislike change",
+    "Can be materialistic",
+    "Tendency towards jealousy",
+    "Tendency to be lazy",
+    "Slow to forgive",
+    "Overly protective"
+   ],
+   "love": "प्रेम में वृषभ जातक अत्यंत वफादार, रोमांटिक और देखभाल करने वाले होते हैं। वे स्थायी और गहरे रिश्ते चाहते हैं। उन्हें सुरक्षा और भावनात्मक स्थिरता की आवश्यकता होती है।",
+   "love_en": "In love, Taurus natives are extremely loyal, romantic and caring. They seek lasting, deep relationships. They need security and emotional stability.",
+   "compatible": "कन्या, मकर, कर्क और मीन राशि वाले वृषभ के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Virgo, Capricorn, Cancer and Pisces are the most compatible signs for Taurus.",
+   "career": "वृषभ जातक वित्त, कला, संगीत, खाद्य उद्योग और रियल एस्टेट में उत्कृष्ट होते हैं। उनकी व्यावहारिक सोच और धैर्य उन्हें सफल बनाती है।",
+   "career_en": "Taurus natives excel in finance, the arts, music, the food industry and real estate. Their practical thinking and patience make them successful.",
+   "career_paths": "बैंकिंग, वित्त, वास्तुकला, संगीत, शेफ, रियल एस्टेट, कृषि और लक्जरी ब्रांड प्रबंधन।",
+   "career_paths_en": "Banking, finance, architecture, music, chef, real estate, agriculture and luxury brand management.",
+   "health": "वृषभ जातकों को गले और थायरॉयड ग्रंथि पर विशेष ध्यान देना चाहिए। संतुलित आहार और नियमित व्यायाम से वे स्वस्थ रह सकते हैं। अत्यधिक आराम से बचना चाहिए।",
+   "health_en": "Taurus natives should pay special attention to the throat and thyroid gland. A balanced diet and regular exercise keep them healthy. They should avoid too much indulgence in comfort.",
+   "sort_order": 1,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "a95645ea-6a66-40bc-a503-c9646e4539fb",
+   "name": "मिथुन",
+   "name_en": "Gemini",
+   "date_range": "21 मई - 20 जून",
+   "date_range_en": "21 May - 20 June",
+   "symbol": "♊",
+   "element": "वायु",
+   "element_en": "Air",
+   "planet": "बुध",
+   "planet_en": "Mercury",
+   "tags": [
+    "बुध",
+    "वायु"
+   ],
+   "tags_en": [
+    "Mercury",
+    "Air"
+   ],
+   "summary": "मिथुन राशि के जातक बुद्धिमान, जिज्ञासु और बातचीत में निपुण होते हैं।",
+   "summary_en": "Gemini natives are intelligent, curious and skilled conversationalists.",
+   "about": "मिथुन राशि, बुध ग्रह द्वारा शासित वायु तत्व की राशि है जिसका प्रतीक जुड़वाँ है। मिथुन जातक अपनी तीव्र बुद्धि, जिज्ञासा और संचार कौशल के लिए जाने जाते हैं। ये बहुमुखी प्रतिभा के धनी होते हैं और हर विषय में रुचि रखते हैं।\n\nइस राशि के लोग सामाजिक, चतुर और हमेशा नई जानकारी की तलाश में रहते हैं। इनका दोहरा स्वभाव इन्हें रोचक और कभी-कभी अप्रत्याशित बनाता है।",
+   "about_en": "Gemini is an air sign ruled by Mercury, symbolised by the twins. Gemini natives are known for their sharp intellect, curiosity and communication skills. They are multi-talented and take an interest in every subject.\n\nPeople of this sign are social, clever and always looking for new information. Their dual nature makes them interesting and sometimes unpredictable.",
+   "positive": [
+    "बुद्धिमान और तेज़ दिमाग",
+    "उत्कृष्ट संचार कौशल",
+    "जिज्ञासु और सीखने वाले",
+    "अनुकूलनीय और लचीले",
+    "सामाजिक और मिलनसार",
+    "रचनात्मक और कल्पनाशील",
+    "बहुमुखी प्रतिभा के धनी"
+   ],
+   "positive_en": [
+    "Intelligent and quick-witted",
+    "Excellent communication skills",
+    "Curious and eager to learn",
+    "Adaptable and flexible",
+    "Social and friendly",
+    "Creative and imaginative",
+    "Multi-talented"
+   ],
+   "negative": [
+    "अनिर्णायक हो सकते हैं",
+    "सतही हो सकते हैं",
+    "अस्थिर मन",
+    "चिंतित होने की प्रवृत्ति",
+    "विश्वसनीयता की कमी",
+    "अत्यधिक बातूनी",
+    "ध्यान भटक जाता है"
+   ],
+   "negative_en": [
+    "Can be indecisive",
+    "Can be superficial",
+    "Restless mind",
+    "Tendency to worry",
+    "Lack of reliability",
+    "Overly talkative",
+    "Easily distracted"
+   ],
+   "love": "प्रेम में मिथुन जातक मानसिक उत्तेजना और विविधता चाहते हैं। वे एक बुद्धिमान और मजेदार साथी की तलाश करते हैं जो उनके साथ विचारों का आदान-प्रदान कर सके।",
+   "love_en": "In love, Gemini natives seek mental stimulation and variety. They look for an intelligent, fun partner with whom they can exchange ideas.",
+   "compatible": "तुला, कुंभ, मेष और सिंह राशि वाले मिथुन के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Libra, Aquarius, Aries and Leo are the most compatible signs for Gemini.",
+   "career": "मिथुन जातक पत्रकारिता, मीडिया, शिक्षण, विज्ञापन और व्यापार में उत्कृष्ट होते हैं। उनकी संचार क्षमता उनकी सबसे बड़ी शक्ति है।",
+   "career_en": "Gemini natives excel in journalism, media, teaching, advertising and business. Their communication ability is their greatest strength.",
+   "career_paths": "पत्रकारिता, लेखन, मीडिया, शिक्षण, विपणन, PR, दूत सेवाएं और व्यापार।",
+   "career_paths_en": "Journalism, writing, media, teaching, marketing, PR, courier services and business.",
+   "health": "मिथुन जातकों को फेफड़ों, कंधों और हाथों पर विशेष ध्यान देना चाहिए। मानसिक तनाव से बचने के लिए ध्यान और योग फायदेमंद होते हैं।",
+   "health_en": "Gemini natives should pay special attention to the lungs, shoulders and arms. Meditation and yoga are beneficial for avoiding mental stress.",
+   "sort_order": 2,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "d287d5d5-aada-43c7-821f-3948d3e5759a",
+   "name": "कर्क",
+   "name_en": "Cancer",
+   "date_range": "21 जून - 22 जुलाई",
+   "date_range_en": "21 June - 22 July",
+   "symbol": "♋",
+   "element": "जल",
+   "element_en": "Water",
+   "planet": "चंद्र",
+   "planet_en": "Moon",
+   "tags": [
+    "चंद्र",
+    "जल"
+   ],
+   "tags_en": [
+    "Moon",
+    "Water"
+   ],
+   "summary": "कर्क राशि के जातक भावनात्मक, देखभाल करने वाले और घर-परिवार से प्रेम करने वाले होते हैं।",
+   "summary_en": "Cancer natives are emotional, caring and devoted to home and family.",
+   "about": "कर्क राशि, चंद्रमा द्वारा शासित जल तत्व की राशि है जिसका प्रतीक केकड़ा है। कर्क जातक अपनी गहरी भावनात्मकता, देखभाल करने की क्षमता और परिवार के प्रति प्रेम के लिए जाने जाते हैं। ये अत्यंत सहानुभूतिपूर्ण और संवेदनशील होते हैं।\n\nइस राशि के लोग अपने घर और परिवार को सर्वोच्च प्राथमिकता देते हैं। इनकी छठी इंद्रिय बहुत तीव्र होती है।",
+   "about_en": "Cancer is a water sign ruled by the Moon, symbolised by the crab. Cancer natives are known for their deep emotions, nurturing nature and love for family. They are extremely empathetic and sensitive.\n\nPeople of this sign give their home and family the highest priority. Their sixth sense is very sharp.",
+   "positive": [
+    "भावनात्मक रूप से बुद्धिमान",
+    "देखभाल करने वाले और पोषक",
+    "वफादार और सुरक्षात्मक",
+    "सहज और संवेदनशील",
+    "कल्पनाशील और रचनात्मक",
+    "दृढ़ और दृढ़निश्चयी",
+    "स्मृति में उत्कृष्ट"
+   ],
+   "positive_en": [
+    "Emotionally intelligent",
+    "Caring and nurturing",
+    "Loyal and protective",
+    "Intuitive and sensitive",
+    "Imaginative and creative",
+    "Tenacious and determined",
+    "Excellent memory"
+   ],
+   "negative": [
+    "अत्यधिक संवेदनशील",
+    "मूडी हो सकते हैं",
+    "अत्यधिक सुरक्षात्मक",
+    "नकारात्मक सोच",
+    "छोड़ने में कठिनाई",
+    "आत्म-दया की प्रवृत्ति",
+    "संदेहास्पद स्वभाव"
+   ],
+   "negative_en": [
+    "Overly sensitive",
+    "Can be moody",
+    "Overprotective",
+    "Negative thinking",
+    "Difficulty letting go",
+    "Tendency towards self-pity",
+    "Suspicious nature"
+   ],
+   "love": "प्रेम में कर्क जातक गहराई से प्यार करते हैं और अपने साथी की पूरी देखभाल करते हैं। वे एक स्थायी और भावनात्मक रूप से संतोषजनक रिश्ता चाहते हैं।",
+   "love_en": "In love, Cancer natives love deeply and take complete care of their partner. They want a lasting, emotionally fulfilling relationship.",
+   "compatible": "वृश्चिक, मीन, वृषभ और कन्या राशि वाले कर्क के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Scorpio, Pisces, Taurus and Virgo are the most compatible signs for Cancer.",
+   "career": "कर्क जातक स्वास्थ्य सेवा, शिक्षा, सामाजिक कार्य, खाद्य उद्योग और रियल एस्टेट में उत्कृष्ट होते हैं।",
+   "career_en": "Cancer natives excel in healthcare, education, social work, the food industry and real estate.",
+   "career_paths": "नर्सिंग, शिक्षण, सामाजिक कार्य, खाद्य उद्योग, रियल एस्टेट, मनोविज्ञान और बाल देखभाल।",
+   "career_paths_en": "Nursing, teaching, social work, the food industry, real estate, psychology and childcare.",
+   "health": "कर्क जातकों को पेट और पाचन तंत्र पर विशेष ध्यान देना चाहिए। भावनात्मक तनाव अक्सर शारीरिक समस्याओं में बदल जाता है। ध्यान और संतुलित आहार लाभकारी होता है।",
+   "health_en": "Cancer natives should pay special attention to the stomach and digestive system. Emotional stress often turns into physical problems. Meditation and a balanced diet are beneficial.",
+   "sort_order": 3,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "775ec815-4d67-4939-aa00-7a14bdc344ea",
+   "name": "सिंह",
+   "name_en": "Leo",
+   "date_range": "23 जुलाई - 22 अगस्त",
+   "date_range_en": "23 July - 22 August",
+   "symbol": "♌",
+   "element": "अग्नि",
+   "element_en": "Fire",
+   "planet": "सूर्य",
+   "planet_en": "Sun",
+   "tags": [
+    "सूर्य",
+    "अग्नि"
+   ],
+   "tags_en": [
+    "Sun",
+    "Fire"
+   ],
+   "summary": "सिंह राशि के जातक आत्मविश्वासी, उदार और नेतृत्व करने वाले होते हैं।",
+   "summary_en": "Leo natives are confident, generous and natural leaders.",
+   "about": "सिंह राशि, सूर्य द्वारा शासित अग्नि तत्व की राशि है जिसका प्रतीक शेर है। सिंह जातक अपने आत्मविश्वास, करिश्मे और उदार स्वभाव के लिए जाने जाते हैं। ये जन्मजात नेता होते हैं जो हमेशा केंद्र में रहना पसंद करते हैं।\n\nइस राशि के लोग दयालु, उत्साही और सृजनात्मक होते हैं। इनकी उपस्थिति मात्र से माहौल रोशन हो जाता है।",
+   "about_en": "Leo is a fire sign ruled by the Sun, symbolised by the lion. Leo natives are known for their confidence, charisma and generous nature. They are born leaders who always like to be the centre of attention.\n\nPeople of this sign are kind, enthusiastic and creative. Their mere presence lights up the room.",
+   "positive": [
+    "आत्मविश्वासी और करिश्माई",
+    "उदार और दयालु",
+    "वफादार और सुरक्षात्मक",
+    "रचनात्मक और कलात्मक",
+    "महत्वाकांक्षी और दृढ़निश्चयी",
+    "मनोरंजक और उत्साही",
+    "प्राकृतिक नेतृत्व क्षमता"
+   ],
+   "positive_en": [
+    "Confident and charismatic",
+    "Generous and kind",
+    "Loyal and protective",
+    "Creative and artistic",
+    "Ambitious and determined",
+    "Entertaining and enthusiastic",
+    "Natural leadership ability"
+   ],
+   "negative": [
+    "अहंकारी हो सकते हैं",
+    "अत्यधिक ध्यानाकर्षण की इच्छा",
+    "जिद्दी स्वभाव",
+    "अत्यधिक नाटकीय",
+    "आलोचना बर्दाश्त नहीं करते",
+    "अपव्ययी हो सकते हैं",
+    "हावी होने की प्रवृत्ति"
+   ],
+   "negative_en": [
+    "Can be arrogant",
+    "Excessive desire for attention",
+    "Stubborn nature",
+    "Overly dramatic",
+    "Can't tolerate criticism",
+    "Can be extravagant",
+    "Tendency to dominate"
+   ],
+   "love": "प्रेम में सिंह जातक रोमांटिक, भावुक और अपने साथी को राजा-रानी जैसा महसूस कराने वाले होते हैं। वे एक ऐसे साथी चाहते हैं जो उनकी प्रशंसा करे और उनके साथ बराबरी से चले।",
+   "love_en": "In love, Leo natives are romantic, passionate and make their partner feel like royalty. They want a partner who admires them and walks alongside them as an equal.",
+   "compatible": "मेष, धनु, मिथुन और तुला राशि वाले सिंह के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Aries, Sagittarius, Gemini and Libra are the most compatible signs for Leo.",
+   "career": "सिंह जातक मनोरंजन, राजनीति, प्रबंधन, शिक्षा और कला में उत्कृष्ट होते हैं। प्रसिद्धि और पहचान उन्हें प्रेरित करती है।",
+   "career_en": "Leo natives excel in entertainment, politics, management, education and the arts. Fame and recognition motivate them.",
+   "career_paths": "अभिनय, राजनीति, प्रबंधन, शिक्षण, फैशन, इवेंट मैनेजमेंट और उद्यमिता।",
+   "career_paths_en": "Acting, politics, management, teaching, fashion, event management and entrepreneurship.",
+   "health": "सिंह जातकों को हृदय और पीठ पर विशेष ध्यान देना चाहिए। नियमित व्यायाम और स्वस्थ जीवनशैली उनके लिए आवश्यक है।",
+   "health_en": "Leo natives should pay special attention to the heart and back. Regular exercise and a healthy lifestyle are essential for them.",
+   "sort_order": 4,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "569bcb97-06a1-4412-b7fe-20d11c25b555",
+   "name": "कन्या",
+   "name_en": "Virgo",
+   "date_range": "23 अगस्त - 22 सितंबर",
+   "date_range_en": "23 August - 22 September",
+   "symbol": "♍",
+   "element": "पृथ्वी",
+   "element_en": "Earth",
+   "planet": "बुध",
+   "planet_en": "Mercury",
+   "tags": [
+    "बुध",
+    "पृथ्वी"
+   ],
+   "tags_en": [
+    "Mercury",
+    "Earth"
+   ],
+   "summary": "कन्या राशि के जातक विश्लेषणात्मक, व्यवस्थित और विवरण पर ध्यान देने वाले होते हैं।",
+   "summary_en": "Virgo natives are analytical, organised and attentive to detail.",
+   "about": "कन्या राशि, बुध ग्रह द्वारा शासित पृथ्वी तत्व की राशि है। इसका प्रतीक कुँवारी कन्या है। कन्या जातक अपनी विश्लेषणात्मक सोच, व्यावहारिकता और परिश्रम के लिए जाने जाते हैं। ये अत्यंत सूक्ष्म विवरणों पर ध्यान देते हैं।\n\nइस राशि के लोग सेवाभावी, विनम्र और पूर्णतावादी होते हैं। इनका तार्किक दृष्टिकोण इन्हें समस्याओं को सुलझाने में माहिर बनाता है।",
+   "about_en": "Virgo is an earth sign ruled by Mercury. Its symbol is the virgin maiden. Virgo natives are known for their analytical thinking, practicality and hard work. They pay attention to the finest details.\n\nPeople of this sign are service-minded, humble and perfectionists. Their logical approach makes them experts at solving problems.",
+   "positive": [
+    "विश्लेषणात्मक और तार्किक",
+    "मेहनती और समर्पित",
+    "विश्वसनीय और ईमानदार",
+    "व्यावहारिक और यथार्थवादी",
+    "सेवाभावी और दयालु",
+    "व्यवस्थित और अनुशासित",
+    "बुद्धिमान और कुशल"
+   ],
+   "positive_en": [
+    "Analytical and logical",
+    "Hardworking and dedicated",
+    "Reliable and honest",
+    "Practical and realistic",
+    "Service-minded and kind",
+    "Organised and disciplined",
+    "Intelligent and efficient"
+   ],
+   "negative": [
+    "अत्यधिक आलोचनात्मक",
+    "चिंतित रहते हैं",
+    "पूर्णतावादी",
+    "अत्यधिक सावधान",
+    "भावनाओं को छुपाते हैं",
+    "दूसरों की मदद में खुद को भूलते हैं",
+    "निर्णय लेने में समय लगता है"
+   ],
+   "negative_en": [
+    "Overly critical",
+    "Prone to worry",
+    "Perfectionist",
+    "Overly cautious",
+    "Hide their emotions",
+    "Forget themselves while helping others",
+    "Take time to make decisions"
+   ],
+   "love": "प्रेम में कन्या जातक धीरे-धीरे विश्वास बनाते हैं और एक स्थिर, व्यावहारिक संबंध चाहते हैं। वे अपने साथी की छोटी-छोटी जरूरतों का ध्यान रखते हैं।",
+   "love_en": "In love, Virgo natives build trust slowly and want a stable, practical relationship. They take care of their partner's smallest needs.",
+   "compatible": "वृषभ, मकर, कर्क और वृश्चिक राशि वाले कन्या के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Taurus, Capricorn, Cancer and Scorpio are the most compatible signs for Virgo.",
+   "career": "कन्या जातक चिकित्सा, अनुसंधान, लेखांकन, आईटी और खाद्य उद्योग में उत्कृष्ट होते हैं। उनका ध्यान विवरण और गुणवत्ता पर होता है।",
+   "career_en": "Virgo natives excel in medicine, research, accounting, IT and the food industry. Their focus is on detail and quality.",
+   "career_paths": "चिकित्सा, नर्सिंग, लेखांकन, अनुसंधान, आईटी, पत्रकारिता, पोषण और पर्यावरण विज्ञान।",
+   "career_paths_en": "Medicine, nursing, accounting, research, IT, journalism, nutrition and environmental science.",
+   "health": "कन्या जातकों को पेट और आंतों पर विशेष ध्यान देना चाहिए। मानसिक चिंता से पाचन समस्याएं हो सकती हैं। ध्यान और स्वस्थ आहार आवश्यक है।",
+   "health_en": "Virgo natives should pay special attention to the stomach and intestines. Mental worry can lead to digestive problems. Meditation and a healthy diet are essential.",
+   "sort_order": 5,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "a510c3db-127a-4c00-8182-48d8ba16ad86",
+   "name": "तुला",
+   "name_en": "Libra",
+   "date_range": "23 सितंबर - 22 अक्टूबर",
+   "date_range_en": "23 September - 22 October",
+   "symbol": "♎",
+   "element": "वायु",
+   "element_en": "Air",
+   "planet": "शुक्र",
+   "planet_en": "Venus",
+   "tags": [
+    "शुक्र",
+    "वायु"
+   ],
+   "tags_en": [
+    "Venus",
+    "Air"
+   ],
+   "summary": "तुला राशि के जातक संतुलित, न्यायप्रिय और कूटनीतिक होते हैं।",
+   "summary_en": "Libra natives are balanced, fair-minded and diplomatic.",
+   "about": "तुला राशि, शुक्र ग्रह द्वारा शासित वायु तत्व की राशि है जिसका प्रतीक तराजू है। तुला जातक अपनी न्यायप्रियता, सौंदर्यबोध और कूटनीतिक स्वभाव के लिए जाने जाते हैं। ये हर स्थिति में संतुलन खोजते हैं।\n\nइस राशि के लोग सामाजिक, आकर्षक और दूसरों के साथ सामंजस्य बनाने में कुशल होते हैं।",
+   "about_en": "Libra is an air sign ruled by Venus, symbolised by the scales. Libra natives are known for their sense of justice, aesthetic sense and diplomatic nature. They seek balance in every situation.\n\nPeople of this sign are social, charming and skilled at creating harmony with others.",
+   "positive": [
+    "न्यायप्रिय और निष्पक्ष",
+    "कूटनीतिक और शांतिप्रिय",
+    "सामाजिक और आकर्षक",
+    "सौंदर्यबोध से परिपूर्ण",
+    "बौद्धिक और विचारशील",
+    "सहयोगी और टीमवर्क में उत्कृष्ट",
+    "रोमांटिक और आदर्शवादी"
+   ],
+   "positive_en": [
+    "Just and fair",
+    "Diplomatic and peace-loving",
+    "Social and charming",
+    "Strong aesthetic sense",
+    "Intellectual and thoughtful",
+    "Cooperative and excellent team players",
+    "Romantic and idealistic"
+   ],
+   "negative": [
+    "अनिर्णायक हो सकते हैं",
+    "दूसरों को खुश करने की प्रवृत्ति",
+    "संघर्ष से बचते हैं",
+    "सतही हो सकते हैं",
+    "आत्म-दया की प्रवृत्ति",
+    "अविश्वसनीय हो सकते हैं",
+    "अत्यधिक निर्भरता"
+   ],
+   "negative_en": [
+    "Can be indecisive",
+    "Tendency to please others",
+    "Avoid conflict",
+    "Can be superficial",
+    "Tendency towards self-pity",
+    "Can be unreliable",
+    "Overly dependent"
+   ],
+   "love": "प्रेम में तुला जातक रोमांटिक, समर्पित और अपने रिश्ते में संतुलन बनाए रखने वाले होते हैं। वे एक बौद्धिक और आकर्षक साथी की तलाश करते हैं।",
+   "love_en": "In love, Libra natives are romantic, devoted and keep their relationship in balance. They look for an intellectual and attractive partner.",
+   "compatible": "मिथुन, कुंभ, सिंह और धनु राशि वाले तुला के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Gemini, Aquarius, Leo and Sagittarius are the most compatible signs for Libra.",
+   "career": "तुला जातक कानून, कूटनीति, फैशन, कला और परामर्श में उत्कृष्ट होते हैं। उनकी न्यायप्रियता और सौंदर्यबोध उन्हें सफल बनाती है।",
+   "career_en": "Libra natives excel in law, diplomacy, fashion, the arts and counselling. Their sense of justice and aesthetics makes them successful.",
+   "career_paths": "वकालत, न्यायपालिका, फैशन डिजाइन, कला, परामर्श, मध्यस्थता और कूटनीति।",
+   "career_paths_en": "Advocacy, the judiciary, fashion design, art, counselling, mediation and diplomacy.",
+   "health": "तुला जातकों को गुर्दों और पीठ के निचले हिस्से पर विशेष ध्यान देना चाहिए। संतुलित जीवनशैली और स्वस्थ आहार आवश्यक है।",
+   "health_en": "Libra natives should pay special attention to the kidneys and lower back. A balanced lifestyle and healthy diet are essential.",
+   "sort_order": 6,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "f25ada50-0bf5-4525-b3ee-8e2b83c01e07",
+   "name": "वृश्चिक",
+   "name_en": "Scorpio",
+   "date_range": "23 अक्टूबर - 21 नवंबर",
+   "date_range_en": "23 October - 21 November",
+   "symbol": "♏",
+   "element": "जल",
+   "element_en": "Water",
+   "planet": "मंगल",
+   "planet_en": "Mars",
+   "tags": [
+    "मंगल",
+    "जल"
+   ],
+   "tags_en": [
+    "Mars",
+    "Water"
+   ],
+   "summary": "वृश्चिक राशि के जातक गहन, रहस्यमय और दृढ़ निश्चयी होते हैं।",
+   "summary_en": "Scorpio natives are intense, mysterious and determined.",
+   "about": "वृश्चिक राशि, मंगल और प्लूटो द्वारा शासित जल तत्व की राशि है जिसका प्रतीक बिच्छू है। वृश्चिक जातक अपनी तीव्र भावनाओं, रहस्यमय व्यक्तित्व और अदम्य इच्छाशक्ति के लिए जाने जाते हैं। ये अत्यंत गहरे और जटिल होते हैं।\n\nइस राशि के लोग परिवर्तन और पुनर्जन्म के प्रतीक हैं। इनकी सहज ज्ञान शक्ति असाधारण होती है।",
+   "about_en": "Scorpio is a water sign ruled by Mars and Pluto, symbolised by the scorpion. Scorpio natives are known for their intense emotions, mysterious personality and indomitable willpower. They are extremely deep and complex.\n\nPeople of this sign are symbols of transformation and rebirth. Their intuitive power is extraordinary.",
+   "positive": [
+    "दृढ़निश्चयी और साहसी",
+    "वफादार और भावुक",
+    "रहस्यमय और आकर्षक",
+    "तीव्र बुद्धि",
+    "शक्तिशाली और प्रभावशाली",
+    "सहज ज्ञान से परिपूर्ण",
+    "परिवर्तन में सक्षम"
+   ],
+   "positive_en": [
+    "Determined and courageous",
+    "Loyal and passionate",
+    "Mysterious and magnetic",
+    "Sharp intellect",
+    "Powerful and influential",
+    "Highly intuitive",
+    "Capable of transformation"
+   ],
+   "negative": [
+    "ईर्ष्यालु और अधिकारजताने वाले",
+    "बदला लेने की प्रवृत्ति",
+    "नियंत्रण की इच्छा",
+    "अत्यधिक संदेहास्पद",
+    "जिद्दी स्वभाव",
+    "हेरफेर की प्रवृत्ति",
+    "अत्यधिक गोपनीय"
+   ],
+   "negative_en": [
+    "Jealous and possessive",
+    "Tendency to seek revenge",
+    "Desire for control",
+    "Overly suspicious",
+    "Stubborn nature",
+    "Tendency to manipulate",
+    "Overly secretive"
+   ],
+   "love": "प्रेम में वृश्चिक जातक अत्यंत गहरे और तीव्र होते हैं। वे पूर्ण समर्पण और वफादारी चाहते हैं। उनके प्रेम में जुनून और गहराई होती है।",
+   "love_en": "In love, Scorpio natives are extremely deep and intense. They want complete devotion and loyalty. Their love is full of passion and depth.",
+   "compatible": "कर्क, मीन, मकर और कन्या राशि वाले वृश्चिक के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Cancer, Pisces, Capricorn and Virgo are the most compatible signs for Scorpio.",
+   "career": "वृश्चिक जातक जांच, अनुसंधान, चिकित्सा, मनोविज्ञान और वित्त में उत्कृष्ट होते हैं।",
+   "career_en": "Scorpio natives excel in investigation, research, medicine, psychology and finance.",
+   "career_paths": "जासूसी, शल्य चिकित्सा, मनोविज्ञान, वित्त, अनुसंधान, सेना और रहस्यमय विज्ञान।",
+   "career_paths_en": "Detective work, surgery, psychology, finance, research, the armed forces and the occult sciences.",
+   "health": "वृश्चिक जातकों को प्रजनन अंगों और उत्सर्जन तंत्र पर विशेष ध्यान देना चाहिए। भावनात्मक तनाव को स्वस्थ तरीके से व्यक्त करना आवश्यक है।",
+   "health_en": "Scorpio natives should pay special attention to the reproductive organs and excretory system. Expressing emotional stress in healthy ways is essential.",
+   "sort_order": 7,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "99595041-b68e-4afc-8f52-fe6320d99a8a",
+   "name": "धनु",
+   "name_en": "Sagittarius",
+   "date_range": "22 नवंबर - 21 दिसंबर",
+   "date_range_en": "22 November - 21 December",
+   "symbol": "♐",
+   "element": "अग्नि",
+   "element_en": "Fire",
+   "planet": "बृहस्पति",
+   "planet_en": "Jupiter",
+   "tags": [
+    "बृहस्पति",
+    "अग्नि"
+   ],
+   "tags_en": [
+    "Jupiter",
+    "Fire"
+   ],
+   "summary": "धनु राशि के जातक आशावादी, साहसी और ज्ञान के खोजी होते हैं।",
+   "summary_en": "Sagittarius natives are optimistic, adventurous seekers of knowledge.",
+   "about": "धनु राशि, बृहस्पति ग्रह द्वारा शासित अग्नि तत्व की राशि है जिसका प्रतीक धनुर्धर है। धनु जातक अपनी आशावादिता, स्वतंत्रता की चाह और दार्शनिक सोच के लिए जाने जाते हैं। ये विश्व घुमक्कड़ और सत्य के खोजी होते हैं।\n\nइस राशि के लोग उत्साही, खुले विचारों वाले और हास्य से भरपूर होते हैं।",
+   "about_en": "Sagittarius is a fire sign ruled by Jupiter, symbolised by the archer. Sagittarius natives are known for their optimism, love of freedom and philosophical thinking. They are globetrotters and seekers of truth.\n\nPeople of this sign are enthusiastic, open-minded and full of humour.",
+   "positive": [
+    "आशावादी और उत्साही",
+    "स्वतंत्र विचारक",
+    "ईमानदार और सीधे",
+    "दार्शनिक और बुद्धिमान",
+    "साहसी और जिज्ञासु",
+    "उदार और उदार हृदयी",
+    "हास्यप्रिय"
+   ],
+   "positive_en": [
+    "Optimistic and enthusiastic",
+    "Independent thinkers",
+    "Honest and straightforward",
+    "Philosophical and wise",
+    "Adventurous and curious",
+    "Generous and big-hearted",
+    "Fun-loving sense of humour"
+   ],
+   "negative": [
+    "अतिशयोक्तिपूर्ण",
+    "जिम्मेदारी से बचते हैं",
+    "अत्यधिक सीधे",
+    "अधीर हो सकते हैं",
+    "वादे नहीं निभाते",
+    "अव्यावहारिक",
+    "अनुशासन की कमी"
+   ],
+   "negative_en": [
+    "Prone to exaggeration",
+    "Avoid responsibility",
+    "Overly blunt",
+    "Can be impatient",
+    "Don't keep promises",
+    "Impractical",
+    "Lack of discipline"
+   ],
+   "love": "प्रेम में धनु जातक स्वतंत्रता और रोमांच चाहते हैं। वे एक ऐसे साथी की तलाश करते हैं जो उनके साथ जीवन के रोमांच में शामिल हो।",
+   "love_en": "In love, Sagittarius natives seek freedom and adventure. They look for a partner who will join them in life's adventures.",
+   "compatible": "मेष, सिंह, तुला और कुंभ राशि वाले धनु के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Aries, Leo, Libra and Aquarius are the most compatible signs for Sagittarius.",
+   "career": "धनु जातक शिक्षा, दर्शन, यात्रा, प्रकाशन और कानून में उत्कृष्ट होते हैं।",
+   "career_en": "Sagittarius natives excel in education, philosophy, travel, publishing and law.",
+   "career_paths": "शिक्षण, प्रकाशन, यात्रा उद्योग, दर्शन, कानून, मिशनरी कार्य और खेल।",
+   "career_paths_en": "Teaching, publishing, the travel industry, philosophy, law, missionary work and sports.",
+   "health": "धनु जातकों को कूल्हों और जांघों पर विशेष ध्यान देना चाहिए। सक्रिय जीवनशैली और नियमित व्यायाम इनके लिए आवश्यक है।",
+   "health_en": "Sagittarius natives should pay special attention to the hips and thighs. An active lifestyle and regular exercise are essential for them.",
+   "sort_order": 8,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "d72a6718-bbf7-445a-bf67-1745a3abf5cc",
+   "name": "मकर",
+   "name_en": "Capricorn",
+   "date_range": "22 दिसंबर - 19 जनवरी",
+   "date_range_en": "22 December - 19 January",
+   "symbol": "♑",
+   "element": "पृथ्वी",
+   "element_en": "Earth",
+   "planet": "शनि",
+   "planet_en": "Saturn",
+   "tags": [
+    "शनि",
+    "पृथ्वी"
+   ],
+   "tags_en": [
+    "Saturn",
+    "Earth"
+   ],
+   "summary": "मकर राशि के जातक महत्वाकांक्षी, अनुशासित और नवीन विचारों वाले होते हैं।",
+   "summary_en": "Capricorn natives are ambitious, disciplined and full of fresh ideas.",
+   "about": "मकर राशि, शनि ग्रह द्वारा शासित पृथ्वी तत्व की राशि है जिसका प्रतीक समुद्री बकरी है। मकर जातक अपनी महत्वाकांक्षा, अनुशासन और व्यावहारिक सोच के लिए जाने जाते हैं। ये कठोर परिश्रम और धैर्य से अपने लक्ष्य प्राप्त करते हैं।\n\nइस राशि के लोग जिम्मेदार, संगठित और दीर्घकालिक सफलता पर ध्यान केंद्रित करते हैं।",
+   "about_en": "Capricorn is an earth sign ruled by Saturn, symbolised by the sea-goat. Capricorn natives are known for their ambition, discipline and practical thinking. They achieve their goals through hard work and patience.\n\nPeople of this sign are responsible, organised and focused on long-term success.",
+   "positive": [
+    "महत्वाकांक्षी और लक्ष्योन्मुख",
+    "अनुशासित और जिम्मेदार",
+    "व्यावहारिक और यथार्थवादी",
+    "धैर्यवान और दृढ़निश्चयी",
+    "विश्वसनीय और वफादार",
+    "संगठित और कुशल",
+    "परंपराओं का सम्मान करते हैं"
+   ],
+   "positive_en": [
+    "Ambitious and goal-oriented",
+    "Disciplined and responsible",
+    "Practical and realistic",
+    "Patient and determined",
+    "Reliable and loyal",
+    "Organised and efficient",
+    "Respect traditions"
+   ],
+   "negative": [
+    "अत्यधिक गंभीर",
+    "काम में अत्यधिक व्यस्त",
+    "जिद्दी हो सकते हैं",
+    "भावनाओं को दबाते हैं",
+    "निराशावादी",
+    "कठोर दृष्टिकोण",
+    "अत्यधिक नियंत्रण की इच्छा"
+   ],
+   "negative_en": [
+    "Overly serious",
+    "Overly absorbed in work",
+    "Can be stubborn",
+    "Suppress their emotions",
+    "Pessimistic",
+    "Rigid outlook",
+    "Excessive desire for control"
+   ],
+   "love": "प्रेम में मकर जातक धीरे-धीरे खुलते हैं लेकिन एक बार प्रतिबद्ध होने पर वे पूरी तरह समर्पित रहते हैं। वे एक स्थिर और सहायक साथी चाहते हैं।",
+   "love_en": "In love, Capricorn natives open up slowly, but once committed they are completely devoted. They want a stable and supportive partner.",
+   "compatible": "वृषभ, कन्या, वृश्चिक और मीन राशि वाले मकर के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Taurus, Virgo, Scorpio and Pisces are the most compatible signs for Capricorn.",
+   "career": "मकर जातक व्यवसाय, वित्त, प्रशासन और इंजीनियरिंग में उत्कृष्ट होते हैं।",
+   "career_en": "Capricorn natives excel in business, finance, administration and engineering.",
+   "career_paths": "व्यवसाय प्रबंधन, वित्त, इंजीनियरिंग, प्रशासन, राजनीति, चिकित्सा और वास्तुकला।",
+   "career_paths_en": "Business management, finance, engineering, administration, politics, medicine and architecture.",
+   "health": "मकर जातकों को हड्डियों, जोड़ों और दांतों पर विशेष ध्यान देना चाहिए। अत्यधिक काम से बचना और आराम करना आवश्यक है।",
+   "health_en": "Capricorn natives should pay special attention to the bones, joints and teeth. Avoiding overwork and getting rest is essential.",
+   "sort_order": 9,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "fd8f7488-cf98-4e09-81cb-bd7c1e39c75d",
+   "name": "कुंभ",
+   "name_en": "Aquarius",
+   "date_range": "20 जनवरी - 18 फरवरी",
+   "date_range_en": "20 January - 18 February",
+   "symbol": "♒",
+   "element": "वायु",
+   "element_en": "Air",
+   "planet": "शनि",
+   "planet_en": "Saturn",
+   "tags": [
+    "शनि",
+    "वायु"
+   ],
+   "tags_en": [
+    "Saturn",
+    "Air"
+   ],
+   "summary": "कुंभ राशि के जातक नवीन विचारों वाले, स्वतंत्र और मानवतावादी होते हैं।",
+   "summary_en": "Aquarius natives are innovative, independent and humanitarian.",
+   "about": "कुंभ राशि, शनि और यूरेनस द्वारा शासित वायु तत्व की राशि है जिसका प्रतीक जल वाहक है। कुंभ जातक अपनी अनूठी सोच, मानवतावादी दृष्टिकोण और स्वतंत्र भावना के लिए जाने जाते हैं। ये भविष्य की ओर देखने वाले होते हैं।\n\nइस राशि के लोग समाज सुधारक, आविष्कारक और प्रगतिशील विचारक होते हैं।",
+   "about_en": "Aquarius is an air sign ruled by Saturn and Uranus, symbolised by the water-bearer. Aquarius natives are known for their unique thinking, humanitarian outlook and independent spirit. They are forward-looking.\n\nPeople of this sign are social reformers, inventors and progressive thinkers.",
+   "positive": [
+    "प्रगतिशील और दूरदर्शी",
+    "मानवतावादी और परोपकारी",
+    "बौद्धिक और विश्लेषणात्मक",
+    "स्वतंत्र और मौलिक",
+    "सामाजिक और मित्रवत",
+    "आदर्शवादी",
+    "रचनात्मक और अभिनव"
+   ],
+   "positive_en": [
+    "Progressive and visionary",
+    "Humanitarian and altruistic",
+    "Intellectual and analytical",
+    "Independent and original",
+    "Social and friendly",
+    "Idealistic",
+    "Creative and innovative"
+   ],
+   "negative": [
+    "भावनात्मक रूप से दूर",
+    "जिद्दी विचार",
+    "विद्रोही स्वभाव",
+    "अव्यावहारिक आदर्श",
+    "अनिश्चित",
+    "शीतल और अलगाव की भावना",
+    "अत्यधिक बौद्धिकता"
+   ],
+   "negative_en": [
+    "Emotionally distant",
+    "Stubborn opinions",
+    "Rebellious nature",
+    "Impractical ideals",
+    "Unpredictable",
+    "Cool and detached",
+    "Overly intellectual"
+   ],
+   "love": "प्रेम में कुंभ जातक मित्रता और बौद्धिक समझ को प्राथमिकता देते हैं। वे एक ऐसे साथी चाहते हैं जो उनकी स्वतंत्रता का सम्मान करे।",
+   "love_en": "In love, Aquarius natives prioritise friendship and intellectual understanding. They want a partner who respects their independence.",
+   "compatible": "मिथुन, तुला, मेष और धनु राशि वाले कुंभ के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Gemini, Libra, Aries and Sagittarius are the most compatible signs for Aquarius.",
+   "career": "कुंभ जातक प्रौद्योगिकी, विज्ञान, समाज सेवा और मीडिया में उत्कृष्ट होते हैं।",
+   "career_en": "Aquarius natives excel in technology, science, social service and media.",
+   "career_paths": "विज्ञान, प्रौद्योगिकी, समाज सेवा, पत्रकारिता, आविष्कार, खगोल विज्ञान और मानव अधिकार।",
+   "career_paths_en": "Science, technology, social service, journalism, invention, astronomy and human rights.",
+   "health": "कुंभ जातकों को टखनों और परिसंचरण तंत्र पर विशेष ध्यान देना चाहिए। नियमित व्यायाम और मानसिक विश्राम आवश्यक है।",
+   "health_en": "Aquarius natives should pay special attention to the ankles and circulatory system. Regular exercise and mental relaxation are essential.",
+   "sort_order": 10,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  },
+  {
+   "id": "6b39dc01-4f12-415f-af33-843fbcd3aa06",
+   "name": "मीन",
+   "name_en": "Pisces",
+   "date_range": "19 फरवरी - 20 मार्च",
+   "date_range_en": "19 February - 20 March",
+   "symbol": "♓",
+   "element": "जल",
+   "element_en": "Water",
+   "planet": "बृहस्पति",
+   "planet_en": "Jupiter",
+   "tags": [
+    "बृहस्पति",
+    "जल"
+   ],
+   "tags_en": [
+    "Jupiter",
+    "Water"
+   ],
+   "summary": "मीन राशि के जातक सहानुभूतिपूर्ण, कल्पनाशील और आत्मीय होते हैं।",
+   "summary_en": "Pisces natives are empathetic, imaginative and warm-hearted.",
+   "about": "मीन राशि, बृहस्पति और नेपच्यून द्वारा शासित जल तत्व की राशि है जिसका प्रतीक दो मछलियाँ हैं। मीन जातक अपनी गहरी सहानुभूति, कल्पनाशीलता और आध्यात्मिक संवेदनशीलता के लिए जाने जाते हैं। ये अत्यंत सहज और संवेदनशील होते हैं।\n\nइस राशि के लोग कलाकार, स्वप्नद्रष्टा और आध्यात्मिक साधक होते हैं।",
+   "about_en": "Pisces is a water sign ruled by Jupiter and Neptune, symbolised by two fish. Pisces natives are known for their deep empathy, imagination and spiritual sensitivity. They are extremely intuitive and sensitive.\n\nPeople of this sign are artists, dreamers and spiritual seekers.",
+   "positive": [
+    "सहानुभूतिपूर्ण और दयालु",
+    "कल्पनाशील और रचनात्मक",
+    "आध्यात्मिक और सहज ज्ञानी",
+    "कलात्मक और भावनात्मक",
+    "निस्वार्थ और सेवाभावी",
+    "रोमांटिक और आदर्शवादी",
+    "अनुकूलनीय और लचीले"
+   ],
+   "positive_en": [
+    "Empathetic and compassionate",
+    "Imaginative and creative",
+    "Spiritual and intuitive",
+    "Artistic and emotional",
+    "Selfless and service-minded",
+    "Romantic and idealistic",
+    "Adaptable and flexible"
+   ],
+   "negative": [
+    "अत्यधिक भावनात्मक",
+    "भ्रमित हो सकते हैं",
+    "पलायनवादी प्रवृत्ति",
+    "सीमाएं निर्धारित करने में कठिनाई",
+    "आत्म-दया",
+    "अव्यावहारिक",
+    "निर्णय लेने में कठिनाई"
+   ],
+   "negative_en": [
+    "Overly emotional",
+    "Can get confused",
+    "Escapist tendencies",
+    "Difficulty setting boundaries",
+    "Self-pity",
+    "Impractical",
+    "Difficulty making decisions"
+   ],
+   "love": "प्रेम में मीन जातक रोमांटिक, भक्तिपूर्ण और अपने साथी के साथ गहरा आत्मीय संबंध बनाते हैं। वे एक संवेदनशील और समझदार साथी चाहते हैं।",
+   "love_en": "In love, Pisces natives are romantic and devoted, and form a deep soulful bond with their partner. They want a sensitive and understanding partner.",
+   "compatible": "कर्क, वृश्चिक, वृषभ और मकर राशि वाले मीन के लिए सबसे अनुकूल होते हैं।",
+   "compatible_en": "Cancer, Scorpio, Taurus and Capricorn are the most compatible signs for Pisces.",
+   "career": "मीन जातक कला, संगीत, चिकित्सा, आध्यात्मिकता और सामाजिक कार्य में उत्कृष्ट होते हैं।",
+   "career_en": "Pisces natives excel in the arts, music, medicine, spirituality and social work.",
+   "career_paths": "कला, संगीत, नृत्य, चिकित्सा, मनोविज्ञान, आध्यात्मिक शिक्षण, फोटोग्राफी और धर्मार्थ कार्य।",
+   "career_paths_en": "Art, music, dance, medicine, psychology, spiritual teaching, photography and charitable work.",
+   "health": "मीन जातकों को पैरों और लसीका तंत्र पर विशेष ध्यान देना चाहिए। भावनात्मक स्वास्थ्य के लिए ध्यान और रचनात्मक अभिव्यक्ति आवश्यक है।",
+   "health_en": "Pisces natives should pay special attention to the feet and lymphatic system. Meditation and creative expression are essential for emotional health.",
+   "sort_order": 11,
+   "is_active": true,
+   "created_at": "2026-06-12T04:14:58.503382+00:00",
+   "updated_at": "2026-06-12T04:14:58.503382+00:00"
+  }
+ ],
+ "nakshatras": [
+  {
+   "id": "b402ede4-b426-49fe-95a3-ed6383ca705c",
+   "name": "Ashwini",
+   "hindi": "अश्विनी",
+   "hindi_en": "Ashwini",
+   "emoji": "🐴",
+   "lord": "Ketu",
+   "nature": "Divine",
+   "span": "0°00′ – 13°20′ Aries",
+   "element": "Earth",
+   "symbol": "Horse's Head",
+   "quality": "Light/Swift",
+   "direction": "South",
+   "deity": "Ashwini Kumars (Twin Horsemen)",
+   "gana": "Deva",
+   "yoni": "Horse",
+   "summary": "Ashwini nakshatra marks the beginning of the zodiac journey in Vedic astrology, symbolized by a horse's head, representing speed, power, and pioneering spirit. It spans from 0°00′ to 13°20′ in Aries and is ruled by Ketu, giving natives a mystical and spiritual inclination combined with dynamic energy. The presiding deities are the Ashwini Kumars, the divine twin horsemen who are celestial physicians.",
+   "traits": [
+    "Pioneers and natural leaders",
+    "Quick in actions and decisions",
+    "Healing and medical abilities",
+    "Independent and self-reliant",
+    "Adventurous and brave",
+    "Sometimes impatient and impulsive"
+   ],
+   "career": "Natives excel in medical fields, emergency services, sports, military, veterinary sciences, and any profession requiring quick decision-making and leadership skills.",
+   "relationships": "They are passionate partners but may be impulsive in relationships. They need partners who can match their energy and understand their independent nature.",
+   "finance": "Generally good at accumulating wealth through their initiatives. They should avoid impulsive investments and focus on stable long-term financial planning.",
+   "health": "Generally healthy but prone to head injuries, accidents, and stress-related issues. Regular exercise and meditation are beneficial.",
+   "strengths": [
+    "Leadership",
+    "Healing abilities",
+    "Quick thinking",
+    "Courage",
+    "Initiative"
+   ],
+   "growth": [
+    "Impatience",
+    "Impulsiveness",
+    "Aggression",
+    "Restlessness"
+   ],
+   "compat": [
+    "Bharani",
+    "Magha",
+    "Shatabhisha"
+   ],
+   "lucky_num": "1, 8, 9",
+   "lucky_color": "Red, Purple",
+   "lucky_gem": "Cat's Eye",
+   "spiritual": "Each nakshatra carries deep spiritual significance in Vedic astrology, representing different aspects of cosmic consciousness and human evolution. Ashwini natives are blessed with the healing touch of the Ashwini Kumars.",
+   "sort_order": 0,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "f10e7be1-a480-44f4-8132-18f757c76081",
+   "name": "Bharani",
+   "hindi": "भरणी",
+   "hindi_en": "Bharani",
+   "emoji": "🌺",
+   "lord": "Venus",
+   "nature": "Human",
+   "span": "13°20′ – 26°40′ Aries",
+   "element": "Earth",
+   "symbol": "Yoni (Womb)",
+   "quality": "Fierce/Severe",
+   "direction": "West",
+   "deity": "Yama (God of Death & Dharma)",
+   "gana": "Manushya",
+   "yoni": "Elephant",
+   "summary": "Bharani nakshatra is ruled by Venus and presided over by Yama, the god of death and dharma. It represents the cycle of life, death, and rebirth. Natives of this nakshatra are known for their creative power, discipline, and ability to handle the extremes of life. They are carriers of new life and ideas.",
+   "traits": [
+    "Highly creative and artistic",
+    "Strong sense of duty and dharma",
+    "Passionate and intense",
+    "Good at handling responsibilities",
+    "Natural transformers",
+    "Can be stubborn"
+   ],
+   "career": "Arts, entertainment, fashion design, medicine, law, finance, and any field requiring deep passion and creative vision.",
+   "relationships": "Deeply loyal and passionate partners. They seek intense connections and can struggle with boundaries. Strong attraction to opposite natures.",
+   "finance": "Generally accumulate wealth but must avoid overindulgence. Venus influence brings love for luxury — budgeting is key.",
+   "health": "Strong constitution. Prone to reproductive issues and excess indulgence. Balance in lifestyle maintains good health.",
+   "strengths": [
+    "Creativity",
+    "Discipline",
+    "Loyalty",
+    "Determination",
+    "Artistic talent"
+   ],
+   "growth": [
+    "Stubbornness",
+    "Overindulgence",
+    "Possessiveness",
+    "Extremism"
+   ],
+   "compat": [
+    "Ashwini",
+    "Revati",
+    "Krittika"
+   ],
+   "lucky_num": "6, 9",
+   "lucky_color": "White, Pink",
+   "lucky_gem": "Diamond",
+   "spiritual": "Bharani represents the creative force of the universe — Shakti. It teaches that transformation through discipline leads to spiritual growth and liberation.",
+   "sort_order": 1,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "60048e92-4c96-4125-b960-80accde95c29",
+   "name": "Krittika",
+   "hindi": "कृत्तिका",
+   "hindi_en": "Krittika",
+   "emoji": "🔥",
+   "lord": "Sun",
+   "nature": "Demon",
+   "span": "26°40′ Aries – 10°00′ Taurus",
+   "element": "Earth",
+   "symbol": "Razor/Flame",
+   "quality": "Mixed",
+   "direction": "North",
+   "deity": "Agni (God of Fire)",
+   "gana": "Rakshasa",
+   "yoni": "Sheep",
+   "summary": "Krittika is the third nakshatra, ruled by the Sun and presided over by Agni, the god of fire. This nakshatra spans across both Aries and Taurus and is associated with purification, courage, and the ability to cut through illusions. Natives are sharp, critical, and possess great inner strength.",
+   "traits": [
+    "Sharp intellect and critical thinking",
+    "Courageous and determined",
+    "Natural nurturers",
+    "Strong sense of justice",
+    "Purifying influence on others",
+    "Can be overly critical"
+   ],
+   "career": "Military, surgery, cooking, metallurgy, administration, politics, and spiritual teaching.",
+   "relationships": "Protective and caring but can be demanding. Expect high standards from partners. May struggle with controlling tendencies.",
+   "finance": "Disciplined with money but prone to sudden expenses. Conservative investments work best.",
+   "health": "Strong digestion and metabolism. Prone to fevers and inflammation. Fire-related ailments.",
+   "strengths": [
+    "Courage",
+    "Sharp mind",
+    "Nurturing",
+    "Leadership",
+    "Discipline"
+   ],
+   "growth": [
+    "Harsh criticism",
+    "Aggression",
+    "Ego",
+    "Impatience"
+   ],
+   "compat": [
+    "Rohini",
+    "Vishakha",
+    "Uttara Phalguni"
+   ],
+   "lucky_num": "1, 3, 9",
+   "lucky_color": "White, Red",
+   "lucky_gem": "Ruby",
+   "spiritual": "Krittika is the nakshatra of Agni — the sacred fire that purifies and transforms. It teaches discrimination and the courage to cut away what no longer serves.",
+   "sort_order": 2,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "39a6edf6-6363-4d97-b58a-f1cc55daa74d",
+   "name": "Rohini",
+   "hindi": "रोहिणी",
+   "hindi_en": "Rohini",
+   "emoji": "🌹",
+   "lord": "Moon",
+   "nature": "Human",
+   "span": "10°00′ – 23°20′ Taurus",
+   "element": "Earth",
+   "symbol": "Chariot/Ox cart",
+   "quality": "Fixed",
+   "direction": "East",
+   "deity": "Brahma (Creator)",
+   "gana": "Manushya",
+   "yoni": "Serpent",
+   "summary": "Rohini is considered the most auspicious nakshatra in Vedic astrology. Ruled by the Moon, it is the Moon's favorite nakshatra where it is most exalted. Governed by Brahma the creator, Rohini natives possess exceptional beauty, creative talent, and material abundance.",
+   "traits": [
+    "Naturally beautiful and charming",
+    "Highly creative and artistic",
+    "Love for luxury and comfort",
+    "Stable and reliable",
+    "Excellent communicators",
+    "Can be materialistic"
+   ],
+   "career": "Arts, music, fashion, agriculture, real estate, design, culinary arts, and any aesthetic profession.",
+   "relationships": "Romantic, devoted, and sensual partners. Strongly attached and loyal but may become possessive or jealous.",
+   "finance": "Naturally attract wealth and resources. Excellent taste leads to luxury spending — savings discipline needed.",
+   "health": "Generally robust. Prone to throat issues, weight gain, and reproductive concerns. Grounding practices help.",
+   "strengths": [
+    "Charm and beauty",
+    "Creativity",
+    "Reliability",
+    "Communication",
+    "Abundance mindset"
+   ],
+   "growth": [
+    "Materialism",
+    "Possessiveness",
+    "Stubbornness",
+    "Jealousy"
+   ],
+   "compat": [
+    "Ardra",
+    "Hasta",
+    "Mrigashira"
+   ],
+   "lucky_num": "2, 6",
+   "lucky_color": "White, Pink",
+   "lucky_gem": "Pearl",
+   "spiritual": "Rohini is where the Moon finds its highest expression — fertility, creativity, and nourishment. The nakshatra of manifestation and divine abundance.",
+   "sort_order": 3,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "e97f7fdd-b756-4524-bd9a-125f1d483434",
+   "name": "Mrigashira",
+   "hindi": "मृगशीर्ष",
+   "hindi_en": "Mrigashira",
+   "emoji": "🦌",
+   "lord": "Mars",
+   "nature": "Divine",
+   "span": "23°20′ Taurus – 6°40′ Gemini",
+   "element": "Earth/Air",
+   "symbol": "Deer's head",
+   "quality": "Soft/Tender",
+   "direction": "South",
+   "deity": "Soma (Moon God)",
+   "gana": "Deva",
+   "yoni": "Serpent",
+   "summary": "Mrigashira means 'Deer's Head' and represents the eternal seeker. Ruled by Mars and presided over by Soma, the Moon God, natives of this nakshatra are curious, restless, and forever searching for the truth. They are gentle yet alert, always looking for something beyond the horizon.",
+   "traits": [
+    "Curious and inquisitive mind",
+    "Gentle and sensitive nature",
+    "Excellent researchers",
+    "Restless and always searching",
+    "Creative and imaginative",
+    "Can be indecisive"
+   ],
+   "career": "Research, writing, communication, travel, exploration, gemology, hospitality, and philosophy.",
+   "relationships": "Romantic and idealistic in love. Always searching for the perfect partner. Enjoy intellectual stimulation in relationships.",
+   "finance": "Need stability in finances as restlessness can lead to inconsistency. Diverse investments suit them well.",
+   "health": "Prone to nervous system issues and joint pains. Meditation and gentle exercise very beneficial.",
+   "strengths": [
+    "Curiosity",
+    "Gentleness",
+    "Research skills",
+    "Adaptability",
+    "Imagination"
+   ],
+   "growth": [
+    "Restlessness",
+    "Indecision",
+    "Over-seeking",
+    "Anxiety"
+   ],
+   "compat": [
+    "Rohini",
+    "Chitra",
+    "Ardra"
+   ],
+   "lucky_num": "9, 6",
+   "lucky_color": "Silver, Green",
+   "lucky_gem": "Coral",
+   "spiritual": "Mrigashira embodies the divine search — the soul's eternal quest for truth and beauty. The seeker who finds God in the journey itself.",
+   "sort_order": 4,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "219ad739-c627-49b4-9cec-1acfee796901",
+   "name": "Ardra",
+   "hindi": "आर्द्रा",
+   "hindi_en": "Ardra",
+   "emoji": "💎",
+   "lord": "Rahu",
+   "nature": "Divine",
+   "span": "6°40′ – 20°00′ Gemini",
+   "element": "Water",
+   "symbol": "Teardrop/Diamond",
+   "quality": "Sharp/Piercing",
+   "direction": "West",
+   "deity": "Rudra (Storm God/Shiva)",
+   "gana": "Manushya",
+   "yoni": "Dog",
+   "summary": "Ardra means 'moist' or 'fresh' and is associated with storms, transformation, and profound change. Ruled by Rahu and presided over by Rudra, natives of this nakshatra experience intense life events that ultimately lead to deep wisdom and renewal. Like a storm that clears the air, Ardra brings purification.",
+   "traits": [
+    "Intellectually sharp and analytical",
+    "Ability to handle crises",
+    "Deep emotional intensity",
+    "Natural researchers and scientists",
+    "Transformation through pain",
+    "Can be temperamental"
+   ],
+   "career": "Science, research, politics, psychology, philosophy, technology, and crisis management.",
+   "relationships": "Deep, transformative connections. Need partners who can handle intensity and provide stability during emotional storms.",
+   "finance": "Financial ups and downs are common. Rahu's influence creates sudden gains and losses. Steady planning essential.",
+   "health": "Prone to respiratory issues, sudden illnesses. Mental health care through mindfulness is important.",
+   "strengths": [
+    "Intelligence",
+    "Analytical mind",
+    "Resilience",
+    "Transformation",
+    "Research"
+   ],
+   "growth": [
+    "Temperament",
+    "Destructive tendencies",
+    "Emotional outbursts",
+    "Overthinking"
+   ],
+   "compat": [
+    "Punarvasu",
+    "Mrigashira",
+    "Swati"
+   ],
+   "lucky_num": "4, 7",
+   "lucky_color": "Green, Black",
+   "lucky_gem": "Hessonite",
+   "spiritual": "Ardra is the nakshatra of Rudra — cosmic dissolution and renewal. True growth comes only after the storm. Embrace transformation as divine grace.",
+   "sort_order": 5,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "2980cf5e-93e9-4205-b31c-28701600bae6",
+   "name": "Punarvasu",
+   "hindi": "पुनर्वसु",
+   "hindi_en": "Punarvasu",
+   "emoji": "🦸",
+   "lord": "Jupiter",
+   "nature": "Human",
+   "span": "20°00′ Gemini – 3°20′ Cancer",
+   "element": "Air/Water",
+   "symbol": "Quiver of Arrows",
+   "quality": "Movable",
+   "direction": "North",
+   "deity": "Aditi (Mother of Gods)",
+   "gana": "Deva",
+   "yoni": "Cat",
+   "summary": "Punarvasu means 'return of the light' or 'becoming good again'. Ruled by Jupiter and presided over by Aditi, the mother of the gods, this nakshatra bestows optimism, renewal, and the ability to bounce back from adversity. Natives are philosophical, generous, and spiritually inclined.",
+   "traits": [
+    "Optimistic and resilient",
+    "Philosophical and wise",
+    "Generous and giving",
+    "Ability to renew and restart",
+    "Spiritual inclination",
+    "Can be over-idealistic"
+   ],
+   "career": "Teaching, philosophy, religion, healing, counseling, travel, and humanitarian work.",
+   "relationships": "Warm, generous, and forgiving partners. Value spiritual connection over physical. Capable of rekindling relationships.",
+   "finance": "Jupiter's blessing brings financial growth through wisdom. Avoid over-generosity leading to financial strain.",
+   "health": "Generally healthy constitution. Prone to digestive issues and water retention. Optimism itself is their medicine.",
+   "strengths": [
+    "Optimism",
+    "Wisdom",
+    "Generosity",
+    "Resilience",
+    "Spirituality"
+   ],
+   "growth": [
+    "Over-idealism",
+    "Naivety",
+    "Inconsistency",
+    "Restlessness"
+   ],
+   "compat": [
+    "Vishakha",
+    "Uttara Bhadrapada",
+    "Pushya"
+   ],
+   "lucky_num": "3, 9",
+   "lucky_color": "Yellow, Blue",
+   "lucky_gem": "Yellow Sapphire",
+   "spiritual": "Punarvasu is the light that returns after darkness. It teaches eternal optimism — the universe always offers a fresh start to those who surrender with faith.",
+   "sort_order": 6,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "89c7bb18-c077-433a-85a0-e05ac8faf9ac",
+   "name": "Pushya",
+   "hindi": "पुष्य",
+   "hindi_en": "Pushya",
+   "emoji": "🌸",
+   "lord": "Saturn",
+   "nature": "Divine",
+   "span": "3°20′ – 16°40′ Cancer",
+   "element": "Water",
+   "symbol": "Cow's Udder/Lotus",
+   "quality": "Fixed",
+   "direction": "East",
+   "deity": "Brihaspati (Jupiter/Teacher)",
+   "gana": "Deva",
+   "yoni": "Sheep",
+   "summary": "Pushya is considered the most auspicious of all nakshatras in many traditions. Ruled by Saturn and presided over by Brihaspati, the divine teacher, Pushya bestows nourishment, wisdom, and the ability to sustain and nurture others. It is associated with abundance and spiritual authority.",
+   "traits": [
+    "Natural nurturer and caregiver",
+    "Deep wisdom and knowledge",
+    "Strong sense of duty",
+    "Generous and selfless",
+    "Spiritual authority",
+    "Can be overly self-sacrificing"
+   ],
+   "career": "Teaching, medicine, nutrition, social work, religious service, counseling, and agriculture.",
+   "relationships": "Deeply caring and devoted. Place family above all. May suppress own needs for others — need to maintain boundaries.",
+   "finance": "Saturn's discipline brings steady financial growth. Conservative but reliable approach to money management.",
+   "health": "Need to avoid over-giving to the point of depletion. Prone to lung and chest issues. Routine healthcare essential.",
+   "strengths": [
+    "Nurturing",
+    "Wisdom",
+    "Duty",
+    "Generosity",
+    "Spiritual depth"
+   ],
+   "growth": [
+    "Self-sacrifice to excess",
+    "Rigidity",
+    "Over-caution",
+    "Depression"
+   ],
+   "compat": [
+    "Rohini",
+    "Punarvasu",
+    "Shravana"
+   ],
+   "lucky_num": "8, 6, 3",
+   "lucky_color": "Red, Blue",
+   "lucky_gem": "Blue Sapphire",
+   "spiritual": "Pushya is the celestial nourisher — it feeds the soul with wisdom and the body with sustenance. To give unconditionally is its highest teaching.",
+   "sort_order": 7,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "7ae389a0-81c0-4a71-bb8f-9447c0f36693",
+   "name": "Ashlesha",
+   "hindi": "आश्लेषा",
+   "hindi_en": "Ashlesha",
+   "emoji": "🐍",
+   "lord": "Mercury",
+   "nature": "Demon",
+   "span": "16°40′ – 30°00′ Cancer",
+   "element": "Water",
+   "symbol": "Coiled Serpent",
+   "quality": "Sharp/Dreadful",
+   "direction": "South",
+   "deity": "Sarpas (Serpent Gods)",
+   "gana": "Rakshasa",
+   "yoni": "Cat",
+   "summary": "Ashlesha means 'the entwiner' and is symbolized by a coiled serpent. Ruled by Mercury and presided over by the Naga serpent gods, this nakshatra bestows penetrating intelligence, strategic thinking, and the ability to see through illusions. Natives possess hypnotic charm and deep intuition.",
+   "traits": [
+    "Penetrating intelligence",
+    "Strategic and manipulative",
+    "Hypnotic charm",
+    "Deep intuition",
+    "Secretive nature",
+    "Can be deceptive"
+   ],
+   "career": "Psychology, occult, law, politics, detective work, research, writing, and medicine.",
+   "relationships": "Intense and complex. Deeply loyal once committed but struggle with trust. Can be emotionally manipulative.",
+   "finance": "Sharp financial instincts. Ability to see opportunities others miss. Watch for unethical shortcuts.",
+   "health": "Prone to digestive issues and mental stress. Kundalini practices and yoga are highly beneficial.",
+   "strengths": [
+    "Intelligence",
+    "Intuition",
+    "Strategy",
+    "Penetrating vision",
+    "Healing"
+   ],
+   "growth": [
+    "Manipulation",
+    "Deception",
+    "Jealousy",
+    "Secretiveness"
+   ],
+   "compat": [
+    "Punarvasu",
+    "Pushya",
+    "Jyeshtha"
+   ],
+   "lucky_num": "7, 2",
+   "lucky_color": "Black, Red",
+   "lucky_gem": "Emerald",
+   "spiritual": "Ashlesha is the kundalini nakshatra — the coiled serpent of divine energy awakening within. Master the lower serpent to awaken the higher wisdom.",
+   "sort_order": 8,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "6cee0023-b825-4a72-bc4f-ce1cb39c23de",
+   "name": "Magha",
+   "hindi": "मघा",
+   "hindi_en": "Magha",
+   "emoji": "👑",
+   "lord": "Ketu",
+   "nature": "Demon",
+   "span": "0°00′ – 13°20′ Leo",
+   "element": "Fire",
+   "symbol": "Royal Throne/Palanquin",
+   "quality": "Fierce",
+   "direction": "West",
+   "deity": "Pitrs (Ancestors)",
+   "gana": "Rakshasa",
+   "yoni": "Rat",
+   "summary": "Magha is the nakshatra of royalty, ancestors, and authority. Ruled by Ketu and presided over by the Pitrs (ancestral spirits), Magha natives carry strong ancestral karma and are destined for positions of power and leadership. They have a regal bearing and natural authority.",
+   "traits": [
+    "Natural leader and authority",
+    "Strong ancestral connection",
+    "Generous and magnanimous",
+    "Pride and dignity",
+    "Traditional values",
+    "Can be arrogant"
+   ],
+   "career": "Politics, administration, government, royalty, management, heritage work, and history.",
+   "relationships": "Seek partners who respect their status and authority. Generous and protective but expect loyalty and respect in return.",
+   "finance": "Money comes through positions of authority and family inheritance. Generous givers but must watch pride-driven spending.",
+   "health": "Strong constitution. Heart and back issues due to Leo placement. Maintain active lifestyle.",
+   "strengths": [
+    "Leadership",
+    "Generosity",
+    "Authority",
+    "Pride",
+    "Ancestral wisdom"
+   ],
+   "growth": [
+    "Arrogance",
+    "Stubbornness",
+    "Ego",
+    "Over-attachment to status"
+   ],
+   "compat": [
+    "Purva Phalguni",
+    "Uttara Phalguni",
+    "Ashwini"
+   ],
+   "lucky_num": "1, 4, 9",
+   "lucky_color": "Gold, White",
+   "lucky_gem": "Cat's Eye",
+   "spiritual": "Magha connects us to our ancestors — the great chain of being that extends beyond our individual lives. Honor your roots to reach your highest potential.",
+   "sort_order": 9,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "04c9b20b-6ff0-4fe3-8550-169773a94975",
+   "name": "Purva Phalguni",
+   "hindi": "पूर्व फाल्गुनी",
+   "hindi_en": "Purva Phalguni",
+   "emoji": "🎭",
+   "lord": "Venus",
+   "nature": "Human",
+   "span": "13°20′ – 26°40′ Leo",
+   "element": "Fire",
+   "symbol": "Front legs of cot",
+   "quality": "Fierce",
+   "direction": "North",
+   "deity": "Bhaga (God of Delight)",
+   "gana": "Manushya",
+   "yoni": "Rat",
+   "summary": "Purva Phalguni is the nakshatra of pleasure, creativity, and the arts. Ruled by Venus and presided over by Bhaga, the god of delight, this nakshatra bestows exceptional talents in arts, entertainment, and social grace. Natives are charming, pleasure-loving, and naturally creative.",
+   "traits": [
+    "Highly creative and artistic",
+    "Charming and social",
+    "Love for luxury and pleasure",
+    "Romantic and passionate",
+    "Generous and fun-loving",
+    "Can be indulgent"
+   ],
+   "career": "Performing arts, music, entertainment, fashion, luxury goods, hospitality, and beauty industry.",
+   "relationships": "Romantic, passionate, and devoted. Love creates their world. May prioritize pleasure over practical considerations.",
+   "finance": "Venus brings financial abundance through creative work. Watch for over-spending on luxury and entertainment.",
+   "health": "Prone to overindulgence affecting heart health. Balance pleasure with discipline for good wellbeing.",
+   "strengths": [
+    "Creativity",
+    "Charm",
+    "Generosity",
+    "Artistic talent",
+    "Social grace"
+   ],
+   "growth": [
+    "Indulgence",
+    "Laziness",
+    "Vanity",
+    "Avoidance of hardship"
+   ],
+   "compat": [
+    "Magha",
+    "Uttara Phalguni",
+    "Purva Ashadha"
+   ],
+   "lucky_num": "6, 5",
+   "lucky_color": "Pink, White",
+   "lucky_gem": "Diamond",
+   "spiritual": "Purva Phalguni teaches that joy, beauty, and pleasure are sacred — they are the divine's way of experiencing itself through us. Celebrate life fully.",
+   "sort_order": 10,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "ab68e395-7d04-4018-925e-cb4150670d8f",
+   "name": "Uttara Phalguni",
+   "hindi": "उत्तर फाल्गुनी",
+   "hindi_en": "Uttara Phalguni",
+   "emoji": "🌞",
+   "lord": "Sun",
+   "nature": "Human",
+   "span": "26°40′ Leo – 10°00′ Virgo",
+   "element": "Fire/Earth",
+   "symbol": "Back legs of cot",
+   "quality": "Fixed",
+   "direction": "East",
+   "deity": "Aryaman (God of Contracts)",
+   "gana": "Manushya",
+   "yoni": "Cow",
+   "summary": "Uttara Phalguni is the nakshatra of service, commitment, and practical creativity. Ruled by the Sun and presided over by Aryaman, the god of contracts and marriages, this nakshatra instills a deep sense of responsibility, service, and devotion to duty.",
+   "traits": [
+    "Responsible and reliable",
+    "Service-oriented",
+    "Organized and methodical",
+    "Strong sense of duty",
+    "Good social relationships",
+    "Can be workaholic"
+   ],
+   "career": "Medicine, social service, government, administration, teaching, and any organized helping profession.",
+   "relationships": "Loyal, responsible partners who honor commitments. Seek stability and mutual support. Marriage is sacred to them.",
+   "finance": "Steady financial growth through disciplined effort. Investment in service-oriented enterprises pays off.",
+   "health": "Generally healthy but prone to overwork and stress. Regular rest and outdoor activities essential.",
+   "strengths": [
+    "Reliability",
+    "Service",
+    "Organization",
+    "Social harmony",
+    "Commitment"
+   ],
+   "growth": [
+    "Workaholism",
+    "Rigidity",
+    "Perfectionism",
+    "Difficulty delegating"
+   ],
+   "compat": [
+    "Hasta",
+    "Chitra",
+    "Purva Phalguni"
+   ],
+   "lucky_num": "1, 2, 3",
+   "lucky_color": "Copper, Gold",
+   "lucky_gem": "Ruby",
+   "spiritual": "Uttara Phalguni embodies the sacred covenant — the divine agreement between souls to serve and uplift each other. True fulfillment comes through devoted service.",
+   "sort_order": 11,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "054d42f1-615d-491f-884a-6fe16b274e68",
+   "name": "Hasta",
+   "hindi": "हस्त",
+   "hindi_en": "Hasta",
+   "emoji": "🤲",
+   "lord": "Moon",
+   "nature": "Divine",
+   "span": "10°00′ – 23°20′ Virgo",
+   "element": "Earth",
+   "symbol": "Open hand (5 fingers)",
+   "quality": "Light/Swift",
+   "direction": "South",
+   "deity": "Savitur (Sun God of Creativity)",
+   "gana": "Deva",
+   "yoni": "Buffalo",
+   "summary": "Hasta means 'hand' and represents skillfulness, dexterity, and the ability to manifest with one's hands. Ruled by the Moon and presided over by Savitur, the creative sun deity, Hasta natives possess exceptional practical skills, healing abilities, and the capacity to turn vision into reality.",
+   "traits": [
+    "Skilled craftsperson",
+    "Healing hands",
+    "Quick wit and humor",
+    "Practical and resourceful",
+    "Good communicator",
+    "Can be manipulative"
+   ],
+   "career": "Healing arts, crafts, surgery, writing, communication, palmistry, and fine arts.",
+   "relationships": "Charming, witty partners who are deeply caring. Can be playful in love. Need intellectual connection.",
+   "finance": "Excel at business and skilled trades. Natural aptitude for practical financial management.",
+   "health": "Good health overall. Prone to digestive issues and hands/arms conditions. Yoga and manual arts are healing.",
+   "strengths": [
+    "Dexterity",
+    "Healing",
+    "Wit",
+    "Practicality",
+    "Resourcefulness"
+   ],
+   "growth": [
+    "Manipulation",
+    "Restlessness",
+    "Sarcasm",
+    "Inconsistency"
+   ],
+   "compat": [
+    "Shravan",
+    "Rohini",
+    "Ashwini"
+   ],
+   "lucky_num": "2, 5",
+   "lucky_color": "Green, White",
+   "lucky_gem": "Pearl",
+   "spiritual": "Hasta is the nakshatra of divine craftsmanship — the hands that hold healing and creation. What we do with our hands is our prayer to the universe.",
+   "sort_order": 12,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "479585cb-f6b1-4dc2-af7a-afe091cebfd2",
+   "name": "Chitra",
+   "hindi": "चित्रा",
+   "hindi_en": "Chitra",
+   "emoji": "💫",
+   "lord": "Mars",
+   "nature": "Demon",
+   "span": "23°20′ Virgo – 6°40′ Libra",
+   "element": "Earth/Air",
+   "symbol": "Bright Jewel/Pearl",
+   "quality": "Soft/Tender",
+   "direction": "West",
+   "deity": "Vishwakarma (Divine Architect)",
+   "gana": "Rakshasa",
+   "yoni": "Tiger",
+   "summary": "Chitra means 'bright' or 'brilliant' and is the nakshatra of artistic brilliance, architecture, and magical creation. Ruled by Mars and presided over by Vishwakarma, the divine architect of the universe, Chitra natives have extraordinary aesthetic sense and the ability to create stunning beauty.",
+   "traits": [
+    "Exceptional artistic abilities",
+    "Brilliant and radiant personality",
+    "Strong sense of aesthetics",
+    "Independent and ambitious",
+    "Magnetic charisma",
+    "Can be vain"
+   ],
+   "career": "Architecture, design, fashion, jewelry, art, film, photography, and any creative field.",
+   "relationships": "Attracted to beauty and charisma. Romantic and passionate. May have idealistic expectations of partners.",
+   "finance": "Creative talents bring financial success. Mars drive ensures they pursue opportunities actively.",
+   "health": "Strong physical constitution. Mars energy needs physical outlets. Watch for inflammation and accidents.",
+   "strengths": [
+    "Creativity",
+    "Brilliance",
+    "Aesthetics",
+    "Ambition",
+    "Charisma"
+   ],
+   "growth": [
+    "Vanity",
+    "Pride",
+    "Impulsiveness",
+    "Perfectionism"
+   ],
+   "compat": [
+    "Vishakha",
+    "Swati",
+    "Hasta"
+   ],
+   "lucky_num": "9, 6",
+   "lucky_color": "Black, Red",
+   "lucky_gem": "Coral",
+   "spiritual": "Chitra is the nakshatra of divine beauty — the recognition that every soul is a brilliant jewel created by the cosmic architect. Find the art in everything.",
+   "sort_order": 13,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "d17815da-a7b6-4b7e-824d-177a1275c341",
+   "name": "Swati",
+   "hindi": "स्वाति",
+   "hindi_en": "Swati",
+   "emoji": "🌬️",
+   "lord": "Rahu",
+   "nature": "Divine",
+   "span": "6°40′ – 20°00′ Libra",
+   "element": "Air",
+   "symbol": "Coral/Sword/Young shoot",
+   "quality": "Movable",
+   "direction": "North",
+   "deity": "Vayu (Wind God)",
+   "gana": "Deva",
+   "yoni": "Buffalo",
+   "summary": "Swati means 'self-going' or 'independent' and is associated with the wind — free, moving, and purifying. Ruled by Rahu and presided over by Vayu, the wind god, Swati natives value freedom, independence, and flexibility above all else. They are diplomatic, adaptable, and naturally social.",
+   "traits": [
+    "Independent and freedom-loving",
+    "Diplomatic and tactful",
+    "Highly adaptable",
+    "Business-minded",
+    "Spiritually inclined",
+    "Can be indecisive"
+   ],
+   "career": "Business, trade, diplomacy, law, politics, communication, and spiritual teaching.",
+   "relationships": "Value independence in relationships. Need a partner who respects their space. Diplomatic and balanced in love.",
+   "finance": "Natural business acumen and networking skills lead to financial success. Rahu brings unexpected gains.",
+   "health": "Prone to wind/vata imbalances, skin issues. Breathing practices and grounding activities are beneficial.",
+   "strengths": [
+    "Independence",
+    "Diplomacy",
+    "Adaptability",
+    "Business sense",
+    "Balance"
+   ],
+   "growth": [
+    "Indecision",
+    "Restlessness",
+    "Detachment",
+    "Inconsistency"
+   ],
+   "compat": [
+    "Ardra",
+    "Punarvasu",
+    "Chitra"
+   ],
+   "lucky_num": "4, 7",
+   "lucky_color": "Black, Blue",
+   "lucky_gem": "Hessonite",
+   "spiritual": "Swati is the wind-borne nakshatra — free, unattached, and all-pervading. It teaches the spiritual art of detachment: be in the world but not bound by it.",
+   "sort_order": 14,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "f27b168d-5edb-4962-9dfa-e1b43574ac5e",
+   "name": "Vishakha",
+   "hindi": "विशाखा",
+   "hindi_en": "Vishakha",
+   "emoji": "🏛️",
+   "lord": "Jupiter",
+   "nature": "Demon",
+   "span": "20°00′ Libra – 3°20′ Scorpio",
+   "element": "Air/Water",
+   "symbol": "Triumphal arch/Potter's wheel",
+   "quality": "Mixed",
+   "direction": "East",
+   "deity": "Indra & Agni",
+   "gana": "Rakshasa",
+   "yoni": "Tiger",
+   "summary": "Vishakha means 'forked branch' or 'two-branched' and represents the tension between goals and ambition. Ruled by Jupiter and presided over by Indra and Agni, this nakshatra gives powerful ambition, determination, and the drive to achieve any goal set. They are the ultimate achievers.",
+   "traits": [
+    "Highly ambitious and goal-driven",
+    "Persistent and determined",
+    "Competitive nature",
+    "Transformative power",
+    "Spiritually searching",
+    "Can be aggressive"
+   ],
+   "career": "Leadership, politics, military, competitive sports, business, spiritual leadership, and law.",
+   "relationships": "Passionate and intense. May struggle between desire and spiritual aspiration. Devoted once committed.",
+   "finance": "Jupiter's grace brings prosperity through determination. May sacrifice financial security for ambition.",
+   "health": "Prone to liver issues, over-exertion. Channeling Mars-like energy productively is essential for health.",
+   "strengths": [
+    "Ambition",
+    "Determination",
+    "Persistence",
+    "Transformation",
+    "Intelligence"
+   ],
+   "growth": [
+    "Aggression",
+    "Jealousy",
+    "Obsessiveness",
+    "Burnout"
+   ],
+   "compat": [
+    "Krittika",
+    "Anuradha",
+    "Punarvasu"
+   ],
+   "lucky_num": "3, 9",
+   "lucky_color": "Yellow, Golden",
+   "lucky_gem": "Yellow Sapphire",
+   "spiritual": "Vishakha is the nakshatra of divine aspiration — the soul's burning desire to reach its highest potential. Every ambition, when purified, becomes a prayer.",
+   "sort_order": 15,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "34894fc4-d0c0-4944-924b-5aaeabec6bd6",
+   "name": "Anuradha",
+   "hindi": "अनुराधा",
+   "hindi_en": "Anuradha",
+   "emoji": "🎯",
+   "lord": "Saturn",
+   "nature": "Divine",
+   "span": "3°20′ – 16°40′ Scorpio",
+   "element": "Water",
+   "symbol": "Lotus/Staff",
+   "quality": "Soft/Tender",
+   "direction": "South",
+   "deity": "Mitra (God of Friendship)",
+   "gana": "Deva",
+   "yoni": "Deer/Hare",
+   "summary": "Anuradha means 'following Radha' or 'success after Radha' and is the nakshatra of devotion, friendship, and perseverance. Ruled by Saturn and presided over by Mitra, the god of friendship and alliances, Anuradha natives are loyal friends, strategic thinkers, and devoted souls.",
+   "traits": [
+    "Deeply devoted and loyal",
+    "Strategic and disciplined",
+    "Natural organization skills",
+    "Spiritual and philosophical",
+    "Strong friendships",
+    "Can be secretive"
+   ],
+   "career": "Research, occult sciences, medicine, psychology, spiritual counseling, and international business.",
+   "relationships": "Deeply devoted partners who honor love above all. Scorpio depth makes relationships transformative and intense.",
+   "finance": "Saturn's discipline ensures steady financial growth. Strategic long-term investments are favored.",
+   "health": "Prone to digestive and emotional suppression issues. Emotional release through arts and therapy is healing.",
+   "strengths": [
+    "Devotion",
+    "Strategy",
+    "Loyalty",
+    "Discipline",
+    "Spiritual depth"
+   ],
+   "growth": [
+    "Secretiveness",
+    "Jealousy",
+    "Obsession",
+    "Control"
+   ],
+   "compat": [
+    "Jyeshtha",
+    "Vishakha",
+    "Shravana"
+   ],
+   "lucky_num": "8, 6",
+   "lucky_color": "Red, Brown",
+   "lucky_gem": "Blue Sapphire",
+   "spiritual": "Anuradha follows the path of Radha — pure devotional love that transcends all obstacles. True friendship and devotion are the highest spiritual practices.",
+   "sort_order": 16,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "a757025d-a303-4e11-8276-8e530ff93288",
+   "name": "Jyeshtha",
+   "hindi": "ज्येष्ठा",
+   "hindi_en": "Jyeshtha",
+   "emoji": "👆",
+   "lord": "Mercury",
+   "nature": "Demon",
+   "span": "16°40′ – 30°00′ Scorpio",
+   "element": "Water",
+   "symbol": "Circular amulet/Earring",
+   "quality": "Sharp/Dreadful",
+   "direction": "West",
+   "deity": "Indra (King of Gods)",
+   "gana": "Rakshasa",
+   "yoni": "Deer/Hare",
+   "summary": "Jyeshtha means 'the eldest' or 'the chief' and is the nakshatra of seniority, authority, and responsibility. Ruled by Mercury and presided over by Indra, the king of gods, Jyeshtha natives bear great responsibilities and possess the mental brilliance to handle complex situations.",
+   "traits": [
+    "Natural authority and leadership",
+    "Highly intelligent and quick-witted",
+    "Protective of loved ones",
+    "Spiritual warrior nature",
+    "Can shoulder great burdens",
+    "Can be arrogant or vengeful"
+   ],
+   "career": "Leadership positions, psychology, occult, politics, military command, research, and writing.",
+   "relationships": "Deeply protective and intense partners. May struggle with vulnerability. Loyalty is absolute once committed.",
+   "finance": "Mercury brilliance brings financial intelligence. Can earn well but may overspend to maintain status.",
+   "health": "Prone to digestive issues and stress-related conditions. The weight of responsibility affects health.",
+   "strengths": [
+    "Leadership",
+    "Intelligence",
+    "Protection",
+    "Responsibility",
+    "Courage"
+   ],
+   "growth": [
+    "Arrogance",
+    "Vengefulness",
+    "Burden-carrying",
+    "Isolation"
+   ],
+   "compat": [
+    "Anuradha",
+    "Ashlesha",
+    "Mula"
+   ],
+   "lucky_num": "7, 5",
+   "lucky_color": "Red, Cream",
+   "lucky_gem": "Emerald",
+   "spiritual": "Jyeshtha is the nakshatra of the elder — the one who leads by example and bears the burden of others' liberation. True leadership is sacred service.",
+   "sort_order": 17,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "b939d708-5139-4091-876f-d89e4f4a06c7",
+   "name": "Mula",
+   "hindi": "मूल",
+   "hindi_en": "Mula",
+   "emoji": "🌱",
+   "lord": "Ketu",
+   "nature": "Demon",
+   "span": "0°00′ – 13°20′ Sagittarius",
+   "element": "Fire",
+   "symbol": "Bunch of roots/Elephant goad",
+   "quality": "Sharp/Dreadful",
+   "direction": "North",
+   "deity": "Nirriti (Goddess of Dissolution)",
+   "gana": "Rakshasa",
+   "yoni": "Dog",
+   "summary": "Mula means 'root' or 'foundation' and is associated with going to the very core of things, often through destruction of surface layers. Ruled by Ketu and presided over by Nirriti, the goddess of dissolution, Mula natives are drawn to the deepest truths and are often agents of transformation.",
+   "traits": [
+    "Deep investigative nature",
+    "Desire to uncover hidden truths",
+    "Philosophical and spiritual",
+    "Can initiate dissolution for new growth",
+    "Powerful energy",
+    "Can be destructive"
+   ],
+   "career": "Research, philosophy, occult sciences, ayurveda, herbalism, investigation, and spiritual teaching.",
+   "relationships": "Intense and transformative connections. May experience upheaval in relationships that ultimately leads to growth.",
+   "finance": "Financial instability may occur, but Sagittarius energy ultimately attracts abundance through philosophy.",
+   "health": "Root-related health issues. Lower back, hips. Grounding practices and connection to nature are essential.",
+   "strengths": [
+    "Investigation",
+    "Philosophy",
+    "Transformation",
+    "Spiritual depth",
+    "Courage"
+   ],
+   "growth": [
+    "Destructiveness",
+    "Restlessness",
+    "Extremism",
+    "Impracticality"
+   ],
+   "compat": [
+    "Jyeshtha",
+    "Ardra",
+    "Ashlesha"
+   ],
+   "lucky_num": "7, 8",
+   "lucky_color": "Brown, Yellow",
+   "lucky_gem": "Cat's Eye",
+   "spiritual": "Mula teaches that only by going to the root — the core of our being — can we find true liberation. Dissolution of the false is the birth of the real.",
+   "sort_order": 18,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "a062065d-2609-402f-81bd-04ff1799bdb2",
+   "name": "Purva Ashadha",
+   "hindi": "पूर्व आषाढ़",
+   "hindi_en": "Purva Ashadha",
+   "emoji": "🌊",
+   "lord": "Venus",
+   "nature": "Human",
+   "span": "13°20′ – 26°40′ Sagittarius",
+   "element": "Fire/Water",
+   "symbol": "Fan/Winnowing basket",
+   "quality": "Fierce",
+   "direction": "East",
+   "deity": "Apas (Water Goddess)",
+   "gana": "Manushya",
+   "yoni": "Monkey",
+   "summary": "Purva Ashadha means 'early victory' and is associated with invincibility and the purifying power of water. Ruled by Venus and presided over by Apas, the deity of water, this nakshatra bestows a warrior spirit, philosophical idealism, and the power to purify and refresh all situations.",
+   "traits": [
+    "Philosophical and idealistic",
+    "Invincible warrior spirit",
+    "Excellent communicators",
+    "Inspiring and motivating",
+    "Proud and confident",
+    "Can be inflexible"
+   ],
+   "career": "Philosophy, teaching, writing, law, medicine, sports, military, and inspirational speaking.",
+   "relationships": "Idealistic in love. Seek a partner who shares their philosophical vision. Passionate and devoted.",
+   "finance": "Venus brings creative earning potential. Philosophical nature should not block practical financial decisions.",
+   "health": "Prone to hip and thigh issues. Outdoor activities and philosophical engagement maintain vitality.",
+   "strengths": [
+    "Philosophy",
+    "Invincibility",
+    "Communication",
+    "Inspiration",
+    "Pride"
+   ],
+   "growth": [
+    "Inflexibility",
+    "Pride",
+    "Overconfidence",
+    "Impracticality"
+   ],
+   "compat": [
+    "Uttara Ashadha",
+    "Purva Phalguni",
+    "Bharani"
+   ],
+   "lucky_num": "6, 9",
+   "lucky_color": "White, Light Blue",
+   "lucky_gem": "Diamond",
+   "spiritual": "Purva Ashadha carries the invincibility of truth — that which cannot be defeated. Align with dharma and you become unstoppable.",
+   "sort_order": 19,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "9a11e946-a7d1-4c72-96af-2dd79356cd13",
+   "name": "Uttara Ashadha",
+   "hindi": "उत्तर आषाढ़",
+   "hindi_en": "Uttara Ashadha",
+   "emoji": "⭐",
+   "lord": "Sun",
+   "nature": "Human",
+   "span": "26°40′ Sagittarius – 10°00′ Capricorn",
+   "element": "Fire/Earth",
+   "symbol": "Elephant tusk/Small cot",
+   "quality": "Fixed",
+   "direction": "South",
+   "deity": "Vishwadevas (Universal Gods)",
+   "gana": "Manushya",
+   "yoni": "Mongoose",
+   "summary": "Uttara Ashadha means 'later victory' — the lasting, enduring victory that comes through patience and righteousness. Ruled by the Sun and presided over by the Vishwadevas (universal gods), this nakshatra bestows unshakeable dharmic principles, leadership, and the ability to achieve lasting success.",
+   "traits": [
+    "Righteous and principled",
+    "Patient and persistent",
+    "Universal perspective",
+    "Natural leadership",
+    "Deeply responsible",
+    "Can be inflexible"
+   ],
+   "career": "Administration, politics, military, judiciary, philosophy, and any position requiring integrity and authority.",
+   "relationships": "Deeply committed and responsible partners. Seek meaningful, lasting relationships built on mutual respect.",
+   "finance": "Slow but sure financial growth through righteous means. Saturn-Capricorn influence rewards patience.",
+   "health": "Strong constitution but prone to knee and joint issues. Consistent exercise and discipline maintain health.",
+   "strengths": [
+    "Righteousness",
+    "Patience",
+    "Leadership",
+    "Universality",
+    "Integrity"
+   ],
+   "growth": [
+    "Inflexibility",
+    "Over-seriousness",
+    "Isolation",
+    "Rigidity"
+   ],
+   "compat": [
+    "Shravan",
+    "Purva Ashadha",
+    "Abhijit"
+   ],
+   "lucky_num": "1, 8",
+   "lucky_color": "Copper, Gold",
+   "lucky_gem": "Ruby",
+   "spiritual": "Uttara Ashadha embodies the ultimate victory — the triumph of dharma over time. True success serves not just the self, but the entire world.",
+   "sort_order": 20,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "3081e0b8-0f93-4fda-ac76-ee061234d72b",
+   "name": "Shravana",
+   "hindi": "श्रवण",
+   "hindi_en": "Shravana",
+   "emoji": "👂",
+   "lord": "Moon",
+   "nature": "Divine",
+   "span": "10°00′ – 23°20′ Capricorn",
+   "element": "Air",
+   "symbol": "Three footprints/Ear",
+   "quality": "Movable",
+   "direction": "North",
+   "deity": "Vishnu (The Preserver)",
+   "gana": "Deva",
+   "yoni": "Monkey",
+   "summary": "Shravana means 'hearing' and is the nakshatra of listening, learning, and the transmission of sacred knowledge. Ruled by the Moon and presided over by Vishnu, the preserver, Shravana natives are exceptional listeners, learners, and preservers of wisdom and tradition.",
+   "traits": [
+    "Exceptional listener and learner",
+    "Devoted and traditional",
+    "Excellent memory",
+    "Ability to preserve and transmit knowledge",
+    "Spiritually receptive",
+    "Can be overly cautious"
+   ],
+   "career": "Music, education, counseling, management, journalism, religious service, and knowledge transmission.",
+   "relationships": "Devoted, traditional partners who value family. Listen deeply to partners. May be overly accommodating.",
+   "finance": "Vishnu's grace brings steady abundance. Conservative and careful approach protects and grows wealth.",
+   "health": "Prone to ear and hearing issues. Moon's influence affects mental health — emotional nurturing is essential.",
+   "strengths": [
+    "Listening",
+    "Learning",
+    "Devotion",
+    "Memory",
+    "Spiritual receptivity"
+   ],
+   "growth": [
+    "Over-caution",
+    "Dependency",
+    "Gossip",
+    "Indecision"
+   ],
+   "compat": [
+    "Rohini",
+    "Hasta",
+    "Pushya"
+   ],
+   "lucky_num": "2, 3",
+   "lucky_color": "Blue, White",
+   "lucky_gem": "Pearl",
+   "spiritual": "Shravana is the nakshatra of divine listening — the capacity to hear the voice of the cosmos. In stillness and receptivity, all wisdom is revealed.",
+   "sort_order": 21,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "f5b25e3c-1244-4a68-920f-98173552d552",
+   "name": "Dhanishtha",
+   "hindi": "धनिष्ठा",
+   "hindi_en": "Dhanishtha",
+   "emoji": "🥁",
+   "lord": "Mars",
+   "nature": "Demon",
+   "span": "23°20′ Capricorn – 6°40′ Aquarius",
+   "element": "Air/Ether",
+   "symbol": "Flute/Drum",
+   "quality": "Movable",
+   "direction": "East",
+   "deity": "Ashta Vasus (Eight Elemental Gods)",
+   "gana": "Rakshasa",
+   "yoni": "Lion",
+   "summary": "Dhanishtha means 'most famous' or 'most wealthy' and is associated with rhythm, music, and the abundance of the cosmos. Ruled by Mars and presided over by the eight Vasus, the elemental gods, Dhanishtha natives have strong drives for both material success and spiritual freedom.",
+   "traits": [
+    "Highly ambitious and driven",
+    "Musical and rhythmic ability",
+    "Strong adaptability",
+    "Generous with wealth",
+    "Scientific and innovative",
+    "Can be domineering"
+   ],
+   "career": "Music, entertainment, science, technology, finance, medicine, and any innovative field.",
+   "relationships": "Independent yet generous partners. May prioritize career and ambitions over relationships. Need space and freedom.",
+   "finance": "Dhanishtha (wealthy) name reflects financial potential. Mars drive combined with Aquarian innovation brings abundance.",
+   "health": "Prone to blood disorders and overexertion. Regular physical activity and music are therapeutic.",
+   "strengths": [
+    "Ambition",
+    "Generosity",
+    "Adaptability",
+    "Innovation",
+    "Music"
+   ],
+   "growth": [
+    "Domination",
+    "Selfishness",
+    "Materialism",
+    "Impulsiveness"
+   ],
+   "compat": [
+    "Shravan",
+    "Shatabhisha",
+    "Purva Bhadrapada"
+   ],
+   "lucky_num": "8, 9",
+   "lucky_color": "Silver, Blue",
+   "lucky_gem": "Coral",
+   "spiritual": "Dhanishtha is the cosmic music — the celestial rhythm that holds the universe in perfect order. Align your actions with the universal rhythm and abundance follows.",
+   "sort_order": 22,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "6052b10a-3658-4db4-b988-5094dc8980f6",
+   "name": "Shatabhisha",
+   "hindi": "शतभिषा",
+   "hindi_en": "Shatabhisha",
+   "emoji": "⭕",
+   "lord": "Rahu",
+   "nature": "Demon",
+   "span": "6°40′ – 20°00′ Aquarius",
+   "element": "Air/Ether",
+   "symbol": "Empty circle/1000 physicians",
+   "quality": "Movable",
+   "direction": "South",
+   "deity": "Varuna (God of Cosmic Waters)",
+   "gana": "Rakshasa",
+   "yoni": "Horse",
+   "summary": "Shatabhisha means 'hundred physicians' and is associated with healing, mysticism, and the vast cosmic void. Ruled by Rahu and presided over by Varuna, the god of cosmic waters and divine law, Shatabhisha natives are natural healers, philosophers, and explorers of hidden realms.",
+   "traits": [
+    "Mysterious and philosophical",
+    "Exceptional healing abilities",
+    "Scientific and innovative thinker",
+    "Deeply introspective",
+    "Independent loner",
+    "Can be secretive and reclusive"
+   ],
+   "career": "Medicine, healing arts, astrology, technology, research, meditation, and occult sciences.",
+   "relationships": "Deeply private and may seem emotionally distant. Need a patient partner who respects their solitude.",
+   "finance": "Rahu brings unusual financial opportunities. Independent means of earning through innovation.",
+   "health": "Prone to chronic conditions. Holistic healing and alternative medicine particularly beneficial for these natives.",
+   "strengths": [
+    "Healing",
+    "Philosophy",
+    "Innovation",
+    "Mysticism",
+    "Independence"
+   ],
+   "growth": [
+    "Isolation",
+    "Secrecy",
+    "Detachment",
+    "Cynicism"
+   ],
+   "compat": [
+    "Dhanishtha",
+    "Swati",
+    "Ardra"
+   ],
+   "lucky_num": "4, 7",
+   "lucky_color": "Blue, Black",
+   "lucky_gem": "Hessonite",
+   "spiritual": "Shatabhisha is the physician of the cosmos — one who heals the collective wound. In service to all life, the healer finds their own liberation.",
+   "sort_order": 23,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "9f51ac2f-f1f0-4e71-94a4-eb1ced1e786f",
+   "name": "Purva Bhadrapada",
+   "hindi": "पूर्व भाद्रपद",
+   "hindi_en": "Purva Bhadrapada",
+   "emoji": "⚡",
+   "lord": "Jupiter",
+   "nature": "Human",
+   "span": "20°00′ Aquarius – 3°20′ Pisces",
+   "element": "Air/Ether",
+   "symbol": "Sword/Two front legs of funeral cot",
+   "quality": "Fierce",
+   "direction": "West",
+   "deity": "Aja Ekapada (One-footed Goat)",
+   "gana": "Manushya",
+   "yoni": "Lion",
+   "summary": "Purva Bhadrapada is a nakshatra of spiritual fire, transformation, and the courage to face darkness. Ruled by Jupiter and presided over by Aja Ekapada, this nakshatra bestows fierce spiritual aspiration, the power to transform negativity, and a deep longing for liberation.",
+   "traits": [
+    "Spiritually intense and passionate",
+    "Can channel both light and dark",
+    "Transformative power",
+    "Philosophical depth",
+    "Eccentric and unconventional",
+    "Can be extreme"
+   ],
+   "career": "Philosophy, spiritual teaching, occult, healing, astrology, research, and social reform.",
+   "relationships": "Unconventional and intense partners. May struggle between worldly love and spiritual aspiration. Deep soul connections.",
+   "finance": "Jupiter's wisdom brings wealth through philosophical and spiritual pursuits. Avoid extremism in finances.",
+   "health": "Prone to nervous system issues and extremes. Spiritual practice is the primary medicine for these natives.",
+   "strengths": [
+    "Spiritual intensity",
+    "Philosophy",
+    "Transformation",
+    "Courage",
+    "Depth"
+   ],
+   "growth": [
+    "Extremism",
+    "Eccentricity",
+    "Darkness",
+    "Fanaticism"
+   ],
+   "compat": [
+    "Uttara Bhadrapada",
+    "Dhanishtha",
+    "Vishakha"
+   ],
+   "lucky_num": "3, 9",
+   "lucky_color": "Silver, Sky Blue",
+   "lucky_gem": "Yellow Sapphire",
+   "spiritual": "Purva Bhadrapada carries the sacred fire of transformation — the lightning that purifies. Walk the razor's edge between worlds, and find God in the depths.",
+   "sort_order": 24,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "28e3f179-fc75-4c81-8c8f-a0c8a227c0a4",
+   "name": "Uttara Bhadrapada",
+   "hindi": "उत्तर भाद्रपद",
+   "hindi_en": "Uttara Bhadrapada",
+   "emoji": "🐍",
+   "lord": "Saturn",
+   "nature": "Human",
+   "span": "3°20′ – 16°40′ Pisces",
+   "element": "Ether/Water",
+   "symbol": "Snake in water/Back legs of funeral cot",
+   "quality": "Fixed",
+   "direction": "North",
+   "deity": "Ahir Budhnya (Serpent of Deep Ocean)",
+   "gana": "Manushya",
+   "yoni": "Cow",
+   "summary": "Uttara Bhadrapada is the nakshatra of deep wisdom, spiritual depth, and compassionate service to all. Ruled by Saturn and presided over by Ahir Budhnya, the serpent of the cosmic ocean, this nakshatra bestows profound insight, compassion, and the ability to carry others through the depths.",
+   "traits": [
+    "Deep wisdom and compassion",
+    "Spiritually advanced",
+    "Patient and enduring",
+    "Universal perspective",
+    "Service to all beings",
+    "Can be overly sacrificing"
+   ],
+   "career": "Spiritual guidance, counseling, medicine, philosophy, research, and humanitarian work.",
+   "relationships": "Deeply compassionate and devoted partners. See the divine in their partner. May sacrifice too much for love.",
+   "finance": "Saturn ensures steady growth. Wisdom brings financial stability. Not motivated by money — but it follows their service.",
+   "health": "Prone to feet and lymphatic system issues. Deep rest and spiritual practice maintain vitality.",
+   "strengths": [
+    "Wisdom",
+    "Compassion",
+    "Patience",
+    "Depth",
+    "Service"
+   ],
+   "growth": [
+    "Self-sacrifice",
+    "Withdrawal",
+    "Passivity",
+    "Over-sensitivity"
+   ],
+   "compat": [
+    "Revati",
+    "Punarvasu",
+    "Purva Bhadrapada"
+   ],
+   "lucky_num": "8, 3",
+   "lucky_color": "Black, Purple",
+   "lucky_gem": "Blue Sapphire",
+   "spiritual": "Uttara Bhadrapada holds the wisdom of the cosmic serpent — the kundalini that ascends to universal consciousness. Depth of being is the path to liberation.",
+   "sort_order": 25,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  },
+  {
+   "id": "faabeddd-dfd0-40d1-9608-45330fbfe4c4",
+   "name": "Revati",
+   "hindi": "रेवती",
+   "hindi_en": "Revati",
+   "emoji": "🐟",
+   "lord": "Mercury",
+   "nature": "Divine",
+   "span": "16°40′ – 30°00′ Pisces",
+   "element": "Ether",
+   "symbol": "Fish/Drum",
+   "quality": "Soft/Tender",
+   "direction": "East",
+   "deity": "Pushan (Nurturer/Guide for Souls)",
+   "gana": "Deva",
+   "yoni": "Elephant",
+   "summary": "Revati is the final nakshatra of the zodiac, representing completion, transcendence, and the return of the soul to the cosmic ocean. Ruled by Mercury and presided over by Pushan, the nurturer and guide of souls, Revati natives carry the wisdom of all 27 nakshatras and radiate deep compassion.",
+   "traits": [
+    "Deeply compassionate and nurturing",
+    "Artistic and musical abilities",
+    "Connection to other realms",
+    "Spiritual and transcendent",
+    "Universal love",
+    "Can be overly sensitive"
+   ],
+   "career": "Healing arts, music, spiritual teaching, social work, marine biology, and any nurturing profession.",
+   "relationships": "Unconditionally loving and devoted. May idealize partners. Need gentle, spiritually attuned companions.",
+   "finance": "Spiritual orientation can make finances secondary. Mercury helps with practical financial management.",
+   "health": "Prone to feet issues and psychic sensitivity. Grounding practices and time in nature are essential.",
+   "strengths": [
+    "Compassion",
+    "Spirituality",
+    "Universal love",
+    "Artistry",
+    "Nurturing"
+   ],
+   "growth": [
+    "Over-sensitivity",
+    "Escapism",
+    "Impracticality",
+    "Victim mentality"
+   ],
+   "compat": [
+    "Uttara Bhadrapada",
+    "Bharani",
+    "Ashwini"
+   ],
+   "lucky_num": "3, 9",
+   "lucky_color": "Yellow, Pink",
+   "lucky_gem": "Emerald",
+   "spiritual": "Revati is the cosmic completion — where the individual soul dissolves into universal consciousness. Every ending is the universe gathering itself for a new beginning.",
+   "sort_order": 26,
+   "is_active": true,
+   "created_at": "2026-06-12T04:15:00.752321+00:00",
+   "updated_at": "2026-06-12T04:15:00.752321+00:00"
+  }
+ ]
+}

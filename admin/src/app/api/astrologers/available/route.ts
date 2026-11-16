@@ -93,8 +93,6 @@ export async function GET(request: NextRequest) {
         return {
           id: astrologer.user_id, // Use custom user_id instead of MongoDB _id
           full_name: astrologer.full_name,
-          email_address: astrologer.email_address,
-          phone_number: astrologer.phone_number,
           profile_image_id: astrologer.profile_image_id, // Include the media reference ID
           social_auth_profile_image: astrologer.social_auth_profile_image, // Include social image URL
           profile_image: resolvedProfileImage, // Include resolved image URL
