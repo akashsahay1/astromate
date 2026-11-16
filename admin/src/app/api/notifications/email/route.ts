@@ -2,18 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import DatabaseService from '@/lib/database';
 import { getAuthUser, unauthorized } from '@/lib/security';
 
-import * as sgMail from '@sendgrid/mail';
-
-// SendGrid configuration
-const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-const FROM_EMAIL = process.env.SEND_FROM || 'info@astromate.online';
-
-// Initialize SendGrid
-if (SENDGRID_API_KEY) {
-  sgMail.setApiKey(SENDGRID_API_KEY);
-} else {
-  console.warn('⚠️ SENDGRID_API_KEY not configured - emails will fail');
-}
+import { emailService } from '@/lib/email-service';
 
 // Email templates
 const getEmailTemplate = (type: string, data: Record<string, unknown>) => {
@@ -199,20 +188,8 @@ export async function POST(request: NextRequest) {
       ...data
     });
 
-    // Check if SendGrid is configured
-    if (!SENDGRID_API_KEY) {
-      throw new Error('SendGrid API key not configured');
-    }
-
-    // Send email via SendGrid
-    const mailOptions = {
-      from: `"Astromate" <${FROM_EMAIL}>`,
-      to: recipient_email,
-      subject: emailContent.subject,
-      html: emailContent.html
-    };
-
-    const info = await sgMail.send(mailOptions);
+    const sent = await emailService.sendEmail({ to: recipient_email, subject: emailContent.subject, html: emailContent.html });
+    if (!sent) throw new Error('Email not sent (SMTP not configured or rejected)');
 
     // Log email to database
     const emailLogsCollection = await DatabaseService.getCollection('email_logs');
@@ -223,7 +200,7 @@ export async function POST(request: NextRequest) {
       recipient_name: recipient_name,
       subject: emailContent.subject,
       status: 'sent',
-      message_id: Array.isArray(info) && info[0] ? info[0].headers?.['x-message-id'] || 'sendgrid-sent' : 'sendgrid-sent',
+      message_id: 'smtp-sent',
       data: data,
       sent_at: new Date()
     };
@@ -232,7 +209,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Email sent successfully via SendGrid',
-      message_id: Array.isArray(info) && info[0] ? info[0].headers?.['x-message-id'] || 'sendgrid-sent' : 'sendgrid-sent'
+      message_id: 'smtp-sent'
     });
 
   } catch (error) {

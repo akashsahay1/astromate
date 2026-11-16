@@ -1,37 +1,24 @@
-import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Phone, MessageCircle, Check, Star, ShoppingCart } from "lucide-react";
-import { fetchSite } from "@/hooks/useSupabaseData";
-import { useBookingFlow } from "@/components/BookingFlowProvider";
-import { useAuth } from "@/hooks/useAuth";
-import { usePick, useT } from "@/hooks/useLang";
+import { ArrowLeft, Phone, MessageCircle, Check, Star, ShoppingCart, Plus } from "lucide-react";
+import { useT } from "@/hooks/useLang";
+import { useToast } from "@/hooks/use-toast";
+import { cart, useCart, useShopProduct, useProductText } from "@/lib/cart";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const { startBooking } = useBookingFlow();
+  const { toast } = useToast();
   const t = useT();
-  const pick = usePick();
-  const [product, setProduct] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (!id) return;
-    fetchSite("products", id)
-      .catch(() => null)
-      .then((data) => {
-        setProduct(data);
-        setLoading(false);
-      });
-  }, [id]);
+  const text = useProductText();
+  const { data: product, isLoading: loading } = useShopProduct(id);
+  const inCart = useCart().find((l) => l.id === product?.product_id)?.qty || 0;
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FDF6E3]">
-        <div className="text-muted-foreground">Loading...</div>
+        <div className="text-muted-foreground">{t("Loading...", "लोड हो रहा है...")}</div>
       </div>
     );
   }
@@ -47,20 +34,20 @@ const ProductDetail = () => {
     );
   }
 
+  const soldOut = product.stock_quantity <= 0;
+  const add = () => {
+    cart.add(product.product_id);
+    toast({ title: t("Added to cart", "कार्ट में जोड़ा गया"), description: text(product, "name") });
+  };
   const buy = () => {
-    if (!user) { navigate("/auth"); return; }
-    startBooking({
-      serviceType: "product",
-      serviceId: product.id,
-      serviceName: pick(product, "name"),
-      amount: Number(product.price),
-      packageName: pick(product, "category") || "Shop",
-    });
+    if (!inCart) cart.add(product.product_id);
+    navigate("/cart");
   };
 
+  const original = Number(product.original_price) || 0;
   const discount =
-    product.original_price > product.price
-      ? `${Math.round(((product.original_price - product.price) / product.original_price) * 100)}% OFF`
+    original > product.price
+      ? `${Math.round(((original - product.price) / original) * 100)}% OFF`
       : null;
 
   return (
@@ -77,8 +64,8 @@ const ProductDetail = () => {
         {/* LEFT */}
         <div>
           <div className="relative rounded-2xl overflow-hidden h-[280px] lg:h-[340px] bg-gradient-to-br from-indigo-500 to-purple-600 flex items-end">
-            {product.image_url ? (
-              <img src={product.image_url} alt={pick(product, "name")} className="absolute inset-0 w-full h-full object-cover" />
+            {product.featured_image ? (
+              <img src={product.featured_image} alt={text(product, "name")} className="absolute inset-0 w-full h-full object-cover" />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center"><span className="text-7xl opacity-30">🛍️</span></div>
             )}
@@ -88,15 +75,15 @@ const ProductDetail = () => {
               </span>
             </div>
             <div className="relative z-10 p-6 lg:p-7 bg-gradient-to-t from-black/85 via-black/30 to-transparent w-full">
-              <h1 className="text-2xl lg:text-3xl font-bold text-[#FFD700] leading-tight drop-shadow-lg">{pick(product, "name")}</h1>
-              <p className="text-white/90 text-sm mt-1.5">{pick(product, "badge") || pick(product, "category")}</p>
+              <h1 className="text-2xl lg:text-3xl font-bold text-[#FFD700] leading-tight drop-shadow-lg">{text(product, "name")}</h1>
+              <p className="text-white/90 text-sm mt-1.5">{product.tags?.[0] || product.category}</p>
             </div>
           </div>
 
           <div className="mt-5 space-y-4">
             <div className="bg-white rounded-[14px] p-5 border border-[hsl(40,50%,90%)] shadow-sm">
               <h3 className="text-[1.05rem] font-bold text-[#171452] mb-3">{t("About this product", "उत्पाद के बारे में")}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{pick(product, "description")}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{text(product, "description")}</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-5 border border-[hsl(40,50%,90%)] shadow-sm">
@@ -104,19 +91,19 @@ const ProductDetail = () => {
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[#FFF8E7] rounded-[10px] p-3.5">
                   <p className="text-[0.75rem] text-muted-foreground">{t("Category", "श्रेणी")}</p>
-                  <p className="font-bold text-sm text-[#2C1010]">{pick(product, "category")}</p>
+                  <p className="font-bold text-sm text-[#2C1010]">{product.category}</p>
                 </div>
                 <div className="bg-[#FFF8E7] rounded-[10px] p-3.5">
                   <p className="text-[0.75rem] text-muted-foreground">{t("Rating", "रेटिंग")}</p>
-                  <p className="font-bold text-sm text-[#2C1010] flex items-center gap-1"><Star className="h-3.5 w-3.5 fill-rating text-rating" /> {product.rating}</p>
+                  <p className="font-bold text-sm text-[#2C1010] flex items-center gap-1"><Star className="h-3.5 w-3.5 fill-rating text-rating" /> {Number(product.rating) > 0 ? product.rating : "—"}</p>
                 </div>
                 <div className="bg-[#FFF8E7] rounded-[10px] p-3.5">
                   <p className="text-[0.75rem] text-muted-foreground">{t("Sales", "बिक्री")}</p>
-                  <p className="font-bold text-sm text-[#2C1010]">{t(`${product.sold_count}+ sold`, `${product.sold_count}+ बिके`)}</p>
+                  <p className="font-bold text-sm text-[#2C1010]">{product.total_sales ? t(`${product.total_sales}+ sold`, `${product.total_sales}+ बिके`) : t("New", "नया")}</p>
                 </div>
                 <div className="bg-[#FFF8E7] rounded-[10px] p-3.5">
                   <p className="text-[0.75rem] text-muted-foreground">{t("Stock", "स्टॉक")}</p>
-                  <p className="font-bold text-sm text-[#2C1010]">{product.stock > 0 ? t(`${product.stock} available`, `${product.stock} उपलब्ध`) : t("Available", "उपलब्ध")}</p>
+                  <p className="font-bold text-sm text-[#2C1010]">{soldOut ? t("Out of stock", "स्टॉक में नहीं") : t(`${product.stock_quantity} available`, `${product.stock_quantity} उपलब्ध`)}</p>
                 </div>
               </div>
             </div>
@@ -147,7 +134,7 @@ const ProductDetail = () => {
             <div className="bg-[#FFF8E7] rounded-[10px] p-3.5 mb-4">
               <h4 className="text-[0.82rem] font-bold text-[#2C1010] mb-2">{t("Your order includes:", "ऑर्डर में शामिल:")}</h4>
               <div className="space-y-1.5">
-                {[t("Energised product", "अभिमंत्रित उत्पाद"), t("Certificate", "प्रमाणपत्र"), t("Free delivery", "फ्री डिलीवरी")].map((item, i) => (
+                {[t("Energised product", "अभिमंत्रित उत्पाद"), t("Certificate", "प्रमाणपत्र"), t("Free delivery on orders above ₹500", "₹500 से ऊपर के ऑर्डर पर फ्री डिलीवरी")].map((item, i) => (
                   <div key={i} className="flex items-center gap-2 text-[0.8rem] text-muted-foreground">
                     <Check className="h-3 w-3 text-green-600 flex-shrink-0" /> {item}
                   </div>
@@ -162,19 +149,32 @@ const ProductDetail = () => {
                 </span>
               )}
               <span className="float-right font-bold text-lg text-[#2C1010]">₹{Number(product.price).toLocaleString()}</span>
-              <span className="font-bold text-sm text-[#171452] block clear-both">{pick(product, "name")}</span>
-              {product.original_price > 0 && (
-                <span className="text-[0.78rem] text-muted-foreground mt-0.5 block line-through">₹{Number(product.original_price).toLocaleString()}</span>
+              <span className="font-bold text-sm text-[#171452] block clear-both">{text(product, "name")}</span>
+              {original > product.price && (
+                <span className="text-[0.78rem] text-muted-foreground mt-0.5 block line-through">₹{original.toLocaleString()}</span>
               )}
             </div>
 
-            <button
-              onClick={buy}
-              className="w-full flex items-center justify-center gap-2 bg-cta text-cta-foreground py-3.5 rounded-[10px] text-[0.95rem] font-bold hover:bg-cta-hover transition-colors mt-2"
-            >
-              <ShoppingCart className="h-4 w-4" />
-              {user ? t("Buy now", "अभी खरीदें") : t("Log in to buy", "लॉगिन करके खरीदें")}
-            </button>
+            {soldOut ? (
+              <div className="w-full text-center py-3.5 rounded-[10px] bg-muted text-muted-foreground font-bold mt-2">{t("Out of stock", "स्टॉक में नहीं")}</div>
+            ) : (
+              <>
+                <button
+                  onClick={buy}
+                  className="w-full flex items-center justify-center gap-2 bg-cta text-cta-foreground py-3.5 rounded-[10px] text-[0.95rem] font-bold hover:bg-cta-hover transition-colors mt-2"
+                >
+                  <ShoppingCart className="h-4 w-4" />
+                  {t("Buy now", "अभी खरीदें")}
+                </button>
+                <button
+                  onClick={add}
+                  className="w-full flex items-center justify-center gap-2 border-2 border-[#171452] text-[#171452] py-3 rounded-[10px] text-[0.9rem] font-bold hover:bg-[#171452]/5 transition-colors mt-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  {inCart ? t(`Add another (${inCart} in cart)`, `एक और जोड़ें (कार्ट में ${inCart})`) : t("Add to cart", "कार्ट में जोड़ें")}
+                </button>
+              </>
+            )}
           </div>
 
           <div className="bg-white rounded-[14px] p-4 border border-[hsl(40,50%,85%)] shadow-sm">

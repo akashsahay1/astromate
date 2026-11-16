@@ -298,3 +298,8 @@ coverage/
 !tsconfig.json
 !next.config.ts
 !eslint.config.mjsadmin/.env
+
+# User uploads (profile photos, PAN cards) and seed product images are server data, not source.
+# Files already tracked from the old project stay tracked; new ones are ignored.
+admin/public/uploads/**
+!admin/public/uploads/.gitkeep

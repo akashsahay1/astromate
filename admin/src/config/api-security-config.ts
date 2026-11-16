@@ -46,7 +46,6 @@ export const ApiSecurityConfig = {
   
   // Webhook endpoints (external services)
   '/api/webhooks/razorpay': SecurityPresets.webhook,
-  '/api/webhooks/sendgrid': SecurityPresets.webhook,
   
   // Public endpoints (minimal security)
   '/api/public/categories': SecurityPresets.public,

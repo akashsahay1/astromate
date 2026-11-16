@@ -2,10 +2,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
-import GetApp from "./pages/GetApp";
+import Auth from "./pages/Auth";
+import { ForgotPassword, ResetPassword } from "./pages/PasswordReset";
+import Account from "./pages/account/Account";
+import AstrologerHome from "./pages/astrologer/AstrologerHome";
+import Cart from "./pages/shop/Cart";
+import Checkout from "./pages/shop/Checkout";
 import { RefundPolicy, ShippingPolicy, CookiePolicy, ContactPage } from "./pages/Policies";
 import { LangProvider } from "@/hooks/useLang";
 import Numerology from "./pages/Numerology";
@@ -48,8 +53,14 @@ const App = () => (
           <BookingFlowProvider>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<GetApp />} />
-            <Route path="/complete-profile" element={<GetApp />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/complete-profile" element={<Navigate to="/astrologer" replace />} />
+            <Route path="/account/*" element={<Account />} />
+            <Route path="/astrologer" element={<AstrologerHome />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/numerology" element={<Numerology />} />
             <Route path="/loshu-grid" element={<LoShuGrid />} />
             <Route path="/free-kundli" element={<FreeKundli />} />
@@ -60,7 +71,7 @@ const App = () => (
             <Route path="/panchang" element={<Panchang />} />
             <Route path="/lucky-number" element={<LuckyNumber />} />
             <Route path="/astrologers" element={<AstrologersPage />} />
-            <Route path="/profile" element={<GetApp />} />
+            <Route path="/profile" element={<Navigate to="/account" replace />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/pooja-services" element={<PoojaServicesPage />} />

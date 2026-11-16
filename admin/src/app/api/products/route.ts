@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
     const productsCollection = await DatabaseService.getCollection('products');
 
     // Build query - Admin should see all products regardless of active status
-    const query: Record<string, unknown> = {};
+    const query: Record<string, unknown> = { is_active: { $ne: false } }; // deactivated products stay hidden
 
     if (category) {
       query.category = category;
@@ -129,6 +129,8 @@ export async function GET(request: NextRequest) {
           product_id: product.product_id, // Include custom product_id
           name: product.name,
           description: product.description,
+          name_hi: product.name_hi,
+          description_hi: product.description_hi,
           price: product.price,
           original_price: product.original_price,
           discount_percentage: product.discount_percentage,

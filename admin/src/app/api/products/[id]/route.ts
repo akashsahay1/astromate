@@ -153,6 +153,8 @@ export async function GET(
       product_id: product.product_id, // Include custom product_id
       name: product.name,
       description: product.description,
+      name_hi: product.name_hi,
+      description_hi: product.description_hi,
       price: product.price,
       original_price: product.original_price,
       discount_percentage: product.discount_percentage,

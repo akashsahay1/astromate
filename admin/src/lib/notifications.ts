@@ -1,6 +1,5 @@
 import { emailService } from './email-service';
 import admin from 'firebase-admin';
-import sgMail from '@sendgrid/mail';
 import DatabaseService from './database';
 import { ObjectId } from 'mongodb';
 
@@ -64,10 +63,6 @@ function getFirebaseApp(): admin.app.App | null {
   }
 }
 
-// Initialize SendGrid
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-}
 
 // Notification types
 export enum NotificationType {
@@ -273,7 +268,7 @@ export class NotificationService {
    */
   static async sendEmailNotification(target: NotificationTarget, notification: NotificationData): Promise<boolean> {
     try {
-      if (!process.env.SENDGRID_API_KEY || !target.email) {
+      if (!target.email) {
         return false;
       }
 
@@ -284,30 +279,13 @@ export class NotificationService {
 
       const emailTemplate = this.getEmailTemplate(notification.type, { title: notification.title, message: notification.body, ...notification.data });
       
-      const msg = {
+      const sent = await emailService.sendEmail({
         to: target.email,
-        from: {
-          email: process.env.SEND_FROM || 'info@astromate.online',
-          name: 'Astromate'
-        },
         subject: emailTemplate.subject,
         html: emailService.layout(emailTemplate.htmlContent),
         text: emailTemplate.textContent || notification.body,
-        trackingSettings: {
-          clickTracking: {
-            enable: true
-          },
-          openTracking: {
-            enable: true
-          }
-        },
-        customArgs: {
-          user_id: target.userId,
-          notification_type: notification.type
-        }
-      };
-
-      await sgMail.send(msg);
+      });
+      if (!sent) throw new Error('Email not sent');
       
       // Update delivery status
       await this.updateNotificationStatus(target.userId, notification.type, 'delivered');

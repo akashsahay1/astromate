@@ -36,12 +36,11 @@ export const envConfig = {
 
   // Email Configuration - REQUIRED for production
   SEND_FROM: getRequiredEnv('SEND_FROM'),
-  SENDGRID_API_KEY: getRequiredEnv('SENDGRID_API_KEY'),
   SMTP: {
     host: getOptionalEnv('SMTP_HOST'),
     port: parseInt(getOptionalEnv('SMTP_PORT', '587')),
     user: getOptionalEnv('SMTP_USER'),
-    password: getOptionalEnv('SMTP_PASSWORD')
+    password: getOptionalEnv('SMTP_PASSWORD') || getOptionalEnv('SMTP_PASS')
   },
 
   // URLs
@@ -71,12 +70,12 @@ export const envHelpers = {
   /**
    * Check if specific service is configured
    */
-  isServiceConfigured: (service: 'firebase' | 'sendgrid' | 'razorpay') => {
+  isServiceConfigured: (service: 'firebase' | 'email' | 'razorpay') => {
     switch (service) {
       case 'firebase':
         return !!envConfig.FIREBASE_SERVER_KEY;
-      case 'sendgrid':
-        return !!envConfig.SENDGRID_API_KEY;
+      case 'email':
+        return !!(envConfig.SMTP.host && envConfig.SMTP.user && envConfig.SMTP.password);
       case 'razorpay':
         return !!(envConfig.RAZORPAY_KEY_ID && envConfig.RAZORPAY_KEY_SECRET);
       default:
@@ -94,7 +93,7 @@ export const envHelpers = {
       socketPort: envConfig.SOCKET_PORT,
       services: {
         firebase: envHelpers.isServiceConfigured('firebase'),
-        sendgrid: envHelpers.isServiceConfigured('sendgrid'),
+        email: envHelpers.isServiceConfigured('email'),
         razorpay: envHelpers.isServiceConfigured('razorpay'),
       }
     };

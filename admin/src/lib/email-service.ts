@@ -1,4 +1,4 @@
-import sgMail from '@sendgrid/mail';
+import nodemailer from 'nodemailer';
 import { envConfig } from './env-config';
 
 export interface EmailTemplate {
@@ -17,10 +17,17 @@ export interface EmailData {
 class EmailService {
   private logoUrl: string;
 
+  // Plain SMTP so any provider works (Brevo free tier now; a paid provider later = change SMTP_* in .env, no code).
+  private transporter = envConfig.SMTP.host && envConfig.SMTP.user && envConfig.SMTP.password
+    ? nodemailer.createTransport({
+        host: envConfig.SMTP.host,
+        port: envConfig.SMTP.port,
+        secure: envConfig.SMTP.port === 465,
+        auth: { user: envConfig.SMTP.user, pass: envConfig.SMTP.password },
+      })
+    : null;
+
   constructor() {
-    if (envConfig.SENDGRID_API_KEY) {
-      sgMail.setApiKey(envConfig.SENDGRID_API_KEY);
-    }
     // Logo URL for email templates
     // emails are opened outside our network: never point at localhost
     this.logoUrl = `${process.env.EMAIL_ASSET_URL || 'https://admin.astromate.online'}/logo.png`;
@@ -72,37 +79,25 @@ class EmailService {
   }
 
   async sendEmail(emailData: EmailData): Promise<boolean> {
+    if (!this.transporter) {
+      console.warn('SMTP not configured (SMTP_HOST/SMTP_USER/SMTP_PASSWORD), email not sent');
+      return false;
+    }
     try {
-      if (!envConfig.SENDGRID_API_KEY) {
-        console.warn('SendGrid API key not configured, email not sent');
-        return false;
-      }
-
-      const msg = {
+      await this.transporter.sendMail({
+        from: { name: 'Astromate', address: envConfig.SEND_FROM || 'noreply@astromate.online' },
         to: emailData.to,
-        from: {
-          email: envConfig.SEND_FROM || 'noreply@astromate.online',
-          name: 'Astromate'
-        },
         subject: emailData.subject,
         html: emailData.html,
         text: emailData.text,
-      };
-
-      await sgMail.send(msg);
+      });
       return true;
-    } catch (error: unknown) {
-      console.error('Error sending email via SendGrid:');
-      if (error && typeof error === 'object' && 'response' in error) {
-        const sgError = error as { code?: number; response?: { body?: unknown; headers?: unknown } };
-        console.error('Status Code:', sgError.code);
-        console.error('Response Body:', JSON.stringify(sgError.response?.body, null, 2));
-      } else {
-        console.error('Error details:', error);
-      }
+    } catch (error) {
+      console.error('Error sending email via SMTP:', error);
       return false;
     }
   }
+
 
   // Template: Admin notification for new user signup
   getAdminSignupNotificationTemplate(user: { name: string; email: string; phone?: string; user_type: string; createdAt?: string | Date; experience?: string; specialization?: string }): EmailTemplate {

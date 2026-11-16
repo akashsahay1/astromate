@@ -176,7 +176,7 @@ export class JWTSecurity {
 export const ValidationSchemas = {
   // User registration schema
   userRegistration: Joi.object({
-    name: Joi.string().min(2).max(100).required().pattern(/^[a-zA-Z\s]+$/),
+    name: Joi.string().min(2).max(100).required().pattern(/^[\p{L}\p{M}][\p{L}\p{M}\s.'-]*$/u), // any script (Hindi too), plus . ' -
     email: Joi.string().email().required().lowercase(),
     phone: Joi.string().pattern(/^[+]?[\d\s\-()]+$/).min(10).max(15).required(),
     password: Joi.string().min(8).required(),

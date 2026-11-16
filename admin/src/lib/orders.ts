@@ -30,7 +30,7 @@ export async function cancelOrderByCustomer(order: WithId<Document>, reason?: st
   Promise<{ ok: true; refundedToWallet: number } | { ok: false; message: string }> {
   const orders = await DatabaseService.getCollection('orders');
   const res = await orders.updateOne(
-    { _id: order._id, status: { $nin: ['shipped', 'delivered', 'cancelled'] } },
+    { _id: order._id, status: { $nin: ['shipped', 'out_for_delivery', 'delivered', 'cancelled', 'refunded'] } },
     { $set: {
       status: 'cancelled', cancelled_at: new Date(), updated_at: new Date(),
       ...(reason && { cancellation_reason: reason }),

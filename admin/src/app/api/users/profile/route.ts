@@ -209,10 +209,10 @@ export async function GET(request: NextRequest) {
           approval_status: dbUser.approval_status || 'pending',
 
           // Bank details
-          account_holder_name: dbUser.bank_details?.account_holder_name,
-          account_number: dbUser.bank_details?.account_number,
-          bank_name: dbUser.bank_details?.bank_name,
-          ifsc_code: dbUser.bank_details?.ifsc_code,
+          account_holder_name: dbUser.bank_details?.account_holder_name ?? dbUser.account_holder_name,
+          account_number: dbUser.bank_details?.account_number ?? dbUser.account_number,
+          bank_name: dbUser.bank_details?.bank_name ?? dbUser.bank_name,
+          ifsc_code: dbUser.bank_details?.ifsc_code ?? dbUser.ifsc_code,
 
           // PAN card
           pan_card_url: panCardUrl,
@@ -308,9 +308,9 @@ export async function PUT(request: NextRequest) {
       delete updateData.place_of_birth;
     }
     
-    // Handle verified email update
-    // Allow email_address update only if email_verified flag is sent (indicating OTP verification)
-    const isVerifiedEmailUpdate = updateData.email_verified === true && updateData.email_address;
+    // Email change: the client says it verified the new address with OTP; the server checks that itself below.
+    const requestedEmail = updateData.email_verified === true && updateData.email_address
+      ? String(updateData.email_address).trim().toLowerCase() : null;
 
     // Allowlist: anything not listed here (wallet_balance, reserved_balance, total_earnings, verification_status,
     // commission_percentage, user_type, ...) can never be set by the user themselves.
@@ -320,7 +320,6 @@ export async function PUT(request: NextRequest) {
       'bio', 'skills', 'languages', 'qualifications', 'certifications', 'education', 'specializations', 'experience_years',
       'call_rate', 'chat_rate', 'video_rate',
       'account_holder_name', 'account_number', 'bank_name', 'ifsc_code', 'upi_id',
-      ...(isVerifiedEmailUpdate ? ['email_address', 'email_verified'] : []),
     ]);
     for (const field of Object.keys(updateData)) {
       if (!editableFields.has(field)) delete updateData[field];
@@ -342,6 +341,35 @@ export async function PUT(request: NextRequest) {
     }
 
     // Validate input data based on user type
+    // Accept the email only if verify-otp marked it verified in the last 30 minutes — on this account, or on the
+    // OTP-only placeholder record send-otp creates for a new address (removed once the email moves here).
+    let verifiedEmailStubId: unknown = null;
+    if (requestedEmail) {
+      const proof = await usersCollection.findOne({
+        email_address: requestedEmail, email_verified: true, verified_at: { $gte: new Date(Date.now() - 30 * 60_000) },
+      });
+      const ownAccount = proof && proof.user_id === existingUser.user_id;
+      const placeholder = proof && !ownAccount && !proof.full_name && !proof.user_type;
+      if (ownAccount || placeholder) {
+        updateData.email_address = requestedEmail;
+        updateData.email_verified = true;
+        if (placeholder) verifiedEmailStubId = proof!._id;
+      } else {
+        return NextResponse.json({
+          success: false, error: 'EMAIL_NOT_VERIFIED',
+          message: 'Please verify this email address with the code we sent before saving it.',
+        }, { status: 400 });
+      }
+    }
+
+    // Bank details live in bank_details.* (that's what GET, the admin panel and approval read)
+    for (const f of ['account_holder_name', 'account_number', 'bank_name', 'ifsc_code'] as const) {
+      if (updateData[f] !== undefined) {
+        updateData[`bank_details.${f}`] = updateData[f];
+        delete updateData[f];
+      }
+    }
+
     if (existingUser.user_type === 'astrologer') {
       // Validate astrologer rates using centralized validation
       const rateValidation = validateAllRates({
@@ -595,6 +623,8 @@ export async function PUT(request: NextRequest) {
       });
     }
 
+    if (verifiedEmailStubId) await usersCollection.deleteOne({ _id: verifiedEmailStubId as never });
+
     const result = await usersCollection.updateOne(
       { user_id: user.userId as string },
       { $set: updateData }
@@ -630,7 +660,15 @@ export async function PUT(request: NextRequest) {
 
       console.log(`📋 Profile completion check - Before: ${wasProfileComplete}, After: ${isProfileComplete}`);
 
-      if (!wasProfileComplete && isProfileComplete) {
+      const isResubmission = existingUser.verification_status === 'rejected' && isProfileComplete;
+      if (isResubmission) {
+        await usersCollection.updateOne(
+          { user_id: user.userId as string },
+          { $set: { verification_status: 'pending', profile_submitted_at: new Date(), resubmitted_at: new Date() } }
+        );
+        updatedUser.verification_status = 'pending';
+      }
+      if ((!wasProfileComplete && isProfileComplete) || isResubmission) {
         console.log(`✅ Astrologer profile just completed for ${updatedUser.full_name}, setting profile_submitted_at and sending admin notification`);
 
         // Set profile_submitted_at timestamp when profile becomes complete for the first time

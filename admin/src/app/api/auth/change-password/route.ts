@@ -137,6 +137,13 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    if (!dbUser.password) {
+      return NextResponse.json({
+        success: false, error: 'NO_PASSWORD_SET',
+        message: "This account doesn't have a password yet. Use 'Forgot password' on the login page to set one.",
+      }, { status: 400 });
+    }
+
     // Verify current password
     const isCurrentPasswordValid = await PasswordSecurity.verifyPassword(
       current_password as string,

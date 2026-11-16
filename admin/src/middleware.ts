@@ -53,7 +53,7 @@ export async function middleware(request: NextRequest) {
     return new NextResponse(null, { status: 404 });
   }
 
-  if (adminApiPrefixes.some(p => pathname.startsWith(p)) || isAdminOnly(pathname, method)) {
+  if (method !== 'OPTIONS' && (adminApiPrefixes.some(p => pathname.startsWith(p)) || isAdminOnly(pathname, method))) {
     const auth = request.headers.get('authorization');
     const apiToken = auth?.startsWith('Bearer ') ? auth.slice(7) : request.cookies.get('auth-token')?.value;
     try {

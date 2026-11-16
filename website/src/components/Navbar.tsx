@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Menu, X, User, LogOut, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, User, LogOut, ChevronDown, ArrowRight, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { homeFor } from "@/pages/Auth";
 import { useLang } from "@/hooks/useLang";
 import logoIcon from "@/assets/logo-icon.png";
 import logoText from "@/assets/logo-text.png";
 import langIcon from "@/assets/lang-icon.png";
 import loginIcon from "@/assets/login-icon.png";
+import { useCartCount } from "@/lib/cart";
 
 type NavItem = {
   name: string;
@@ -58,8 +60,9 @@ const Navbar = () => {
   const { lang: language, setLang: setLanguage } = useLang();
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
-  const avatarUrl = "";
-  const displayName = user?.email ?? "";
+  const cartCount = useCartCount();
+  const avatarUrl = user?.profile_image || "";
+  const displayName = user?.full_name || user?.email_address || "";
 
 
 
@@ -72,6 +75,23 @@ const Navbar = () => {
       </span>
     );
 
+
+  const CartLink = () => (
+    <Link
+      to="/cart"
+      onClick={() => setIsOpen(false)}
+      title={language === "hi" ? "कार्ट" : "Cart"}
+      aria-label={language === "hi" ? `कार्ट, ${cartCount} आइटम` : `Cart, ${cartCount} items`}
+      className="relative flex items-center p-1.5 text-muted-foreground hover:text-foreground"
+    >
+      <ShoppingCart className="h-6 w-6" />
+      {cartCount > 0 && (
+        <span className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-cta text-cta-foreground text-[10px] font-bold flex items-center justify-center">
+          {cartCount > 99 ? "99+" : cartCount}
+        </span>
+      )}
+    </Link>
+  );
 
   const toggleLanguage = () => {
     setLanguage(language === "hi" ? "en" : "hi");
@@ -153,17 +173,19 @@ const Navbar = () => {
               <img src={langIcon} alt="Language" className="h-7 w-7 rounded-full object-contain" />
               <span>{language === "hi" ? "English" : "हिंदी"}</span>
             </button>
-            
+
+            <CartLink />
+
             {user ? (
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => navigate("/profile")}
+                  onClick={() => navigate(homeFor(user))}
                   title={language === "hi" ? "मेरा प्रोफाइल" : "My Profile"}
                   className="flex items-center gap-2 bg-secondary rounded-full pl-1 pr-3 py-1 hover:bg-secondary/70 transition-colors"
                 >
                   <AvatarBadge />
                   <span className="text-sm font-medium text-foreground truncate max-w-[120px]">
-                    {displayName || user.email?.split("@")[0]}
+                    {displayName}
                   </span>
                 </button>
 
@@ -233,17 +255,18 @@ const Navbar = () => {
                 )
               )}
 
-              <div className="flex items-center gap-2 px-2 py-2">
+              <div className="flex items-center justify-between gap-2 px-2 py-2">
                 <button onClick={toggleLanguage} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
                   <img src={langIcon} alt="Language" className="h-7 w-7 rounded-full object-contain" />
                   {language === "hi" ? "English" : "हिंदी"}
                 </button>
+                <CartLink />
               </div>
               {user ? (
                 <div className="flex items-center justify-between px-2 py-2">
-                  <button onClick={() => { setIsOpen(false); navigate("/profile"); }} className="flex items-center gap-2">
+                  <button onClick={() => { setIsOpen(false); navigate(homeFor(user)); }} className="flex items-center gap-2">
                     <AvatarBadge />
-                    <span className="text-sm font-medium">{displayName || user.email?.split("@")[0]}</span>
+                    <span className="text-sm font-medium">{displayName}</span>
                   </button>
 
                   <Button variant="destructive" size="sm" onClick={handleLogout}>

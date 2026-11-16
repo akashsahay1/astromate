@@ -109,12 +109,14 @@ export async function POST(request: NextRequest) {
       { _id: user._id },
       {
         $set: {
-          password_hash: hashedPassword,
+          password: hashedPassword, // login/register/change-password all use `password`
           updated_at: new Date()
         },
         $unset: {
           password_reset_token: '',
-          password_reset_expires: ''
+          password_reset_expires: '',
+          failed_login_attempts: '',
+          last_failed_login: ''
         }
       }
     );
