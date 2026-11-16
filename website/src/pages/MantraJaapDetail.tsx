@@ -44,8 +44,8 @@ const MantraJaapDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#f5f0e8]">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-[#171452] mb-4">{t("Mantra Jaap not found", "मंत्र जाप नहीं मिला")}</h2>
-          <button onClick={() => navigate("/")} className="text-[#171452] underline">{t("Go Back", "वापस जाएं")}</button>
+          <h2 className="text-2xl font-bold text-[#1A1A1A] mb-4">{t("Mantra Jaap not found", "मंत्र जाप नहीं मिला")}</h2>
+          <button onClick={() => navigate("/")} className="text-[#1A1A1A] underline">{t("Go Back", "वापस जाएं")}</button>
         </div>
       </div>
     );
@@ -69,7 +69,7 @@ const MantraJaapDetail = () => {
       <Navbar />
 
       <div className="max-w-[1060px] mx-auto px-4">
-        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-1.5 text-[#171452] text-sm font-semibold py-3 hover:underline">
+        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-1.5 text-[#1A1A1A] text-sm font-semibold py-3 hover:underline">
           <ArrowLeft className="h-4 w-4" /> {t("Go Back", "वापस जाएं")}
         </button>
       </div>
@@ -77,7 +77,7 @@ const MantraJaapDetail = () => {
       <div className="max-w-[1060px] mx-auto px-4 pb-12 grid grid-cols-1 lg:grid-cols-[1fr_330px] gap-5 items-start">
         {/* LEFT */}
         <div>
-          <div className="relative rounded-2xl overflow-hidden min-h-[240px] bg-gradient-to-br from-indigo-500 to-purple-600 flex items-end mb-4">
+          <div className="relative rounded-2xl overflow-hidden min-h-[240px] bg-gradient-to-br from-red-500 to-red-600 flex items-end mb-4">
             {imgSrc ? (
               <img src={imgSrc} alt={pick(jaap, "name")} className="absolute inset-0 w-full h-full object-cover" />
             ) : (
@@ -98,12 +98,12 @@ const MantraJaapDetail = () => {
 
           <div className="space-y-4">
             <div className="bg-white rounded-[14px] p-5 shadow-sm">
-              <h3 className="text-[0.97rem] font-bold text-[#171452] mb-3">{t("About This Mantra Jaap", "इस मंत्र जाप के बारे में")}</h3>
+              <h3 className="text-[0.97rem] font-bold text-[#1A1A1A] mb-3">{t("About This Mantra Jaap", "इस मंत्र जाप के बारे में")}</h3>
               <p className="text-[0.82rem] text-muted-foreground leading-relaxed">{pick(jaap, "description")}</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-5 shadow-sm">
-              <h3 className="text-[0.97rem] font-bold text-[#171452] mb-3">{t("Mantra Jaap Details", "मंत्र जाप विवरण")}</h3>
+              <h3 className="text-[0.97rem] font-bold text-[#1A1A1A] mb-3">{t("Mantra Jaap Details", "मंत्र जाप विवरण")}</h3>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[#fffbf0] border border-amber-200 rounded-[10px] p-3.5">
                   <p className="text-[0.75rem] text-muted-foreground">{t("Deity", "देवता")}</p>
@@ -125,7 +125,7 @@ const MantraJaapDetail = () => {
             </div>
 
             <div className="bg-white rounded-[14px] p-5 shadow-sm">
-              <h3 className="text-[0.97rem] font-bold text-[#171452] mb-3">{t("What You Will Receive", "आपको क्या मिलेगा")}</h3>
+              <h3 className="text-[0.97rem] font-bold text-[#1A1A1A] mb-3">{t("What You Will Receive", "आपको क्या मिलेगा")}</h3>
               <div className="space-y-2">
                 {[t("Jaap performed by Panditji in your name and gotra", "आपके नाम और गोत्र के साथ पंडितजी द्वारा जाप"), t("Jaap video on WhatsApp", "WhatsApp पर जाप वीडियो"), t("Divine Aashirwad (blessings) Box delivered to your home", "दिव्य आशीर्वाद बॉक्स आपके घर"), t("Energised Yantra and Prasad", "ऊर्जावान यंत्र और प्रसाद")].map((item, i) => (
                   <div key={i} className="flex items-start gap-2.5 text-[0.82rem] text-muted-foreground">
@@ -140,7 +140,7 @@ const MantraJaapDetail = () => {
         {/* RIGHT SIDEBAR */}
         <div className="lg:sticky lg:top-4 space-y-4">
           <div className="bg-white rounded-2xl p-5 shadow-lg">
-            <h3 className="text-[0.97rem] font-bold text-[#171452] mb-3.5">{t("Book Mantra Jaap", "मंत्र जाप बुक करें")}</h3>
+            <h3 className="text-[0.97rem] font-bold text-[#1A1A1A] mb-3.5">{t("Book Mantra Jaap", "मंत्र जाप बुक करें")}</h3>
 
             <div className="bg-[#fffbf0] border border-amber-200 rounded-[10px] p-3 mb-4">
               <h4 className="text-[0.72rem] font-bold text-amber-800 mb-1.5">{t("Included in all packages:", "सभी पैकेज में शामिल:")}</h4>
@@ -153,19 +153,19 @@ const MantraJaapDetail = () => {
               </div>
             </div>
 
-            <div className="border-2 border-[#171452] bg-[#f0eef7] rounded-xl p-4 mb-4">
+            <div className="border-2 border-[#1A1A1A] bg-[#FFF6E0] rounded-xl p-4 mb-4">
               <span className="inline-block bg-orange-50 text-[#FF6B1A] text-[0.72rem] font-bold px-2 py-0.5 rounded-[10px] border border-orange-200 mb-1.5">
                 Standard Package
               </span>
               <span className="float-right font-bold text-lg text-[#2C1010]">₹{Number(jaap.price).toLocaleString()}</span>
-              <span className="font-bold text-sm text-[#171452] block clear-both">{pick(jaap, "name")}</span>
+              <span className="font-bold text-sm text-[#1A1A1A] block clear-both">{pick(jaap, "name")}</span>
               <span className="text-[0.78rem] text-muted-foreground mt-0.5 block">{pick(jaap, "deity")} • {pick(jaap, "chants")} {t("chants", "जाप")}</span>
             </div>
 
             <button
               disabled={booking}
               onClick={handleBooking}
-              className="w-full bg-[#171452] text-white py-3.5 rounded-[10px] text-[0.88rem] font-bold hover:bg-[#1e1a6e] transition-colors"
+              className="w-full bg-[#1A1A1A] text-white py-3.5 rounded-[10px] text-[0.88rem] font-bold hover:bg-[#A30005] transition-colors"
             >
               {booking ? t("Booking...", "बुक हो रहा है...") : user ? t("Book Now", "अभी बुक करें") : t("Log in to Book", "लॉगिन करके बुक करें")}
             </button>

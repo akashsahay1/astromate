@@ -33,7 +33,7 @@ const PoojaCard = ({ pooja }: { pooja: any }) => {
       onClick={() => navigate(`/pooja/${pooja.id}`)}
       className="bg-[#FFFDF5] rounded-[14px] overflow-hidden border border-[hsl(40,50%,85%)] shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col"
     >
-      <div className="relative h-[165px] bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center overflow-hidden">
+      <div className="relative h-[165px] bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center overflow-hidden">
         <span className="absolute top-2 left-2 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded font-semibold z-10">
           Astromate
         </span>
@@ -95,7 +95,7 @@ const PoojaServices = () => {
   return (
     <section id="pooja" className="py-8 lg:py-12 bg-[#FDF6E3]">
       <div className="max-w-[1280px] mx-auto px-6">
-        <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#171452] mb-1.5">
+        <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#1A1A1A] mb-1.5">
           {t("Pooja Services", "पूजा सेवाएं")}
         </h2>
         <p className="text-[0.95rem] text-muted-foreground mb-8">

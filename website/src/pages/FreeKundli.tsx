@@ -292,7 +292,7 @@ const FreeKundli = () => {
                   required
                   className="w-full"
                 />
-                <p className="text-sm text-blue-500">
+                <p className="text-sm text-amber-500">
                   Please type initial of your birth place to get suggestions
                 </p>
                 

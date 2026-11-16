@@ -63,7 +63,7 @@ const Checkout = () => {
       <Shell>
         <div className="bg-white rounded-[14px] p-8 text-center border border-[hsl(40,50%,85%)] max-w-lg mx-auto">
           <CheckCircle2 className="h-14 w-14 text-green-600 mx-auto mb-3" />
-          <h1 className="font-serif text-2xl font-bold text-[#171452] mb-2">{t("Order placed!", "ऑर्डर हो गया!")}</h1>
+          <h1 className="font-serif text-2xl font-bold text-[#1A1A1A] mb-2">{t("Order placed!", "ऑर्डर हो गया!")}</h1>
           <p className="text-muted-foreground">{t("Order number", "ऑर्डर नंबर")}: <span className="font-bold text-foreground">{done.order.order_number}</span></p>
           <p className="text-muted-foreground mb-2">{t("Amount", "राशि")}: <span className="font-bold text-foreground">{inr(done.order.total_amount)}</span></p>
           {!done.verified && (
@@ -174,7 +174,7 @@ const Checkout = () => {
 
   return (
     <Shell>
-      <h1 className="font-serif text-3xl font-bold text-[#171452] mb-6">{t("Checkout", "चेकआउट")}</h1>
+      <h1 className="font-serif text-3xl font-bold text-[#1A1A1A] mb-6">{t("Checkout", "चेकआउट")}</h1>
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6">
         <div className="space-y-5">
           <section className="bg-white rounded-[14px] p-5 border border-[hsl(40,50%,85%)]">
@@ -186,7 +186,7 @@ const Checkout = () => {
             )}
             <div className="space-y-2">
               {list.map((a) => (
-                <label key={a._id} className={`flex gap-3 p-3 rounded-lg border cursor-pointer ${addrId === a._id ? "border-[#171452] bg-[#171452]/5" : "border-border"}`}>
+                <label key={a._id} className={`flex gap-3 p-3 rounded-lg border cursor-pointer ${addrId === a._id ? "border-[#1A1A1A] bg-[#1A1A1A]/5" : "border-border"}`}>
                   <input type="radio" name="address" className="mt-1" checked={addrId === a._id} onChange={() => setAddrId(a._id)} />
                   <span className="text-sm">
                     <span className="font-semibold">{a.full_name}</span> · {a.phone_number}<br />
@@ -205,12 +205,12 @@ const Checkout = () => {
                 {field("state", "State", "राज्य", { autoComplete: "address-level1" })}
                 {field("postal_code", "PIN code", "पिन कोड", { inputMode: "numeric", pattern: "[1-9][0-9]{5}", title: t("6-digit PIN code", "6 अंकों का पिन कोड"), autoComplete: "postal-code" })}
                 <div className="sm:col-span-2 flex gap-2">
-                  <Button type="submit" disabled={saving} className="bg-[#171452] hover:bg-[#171452]/90">{saving ? t("Saving...", "सेव हो रहा है...") : t("Save address", "पता सेव करें")}</Button>
+                  <Button type="submit" disabled={saving} className="bg-[#1A1A1A] hover:bg-[#1A1A1A]/90">{saving ? t("Saving...", "सेव हो रहा है...") : t("Save address", "पता सेव करें")}</Button>
                   {list.length > 0 && <Button type="button" variant="ghost" onClick={() => setAdding(false)}>{t("Cancel", "रद्द करें")}</Button>}
                 </div>
               </form>
             ) : (
-              <button onClick={() => setAdding(true)} className="mt-3 text-sm font-semibold text-[#171452] flex items-center gap-1 hover:underline">
+              <button onClick={() => setAdding(true)} className="mt-3 text-sm font-semibold text-[#1A1A1A] flex items-center gap-1 hover:underline">
                 <Plus className="h-4 w-4" /> {t("Add a new address", "नया पता जोड़ें")}
               </button>
             )}
@@ -218,11 +218,11 @@ const Checkout = () => {
 
           <section className="bg-white rounded-[14px] p-5 border border-[hsl(40,50%,85%)]">
             <h2 className="font-bold text-lg text-[#2C1010] mb-3">{t("Payment", "भुगतान")}</h2>
-            <label className={`flex gap-3 p-3 rounded-lg border cursor-pointer mb-2 ${method === "razorpay" ? "border-[#171452] bg-[#171452]/5" : "border-border"}`}>
+            <label className={`flex gap-3 p-3 rounded-lg border cursor-pointer mb-2 ${method === "razorpay" ? "border-[#1A1A1A] bg-[#1A1A1A]/5" : "border-border"}`}>
               <input type="radio" name="pay" checked={method === "razorpay"} onChange={() => setMethod("razorpay")} />
               <span className="text-sm">{t("UPI, card, net banking (Razorpay)", "UPI, कार्ड, नेट बैंकिंग (Razorpay)")}</span>
             </label>
-            <label className={`flex gap-3 p-3 rounded-lg border ${wallet < total ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} ${method === "wallet" ? "border-[#171452] bg-[#171452]/5" : "border-border"}`}>
+            <label className={`flex gap-3 p-3 rounded-lg border ${wallet < total ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} ${method === "wallet" ? "border-[#1A1A1A] bg-[#1A1A1A]/5" : "border-border"}`}>
               <input type="radio" name="pay" disabled={wallet < total} checked={method === "wallet"} onChange={() => setMethod("wallet")} />
               <span className="text-sm">
                 {t("Astromate wallet", "Astromate वॉलेट")} — {t("balance", "बैलेंस")} {inr(wallet)}

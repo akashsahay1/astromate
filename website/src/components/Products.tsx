@@ -27,7 +27,7 @@ const Products = () => {
         <div className="max-w-[1280px] mx-auto px-6 text-center text-muted-foreground">
           {loading ? t("Loading...", "लोड हो रहा है...") : isError ? (
             <>{t("Could not load products.", "उत्पाद लोड नहीं हो सके।")}{" "}
-              <button onClick={() => refetch()} className="underline text-[#171452]">{t("Try again", "फिर से कोशिश करें")}</button></>
+              <button onClick={() => refetch()} className="underline text-[#1A1A1A]">{t("Try again", "फिर से कोशिश करें")}</button></>
           ) : t("No products yet.", "अभी कोई उत्पाद नहीं है।")}
         </div>
       </section>
@@ -37,7 +37,7 @@ const Products = () => {
   return (
     <section id="products" className="py-8 lg:py-12 bg-[#FDF6E3]">
       <div className="max-w-[1280px] mx-auto px-6">
-        <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#171452] mb-1.5">
+        <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#1A1A1A] mb-1.5">
           {t("Shop", "शॉप")}
         </h2>
         <p className="text-[0.95rem] text-muted-foreground mb-8">
@@ -71,7 +71,7 @@ const Products = () => {
                   {product.featured_image ? (
                     <img src={product.featured_image} alt={text(product, "name")} loading="lazy" className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                    <div className="w-full h-full bg-gradient-to-br from-red-100 to-red-100 flex items-center justify-center">
                       <span className="text-4xl">🛍️</span>
                     </div>
                   )}
@@ -105,7 +105,7 @@ const Products = () => {
                         onClick={(e) => { e.stopPropagation(); add(product); }}
                         title={t("Add to cart", "कार्ट में जोड़ें")}
                         aria-label={t("Add to cart", "कार्ट में जोड़ें")}
-                        className="flex items-center justify-center gap-1 border border-[#171452] text-[#171452] px-2.5 py-2 rounded-lg text-[0.8rem] font-semibold hover:bg-[#171452]/5 transition-colors"
+                        className="flex items-center justify-center gap-1 border border-[#1A1A1A] text-[#1A1A1A] px-2.5 py-2 rounded-lg text-[0.8rem] font-semibold hover:bg-[#1A1A1A]/5 transition-colors"
                       >
                         <Plus className="h-3.5 w-3.5" /><ShoppingCart className="h-3.5 w-3.5" />
                       </button>

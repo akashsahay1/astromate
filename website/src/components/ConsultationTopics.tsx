@@ -9,8 +9,8 @@ const icons = [Heart, Gem, BriefcaseBusiness, House, ChartNoAxesCombined, HeartP
 const cardStyles = [
   { box: "bg-rose-500/15 text-rose-600", art: "text-rose-500/10", count: "4,280+" },
   { box: "bg-orange-500/15 text-orange-600", art: "text-orange-500/10", count: "3,150+" },
-  { box: "bg-indigo-500/15 text-indigo-600", art: "text-indigo-500/10", count: "2,940+" },
-  { box: "bg-purple-500/15 text-purple-600", art: "text-purple-500/10", count: "1,870+" },
+  { box: "bg-red-500/15 text-red-600", art: "text-red-500/10", count: "2,940+" },
+  { box: "bg-red-500/15 text-red-600", art: "text-red-500/10", count: "1,870+" },
   { box: "bg-amber-500/15 text-amber-600", art: "text-amber-500/10", count: "2,460+" },
   { box: "bg-pink-500/15 text-pink-600", art: "text-pink-500/10", count: "1,620+" },
 ];

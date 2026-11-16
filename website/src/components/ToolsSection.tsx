@@ -168,17 +168,17 @@ const ToolsSection = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-b from-purple-500 to-purple-600 rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-b from-red-500 to-red-600 rounded-xl shadow-lg overflow-hidden">
             <div className="px-5 py-4">
               <h3 className="text-xl font-bold text-white">Lo Shu Grid Calculator</h3>
-              <p className="text-sm text-purple-200">{t("Enter your birth date", "अपनी जन्मांक दर्ज करें")}</p>
+              <p className="text-sm text-red-200">{t("Enter your birth date", "अपनी जन्मांक दर्ज करें")}</p>
             </div>
             <div className="px-5 pb-5 space-y-3">
               <Input 
                 placeholder="Name" 
                 value={loshuForm.name}
                 onChange={(e) => setLoshuForm({...loshuForm, name: e.target.value})}
-                className="bg-purple-400/50 border-0 placeholder:text-purple-200 text-white"
+                className="bg-red-400/50 border-0 placeholder:text-red-200 text-white"
               />
               
               <div className="grid grid-cols-3 gap-2">
@@ -186,24 +186,24 @@ const ToolsSection = () => {
                   placeholder="DD" 
                   value={loshuForm.day} 
                   onChange={(e) => setLoshuForm({...loshuForm, day: e.target.value})} 
-                  className="bg-purple-400/50 border-0 text-center text-white placeholder:text-purple-200" 
+                  className="bg-red-400/50 border-0 text-center text-white placeholder:text-red-200" 
                 />
                 <Input 
                   placeholder="MM" 
                   value={loshuForm.month} 
                   onChange={(e) => setLoshuForm({...loshuForm, month: e.target.value})} 
-                  className="bg-purple-400/50 border-0 text-center text-white placeholder:text-purple-200" 
+                  className="bg-red-400/50 border-0 text-center text-white placeholder:text-red-200" 
                 />
                 <Input 
                   placeholder="YYYY" 
                   value={loshuForm.year} 
                   onChange={(e) => setLoshuForm({...loshuForm, year: e.target.value})} 
-                  className="bg-purple-400/50 border-0 text-center text-white placeholder:text-purple-200" 
+                  className="bg-red-400/50 border-0 text-center text-white placeholder:text-red-200" 
                 />
               </div>
               
               <div className="space-y-1">
-                <p className="text-sm text-purple-200">{t("Gender", "लिंग")}</p>
+                <p className="text-sm text-red-200">{t("Gender", "लिंग")}</p>
                 <RadioGroup 
                   value={loshuForm.gender} 
                   onValueChange={(val) => setLoshuForm({...loshuForm, gender: val})}
@@ -221,7 +221,7 @@ const ToolsSection = () => {
               </div>
               
               <Button 
-                className="w-full bg-white hover:bg-gray-100 text-purple-600 font-bold mt-2"
+                className="w-full bg-white hover:bg-gray-100 text-red-600 font-bold mt-2"
                 onClick={() => navigate(`/loshu-grid?name=${encodeURIComponent(loshuForm.name)}&dob=${loshuForm.day.padStart(2,'0')}/${loshuForm.month.padStart(2,'0')}/${loshuForm.year}&gender=${loshuForm.gender}`)}
               >
                 CONTINUE
@@ -230,17 +230,17 @@ const ToolsSection = () => {
           </div>
 
           {/* Numerology Calculator Card */}
-          <div className="bg-gradient-to-b from-purple-500 to-purple-600 rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-b from-red-500 to-red-600 rounded-xl shadow-lg overflow-hidden">
             <div className="px-5 py-4">
               <h3 className="text-xl font-bold text-white">Mobile Numerology Calculator</h3>
-              <p className="text-sm text-purple-200">{t("Detailed numerology reading for your number and birth date", "विस्तृत न्यूमेरोलॉजी रीडिंग और जन्म के बारे में")}</p>
+              <p className="text-sm text-red-200">{t("Detailed numerology reading for your number and birth date", "विस्तृत न्यूमेरोलॉजी रीडिंग और जन्म के बारे में")}</p>
             </div>
             <div className="px-5 pb-5 space-y-3">
               <Input 
                 placeholder="Name" 
                 value={numerologyForm.name}
                 onChange={(e) => setNumerologyForm({...numerologyForm, name: e.target.value})}
-                className="bg-purple-400/50 border-0 placeholder:text-purple-200 text-white"
+                className="bg-red-400/50 border-0 placeholder:text-red-200 text-white"
               />
               
               <div className="grid grid-cols-3 gap-2">
@@ -248,36 +248,36 @@ const ToolsSection = () => {
                   placeholder="DD" 
                   value={numerologyForm.day} 
                   onChange={(e) => setNumerologyForm({...numerologyForm, day: e.target.value})} 
-                  className="bg-purple-400/50 border-0 text-center text-white placeholder:text-purple-200" 
+                  className="bg-red-400/50 border-0 text-center text-white placeholder:text-red-200" 
                 />
                 <Input 
                   placeholder="MM" 
                   value={numerologyForm.month} 
                   onChange={(e) => setNumerologyForm({...numerologyForm, month: e.target.value})} 
-                  className="bg-purple-400/50 border-0 text-center text-white placeholder:text-purple-200" 
+                  className="bg-red-400/50 border-0 text-center text-white placeholder:text-red-200" 
                 />
                 <Input 
                   placeholder="YYYY" 
                   value={numerologyForm.year} 
                   onChange={(e) => setNumerologyForm({...numerologyForm, year: e.target.value})} 
-                  className="bg-purple-400/50 border-0 text-center text-white placeholder:text-purple-200" 
+                  className="bg-red-400/50 border-0 text-center text-white placeholder:text-red-200" 
                 />
               </div>
               
               <div className="space-y-1">
-                <p className="text-sm text-purple-200">{t("Mobile Number", "मोबाइल नंबर")}</p>
+                <p className="text-sm text-red-200">{t("Mobile Number", "मोबाइल नंबर")}</p>
                 <Input 
                   placeholder="9876543210" 
                   value={numerologyForm.mobile}
                   onChange={(e) => setNumerologyForm({...numerologyForm, mobile: e.target.value.replace(/\D/g, '').slice(0, 10)})}
-                  className="bg-purple-400/50 border-0 placeholder:text-purple-200 text-white"
+                  className="bg-red-400/50 border-0 placeholder:text-red-200 text-white"
                   maxLength={10}
                   type="tel"
                 />
               </div>
               
               <Button 
-                className="w-full bg-white hover:bg-gray-100 text-purple-600 font-bold mt-2"
+                className="w-full bg-white hover:bg-gray-100 text-red-600 font-bold mt-2"
                 onClick={() => navigate(`/numerology?name=${encodeURIComponent(numerologyForm.name)}&dob=${numerologyForm.day.padStart(2,'0')}/${numerologyForm.month.padStart(2,'0')}/${numerologyForm.year}&mobile=${numerologyForm.mobile}`)}
               >
                 CONTINUE
@@ -286,14 +286,14 @@ const ToolsSection = () => {
           </div>
 
           {/* Lucky number Calculator Card */}
-          <div className="bg-gradient-to-b from-[#4c1d8a] to-[#6a2fb5] rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-b from-[#A30005] to-[#6a2fb5] rounded-xl shadow-lg overflow-hidden">
             <div className="px-5 py-4">
               <h3 className="text-xl font-bold text-white">Lucky number Calculator</h3>
-              <p className="text-sm text-purple-200">{t("Find your lucky number from your date of birth", "जन्म तिथि से अपना भाग्यशाली अंक जानें")}</p>
+              <p className="text-sm text-red-200">{t("Find your lucky number from your date of birth", "जन्म तिथि से अपना भाग्यशाली अंक जानें")}</p>
             </div>
             <div className="px-5 pb-5 space-y-3">
               <div className="space-y-1">
-                <p className="text-sm text-purple-200">{t("Date of Birth", "जन्म तिथि")}</p>
+                <p className="text-sm text-red-200">{t("Date of Birth", "जन्म तिथि")}</p>
                 <Input
                   placeholder="dd/mm/yyyy"
                   value={luckyDob}
@@ -306,14 +306,14 @@ const ToolsSection = () => {
                   }}
                   inputMode="numeric"
                   maxLength={10}
-                  className="bg-purple-400/40 border-0 placeholder:text-purple-200 text-white text-center tracking-widest"
+                  className="bg-red-400/40 border-0 placeholder:text-red-200 text-white text-center tracking-widest"
                 />
               </div>
-              <div className="rounded-lg bg-white/10 p-3 text-xs text-purple-100 leading-relaxed">
+              <div className="rounded-lg bg-white/10 p-3 text-xs text-red-100 leading-relaxed">
                 {t("Your lucky number — from the first digit of your birth date and the last digit of your birth year — with its meaning, lucky colour and lucky day.", "जन्म तिथि के पहले अंक और जन्म वर्ष के अंतिम अंक से बना आपका लकी नंबर, उसका अर्थ, शुभ रंग और शुभ दिन।")}
               </div>
               <Button
-                className="w-full bg-white hover:bg-gray-100 text-[#4c1d8a] font-bold mt-2"
+                className="w-full bg-white hover:bg-gray-100 text-[#A30005] font-bold mt-2"
                 onClick={() => navigate(`/lucky-number${luckyDob ? `?dob=${encodeURIComponent(luckyDob)}` : ""}`)}
               >
                 CONTINUE

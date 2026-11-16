@@ -17,7 +17,7 @@ const Cart = () => {
     <div className="min-h-screen bg-[#FDF6E3]">
       <Navbar />
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 py-8">
-        <h1 className="font-serif text-3xl font-bold text-[#171452] mb-6">{t("Your cart", "आपका कार्ट")}</h1>
+        <h1 className="font-serif text-3xl font-bold text-[#1A1A1A] mb-6">{t("Your cart", "आपका कार्ट")}</h1>
 
         {items.length === 0 ? (
           <div className="bg-white rounded-[14px] p-10 text-center border border-[hsl(40,50%,85%)]">
@@ -32,13 +32,13 @@ const Cart = () => {
                 const max = Math.min(MAX_QTY, product?.stock_quantity ?? MAX_QTY);
                 return (
                   <div key={id} className="bg-white rounded-[14px] p-3 sm:p-4 border border-[hsl(40,50%,85%)] flex gap-3 sm:gap-4">
-                    <Link to={`/shop/${id}`} className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                    <Link to={`/shop/${id}`} className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden bg-gradient-to-br from-red-100 to-red-100 flex items-center justify-center">
                       {product?.featured_image ? <img src={product.featured_image} alt="" className="w-full h-full object-cover" /> : <span className="text-3xl">🛍️</span>}
                     </Link>
                     <div className="flex-1 min-w-0">
                       {product ? (
                         <>
-                          <Link to={`/shop/${id}`} className="font-bold text-[#171452] hover:underline line-clamp-2">{text(product, "name")}</Link>
+                          <Link to={`/shop/${id}`} className="font-bold text-[#1A1A1A] hover:underline line-clamp-2">{text(product, "name")}</Link>
                           <p className="text-sm text-muted-foreground">{inr(product.price)} {t("each", "प्रति")}</p>
                           {product.stock_quantity < qty && (
                             <p className="text-xs text-destructive mt-1">
@@ -79,7 +79,7 @@ const Cart = () => {
                 {loading ? t("Checking prices...", "कीमतें जांच रहे हैं...") : t("Proceed to checkout", "चेकआउट करें")}
               </Button>
               {!loading && !ok && <p className="text-xs text-destructive mt-2">{t("Remove unavailable items to continue.", "आगे बढ़ने के लिए अनुपलब्ध आइटम हटाएं।")}</p>}
-              <Link to="/shop" className="block text-center text-sm text-[#171452] underline mt-3">{t("Continue shopping", "खरीदारी जारी रखें")}</Link>
+              <Link to="/shop" className="block text-center text-sm text-[#1A1A1A] underline mt-3">{t("Continue shopping", "खरीदारी जारी रखें")}</Link>
             </div>
           </div>
         )}

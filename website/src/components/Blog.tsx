@@ -22,7 +22,7 @@ const Blog = () => {
   return (
     <section id="blog" className="py-8 lg:py-12 bg-[#FDF6E3]">
       <div className="max-w-[1280px] mx-auto px-6">
-        <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#171452] mb-1.5">
+        <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#1A1A1A] mb-1.5">
           {t("Blog & Articles", "ब्लॉग एवं लेख")}
         </h2>
         <p className="text-[0.95rem] text-muted-foreground mb-8">
@@ -46,7 +46,7 @@ const Blog = () => {
                 {post.image_url ? (
                   <img src={post.image_url} alt={pick(post, "title")} className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                  <div className="w-full h-full bg-gradient-to-br from-red-100 to-red-100 flex items-center justify-center">
                     <span className="text-4xl">📝</span>
                   </div>
                 )}
@@ -62,7 +62,7 @@ const Blog = () => {
               <div className="p-3.5 flex-1 flex flex-col">
                 <p className="text-[0.77rem] text-muted-foreground leading-relaxed line-clamp-2 flex-1">{pick(post, "summary")}</p>
                 {post.author && (
-                  <p className="mt-2 flex items-center gap-1 text-[0.7rem] font-medium text-[#171452]">
+                  <p className="mt-2 flex items-center gap-1 text-[0.7rem] font-medium text-[#1A1A1A]">
                     <UserRound className="h-3 w-3" />
                     {pick(post, "author")}
                   </p>
@@ -73,7 +73,7 @@ const Blog = () => {
               <div className="flex items-center gap-2.5 px-3.5 py-2.5 border-t border-[hsl(40,50%,90%)]">
                 <button
                   onClick={(e) => { e.stopPropagation(); setSelectedPost(post); }}
-                  className="flex-1 bg-[#171452] text-white py-2 rounded-lg text-[0.86rem] font-semibold hover:bg-[#1e1a6e] transition-colors"
+                  className="flex-1 bg-[#1A1A1A] text-white py-2 rounded-lg text-[0.86rem] font-semibold hover:bg-[#A30005] transition-colors"
                 >
                   {t("Read more", "पूरा पढ़ें")}
                 </button>
@@ -100,7 +100,7 @@ const Blog = () => {
                   {t(`${selectedPost?.read_time} min read`, `${selectedPost?.read_time} मिनट पढ़ने का समय`)}
                 </span>
                 {selectedPost?.author && (
-                  <span className="flex items-center gap-1 font-medium text-[#171452]">
+                  <span className="flex items-center gap-1 font-medium text-[#1A1A1A]">
                     <UserRound className="h-4 w-4" />
                     {pick(selectedPost, "author")}
                   </span>

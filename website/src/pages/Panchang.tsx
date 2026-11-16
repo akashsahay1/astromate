@@ -171,9 +171,9 @@ const Panchang = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="panchang-app" style={{ background: "#efeefb", fontFamily: "'Segoe UI',Arial,sans-serif", fontSize: 12, color: "#312e81" }}>
+      <main className="panchang-app" style={{ background: "#FFF6E0", fontFamily: "'Segoe UI',Arial,sans-serif", fontSize: 12, color: "#DB0007" }}>
         {/* TOP NAV */}
-        <div style={{ background: "#312e81", color: "#fff", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px" }}>
+        <div style={{ background: "#DB0007", color: "#fff", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px" }}>
           <span onClick={prevMonth} style={{ fontSize: 20, cursor: "pointer", padding: "0 10px", userSelect: "none" }}>‹</span>
           <div style={{ textAlign: "center", lineHeight: 1.3 }}>
             <div style={{ fontSize: 18, fontWeight: 700 }}>{MONTHS_EN[curM]} {curY}</div>
@@ -184,12 +184,12 @@ const Panchang = () => {
 
         {/* SELECTORS */}
         <div style={{ display: "flex", gap: 8, alignItems: "center", background: "#c8a040", padding: "4px 10px", flexWrap: "wrap" }}>
-          <label style={{ fontSize: 12, color: "#312e81", fontWeight: 600 }}>{t("Year:", "वर्ष:")}</label>
-          <select value={curY} onChange={(e) => setCurY(+e.target.value)} style={{ background: "#312e81", color: "#fff", border: "none", borderRadius: 4, padding: "5px 8px", fontSize: 13, cursor: "pointer" }}>
+          <label style={{ fontSize: 12, color: "#DB0007", fontWeight: 600 }}>{t("Year:", "वर्ष:")}</label>
+          <select value={curY} onChange={(e) => setCurY(+e.target.value)} style={{ background: "#DB0007", color: "#fff", border: "none", borderRadius: 4, padding: "5px 8px", fontSize: 13, cursor: "pointer" }}>
             {Array.from({ length: 80 }, (_, i) => 2020 + i).map((y) => <option key={y} value={y}>{y}</option>)}
           </select>
-          <label style={{ fontSize: 12, color: "#312e81", fontWeight: 600 }}>{t("Month:", "माह:")}</label>
-          <select value={curM} onChange={(e) => setCurM(+e.target.value)} style={{ background: "#312e81", color: "#fff", border: "none", borderRadius: 4, padding: "5px 8px", fontSize: 13, cursor: "pointer" }}>
+          <label style={{ fontSize: 12, color: "#DB0007", fontWeight: 600 }}>{t("Month:", "माह:")}</label>
+          <select value={curM} onChange={(e) => setCurM(+e.target.value)} style={{ background: "#DB0007", color: "#fff", border: "none", borderRadius: 4, padding: "5px 8px", fontSize: 13, cursor: "pointer" }}>
             {MONTHS_EN.map((m, i) => <option key={m} value={i}>{m}</option>)}
           </select>
           <button onClick={goToday} style={ctrlBtn}>{t("Today", "आज")}</button>
@@ -228,7 +228,7 @@ const Panchang = () => {
             <thead>
               <tr>
                 {VARS_SHORT.map(([en, hi], i) => (
-                  <th key={en} style={{ background: "#312e81", color: "#fff", textAlign: "center", padding: "5px 3px", fontWeight: 600, border: "1px solid #252270", width: "14.28%" }}>
+                  <th key={en} style={{ background: "#DB0007", color: "#fff", textAlign: "center", padding: "5px 3px", fontWeight: 600, border: "1px solid #252270", width: "14.28%" }}>
                     <span style={{ fontSize: 10, opacity: 0.8 }}>{en}</span><br /><span style={{ fontSize: 13 }}>{t(VARS[i], hi)}</span>
                   </th>
                 ))}
@@ -238,28 +238,28 @@ const Panchang = () => {
               {rows.map((week, ri) => (
                 <tr key={ri}>
                   {week.map((d, ci) => {
-                    if (!d) return <td key={ci} style={{ border: "1px solid #c8a040", background: "#e7e6f3", width: "14.28%" }} />;
+                    if (!d) return <td key={ci} style={{ border: "1px solid #c8a040", background: "#F7EBD0", width: "14.28%" }} />;
                     const p = getPanchang(curY, curM + 1, d);
                     const key = `${curY}-${curM}-${d}`;
                     const isToday = key === todayKey, isSel = selKey === key, isSun = p.dow === 0;
                     const tdStyle: React.CSSProperties = {
-                      border: isToday ? "2px solid #312e81" : isSel ? "2px solid #4f46e5" : "1px solid #c8a040",
+                      border: isToday ? "2px solid #DB0007" : isSel ? "2px solid #DB0007" : "1px solid #c8a040",
                       verticalAlign: "top", padding: 0, width: "14.28%",
-                      background: isSel ? "#efeefb" : isToday ? "#faf9ff" : "#f7f6fd",
+                      background: isSel ? "#FFF6E0" : isToday ? "#FFFDF7" : "#FFFBF0",
                     };
                     return (
                       <td key={ci} style={tdStyle}>
                         <div style={{ padding: "3px 4px", minHeight: 100 }} onClick={() => setSelKey(key)}>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 2 }}>
-                            <span style={{ fontSize: 18, fontWeight: 700, color: isSun ? "#4f46e5" : "#312e81", cursor: "pointer", lineHeight: 1 }}>{d}</span>
+                            <span style={{ fontSize: 18, fontWeight: 700, color: isSun ? "#DB0007" : "#DB0007", cursor: "pointer", lineHeight: 1 }}>{d}</span>
                             <span style={{ fontSize: 11, color: "#666", fontWeight: 600, lineHeight: 1, marginTop: 3 }}>{p.tNum < 15 ? p.tNum + 1 : p.tNum - 14}</span>
                           </div>
-                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "#4338ca", marginBottom: 2 }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "#DB0007", marginBottom: 2 }}>
                             <span>☀ {p.sunrise}</span><span>{p.sunset} ☀</span>
                           </div>
-                          <div style={{ fontSize: 9, color: "#4338ca", fontWeight: 600, marginBottom: 1 }}>{p.paksha} {p.tithi}</div>
+                          <div style={{ fontSize: 9, color: "#DB0007", fontWeight: 600, marginBottom: 1 }}>{p.paksha} {p.tithi}</div>
                           {p.fests.length > 0 && (
-                            <div style={{ fontSize: 9, color: "#312e81", fontWeight: 700, marginBottom: 1, lineHeight: 1.3 }}>
+                            <div style={{ fontSize: 9, color: "#DB0007", fontWeight: 700, marginBottom: 1, lineHeight: 1.3 }}>
                               {p.fests.slice(0, 2).map((f, i) => <div key={i}>{f}</div>)}
                             </div>
                           )}
@@ -277,8 +277,8 @@ const Panchang = () => {
 
         {/* DETAIL PANEL */}
         {selDetail && sel && (
-          <div style={{ background: "#f7f6fd", borderTop: "3px solid #312e81" }}>
-            <div style={{ background: "#312e81", color: "#fff", padding: "8px 12px", fontSize: 14, fontWeight: 700, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ background: "#FFFBF0", borderTop: "3px solid #DB0007" }}>
+            <div style={{ background: "#DB0007", color: "#fff", padding: "8px 12px", fontSize: 14, fontWeight: 700, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span>{sel[2]} {MONTHS_EN[curM]} {curY} — {t(selDetail.var, selDetail.varHi)} — {t("Detailed Panchang", "विस्तृत पंचांग")}</span>
               <span onClick={() => setSelKey(null)} style={{ cursor: "pointer", fontSize: 18, padding: "0 4px" }}>✕</span>
             </div>
@@ -298,7 +298,7 @@ const Panchang = () => {
                   [t("Moon Age", "चंद्र आयु"), `${selDetail.lunarAge} days`],
                   [t("Moon Phase", "चंद्र चिह्न"), selDetail.moonPhase],
                 ] as [string, string][]).map(([l, v]) => (
-                  <div key={l} style={{ background: "#312e81", color: "#fff", borderRadius: 6, padding: "8px 10px" }}>
+                  <div key={l} style={{ background: "#DB0007", color: "#fff", borderRadius: 6, padding: "8px 10px" }}>
                     <div style={{ fontSize: 10, opacity: 0.8, marginBottom: 3, textTransform: "uppercase" }}>{l}</div>
                     <div style={{ fontSize: 13, fontWeight: 600, color: "#ffe080" }}>{v}</div>
                   </div>
@@ -307,9 +307,9 @@ const Panchang = () => {
               <div style={{ marginTop: 8 }}>
                 {selDetail.fests.length > 0 ? (
                   <>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: "#312e81", marginBottom: 5 }}>🎉 {t("Festivals / Special Days", "त्यौहार / विशेष दिन")}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#DB0007", marginBottom: 5 }}>🎉 {t("Festivals / Special Days", "त्यौहार / विशेष दिन")}</div>
                     {selDetail.fests.map((f, i) => (
-                      <div key={i} style={{ padding: "5px 8px", borderLeft: "3px solid #312e81", marginBottom: 4, background: "#efeefb", fontSize: 12, color: "#312e81" }}>{f}</div>
+                      <div key={i} style={{ padding: "5px 8px", borderLeft: "3px solid #DB0007", marginBottom: 4, background: "#FFF6E0", fontSize: 12, color: "#DB0007" }}>{f}</div>
                     ))}
                   </>
                 ) : (
@@ -318,9 +318,9 @@ const Panchang = () => {
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 8 }}>
                 {[[t("Rahu Kaal", "राहु काल"), selDetail.rahuKaal], [t("Abhijit Muhurat", "अभिजित मुहूर्त"), selDetail.abhijit]].map(([l, v]) => (
-                  <div key={l} style={{ background: "#d6d3f0", borderRadius: 6, padding: "7px 10px" }}>
-                    <div style={{ fontSize: 10, color: "#4338ca", marginBottom: 2, textTransform: "uppercase", fontWeight: 600 }}>{l}</div>
-                    <div style={{ fontSize: 12, color: "#312e81", fontWeight: 600 }}>{v}</div>
+                  <div key={l} style={{ background: "#F2DDA6", borderRadius: 6, padding: "7px 10px" }}>
+                    <div style={{ fontSize: 10, color: "#DB0007", marginBottom: 2, textTransform: "uppercase", fontWeight: 600 }}>{l}</div>
+                    <div style={{ fontSize: 12, color: "#DB0007", fontWeight: 600 }}>{v}</div>
                   </div>
                 ))}
               </div>
@@ -334,7 +334,7 @@ const Panchang = () => {
 };
 
 const ctrlBtn: React.CSSProperties = {
-  background: "#312e81", color: "#fff", border: "none", borderRadius: 4,
+  background: "#DB0007", color: "#fff", border: "none", borderRadius: 4,
   padding: "5px 10px", cursor: "pointer", fontSize: 11, textAlign: "center",
   lineHeight: 1.3, minWidth: 60,
 };

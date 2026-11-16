@@ -73,7 +73,7 @@ export const poojaServices: PoojaService[] = [
     about: "हनुमान जी की पूजा बजरंगबली को समर्पित है। हनुमान जी शक्ति, भक्ति और साहस के प्रतीक हैं। यह पूजा भय निवारण, शनि दोष शांति और मानसिक शक्ति प्राप्ति के लिए की जाती है।",
     aboutEn: "Hanuman Pooja is dedicated to Bajrangbali. Hanuman ji is the embodiment of strength, devotion and courage. This pooja is performed to overcome fear, pacify Shani Dosha and gain mental strength.",
     price: "₹1,100",
-    gradient: "from-red-700 via-red-500 to-indigo-900",
+    gradient: "from-red-700 via-red-500 to-red-900",
     benefits: [
       { title: "Fear Removal", text: "Removes fear and anxiety, providing courage and confidence in all aspects of life." },
       { title: "Shani Dosh Relief", text: "Powerful remedy for Shani Dosh and Sade Sati effects on your horoscope." },
@@ -100,7 +100,7 @@ export const poojaServices: PoojaService[] = [
     about: "श्री सत्यनारायण पूजा भगवान विष्णु के सत्य स्वरूप को समर्पित है। यह पूजा मनोकामना पूर्ति, पारिवारिक सुख और समृद्धि के लिए की जाती है। पूर्णिमा के दिन यह पूजा विशेष फलदायी मानी जाती है।",
     aboutEn: "Shri Satyanarayan Pooja is dedicated to Lord Vishnu in his form as the embodiment of truth. It is performed for the fulfilment of wishes, family happiness and prosperity, and is considered especially fruitful on Purnima (full moon day).",
     price: "₹2,100",
-    gradient: "from-blue-800 via-purple-700 to-blue-600",
+    gradient: "from-amber-800 via-red-700 to-amber-600",
     benefits: [
       { title: "Wish Fulfillment", text: "Fulfills heartfelt desires and brings divine grace into your life." },
       { title: "Family Harmony", text: "Strengthens family bonds and brings peace and happiness in domestic life." },
@@ -127,7 +127,7 @@ export const poojaServices: PoojaService[] = [
     about: "नवग्रह पूजा नौ ग्रहों की शांति के लिए विशेष अनुष्ठान है। कुंडली में ग्रहों की प्रतिकूल स्थिति के कारण आने वाली समस्याओं का निवारण इस पूजा से किया जाता है। यह जीवन में संतुलन और सकारात्मकता लाती है।",
     aboutEn: "Navgrah Pooja is a special ritual to pacify the nine planets. It remedies problems caused by unfavourable planetary positions in the kundli (birth chart) and brings balance and positivity into life.",
     price: "₹11,000",
-    gradient: "from-violet-800 via-purple-600 to-indigo-900",
+    gradient: "from-red-800 via-red-600 to-red-900",
     benefits: [
       { title: "Planetary Peace", text: "Pacifies all nine planets and reduces their negative effects on your life." },
       { title: "Dosha Removal", text: "Removes planetary doshas from your horoscope for smoother life journey." },
@@ -155,7 +155,7 @@ export const poojaServices: PoojaService[] = [
     about: "मंगल दोष निवारण पूजा उन व्यक्तियों के लिए है जिनकी कुंडली में मंगल ग्रह प्रतिकूल स्थिति में है। यह दोष विवाह में बाधा, वैवाहिक कलह और स्वास्थ्य समस्याओं का कारण बन सकता है। इस पूजा से मंगल ग्रह की शांति होती है।",
     aboutEn: "Mangal Dosha Nivaran Pooja is for those whose kundli has Mars in an unfavourable position. This dosha can cause delays in marriage, marital discord and health problems. The pooja brings peace to Mars.",
     price: "₹11,000",
-    gradient: "from-indigo-950 via-red-600 to-red-900",
+    gradient: "from-red-950 via-red-600 to-red-900",
     benefits: [
       { title: "Mangal Dosh Shanti", text: "Pacifies the negative effects of Mars in your horoscope for harmonious life." },
       { title: "Marriage Obstacle Removal", text: "Removes barriers in finding a suitable match and ensures happy married life." },
@@ -183,7 +183,7 @@ export const poojaServices: PoojaService[] = [
     about: "शनि दोष निवारण पूजा साढ़े साती, शनि दशा या शनि की प्रतिकूल स्थिति से पीड़ित व्यक्तियों के लिए है। शनि देव न्याय के देवता हैं और उनकी कृपा से जीवन में स्थिरता, सफलता और मानसिक शांति प्राप्त होती है।",
     aboutEn: "Shani Dosha Nivaran Pooja is for those affected by Sade Sati, Shani Dasha or an unfavourable Saturn. Shani Dev is the god of justice, and his grace brings stability, success and peace of mind.",
     price: "₹7,500",
-    gradient: "from-gray-950 via-indigo-950 to-black",
+    gradient: "from-gray-950 via-red-950 to-black",
     benefits: [
       { title: "Sade Sati Relief", text: "Reduces the challenging effects of Sade Sati period on your career and personal life." },
       { title: "Shani Dosh Removal", text: "Pacifies Saturn's malefic effects and brings stability to your horoscope." },
@@ -347,7 +347,7 @@ export const poojaServices: PoojaService[] = [
     about: "रुद्राभिषेक भगवान शिव की सबसे पवित्र पूजा विधियों में से एक है। इसमें शिव लिंग पर दूध, दही, शहद, घी, गंगाजल और अन्य पवित्र द्रव्यों से अभिषेक किया जाता है। यह पूजा शांति, शुद्धि और शिव कृपा प्राप्ति के लिए की जाती है।",
     aboutEn: "Rudrabhishek is one of the most sacred forms of worship of Lord Shiva. The Shiva Linga is bathed with milk, curd, honey, ghee, Gangajal and other sacred offerings. It is performed for peace, purification and Lord Shiva's grace.",
     price: "₹5,100",
-    gradient: "from-slate-900 via-blue-900 to-slate-800",
+    gradient: "from-slate-900 via-amber-900 to-slate-800",
     benefits: [
       { title: "Shiva's Grace", text: "Receives the direct blessings and grace of Lord Shiva for spiritual growth." },
       { title: "Peace & Purification", text: "Purifies mind, body, and soul, bringing deep inner peace and clarity." },

@@ -42,7 +42,7 @@ const NakshatraCard = ({ nakshatra }: { nakshatra: typeof nakshatras[0] }) => {
       className="bg-[#FFFDF5] rounded-[14px] overflow-hidden border border-[hsl(40,50%,85%)] shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col"
     >
       {/* Image Header with Gradient */}
-      <div className="relative h-[120px] bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center overflow-hidden">
+      <div className="relative h-[120px] bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center overflow-hidden">
         <span className="absolute top-2 left-2 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded font-semibold z-10">
           Astromate
         </span>
@@ -62,7 +62,7 @@ const NakshatraCard = ({ nakshatra }: { nakshatra: typeof nakshatras[0] }) => {
       <div className="p-3.5 flex-1 flex flex-col">
         <p className="text-[0.77rem] text-muted-foreground leading-relaxed line-clamp-2 flex-1">{t(nakshatra.descriptionEn, nakshatra.description)}</p>
         <div className="flex items-center gap-2 mt-2">
-          <span className="text-[0.7rem] bg-purple-50 text-purple-700 px-2 py-0.5 rounded-full border border-purple-200 font-medium">{t(nakshatra.qualityEn, nakshatra.quality)}</span>
+          <span className="text-[0.7rem] bg-red-50 text-red-700 px-2 py-0.5 rounded-full border border-red-200 font-medium">{t(nakshatra.qualityEn, nakshatra.quality)}</span>
           <span className="text-[0.7rem] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full border border-amber-200 font-medium">{t(nakshatra.deityEn, nakshatra.deity)}</span>
         </div>
       </div>
@@ -71,7 +71,7 @@ const NakshatraCard = ({ nakshatra }: { nakshatra: typeof nakshatras[0] }) => {
       <div className="flex items-center gap-2.5 px-3.5 py-2.5 border-t border-[hsl(40,50%,90%)]">
         <button
           onClick={(e) => { e.stopPropagation(); navigate("/nakshatra"); }}
-          className="flex-1 bg-[#171452] text-white py-2 rounded-lg text-[0.86rem] font-semibold hover:bg-[#1e1a6e] transition-colors"
+          className="flex-1 bg-[#1A1A1A] text-white py-2 rounded-lg text-[0.86rem] font-semibold hover:bg-[#A30005] transition-colors"
         >
           {t("View Details", "विवरण देखें")}
         </button>
@@ -87,7 +87,7 @@ const Nakshatras = () => {
     <section id="nakshatras" className="py-8 lg:py-12 bg-[#FDF6E3]">
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Header */}
-        <h2 className="text-3xl lg:text-4xl font-bold text-[#171452] mb-1.5">
+        <h2 className="text-3xl lg:text-4xl font-bold text-[#1A1A1A] mb-1.5">
           {t("27 Nakshatras", "27 नक्षत्र")}
         </h2>
         <p className="text-[0.95rem] text-muted-foreground mb-8">

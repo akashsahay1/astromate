@@ -26,20 +26,20 @@ const Contact = () => {
       title: t("Hours", "समय"),
       value: t("Available 24/7", "24/7 उपलब्ध"),
       subtitle: t("Open every day", "सभी दिन खुला"),
-      iconBg: "bg-purple-100",
-      iconColor: "text-purple-500"
+      iconBg: "bg-red-100",
+      iconColor: "text-red-500"
     }
   ];
 
   return (
     <section id="contact" className="py-10">
       {/* Header with gradient */}
-      <div className="bg-gradient-to-r from-primary via-indigo-600 to-primary py-16 mb-12">
+      <div className="bg-gradient-to-r from-primary via-red-600 to-primary py-16 mb-12">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {t("Contact Us", "संपर्क करें")}
           </h2>
-          <p className="text-indigo-100 text-lg max-w-2xl mx-auto">
+          <p className="text-red-100 text-lg max-w-2xl mx-auto">
             {t("We're always here to help. Reach out to us with any questions.", "हम आपकी सेवा के लिए हमेशा तैयार हैं। किसी भी प्रश्न के लिए हमसे संपर्क करें।")}
           </p>
         </div>

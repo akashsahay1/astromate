@@ -208,7 +208,7 @@ function PositionAnalysis({ results }: { results: NumerologyResult }) {
   const getPositionColor = (idx: number) => {
     if (idx < 6) return { bg: 'bg-orange-100', border: 'border-orange-300', text: 'text-orange-800' };
     switch (idx) {
-      case 6: return { bg: 'bg-blue-400', border: 'border-blue-500', text: 'text-white' }; // Position 7
+      case 6: return { bg: 'bg-amber-400', border: 'border-amber-500', text: 'text-white' }; // Position 7
       case 7: return { bg: 'bg-primary', border: 'border-primary/50', text: 'text-white' }; // Position 8
       case 8: return { bg: 'bg-yellow-400', border: 'border-yellow-500', text: 'text-yellow-900' }; // Position 9
       case 9: return { bg: 'bg-primary', border: 'border-primary/50', text: 'text-white' }; // Position 10
@@ -258,7 +258,7 @@ function PositionAnalysis({ results }: { results: NumerologyResult }) {
             <span className="text-gray-600">{t("Regular (1-6)", "सामान्य (1-6)")}</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-4 h-4 bg-blue-400 rounded"></div>
+            <div className="w-4 h-4 bg-amber-400 rounded"></div>
             <span className="text-gray-600">{t("7th", "7वीं")}</span>
           </div>
           <div className="flex items-center gap-1">
@@ -349,12 +349,12 @@ function PositionAnalysis({ results }: { results: NumerologyResult }) {
             {t("🔍 Detailed Analysis of the Last 4 Digits", "🔍 अंतिम 4 अंकों का विस्तृत विश्लेषण")}
           </h4>
 
-          <div className="bg-blue-50 border-l-4 border-blue-500 rounded-r-xl p-4 shadow-sm">
+          <div className="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-4 shadow-sm">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white text-xl font-bold shadow">
+              <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white text-xl font-bold shadow">
                 {results.pos7}
               </div>
-              <h5 className="font-bold text-blue-900">{t("Position 7", "7वीं पोजीशन")} - {getPlanetName(parseInt(results.pos7), lang === 'en')}</h5>
+              <h5 className="font-bold text-amber-900">{t("Position 7", "7वीं पोजीशन")} - {getPlanetName(parseInt(results.pos7), lang === 'en')}</h5>
             </div>
             <p className="text-sm text-gray-700 leading-relaxed">{getPositionAnalysis(results.pos7, 7)}</p>
           </div>
@@ -407,17 +407,17 @@ function NumberAnalysis({ results }: { results: NumerologyResult }) {
       </div>
       <div className="p-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 text-center border border-blue-200">
-            <p className="text-sm text-blue-700 mb-1">{t("Name Number", "नाम अंक")}</p>
-            <p className="text-4xl font-bold text-blue-600">{results.namank}</p>
+          <div className="bg-gradient-to-br from-amber-100 to-amber-50 rounded-xl p-4 text-center border border-amber-200">
+            <p className="text-sm text-amber-700 mb-1">{t("Name Number", "नाम अंक")}</p>
+            <p className="text-4xl font-bold text-amber-600">{results.namank}</p>
           </div>
           <div className="bg-gradient-to-br from-primary/10 to-primary/10 rounded-xl p-4 text-center border border-primary/20">
             <p className="text-sm text-primary mb-1">{t("Bhagyank (Destiny No.)", "भाग्यांक")}</p>
             <p className="text-4xl font-bold text-primary">{toSingleDigit(results.bhagyank)}</p>
           </div>
-          <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl p-4 text-center border border-purple-200">
-            <p className="text-sm text-purple-700 mb-1">{t("Moolank (Root No.)", "मूलांक")}</p>
-            <p className="text-4xl font-bold text-purple-600">{results.moolank}</p>
+          <div className="bg-gradient-to-br from-red-100 to-red-50 rounded-xl p-4 text-center border border-red-200">
+            <p className="text-sm text-red-700 mb-1">{t("Moolank (Root No.)", "मूलांक")}</p>
+            <p className="text-4xl font-bold text-red-600">{results.moolank}</p>
           </div>
           <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl p-4 text-center border border-orange-200">
             <p className="text-sm text-orange-700 mb-1">{t("Mobile Total", "मोबाइल योग")}</p>
@@ -425,7 +425,7 @@ function NumberAnalysis({ results }: { results: NumerologyResult }) {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-4 text-center">
+        <div className="bg-gradient-to-r from-red-50 to-red-50 rounded-lg p-4 text-center">
           <p className="text-sm text-gray-700">
             {t("✏️ Mobile number total:", "✏️ मोबाइल नंबर का कुल योग:")} {results.fullMobile.split('').join(' + ')} = {results.mobileYog} {t("(single digit)", "(एकल अंक)")}
           </p>
@@ -459,24 +459,24 @@ function PersonalSuggestions() {
           </div>
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
           <div className="flex items-start gap-3">
-            <DollarSign className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+            <DollarSign className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
             <div>
-              <h4 className="font-semibold text-blue-800">{t("💰 Wealth:", "💰 धन:")}</h4>
-              <p className="text-sm text-blue-700 mt-1">
+              <h4 className="font-semibold text-amber-800">{t("💰 Wealth:", "💰 धन:")}</h4>
+              <p className="text-sm text-amber-700 mt-1">
                 {t("A balanced approach will bring financial gains. Think carefully before investing. Long-term plans will succeed. Focus on building multiple income sources.", "संतुलित दृष्टिकोण से धन लाभ होगा। निवेश से पहले सोच-समझकर निर्णय लें। लंबी अवधि की योजनाएं सफल रहेंगी। Multiple income sources बनाने पर focus करें।")}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
           <div className="flex items-start gap-3">
-            <Star className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
+            <Star className="w-5 h-5 text-red-600 mt-1 flex-shrink-0" />
             <div>
-              <h4 className="font-semibold text-purple-800">{t("🌟 Fortune:", "🌟 भाग्य:")}</h4>
-              <p className="text-sm text-purple-700 mt-1">
+              <h4 className="font-semibold text-red-800">{t("🌟 Fortune:", "🌟 भाग्य:")}</h4>
+              <p className="text-sm text-red-700 mt-1">
                 {t("Keep your energy positive. Your efforts will surely succeed. Focus on building good relationships with people — networking is the key to unlocking your fortune.", "सकारात्मक ऊर्जा बनाए रखें। आपके प्रयास निश्चित रूप से सफल होंगे। लोगों से अच्छे संबंध बनाने पर focus करें। Networking आपके भाग्य को खोलने की key है।")}
               </p>
             </div>
@@ -665,9 +665,9 @@ function DetailedRecommendations({ moolank, bhagyank, currentResults }: { moolan
   const hasAnyChange = needsChange.pos7 || needsChange.pos8 || needsChange.pos9 || needsChange.pos10;
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-xl border-2 border-indigo-300 p-6 mb-6">
+    <div className="bg-gradient-to-br from-red-50 to-red-50 rounded-2xl shadow-xl border-2 border-red-300 p-6 mb-6">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-indigo-900 flex items-center justify-center">
+        <h2 className="text-2xl font-bold text-red-900 flex items-center justify-center">
           <Lightbulb className="w-8 h-8 mr-3 text-yellow-500" />
           {t(`Special Suggestions for Moolank ${moolank} and Bhagyank ${bhagyank}`, `मूलांक ${moolank} और भाग्यांक ${bhagyank} के अनुसार विशेष सुझाव`)}
         </h2>
@@ -741,14 +741,14 @@ function DetailedRecommendations({ moolank, bhagyank, currentResults }: { moolan
                   key={idx}
                   onClick={() => setSelectedComboIndex(idx)}
                   className={`${isSelected
-                    ? 'bg-gradient-to-br from-blue-200 to-indigo-200 border-4 border-blue-600 shadow-xl'
+                    ? 'bg-gradient-to-br from-amber-200 to-red-200 border-4 border-amber-600 shadow-xl'
                     : isMatching
                       ? 'bg-gradient-to-br from-yellow-100 to-amber-100 border-4 border-yellow-500'
                       : 'bg-white border-2 border-primary/50'
                     } rounded-lg p-4 text-center transition-all relative`}
                 >
                   <div className="text-xs text-gray-500 mb-2">{t("Option", "विकल्प")} {idx + 1}</div>
-                  <div className={`text-4xl font-bold ${isSelected ? 'text-blue-800' : isMatching ? 'text-yellow-700' : 'text-primary'}`}>
+                  <div className={`text-4xl font-bold ${isSelected ? 'text-amber-800' : isMatching ? 'text-yellow-700' : 'text-primary'}`}>
                     {comboNumber}
                   </div>
                 </button>
@@ -758,7 +758,7 @@ function DetailedRecommendations({ moolank, bhagyank, currentResults }: { moolan
         </div>
 
         <div className="space-y-4">
-          <h3 className="font-bold text-lg text-indigo-900 mb-3">{t("🎯 Analysis of Each Position:", "🎯 प्रत्येक स्थिति का विश्लेषण:")}</h3>
+          <h3 className="font-bold text-lg text-red-900 mb-3">{t("🎯 Analysis of Each Position:", "🎯 प्रत्येक स्थिति का विश्लेषण:")}</h3>
 
           {[
             { pos: 'pos7', label: t("7th", '7वीं'), color: 'blue', rec: bestRec.pos7 },
@@ -780,8 +780,8 @@ function DetailedRecommendations({ moolank, bhagyank, currentResults }: { moolan
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-blue-400 shadow-lg rounded-xl p-6">
-          <h4 className="font-bold text-blue-900 mb-4 flex items-center text-lg">
+        <div className="bg-gradient-to-br from-amber-50 to-red-100 border-2 border-amber-400 shadow-lg rounded-xl p-6">
+          <h4 className="font-bold text-amber-900 mb-4 flex items-center text-lg">
             <Star className="w-6 h-6 mr-2 text-yellow-500" />
             {t("Common Friendly Numbers", "साझा मित्र अंक")}
           </h4>
@@ -836,8 +836,8 @@ function DetailedRecommendations({ moolank, bhagyank, currentResults }: { moolan
 function DigitFrequency({ mobile }: { mobile: string }) {
   const t = useT();
   return (
-    <div className="bg-white rounded-2xl shadow-xl border-2 border-indigo-200 overflow-hidden mb-6">
-      <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 p-4">
+    <div className="bg-white rounded-2xl shadow-xl border-2 border-red-200 overflow-hidden mb-6">
+      <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
         <h3 className="text-lg font-bold text-white">{t("🔢 Digit Count", "🔢 अंकों की गिनती")}</h3>
       </div>
       <div className="p-6">
@@ -845,8 +845,8 @@ function DigitFrequency({ mobile }: { mobile: string }) {
           {Array.from({ length: 10 }, (_, d) => {
             const c = mobile.split(String(d)).length - 1;
             return (
-              <div key={d} className={`rounded-xl p-2 text-center ${c === 0 ? 'bg-gray-50 opacity-50' : 'bg-indigo-50 border border-indigo-200'}`}>
-                <p className="text-xl font-bold text-indigo-700">{d}</p>
+              <div key={d} className={`rounded-xl p-2 text-center ${c === 0 ? 'bg-gray-50 opacity-50' : 'bg-red-50 border border-red-200'}`}>
+                <p className="text-xl font-bold text-red-700">{d}</p>
                 <p className="text-xs text-gray-500">{t(`${c} times`, `${c} बार`)}</p>
               </div>
             );
@@ -877,8 +877,8 @@ function CompatibilityCard({ results }: { results: NumerologyResult }) {
     [t(`Name Number ${results.namank}`, `नामांक ${results.namank}`), results.namank],
   ];
   return (
-    <div className="bg-white rounded-2xl shadow-xl border-2 border-purple-200 overflow-hidden mb-6">
-      <div className="bg-gradient-to-r from-purple-500 to-purple-600 p-4">
+    <div className="bg-white rounded-2xl shadow-xl border-2 border-red-200 overflow-hidden mb-6">
+      <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
         <h3 className="text-lg font-bold text-white">{t("🤝 Compatibility with Mobile Number", "🤝 मोबाइल अंक से अनुकूलता")}</h3>
       </div>
       <div className="p-6 divide-y divide-gray-100">
@@ -927,8 +927,8 @@ function SpecialRulesCard({ results }: { results: NumerologyResult }) {
   const passed = ruleRows.filter(r => r.ok).length;
   const verdictCls = passed === ruleRows.length ? 'bg-primary/5 text-primary border-primary/20' : passed === 0 ? 'bg-red-50 text-red-700 border-red-200' : 'bg-amber-50 text-amber-700 border-amber-200';
   return (
-    <div className="bg-white rounded-2xl shadow-xl border-2 border-blue-200 overflow-hidden mb-6">
-      <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
+    <div className="bg-white rounded-2xl shadow-xl border-2 border-amber-200 overflow-hidden mb-6">
+      <div className="bg-gradient-to-r from-amber-500 to-amber-600 p-4">
         <h3 className="text-lg font-bold text-white">{t("📏 Special Rules Check", "📏 विशेष नियम जाँच")}</h3>
       </div>
       <div className="p-6 divide-y divide-gray-100">
@@ -1134,11 +1134,11 @@ export default function NumerologyCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-pink-50 to-amber-50">
       <main className="min-h-[calc(100vh-8rem)]">
         {currentView === 'calculator' ? (
           <div className="max-w-4xl mx-auto p-4">
-            <div className="bg-gradient-to-r from-purple-900 via-indigo-900 to-purple-900 text-white rounded-2xl shadow-2xl p-8 mb-6 mt-6">
+            <div className="bg-gradient-to-r from-red-900 via-red-900 to-red-900 text-white rounded-2xl shadow-2xl p-8 mb-6 mt-6">
               <div className="flex items-center justify-center mb-4">
                 <Calculator className="w-12 h-12 mr-3 animate-pulse" />
                 <h1 className="text-3xl md:text-4xl font-bold">Mobile Numerology Calculator</h1>
@@ -1152,7 +1152,7 @@ export default function NumerologyCalculator() {
               <div className="mb-4">
                 <button
                   onClick={() => { setShowResults(false); setResults(null); navigate(-1); }}
-                  className="flex items-center gap-2 text-purple-700 hover:text-purple-900 font-semibold transition-colors"
+                  className="flex items-center gap-2 text-red-700 hover:text-red-900 font-semibold transition-colors"
                 >
                   <ArrowLeft className="w-5 h-5" />
                   {t("Go Back", "वापस जाएं")}
@@ -1189,7 +1189,7 @@ export default function NumerologyCalculator() {
                     placeholder="Radha Kishore"
                     className={`w-full px-4 py-3 rounded-lg border-2 transition-colors ${errors.name
                       ? 'border-red-300 focus:border-red-500'
-                      : 'border-purple-200 focus:border-purple-500'
+                      : 'border-red-200 focus:border-red-500'
                       } focus:outline-none`}
                   />
                   {errors.name && (
@@ -1213,7 +1213,7 @@ export default function NumerologyCalculator() {
                     maxLength={10}
                     className={`w-full px-4 py-3 rounded-lg border-2 transition-colors ${errors.mobile
                       ? 'border-red-300 focus:border-red-500'
-                      : 'border-purple-200 focus:border-purple-500'
+                      : 'border-red-200 focus:border-red-500'
                       } focus:outline-none`}
                   />
                   {errors.mobile && (
@@ -1243,7 +1243,7 @@ export default function NumerologyCalculator() {
                     maxLength={10}
                     className={`w-full px-4 py-3 rounded-lg border-2 transition-colors ${errors.dob
                       ? 'border-red-300 focus:border-red-500'
-                      : 'border-purple-200 focus:border-purple-500'
+                      : 'border-red-200 focus:border-red-500'
                       } focus:outline-none`}
                   />
                   {errors.dob && (
@@ -1256,7 +1256,7 @@ export default function NumerologyCalculator() {
                 id="numerology-calculate-btn"
                 onClick={handleCalculate}
                 disabled={isCalculating}
-                className="w-full bg-purple-900 text-white py-4 px-6 rounded-xl text-lg font-bold hover:bg-purple-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all shadow-lg flex items-center justify-center"
+                className="w-full bg-red-900 text-white py-4 px-6 rounded-xl text-lg font-bold hover:bg-red-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all shadow-lg flex items-center justify-center"
               >
                 <Sparkles className="w-6 h-6 mr-2" />
                 {isCalculating ? t("Calculating...", 'गणना हो रही है...') : t("🔮 Calculate Full Report", '🔮 संपूर्ण गणना करें')}
@@ -1286,13 +1286,13 @@ export default function NumerologyCalculator() {
             <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mt-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-gray-800 flex items-center">
-                  <History className="w-8 h-8 mr-3 text-purple-600" />
+                  <History className="w-8 h-8 mr-3 text-red-600" />
                   {t("Saved Reports", "सहेजी गई रिपोर्ट्स")}
                 </h2>
                 {savedReports.length > 0 && (
                   <button
                     onClick={handleNewCalculation}
-                    className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-all flex items-center"
+                    className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-all flex items-center"
                   >
                     <Calculator className="w-5 h-5 mr-2" />
                     {t("New Calculation", "नई गणना")}
@@ -1306,7 +1306,7 @@ export default function NumerologyCalculator() {
                   <p className="text-gray-500 text-lg mb-4">{t("No reports saved yet", "कोई रिपोर्ट सहेजी नहीं गई है")}</p>
                   <button
                     onClick={() => setCurrentView('calculator')}
-                    className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-all"
+                    className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-all"
                   >
                     {t("Create Your First Report", "पहली रिपोर्ट बनाएं")}
                   </button>
@@ -1316,7 +1316,7 @@ export default function NumerologyCalculator() {
                   {savedReports.map((report) => (
                     <div
                       key={report.id}
-                      className="bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-xl p-6"
+                      className="bg-gradient-to-r from-red-50 to-red-50 border-2 border-red-200 rounded-xl p-6"
                     >
                       <div className="flex items-start justify-between mb-4">
                         <div>
@@ -1328,7 +1328,7 @@ export default function NumerologyCalculator() {
                         <div className="flex space-x-2">
                           <button
                             onClick={() => handleLoadReport(report)}
-                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all text-sm flex items-center"
+                            className="bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition-all text-sm flex items-center"
                           >
                             <Calculator className="w-4 h-4 mr-1" />
                             {t("View", "देखें")}
@@ -1344,21 +1344,21 @@ export default function NumerologyCalculator() {
                       </div>
 
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <div className="bg-white rounded-lg p-3 text-center border border-purple-200">
+                        <div className="bg-white rounded-lg p-3 text-center border border-red-200">
                           <p className="text-xs text-gray-600 mb-1">{t("Name Number", "नामांक")}</p>
-                          <p className="text-2xl font-bold text-purple-600">{report.namank}</p>
+                          <p className="text-2xl font-bold text-red-600">{report.namank}</p>
                         </div>
-                        <div className="bg-white rounded-lg p-3 text-center border border-indigo-200">
+                        <div className="bg-white rounded-lg p-3 text-center border border-red-200">
                           <p className="text-xs text-gray-600 mb-1">{t("Bhagyank", "भाग्यांक")}</p>
-                          <p className="text-2xl font-bold text-indigo-600">{toSingleDigit(report.bhagyank)}</p>
+                          <p className="text-2xl font-bold text-red-600">{toSingleDigit(report.bhagyank)}</p>
                         </div>
                         <div className="bg-white rounded-lg p-3 text-center border border-pink-200">
                           <p className="text-xs text-gray-600 mb-1">{t("Moolank", "मूलांक")}</p>
                           <p className="text-2xl font-bold text-pink-600">{report.moolank}</p>
                         </div>
-                        <div className="bg-white rounded-lg p-3 text-center border border-blue-200">
+                        <div className="bg-white rounded-lg p-3 text-center border border-amber-200">
                           <p className="text-xs text-gray-600 mb-1">{t("Mobile Total", "मोबाइल योग")}</p>
-                          <p className="text-2xl font-bold text-blue-600">{report.mobileYog}</p>
+                          <p className="text-2xl font-bold text-amber-600">{report.mobileYog}</p>
                         </div>
                       </div>
 

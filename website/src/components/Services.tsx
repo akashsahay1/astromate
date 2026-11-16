@@ -28,7 +28,7 @@ const Services = () => {
     <section id="services" className="py-8 lg:py-12 bg-[#FDF6E3]">
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Header */}
-        <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#171452] mb-1.5">
+        <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#1A1A1A] mb-1.5">
           {t("Pricing Plans", "मूल्य योजना")}
         </h2>
         <p className="text-[0.95rem] text-muted-foreground mb-8">

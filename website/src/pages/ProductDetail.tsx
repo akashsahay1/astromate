@@ -28,8 +28,8 @@ const ProductDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FDF6E3]">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-[#171452] mb-4">{t("Product not found", "उत्पाद नहीं मिला")}</h2>
-          <button onClick={() => navigate("/shop")} className="text-[#171452] underline">{t("Go back", "वापस जाएं")}</button>
+          <h2 className="text-2xl font-bold text-[#1A1A1A] mb-4">{t("Product not found", "उत्पाद नहीं मिला")}</h2>
+          <button onClick={() => navigate("/shop")} className="text-[#1A1A1A] underline">{t("Go back", "वापस जाएं")}</button>
         </div>
       </div>
     );
@@ -56,7 +56,7 @@ const ProductDetail = () => {
       <Navbar />
 
       <div className="max-w-[1200px] mx-auto px-6">
-        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-1.5 text-[#171452] text-sm font-semibold py-3 hover:underline">
+        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-1.5 text-[#1A1A1A] text-sm font-semibold py-3 hover:underline">
           <ArrowLeft className="h-4 w-4" /> {t("Go back", "वापस जाएं")}
         </button>
       </div>
@@ -64,7 +64,7 @@ const ProductDetail = () => {
       <div className="max-w-[1200px] mx-auto px-6 pb-12 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8">
         {/* LEFT */}
         <div>
-          <div className="relative rounded-2xl overflow-hidden h-[280px] lg:h-[340px] bg-gradient-to-br from-indigo-500 to-purple-600 flex items-end">
+          <div className="relative rounded-2xl overflow-hidden h-[280px] lg:h-[340px] bg-gradient-to-br from-red-500 to-red-600 flex items-end">
             {product.featured_image ? (
               <img src={product.featured_image} alt={text(product, "name")} className="absolute inset-0 w-full h-full object-cover" />
             ) : (
@@ -83,12 +83,12 @@ const ProductDetail = () => {
 
           <div className="mt-5 space-y-4">
             <div className="bg-white rounded-[14px] p-5 border border-[hsl(40,50%,90%)] shadow-sm">
-              <h3 className="text-[1.05rem] font-bold text-[#171452] mb-3">{t("About this product", "उत्पाद के बारे में")}</h3>
+              <h3 className="text-[1.05rem] font-bold text-[#1A1A1A] mb-3">{t("About this product", "उत्पाद के बारे में")}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{text(product, "description")}</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-5 border border-[hsl(40,50%,90%)] shadow-sm">
-              <h3 className="text-[1.05rem] font-bold text-[#171452] mb-3">{t("Product details", "उत्पाद विवरण")}</h3>
+              <h3 className="text-[1.05rem] font-bold text-[#1A1A1A] mb-3">{t("Product details", "उत्पाद विवरण")}</h3>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[#FFF8E7] rounded-[10px] p-3.5">
                   <p className="text-[0.75rem] text-muted-foreground">{t("Category", "श्रेणी")}</p>
@@ -110,7 +110,7 @@ const ProductDetail = () => {
             </div>
 
             <div className="bg-white rounded-[14px] p-5 border border-[hsl(40,50%,90%)] shadow-sm">
-              <h3 className="text-[1.05rem] font-bold text-[#171452] mb-3">{t("What you get", "आपको क्या मिलेगा")}</h3>
+              <h3 className="text-[1.05rem] font-bold text-[#1A1A1A] mb-3">{t("What you get", "आपको क्या मिलेगा")}</h3>
               <div className="space-y-2">
                 {[
                   t("Certified and energised product", "प्रमाणित एवं अभिमंत्रित उत्पाद"),
@@ -143,14 +143,14 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            <div className="border-2 border-[#171452] bg-[#FFF5F5] rounded-xl p-4 mb-4">
+            <div className="border-2 border-[#1A1A1A] bg-[#FFF5F5] rounded-xl p-4 mb-4">
               {discount && (
                 <span className="inline-block bg-orange-50 text-[#FF6B1A] text-[0.72rem] font-bold px-2 py-0.5 rounded-[10px] border border-orange-200 mb-1.5">
                   {discount}
                 </span>
               )}
               <span className="float-right font-bold text-lg text-[#2C1010]">₹{Number(product.price).toLocaleString()}</span>
-              <span className="font-bold text-sm text-[#171452] block clear-both">{text(product, "name")}</span>
+              <span className="font-bold text-sm text-[#1A1A1A] block clear-both">{text(product, "name")}</span>
               {original > product.price && (
                 <span className="text-[0.78rem] text-muted-foreground mt-0.5 block line-through">₹{original.toLocaleString()}</span>
               )}
@@ -169,7 +169,7 @@ const ProductDetail = () => {
                 </button>
                 <button
                   onClick={add}
-                  className="w-full flex items-center justify-center gap-2 border-2 border-[#171452] text-[#171452] py-3 rounded-[10px] text-[0.9rem] font-bold hover:bg-[#171452]/5 transition-colors mt-2"
+                  className="w-full flex items-center justify-center gap-2 border-2 border-[#1A1A1A] text-[#1A1A1A] py-3 rounded-[10px] text-[0.9rem] font-bold hover:bg-[#1A1A1A]/5 transition-colors mt-2"
                 >
                   <Plus className="h-4 w-4" />
                   {inCart ? t(`Add another (${inCart} in cart)`, `एक और जोड़ें (कार्ट में ${inCart})`) : t("Add to cart", "कार्ट में जोड़ें")}
