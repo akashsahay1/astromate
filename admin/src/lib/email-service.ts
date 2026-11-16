@@ -22,15 +22,16 @@ class EmailService {
       sgMail.setApiKey(envConfig.SENDGRID_API_KEY);
     }
     // Logo URL for email templates
-    this.logoUrl = `${envConfig.NEXTAUTH_URL}/logo.png`;
+    // emails are opened outside our network: never point at localhost
+    this.logoUrl = `${process.env.EMAIL_ASSET_URL || 'https://admin.astromate.online'}/logo.png`;
   }
 
   // Common email header with logo
   private getEmailHeader(): string {
     return `
-      <div style="display: inline-block; width: 100%; text-align: center; padding: 25px 30px; background: #ffffff; border-bottom: 1px solid #eaeaea;">
+      <div style="display: inline-block; width: 100%; text-align: center; padding: 25px 30px; background: #ffffff; border-bottom: 4px solid #FEBC0C;">
         <img src="${this.logoUrl}" alt="Astromate" style="height: 60px; width: auto; margin-right: 10px; display: inline-block; vertical-align: middle;" />
-        <h1 style="color: #fe0000; margin: 0; font-size: 22px; font-weight: bold; display: inline-block; vertical-align: middle;">Astromate</h1>
+        <h1 style="color: #DB0007; margin: 0; font-size: 22px; font-weight: bold; display: inline-block; vertical-align: middle;">Astromate</h1>
       </div>
     `;
   }
@@ -44,6 +45,30 @@ class EmailService {
         </p>
       </div>
     `;
+  }
+
+  // Wrap any body HTML in the standard Astromate card (logo header + footer)
+  layout(body: string): string {
+    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+      <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #000000; margin: 0; padding: 0; background: #f4f4f4; text-align: center;">
+        <div style="display: inline-block; max-width: 600px; width: 100%; margin: 40px auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: left;">
+          ${this.getEmailHeader()}<div style="padding: 30px;">${body}</div>${this.getEmailFooter()}
+        </div>
+      </body></html>`;
+  }
+
+  // Active admins' addresses (fallback ADMIN_EMAIL) — there is no shared admin mailbox
+  async adminEmails(): Promise<string[]> {
+    try {
+      const { default: DatabaseService } = await import('./database');
+      const admins = await (await DatabaseService.getCollection('users'))
+        .find({ user_type: { $in: ['administrator', 'admin'] }, account_status: 'active', email_address: { $nin: [null, ''] } }, { projection: { email_address: 1 } })
+        .toArray();
+      const list = admins.map(a => a.email_address as string);
+      return list.length ? list : (process.env.ADMIN_EMAIL ? [process.env.ADMIN_EMAIL] : []);
+    } catch {
+      return process.env.ADMIN_EMAIL ? [process.env.ADMIN_EMAIL] : [];
+    }
   }
 
   async sendEmail(emailData: EmailData): Promise<boolean> {
@@ -98,7 +123,7 @@ class EmailService {
             <div style="padding: 30px;">
               <h2 style="color: #000000; margin: 0 0 20px 0; font-size: 18px;">New User Registration</h2>
 
-              <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 4px solid #FE0000;">
+              <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 4px solid #DB0007;">
                 <h3 style="margin: 0 0 15px 0; color: #000000;">User Details</h3>
                 <p style="margin: 8px 0; color: #000000;"><strong>Name:</strong> ${user.name}</p>
                 <p style="margin: 8px 0; color: #000000;"><strong>Email:</strong> ${user.email}</p>
@@ -112,10 +137,10 @@ class EmailService {
               </div>
 
               ${user.user_type === 'astrologer' ? `
-              <div style="background: #fff8f8; border: 1px solid #FE0000; padding: 15px; border-radius: 8px; margin: 20px 0;">
+              <div style="background: #fff8f8; border: 1px solid #DB0007; padding: 15px; border-radius: 8px; margin: 20px 0;">
                 <h4 style="margin: 0 0 10px 0; color: #000000;">Action Required</h4>
                 <p style="margin: 0 0 15px 0; color: #000000;">This astrologer registration requires your review and approval.</p>
-                <a href="${envConfig.NEXTAUTH_URL}/accounts/astrologers" style="display: inline-block; padding: 12px 24px; background: #FE0000; color: white; text-decoration: none; border-radius: 6px;">Review Application</a>
+                <a href="${envConfig.NEXTAUTH_URL}/accounts/astrologers" style="display: inline-block; padding: 12px 24px; background: #DB0007; color: white; text-decoration: none; border-radius: 6px;">Review Application</a>
               </div>
               ` : ''}
             </div>
@@ -166,7 +191,7 @@ class EmailService {
               </div>
 
               ${user.user_type === 'astrologer' ? `
-              <div style="background: #fff8f8; border: 1px solid #FE0000; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="background: #fff8f8; border: 1px solid #DB0007; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                 <h4 style="margin: 0 0 10px 0; color: #000000;">Application Under Review</h4>
                 <p style="margin: 0; color: #000000;">Your astrologer application is currently being reviewed by our admin team. You will receive an email notification once your account is verified and approved. This process typically takes 1-2 business days.</p>
               </div>
@@ -175,30 +200,30 @@ class EmailService {
               <div style="background: #f8f8f8; padding: 20px; border-radius: 8px;">
                 <h3 style="margin: 0 0 15px 0; color: #000000;">What's Next?</h3>
                 ${user.user_type === 'customer' ? `
-                <div style="padding: 10px 0; border-left: 3px solid #FE0000; padding-left: 15px; margin-bottom: 10px;">
+                <div style="padding: 10px 0; border-left: 3px solid #DB0007; padding-left: 15px; margin-bottom: 10px;">
                   <strong>Explore Astrologers:</strong> Browse our verified astrologers and find the perfect match for your spiritual needs.
                 </div>
-                <div style="padding: 10px 0; border-left: 3px solid #FE0000; padding-left: 15px; margin-bottom: 10px;">
+                <div style="padding: 10px 0; border-left: 3px solid #DB0007; padding-left: 15px; margin-bottom: 10px;">
                   <strong>Start Consultations:</strong> Book consultations with experienced astrologers through chat, call, or video.
                 </div>
-                <div style="padding: 10px 0; border-left: 3px solid #FE0000; padding-left: 15px;">
+                <div style="padding: 10px 0; border-left: 3px solid #DB0007; padding-left: 15px;">
                   <strong>Track Your Journey:</strong> Keep track of your consultations and spiritual growth.
                 </div>
                 ` : user.user_type === 'astrologer' ? `
-                <div style="padding: 10px 0; border-left: 3px solid #FE0000; padding-left: 15px; margin-bottom: 10px;">
+                <div style="padding: 10px 0; border-left: 3px solid #DB0007; padding-left: 15px; margin-bottom: 10px;">
                   <strong>Complete Verification:</strong> Once approved, complete your profile with your expertise and availability.
                 </div>
-                <div style="padding: 10px 0; border-left: 3px solid #FE0000; padding-left: 15px; margin-bottom: 10px;">
+                <div style="padding: 10px 0; border-left: 3px solid #DB0007; padding-left: 15px; margin-bottom: 10px;">
                   <strong>Start Earning:</strong> Begin accepting consultations and building your client base.
                 </div>
-                <div style="padding: 10px 0; border-left: 3px solid #FE0000; padding-left: 15px;">
+                <div style="padding: 10px 0; border-left: 3px solid #DB0007; padding-left: 15px;">
                   <strong>Grow Your Practice:</strong> Use our platform tools to manage appointments and track earnings.
                 </div>
                 ` : ''}
               </div>
 
               <div style="text-align: center; margin: 25px 0;">
-                <a href="${envConfig.NEXTAUTH_URL}" style="display: inline-block; padding: 12px 24px; background: #FE0000; color: white; text-decoration: none; border-radius: 6px;">Visit Platform</a>
+                <a href="${envConfig.NEXTAUTH_URL}" style="display: inline-block; padding: 12px 24px; background: #DB0007; color: white; text-decoration: none; border-radius: 6px;">Visit Platform</a>
               </div>
             </div>
 
@@ -251,7 +276,7 @@ class EmailService {
               </div>
 
               ${!isVerified && reason ? `
-              <div style="background: #fff8f8; border: 1px solid #FE0000; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="background: #fff8f8; border: 1px solid #DB0007; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                 <h4 style="margin: 0 0 10px 0; color: #000000;">Feedback</h4>
                 <p style="margin: 0; color: #000000;">${reason}</p>
               </div>
@@ -260,20 +285,20 @@ class EmailService {
               <div style="display: inline-block; width: 100%;">
                 <h3 style="margin: 0 0 15px 0; color: #000000;">${isVerified ? 'Next Steps' : 'What You Can Do'}</h3>
                 ${isVerified ? `
-                <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 3px solid #FE0000; margin-bottom: 10px;">
+                <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 3px solid #DB0007; margin-bottom: 10px;">
                   <strong style="display: inline-block; width: 100%; margin: 0 0 10px 0;">Login to the App</strong> Open app and login with your credentials to complete your profile.
                 </div>
-                <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 3px solid #FE0000; margin-bottom: 10px;">
+                <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 3px solid #DB0007; margin-bottom: 10px;">
                   <strong style="display: inline-block; width: 100%; margin: 0 0 10px 0;">Complete Your Profile</strong> Add your expertise, experience, availability details.
                 </div>
-                <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 3px solid #FE0000;">
+                <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 3px solid #DB0007;">
                   <strong style="display: inline-block; width: 100%; margin: 0 0 10px 0;">Start Accepting Consultations</strong> You can now receive and accept consultation requests from clients through the app.
                 </div>
                 ` : `
-                <div style="padding: 10px 0; border-left: 3px solid #FE0000; padding-left: 15px; margin-bottom: 10px;">
+                <div style="padding: 10px 0; border-left: 3px solid #DB0007; padding-left: 15px; margin-bottom: 10px;">
                   <strong>Contact Support:</strong> If you have questions about this decision, please contact our support team.
                 </div>
-                <div style="padding: 10px 0; border-left: 3px solid #FE0000; padding-left: 15px;">
+                <div style="padding: 10px 0; border-left: 3px solid #DB0007; padding-left: 15px;">
                   <strong>Reapply:</strong> You may reapply after addressing the feedback provided above.
                 </div>
                 `}
@@ -319,7 +344,8 @@ class EmailService {
 
   // Send admin notification for new user signup
   async sendAdminSignupNotification(user: { name: string; email: string; phone?: string; user_type: string; createdAt?: string | Date }): Promise<boolean> {
-    const adminEmail = envConfig.SMTP.user || 'admin@astromate.online';
+    const adminEmail = await this.adminEmails();
+    if (!adminEmail.length) return false;
     const template = this.getAdminSignupNotificationTemplate(user);
 
     return await this.sendEmail({
@@ -357,12 +383,12 @@ class EmailService {
             <div style="padding: 30px;">
               <h2 style="color: #000000; margin: 0 0 20px 0; font-size: 18px;">New Astrologer Application Received</h2>
 
-              <div style="background: #fff8f8; border: 1px solid #FE0000; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                <h3 style="margin: 0 0 15px 0; color: #FE0000;">Action Required</h3>
+              <div style="background: #fff8f8; border: 1px solid #DB0007; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="margin: 0 0 15px 0; color: #DB0007;">Action Required</h3>
                 <p style="margin: 0; color: #000000;">A new astrologer has completed their profile and is waiting for your review and approval.</p>
               </div>
 
-              <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 4px solid #FE0000; margin-bottom: 20px;">
+              <div style="background: #f8f8f8; padding: 20px; border-radius: 8px; border-left: 4px solid #DB0007; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 15px 0; color: #000000;">Astrologer Details</h3>
                 <p style="margin: 8px 0; color: #000000;"><strong>Name:</strong> ${astrologer.name}</p>
                 <p style="margin: 8px 0; color: #000000;"><strong>Email:</strong> ${astrologer.email}</p>
@@ -373,7 +399,7 @@ class EmailService {
               </div>
 
               <div style="text-align: center; margin: 25px 0;">
-                <a href="${envConfig.NEXTAUTH_URL}/accounts/edit-user?id=${astrologer.userId}" style="display: inline-block; padding: 14px 28px; background: #FE0000; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">Review Application</a>
+                <a href="${envConfig.NEXTAUTH_URL}/accounts/edit-user?id=${astrologer.userId}" style="display: inline-block; padding: 14px 28px; background: #DB0007; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">Review Application</a>
               </div>
 
               <p style="color: #666666; font-size: 14px; text-align: center; margin: 20px 0 0 0;">
@@ -478,10 +504,10 @@ class EmailService {
                 <h2 style="color: #000000; margin: 0;">Hello ${user.name},</h2>
                 <p style="color: #000000; margin: 10px 0;">We received a request to reset your password for your Astromate account.</p>
                 <p style="color: #000000; margin: 10px 0;">Click the button below to reset your password:</p>
-                <a href="${resetUrl}" style="display: inline-block; padding: 15px 30px; background: #FE0000; color: white; text-decoration: none; border-radius: 6px; margin: 15px 0; font-weight: bold;">Reset Password</a>
+                <a href="${resetUrl}" style="display: inline-block; padding: 15px 30px; background: #DB0007; color: white; text-decoration: none; border-radius: 6px; margin: 15px 0; font-weight: bold;">Reset Password</a>
               </div>
 
-              <div style="background: #fff8f8; border: 1px solid #FE0000; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="background: #fff8f8; border: 1px solid #DB0007; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                 <h4 style="margin: 0 0 10px 0; color: #000000;">Security Information</h4>
                 <ul style="text-align: left; margin: 0; padding-left: 20px; color: #000000;">
                   <li>This link will expire in 15 minutes for security purposes</li>
@@ -497,7 +523,7 @@ class EmailService {
 
               <div style="text-align: center; color: #000000; font-size: 14px;">
                 <p style="margin: 0;">If you're having trouble clicking the button, copy and paste this URL into your browser:</p>
-                <p style="word-break: break-all; color: #FE0000; margin: 10px 0;">${resetUrl}</p>
+                <p style="word-break: break-all; color: #DB0007; margin: 10px 0;">${resetUrl}</p>
               </div>
             </div>
 
@@ -585,10 +611,10 @@ class EmailService {
                 <p style="margin: 0 0 15px 0; color: #000000;">Dear ${orderData.customerName},</p>
                 <p style="margin: 0 0 20px 0; color: #000000;">Your order status has been updated:</p>
 
-                <div style="background: #f8f8f8; padding: 15px; border-radius: 5px; border-left: 4px solid #FE0000; margin-bottom: 20px;">
+                <div style="background: #f8f8f8; padding: 15px; border-radius: 5px; border-left: 4px solid #DB0007; margin-bottom: 20px;">
                   <div style="margin-bottom: 10px;">
                     <strong>Order #${orderData.orderNumber}</strong>
-                    <span style="background: #FE0000; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; text-transform: uppercase; margin-left: 10px;">
+                    <span style="background: #DB0007; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; text-transform: uppercase; margin-left: 10px;">
                       ${orderData.newStatus}
                     </span>
                   </div>
@@ -746,7 +772,8 @@ class EmailService {
     itemsCount: number;
     trackingNumber?: string;
   }): Promise<boolean> {
-    const adminEmail = envConfig.SMTP.user || 'admin@astromate.online';
+    const adminEmail = await this.adminEmails();
+    if (!adminEmail.length) return false;
     const template = this.getAdminOrderNotificationTemplate(orderData);
 
     return await this.sendEmail({
@@ -759,7 +786,8 @@ class EmailService {
 
   // Send bulk status update notification to admin
   async sendBulkOrderUpdateNotification(updatedCount: number, newStatus: string): Promise<boolean> {
-    const adminEmail = envConfig.SMTP.user || 'admin@astromate.online';
+    const adminEmail = await this.adminEmails();
+    if (!adminEmail.length) return false;
 
     return await this.sendEmail({
       to: adminEmail,

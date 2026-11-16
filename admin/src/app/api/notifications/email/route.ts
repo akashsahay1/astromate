@@ -6,7 +6,7 @@ import * as sgMail from '@sendgrid/mail';
 
 // SendGrid configuration
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@astromate.online';
+const FROM_EMAIL = process.env.SEND_FROM || 'info@astromate.online';
 
 // Initialize SendGrid
 if (SENDGRID_API_KEY) {
@@ -32,13 +32,13 @@ const getEmailTemplate = (type: string, data: Record<string, unknown>) => {
             <style>
               body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
               .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-              .header { background: #1877F2; color: white; padding: 20px; text-align: center; }
+              .header { background: #DB0007; color: white; padding: 20px; text-align: center; }
               .content { padding: 20px; }
               .order-details { background: #f8f9fa; padding: 15px; margin: 20px 0; border-radius: 5px; }
               .item { border-bottom: 1px solid #eee; padding: 10px 0; }
-              .total { font-weight: bold; font-size: 18px; color: #1877F2; }
+              .total { font-weight: bold; font-size: 18px; color: #DB0007; }
               .footer { text-align: center; padding: 20px; color: #666; }
-              .btn { background: #1877F2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
+              .btn { background: #DB0007; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
             </style>
           </head>
           <body>
@@ -110,11 +110,11 @@ const getEmailTemplate = (type: string, data: Record<string, unknown>) => {
             <style>
               body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
               .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-              .header { background: #1877F2; color: white; padding: 20px; text-align: center; }
+              .header { background: #DB0007; color: white; padding: 20px; text-align: center; }
               .content { padding: 20px; }
               .status-update { background: #e8f5e8; padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid #28a745; }
               .footer { text-align: center; padding: 20px; color: #666; }
-              .btn { background: #1877F2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
+              .btn { background: #DB0007; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
             </style>
           </head>
           <body>

@@ -1196,9 +1196,11 @@ app.prepare().then(() => {
   });
 
   // Start the server
-  httpServer.listen(port, (err) => {
+  // BIND_HOST=127.0.0.1 in production: only Apache (same machine) can reach it
+  const bindHost = process.env.BIND_HOST || hostname;
+  httpServer.listen(port, bindHost, (err) => {
     if (err) throw err;
-    console.log(`🚀 Server ready on http://${hostname}:${port}`);
+    console.log(`🚀 Server ready on http://${bindHost}:${port}`);
     console.log(`📡 Socket.IO ready for real-time connections`);
 
     // Signal PM2 that app is ready (for graceful reload)

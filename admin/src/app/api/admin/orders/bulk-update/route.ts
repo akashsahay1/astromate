@@ -71,12 +71,14 @@ async function handlePOST(request: AuthenticatedNextRequest) {
       const emailPromises = ordersToUpdate.map(async (order) => {
         try {
           // Get user information
-          const user = await usersCollection.findOne({ _id: new ObjectId(order.user_id) });
-          
-          if (user && user.email) {
+          // orders store the custom user_id ("user_..."), not the Mongo _id
+          const user = await usersCollection.findOne({ user_id: order.user_id });
+          const email = (user?.email_address || user?.email) as string | undefined;
+
+          if (user && email) {
             return await emailService.sendOrderStatusNotification({
               customerName: user.name || user.full_name || 'Valued Customer',
-              customerEmail: user.email,
+              customerEmail: email,
               orderNumber: order.order_number,
               oldStatus: order.status,
               newStatus: status,

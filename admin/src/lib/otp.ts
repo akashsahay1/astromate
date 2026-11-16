@@ -14,11 +14,18 @@ export interface OTPData {
 export const OTP_BYPASS_MODE = process.env.OTP_BYPASS_MODE === 'true' || process.env.NODE_ENV === 'development';
 export const OTP_BYPASS_CODE = '0000';
 
+// Production test accounts: phones (last 10 digits) listed in OTP_TEST_PHONES get the fixed code 0000
+// and no SMS. Everyone else needs a real SMS. Comma-separated, e.g. OTP_TEST_PHONES=9876543210,9123456789
+export const isOtpTestPhone = (phone: string): boolean => {
+  const list = (process.env.OTP_TEST_PHONES || '').split(',').map(p => p.replace(/\D/g, '').slice(-10)).filter(Boolean);
+  return list.includes(phone.replace(/\D/g, '').slice(-10));
+};
+
 // OTP Configuration
 export const OTP_LENGTH = 4;
-export const OTP_EXPIRY_MINUTES = 60; // Extended to 60 minutes
-export const MAX_OTP_ATTEMPTS = 999; // Effectively unlimited
-export const MAX_OTP_REQUESTS_PER_HOUR = 999; // Effectively unlimited
+export const OTP_EXPIRY_MINUTES = 10;
+export const MAX_OTP_ATTEMPTS = 5; // wrong codes per OTP, then a new one is needed
+export const MAX_OTP_REQUESTS_PER_HOUR = 10; // with 5 attempts each: 50 guesses/hour of 10,000
 export const RESEND_OTP_DELAY_SECONDS = 0; // No delay for resend
 
 /**

@@ -8,6 +8,7 @@ import {
   isRateLimited,
   sendOTPSMS,
   OTP_BYPASS_MODE,
+  isOtpTestPhone,
   MAX_OTP_REQUESTS_PER_HOUR,
 } from '@/lib/otp';
 
@@ -55,18 +56,14 @@ async function sendOTPEmail(email: string, otp: string): Promise<boolean> {
     return await emailService.sendEmail({
       to: email,
       subject: 'Your OTP Code - Astromate',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #6B46C1;">Verification Code</h2>
-          <p>Your OTP code is:</p>
-          <div style="background-color: #f3f4f6; padding: 20px; text-align: center; font-size: 32px; font-weight: bold; letter-spacing: 8px; margin: 20px 0;">
-            ${otp}
-          </div>
-          <p>This code will expire in 5 minutes.</p>
-          <p style="color: #666; font-size: 12px;">If you didn't request this code, please ignore this email.</p>
-        </div>
-      `,
-      text: `Your OTP code is: ${otp}. This code will expire in 5 minutes.`,
+      html: emailService.layout(`
+        <h2 style="margin: 0 0 12px 0; font-size: 20px;">Your verification code</h2>
+        <p style="margin: 0;">Use this code to continue signing in to Astromate:</p>
+        <div style="background: #FFF6DB; border: 1px solid #FEBC0C; padding: 20px; text-align: center; font-size: 32px; font-weight: bold; letter-spacing: 8px; margin: 20px 0; border-radius: 8px;">${otp}</div>
+        <p style="margin: 0;">This code expires in 10 minutes.</p>
+        <p style="color: #666; font-size: 12px; margin-top: 20px;">If you didn't request this code, you can ignore this email. Never share it with anyone.</p>
+      `),
+      text: `Your OTP code is: ${otp}. This code will expire in 10 minutes.`,
     });
   } catch (error) {
     console.error('Error sending OTP email:', error);
@@ -179,16 +176,17 @@ export async function POST(request: NextRequest) {
         }
 
         // Generate and send OTP
-        const otp = OTP_BYPASS_MODE ? '0000' : generateOTP();
+        const testPhone = OTP_BYPASS_MODE || isOtpTestPhone(cleanPhone);
+        const otp = testPhone ? '0000' : generateOTP();
         const expiry = getOTPExpiry();
         const now = new Date();
 
         console.log(`🔑 Generated OTP: ${OTP_BYPASS_MODE ? otp : '****'} (bypass: ${OTP_BYPASS_MODE})`);
 
         const fullPhoneForSMS = `${countryCode}${cleanPhone}`;
-        otpSent = await sendOTPSMS(fullPhoneForSMS, otp);
+        otpSent = testPhone || await sendOTPSMS(fullPhoneForSMS, otp);
 
-        if (!otpSent && !OTP_BYPASS_MODE) {
+        if (!otpSent && !testPhone) {
           return NextResponse.json(
             { success: false, error: 'Failed to send OTP. Please try again.' },
             { status: 500 }
@@ -228,16 +226,17 @@ export async function POST(request: NextRequest) {
         // New user - create temporary record and send OTP
         console.log(`📝 New user - creating temporary record`);
 
-        const otp = OTP_BYPASS_MODE ? '0000' : generateOTP();
+        const testPhone = OTP_BYPASS_MODE || isOtpTestPhone(cleanPhone);
+        const otp = testPhone ? '0000' : generateOTP();
         const expiry = getOTPExpiry();
         const now = new Date();
 
         console.log(`🔑 Generated OTP: ${OTP_BYPASS_MODE ? otp : '****'} (bypass: ${OTP_BYPASS_MODE})`);
 
         const fullPhoneForSMS = `${countryCode}${cleanPhone}`;
-        otpSent = await sendOTPSMS(fullPhoneForSMS, otp);
+        otpSent = testPhone || await sendOTPSMS(fullPhoneForSMS, otp);
 
-        if (!otpSent && !OTP_BYPASS_MODE) {
+        if (!otpSent && !testPhone) {
           return NextResponse.json(
             { success: false, error: 'Failed to send OTP. Please try again.' },
             { status: 500 }

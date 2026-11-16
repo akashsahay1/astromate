@@ -1,3 +1,4 @@
+import { emailService } from './email-service';
 import admin from 'firebase-admin';
 import sgMail from '@sendgrid/mail';
 import DatabaseService from './database';
@@ -281,16 +282,16 @@ export class NotificationService {
         return false;
       }
 
-      const emailTemplate = this.getEmailTemplate(notification.type, notification.data);
+      const emailTemplate = this.getEmailTemplate(notification.type, { title: notification.title, message: notification.body, ...notification.data });
       
       const msg = {
         to: target.email,
         from: {
-          email: process.env.FROM_EMAIL || 'noreply@astromate.online',
+          email: process.env.SEND_FROM || 'info@astromate.online',
           name: 'Astromate'
         },
         subject: emailTemplate.subject,
-        html: emailTemplate.htmlContent,
+        html: emailService.layout(emailTemplate.htmlContent),
         text: emailTemplate.textContent || notification.body,
         trackingSettings: {
           clickTracking: {
@@ -548,14 +549,14 @@ export class NotificationService {
           subject: 'Payment Successful - Astromate',
           htmlContent: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #4CAF50;">Payment Successful! 💰</h2>
+              <h2 style="color: #DB0007;">Payment Successful! 💰</h2>
               <p>Your payment of ₹${data?.amount} has been processed successfully.</p>
               <p><strong>Transaction ID:</strong> ${data?.transactionId}</p>
               <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
               <div style="margin: 20px 0; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
                 <p style="margin: 0;">Your wallet has been credited and you can now enjoy our services!</p>
               </div>
-              <a href="${baseUrl}/wallet" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">View Wallet</a>
+              <a href="${baseUrl}/wallet" style="background-color: #DB0007; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">View Wallet</a>
             </div>
           `
         };
@@ -565,7 +566,7 @@ export class NotificationService {
           subject: 'Order Confirmation - Astromate',
           htmlContent: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #2196F3;">Order Confirmed! 📦</h2>
+              <h2 style="color: #DB0007;">Order Confirmed! 📦</h2>
               <p>Thank you for your order. Here are the details:</p>
               <p><strong>Order Number:</strong> ${data?.orderNumber}</p>
               <p><strong>Total Amount:</strong> ₹${data?.totalAmount}</p>
@@ -582,7 +583,7 @@ export class NotificationService {
           subject: 'Welcome to Astromate - Application Approved! 🎉',
           htmlContent: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #4CAF50;">Congratulations! You're now a Astromate Astrologer! 🌟</h2>
+              <h2 style="color: #DB0007;">Congratulations! You're now an Astromate Astrologer! 🌟</h2>
               <p>Your application has been approved and you can now start offering consultations.</p>
               <div style="margin: 20px 0; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
                 <h3>Next Steps:</h3>
@@ -592,19 +593,19 @@ export class NotificationService {
                   <li>Go online to start receiving requests</li>
                 </ul>
               </div>
-              <a href="${baseUrl}/astrologer/dashboard" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go to Dashboard</a>
+              <a href="${baseUrl}/astrologer/dashboard" style="background-color: #DB0007; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go to Dashboard</a>
             </div>
           `
         };
 
       default:
         return {
-          subject: 'Notification from Astromate',
+          subject: (data?.title as string) || 'Notification from Astromate',
           htmlContent: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #333;">Astromate</h2>
+              <h2 style="color: #DB0007;">${data?.title || 'Astromate'}</h2>
               <p>${data?.message || 'You have a new notification from Astromate.'}</p>
-              <a href="${baseUrl}" style="background-color: #2196F3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Open App</a>
+              <a href="${baseUrl}" style="background-color: #DB0007; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Open App</a>
             </div>
           `
         };
