@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Youtube, Facebook, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SUPPORT_PHONE, SUPPORT_TEL } from "@/components/LegalPage";
 import { useT } from "@/hooks/useLang";
 import logoIconWhite from "@/assets/logo-icon-white.png";
 import logoTextWhite from "@/assets/logo-text-white.png";
@@ -118,7 +119,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 text-white/70 text-sm">
                 <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span className="font-semibold text-rating">+91 98765 43210</span>
+                <a href={SUPPORT_TEL} className="font-semibold text-rating hover:underline">{SUPPORT_PHONE}</a>
               </li>
               <li className="flex items-start gap-2 text-white/70 text-sm">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />

@@ -58,13 +58,13 @@ class _HelpScreenState extends State<HelpScreen> {
     ContactOption(
       icon: Icons.email_outlined,
       title: 'Email Support',
-      subtitle: 'info@astromate.online',
+      subtitle: 'support@astromate.online',
       description: 'Get help via email (24-48 hours response)',
     ),
     ContactOption(
       icon: Icons.phone_outlined,
       title: 'Phone Support',
-      subtitle: '+91 9234066099',
+      subtitle: '+91 9507000066',
       description: 'Call us (Mon-Sat, 9 AM - 9 PM)',
     ),
   ];

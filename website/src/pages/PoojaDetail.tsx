@@ -1,3 +1,4 @@
+import { SUPPORT_PHONE, SUPPORT_TEL } from "@/components/LegalPage";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Phone, MessageCircle, Check, Shield, Award, Star } from "lucide-react";
@@ -179,7 +180,7 @@ const PoojaDetail = () => {
           <div className="bg-white rounded-[14px] p-4 border border-[hsl(40,50%,85%)] shadow-sm">
             <h4 className="text-[0.95rem] font-bold mb-2.5">{t("Need Help?", "सहायता चाहिए?")}</h4>
             <div className="space-y-2">
-              <div className="flex items-center gap-2.5 text-sm text-muted-foreground"><Phone className="h-4 w-4" /> +91 98765 43210</div>
+              <div className="flex items-center gap-2.5 text-sm text-muted-foreground"><Phone className="h-4 w-4" /> <a href={SUPPORT_TEL} className="hover:text-primary">{SUPPORT_PHONE}</a></div>
               <div className="flex items-center gap-2.5 text-sm text-muted-foreground"><MessageCircle className="h-4 w-4" /> {t("Chat on WhatsApp", "WhatsApp पर चैट करें")}</div>
             </div>
           </div>

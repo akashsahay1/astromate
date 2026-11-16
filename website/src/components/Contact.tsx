@@ -1,3 +1,4 @@
+import { SUPPORT_PHONE } from "@/components/LegalPage";
 import { Mail, Phone, Clock } from "lucide-react";
 import { useT } from "@/hooks/useLang";
 
@@ -15,7 +16,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: t("Phone", "फोन"),
-      value: "+91 98765 43210",
+      value: SUPPORT_PHONE,
       subtitle: t("6 AM to 12 midnight", "सुबह 6 बजे से रात 12 बजे"),
       iconBg: "bg-emerald-100",
       iconColor: "text-emerald-500"

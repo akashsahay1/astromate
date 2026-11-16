@@ -4,6 +4,8 @@ import { useT } from "@/hooks/useLang";
 
 export const COMPANY = "NAAMRE SERVICES (OPC) PRIVATE LIMITED";
 export const SUPPORT_EMAIL = "support@astromate.online";
+export const SUPPORT_PHONE = "+91 95070 00066";
+export const SUPPORT_TEL = "tel:+919507000066";
 export const ADDRESS = "Near DAV Nageswar Public School, Tetri, Chandaghasi, Ranchi 834010, Jharkhand, India";
 
 // Shared shell for the policy pages: same look as the existing Terms / Privacy pages.

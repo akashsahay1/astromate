@@ -1,3 +1,4 @@
+import { nakshatraIcon } from "@/data/signImages";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -27,7 +28,7 @@ const Nakshatra = () => {
           </button>
 
           <div className="rounded-2xl gradient-primary text-primary-foreground p-8 flex items-center gap-5">
-            <div className="h-20 w-20 rounded-2xl bg-primary-foreground/15 flex items-center justify-center text-4xl">{n.emoji}</div>
+            <div className="h-20 w-20 shrink-0 rounded-2xl bg-white flex items-center justify-center text-4xl p-2">{nakshatraIcon(n.sort_order + 1) ? <img src={nakshatraIcon(n.sort_order + 1)} alt="" className="h-full w-full object-contain" /> : n.emoji}</div>
             <div>
               <h1 className="text-3xl font-bold">{pick(n, "name")} <span className="text-primary-foreground/70 text-xl">{t("", n.hindi)}</span></h1>
               <p className="mt-1 text-primary-foreground/80">{pick(n, "span")}</p>
@@ -123,7 +124,7 @@ const Nakshatra = () => {
             {filtered.map((n) => (
               <button key={n.id} onClick={() => setSelected(n)}
                 className="group text-center rounded-xl border border-border bg-card p-4 transition-all hover:-translate-y-1 hover:shadow-lg hover:border-primary/40">
-                <span className="text-3xl">{n.emoji}</span>
+                {nakshatraIcon(n.sort_order + 1) ? <img src={nakshatraIcon(n.sort_order + 1)} alt="" loading="lazy" className="mx-auto h-12 w-12 object-contain" /> : <span className="text-3xl">{n.emoji}</span>}
                 <h3 className="mt-2 font-semibold text-sm text-foreground">{pick(n, "name")}</h3>
                 {t("", n.hindi) && <p className="text-xs text-muted-foreground">{n.hindi}</p>}
                 <p className="mt-1 text-[0.7rem] text-primary">{pick(n, "lord")}</p>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LegalPage, { ADDRESS, COMPANY, SUPPORT_EMAIL } from "@/components/LegalPage";
+import LegalPage, { ADDRESS, COMPANY, SUPPORT_EMAIL, SUPPORT_PHONE, SUPPORT_TEL } from "@/components/LegalPage";
 import { useT } from "@/hooks/useLang";
 
 // ponytail: drafted from how the app actually handles wallet, sessions, orders and refunds (admin/src/lib/orders.ts,
@@ -227,6 +227,7 @@ export const ContactPage = () => {
       )}</p>
       <ul>
         <li><strong>{t("Email:", "ईमेल:")}</strong> <Mail /></li>
+        <li><strong>{t("Phone:", "फ़ोन:")}</strong> <a href={SUPPORT_TEL}>{SUPPORT_PHONE}</a></li>
         <li><strong>{t("Business name:", "व्यवसाय का नाम:")}</strong> {COMPANY}</li>
         <li><strong>{t("Registered address:", "पंजीकृत पता:")}</strong> {ADDRESS}</li>
         <li>

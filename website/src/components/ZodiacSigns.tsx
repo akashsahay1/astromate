@@ -3,27 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useT } from "@/hooks/useLang";
 
-import ariesImg from "@/assets/zodiac/aries.png";
-import taurusImg from "@/assets/zodiac/taurus.png";
-import geminiImg from "@/assets/zodiac/gemini.png";
-import cancerImg from "@/assets/zodiac/cancer.png";
-import leoImg from "@/assets/zodiac/leo.png";
-import virgoImg from "@/assets/zodiac/virgo.png";
-import libraImg from "@/assets/zodiac/libra.png";
-import scorpioImg from "@/assets/zodiac/scorpio.png";
-import piscesImg from "@/assets/zodiac/pisces.png";
-
-const zodiacImages: Record<string, string> = {
-  "Aries": ariesImg,
-  "Taurus": taurusImg,
-  "Gemini": geminiImg,
-  "Cancer": cancerImg,
-  "Leo": leoImg,
-  "Virgo": virgoImg,
-  "Libra": libraImg,
-  "Scorpio": scorpioImg,
-  "Pisces": piscesImg,
-};
+import { zodiacImage } from "@/data/signImages";
 
 const zodiacSigns = [
   { name: "मेष", nameEn: "Aries", vedic: "Mesh", datesEn: "21 March – 19 April", elementEn: "Fire", planetEn: "Mars", descriptionEn: "Aries natives are bold, energetic and born leaders. They are pioneers when it comes to starting something new.", luckyColorEn: "Blood Red", dates: "21 मार्च - 19 अप्रैल", emoji: "♈", element: "अग्नि", planet: "मंगल", description: "मेष राशि के जातक साहसी, ऊर्जावान और नेतृत्व करने वाले होते हैं। ये लोग नए कार्य शुरू करने में अग्रणी होते हैं।", quality: "चर", lucky: "मंगलवार, लाल रंग, 9 अंक", luckyColor: "रक्त-लाल", luckyNumbers: "9, 18", finances: 75, love: 85, career: 70, travel: 60, health: 65, gradient: "from-red-500 to-orange-500" },
@@ -90,8 +70,8 @@ const ZodiacSigns = () => {
                 <span className="absolute top-2 left-2 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded font-semibold z-10">
                   Astromate
                 </span>
-                {zodiacImages[sign.nameEn] ? (
-                  <img src={zodiacImages[sign.nameEn]} alt={t(sign.nameEn, sign.name)} className="w-20 h-20 object-contain relative z-10 drop-shadow-lg" />
+                {zodiacImage(sign.nameEn) ? (
+                  <img src={zodiacImage(sign.nameEn)} alt={t(sign.nameEn, sign.name)} loading="lazy" className="w-20 h-20 rounded-full object-cover border-2 border-white/80 relative z-10 drop-shadow-lg" />
                 ) : (
                   <span className="text-5xl relative z-10 drop-shadow-lg">{sign.emoji}</span>
                 )}
@@ -155,8 +135,8 @@ const ZodiacSigns = () => {
                 </div>
               </div>
               <div className="flex justify-center">
-                {selectedSign && zodiacImages[selectedSign.nameEn] ? (
-                  <img src={zodiacImages[selectedSign.nameEn]} alt={t(selectedSign.nameEn, selectedSign.name)} className="w-40 h-40 object-contain" />
+                {selectedSign && zodiacImage(selectedSign.nameEn) ? (
+                  <img src={zodiacImage(selectedSign.nameEn)} alt={t(selectedSign.nameEn, selectedSign.name)} className="w-40 h-40 rounded-full object-cover" />
                 ) : (
                   <span className="text-8xl">{selectedSign?.emoji}</span>
                 )}

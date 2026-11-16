@@ -1,3 +1,4 @@
+import { zodiacImage } from "@/data/signImages";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -34,8 +35,8 @@ const Horoscope = () => {
           </button>
 
           <div className="rounded-2xl gradient-primary text-primary-foreground p-8 flex items-center gap-5">
-            <div className="h-20 w-20 rounded-2xl bg-primary-foreground/15 flex items-center justify-center text-4xl">
-              {r.symbol}
+            <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-primary-foreground/15 flex items-center justify-center text-4xl">
+              {zodiacImage(r.name_en) ? <img src={zodiacImage(r.name_en)} alt="" className="h-full w-full object-cover" /> : r.symbol}
             </div>
             <div>
               <h1 className="text-3xl font-bold">{pick(r, "name")} <span className="text-primary-foreground/70 text-xl">({lang === "hi" ? r.name_en : VEDIC[r.name_en] ?? r.name_en})</span></h1>
@@ -115,7 +116,7 @@ const Horoscope = () => {
                 className="group text-left rounded-xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-lg hover:border-primary/40"
               >
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-2xl text-primary">{r.symbol}</div>
+                  <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-primary/10 flex items-center justify-center text-2xl text-primary">{zodiacImage(r.name_en) ? <img src={zodiacImage(r.name_en)} alt="" loading="lazy" className="h-full w-full object-cover" /> : r.symbol}</div>
                   <div>
                     <h3 className="font-bold text-foreground">{pick(r, "name")}</h3>
                     <p className="text-xs text-muted-foreground">{lang === "hi" ? r.name_en : VEDIC[r.name_en] ?? r.name_en}</p>
